@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private float bulletSpeed = 3;
     [SerializeField] private int rangeDamage = 2;
+    [SerializeField] private int meleeDamage = 5;
     [SerializeField] private float fireRate = 1;
 
     [SerializeField] private float hitStunTimer = 0;
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
     [SerializeField] public GameObject bulletPrefab;
+    [SerializeField] public GameObject hitboxPrefab;
 
     private IPlayerCommand fire1;
     private IPlayerCommand fire2;
@@ -30,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
 
         this.fire1 = ScriptableObject.CreateInstance<RangedAttack>();
-        this.fire2 = ScriptableObject.CreateInstance<DoNothing>();
+        this.fire2 = ScriptableObject.CreateInstance<MeleeAttack>();
         this.right = ScriptableObject.CreateInstance<MoveCharacterRight>();
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
@@ -154,6 +156,11 @@ public class PlayerController : MonoBehaviour
     public int GetRangeDamage()
     {
         return this.rangeDamage;
+    }
+
+    public int GetMeleeDamage()
+    {
+        return this.meleeDamage;
     }
 
     public void SetRangeDamage(int damage)

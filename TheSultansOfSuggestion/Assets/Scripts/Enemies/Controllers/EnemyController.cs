@@ -91,7 +91,7 @@ abstract public class EnemyController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
-            int damage = 2; // Get attack's object and get it's damage
+            int damage = collision.gameObject.GetComponent<PlayerAttack>().GetDamage();
             TakeDamage(damage);
         }
     }

@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBulletController : MonoBehaviour
+public class PlayerBulletController : PlayerAttack
 {
     private Vector2 target = new Vector2(0, 0);
     protected float bulletSpeed = 10;
-    protected int bulletDamage = 2;
-
 
     // Update is called once per frame
     void Update()
@@ -22,12 +20,7 @@ public class PlayerBulletController : MonoBehaviour
 
     public void SetBulletDamage(int bulletDamage)
     {
-        this.bulletDamage = bulletDamage;
-    }
-
-    public int GetBulletDamage()
-    {
-        return this.bulletDamage;
+        this.damage = bulletDamage;
     }
 
     public void SetTarget(Vector2 target)
