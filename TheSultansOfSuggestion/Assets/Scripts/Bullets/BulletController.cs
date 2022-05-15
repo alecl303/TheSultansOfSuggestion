@@ -6,7 +6,7 @@ public class BulletController : MonoBehaviour
 {
 
     private Vector2 target;
-    protected float bulletSpeed = 1;
+    protected float bulletSpeed = 3;
     protected int bulletDamage = 2;
 
     // Start is called before the first frame update
@@ -38,7 +38,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Environment"))
+        if (collision.gameObject.CompareTag("Environment") || collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(this.gameObject);
         }

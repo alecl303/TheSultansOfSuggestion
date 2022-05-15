@@ -15890,8 +15890,9 @@ MonoBehaviour:
   movementSpeed: 2
   health: 100
   maxHealth: 100
-  bulletSpeed: 1
+  bulletSpeed: 3
   rangeDamage: 2
+  fireRate: 1
   hitStunTimer: 0
   hitStunTime: 0.3
   isInHitStun: 0

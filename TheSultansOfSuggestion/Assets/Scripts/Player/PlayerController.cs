@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Player.Command;
+using Player.Effect;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 2.0f;
     [SerializeField] private int health = 100;
     [SerializeField] private int maxHealth = 100;
-    [SerializeField] private float bulletSpeed = 5;
+    [SerializeField] private float bulletSpeed = 3;
     [SerializeField] private int rangeDamage = 2;
+    [SerializeField] private float fireRate = 1;
 
     [SerializeField] private float hitStunTimer = 0;
     [SerializeField] private float hitStunTime = 0.3f;
@@ -162,5 +164,15 @@ public class PlayerController : MonoBehaviour
     public void Heal(int amount)
     {
         this.health += Mathf.Min(amount, this.maxHealth - this.health);
+    }
+
+    public void ExecuteEffect(IPlayerEffect effect)
+    {
+        effect.Execute(this.gameObject);
+    }
+
+    public float GetFireRate()
+    {
+        return this.fireRate;
     }
 }
