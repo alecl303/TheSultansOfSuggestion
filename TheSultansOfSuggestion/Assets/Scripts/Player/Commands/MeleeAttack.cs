@@ -14,9 +14,10 @@ namespace Player.Command
             var positionDifference = Input.mousePosition - worldTransform;
             var target = positionDifference.normalized;
 
+            GameObject hitBox = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().hitboxPrefab, new Vector3(rigidBody.transform.position.x + (target.x / 2), rigidBody.transform.position.y + (target.y / 2), rigidBody.transform.position.z), new Quaternion());
 
+            gameObject.GetComponent<PlayerController>().IsAttacking();
 
-            GameObject hitBox = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().hitboxPrefab, new Vector3(rigidBody.transform.position.x + (target.x / 4), rigidBody.transform.position.y + (target.y / 4), rigidBody.transform.position.z), new Quaternion());
         }
     }
 }

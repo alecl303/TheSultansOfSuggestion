@@ -18,7 +18,7 @@ public class RangedEnemyController : EnemyController
         base.aggroDistance = 12;
         base.bulletSpeed = 2; 
         base.attackDamage = 1;
-        base.movementSpeed = 0.7f;
+        base.movementSpeed = 1.3f;
 
 
 

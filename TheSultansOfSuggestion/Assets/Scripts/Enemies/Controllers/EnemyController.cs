@@ -17,20 +17,21 @@ using Enemy.Command;
 abstract public class EnemyController : MonoBehaviour
 {
     // Stats/misc variables that all enemies will have (Serialize fields are for debug purposes and ironing out game feel)
-    [SerializeField] protected float movementSpeed = 2.0f;
-    [SerializeField] protected float aggroDistance = 5;
-    [SerializeField] protected float attackRange = 2;
+    [SerializeField] protected float movementSpeed = 1;
+    [SerializeField] protected float aggroDistance = 1;
+    [SerializeField] protected float attackRange = 0.1f;
     [SerializeField] protected int health = 20;
-
     [SerializeField] protected int attackDamage = 2;
     [SerializeField] protected float knockback = 50;
-
     [SerializeField] protected bool attacking = false;
-    [SerializeField] private float attackTimer = 0;
+    [SerializeField] private float attackTimer = 2;
     [SerializeField] private float attackBufferTimer = 0;
-    [SerializeField] protected float attackBuffer = 2;
-
+    [SerializeField] protected float attackBuffer = 1;
     [SerializeField] protected float bulletSpeed = 2;
+
+    [SerializeField] private float hitStunTimer = 0;
+    [SerializeField] private float hitStunTime = 0.3f;
+    [SerializeField] private bool isInHitStun = false;
 
     // Reference to the player object
     private Rigidbody2D target;
@@ -61,18 +62,25 @@ abstract public class EnemyController : MonoBehaviour
     // Actions that every enemy will do on update
     virtual protected void OnUpdate()
     {
-
-        this.movement.Execute(this.gameObject);
-
-        if (this.attacking == false)
+        if (!this.isInHitStun)
         {
-            var animator = this.gameObject.GetComponent<Animator>();
-            animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
+            this.movement.Execute(this.gameObject);
+
+            if (this.attacking == false)
+            {
+                var animator = this.gameObject.GetComponent<Animator>();
+                animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
+            }
+            else
+            {
+                BufferAttack();
+            }
         }
         else
         {
-            BufferAttack();
+            HitStun();
         }
+        
 
         if (this.health <= 0)
         {
@@ -93,6 +101,11 @@ abstract public class EnemyController : MonoBehaviour
         {
             int damage = collision.gameObject.GetComponent<PlayerAttack>().GetDamage();
             TakeDamage(damage);
+
+            this.isInHitStun = true;
+
+            Vector2 knockbackDirection = (this.gameObject.GetComponent<Rigidbody2D>().position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized;
+            Knockback(knockbackDirection);
         }
     }
 
@@ -163,6 +176,24 @@ abstract public class EnemyController : MonoBehaviour
     public float GetKnockback()
     {
         return this.knockback;
+    }
+
+    private void Knockback(Vector2 direction)
+    {
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = this.knockback * direction;
+    }
+
+    private void HitStun()
+    {
+        if (this.hitStunTimer < this.hitStunTime)
+        {
+            this.hitStunTimer += Time.deltaTime;
+        }
+        else
+        {
+            this.hitStunTimer = 0;
+            this.isInHitStun = false;
+        }
     }
 
     public float GetBulletSpeed()

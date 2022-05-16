@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float hitStunTimer = 0;
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
+    [SerializeField] private float attackTimer = 0;
+    [SerializeField] private float attackTime = 2;
+    [SerializeField] private bool isAttacking = false;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
 
@@ -44,16 +47,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isInHitStun)
+        if (!this.isInHitStun)
         {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                this.fire1.Execute(this.gameObject);
-            }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                this.fire2.Execute(this.gameObject);
-            }
             if (Input.GetAxis("Horizontal") > 0.01)
             {
                 this.right.Execute(this.gameObject);
@@ -69,6 +64,22 @@ public class PlayerController : MonoBehaviour
             if (Input.GetAxis("Vertical") > 0.01)
             {
                 this.up.Execute(this.gameObject);
+            }
+
+            if (!this.isAttacking)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    this.fire1.Execute(this.gameObject);
+                }
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    this.fire2.Execute(this.gameObject);
+                }
+            }
+            else
+            {
+                Attacking();
             }
 
             var animator = this.gameObject.GetComponent<Animator>();
@@ -146,7 +157,30 @@ public class PlayerController : MonoBehaviour
             this.hitStunTimer = 0;
             this.isInHitStun = false;
         }
-    } 
+    }
+
+    public void IsAttacking()
+    {
+        this.isAttacking = true;
+        //this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+    }
+
+    private void Attacking()
+    {
+        var animator = this.gameObject.GetComponent<Animator>();
+        if (this.attackTimer < this.attackTime)
+        {
+            this.attackTimer += Time.deltaTime;
+            animator.SetBool("Attacking", true);
+            
+        }
+        else
+        {
+            animator.SetBool("Attacking", false);
+            this.attackTimer = 0;
+            this.isAttacking = false;
+        }
+    }
 
     public float GetBulletSpeed()
     {
