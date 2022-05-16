@@ -62,29 +62,30 @@ abstract public class EnemyController : MonoBehaviour
     // Actions that every enemy will do on update
     virtual protected void OnUpdate()
     {
-        if (!this.isInHitStun)
+        if (this.health <= 0)
         {
-            this.movement.Execute(this.gameObject);
-
-            if (this.attacking == false)
-            {
-                var animator = this.gameObject.GetComponent<Animator>();
-                animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
-            }
-            else
-            {
-                BufferAttack();
-            }
+            StartCoroutine(Die());
         }
         else
         {
-            HitStun();
-        }
-        
+            if (!this.isInHitStun)
+            {
+                this.movement.Execute(this.gameObject);
 
-        if (this.health <= 0)
-        {
-            Die();
+                if (this.attacking == false)
+                {
+                    var animator = this.gameObject.GetComponent<Animator>();
+                    animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
+                }
+                else
+                {
+                    BufferAttack();
+                }
+            }
+            else
+            {
+                HitStun();
+            }
         }
     }
 
@@ -211,8 +212,13 @@ abstract public class EnemyController : MonoBehaviour
         this.health -= damage;
     }
 
-    private void Die()
+    private IEnumerator Die()
     {
+        var animator = this.gameObject.GetComponent<Animator>();
+        animator.SetBool("Dying", true);
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
+
         Destroy(this.gameObject);
     }
     public bool IsAttacking()

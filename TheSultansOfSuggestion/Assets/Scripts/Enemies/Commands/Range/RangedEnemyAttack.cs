@@ -16,7 +16,7 @@ namespace Enemy.Command
    
             if(positionDifference.magnitude < enemyObject.GetAttackRange() && !enemyObject.IsAttacking())
             {
-                GameObject bullet = (GameObject)Instantiate(gameObject.GetComponent<RangedEnemyController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (positionDifference.normalized.x/4), rigidBody.transform.position.y + (positionDifference.normalized.y/4), rigidBody.transform.position.z), new Quaternion());
+                GameObject bullet = (GameObject)Instantiate(gameObject.GetComponent<RangedEnemyController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (positionDifference.normalized.x/3), rigidBody.transform.position.y + (positionDifference.normalized.y/3), rigidBody.transform.position.z), new Quaternion());
 
                 bullet.GetComponent<BulletController>().SetBulletDamage(enemyObject.GetAttackDamage());
                 bullet.GetComponent<BulletController>().SetBulletSpeed(enemyObject.GetBulletSpeed());

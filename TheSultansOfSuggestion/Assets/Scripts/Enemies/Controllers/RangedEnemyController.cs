@@ -20,8 +20,6 @@ public class RangedEnemyController : EnemyController
         base.attackDamage = 1;
         base.movementSpeed = 1.3f;
 
-
-
         this.chase = ScriptableObject.CreateInstance<RangedEnemyChase>();
         this.attack = ScriptableObject.CreateInstance<RangedEnemyAttack>();
     }
