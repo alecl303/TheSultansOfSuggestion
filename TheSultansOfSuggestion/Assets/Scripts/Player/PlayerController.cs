@@ -103,31 +103,17 @@ public class PlayerController : MonoBehaviour
             TakeDamage(enemy.GetAttackDamage());
         }
 
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("EnemyAttack"))
         {
             var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
             var bulletKnockBack = 10; // temporary
 
             playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
-            TakeDamage(collision.gameObject.GetComponent<BulletController>().GetBulletDamage());
+            TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
             Destroy(collision.gameObject);
         }
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
-            var bulletKnockBack = 10; // temporary
-
-            playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - other.gameObject.GetComponent<Rigidbody2D>().position).normalized);
-
-            TakeDamage(other.gameObject.GetComponent<BulletController>().GetBulletDamage());
-            Destroy(other.gameObject);
-        }
     }
 
     public void TakeDamage(int damage)

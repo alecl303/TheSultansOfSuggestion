@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class BulletController : EnemyAttack
 {
 
     private Vector2 target;
     protected float bulletSpeed = 3;
-    protected int bulletDamage = 2;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.damage = 2;
         this.target = (FindObjectOfType<PlayerController>().gameObject.GetComponent<Rigidbody2D>().position - this.gameObject.GetComponent<Rigidbody2D>().position).normalized;    
     }
 
@@ -28,12 +28,7 @@ public class BulletController : MonoBehaviour
 
     public void SetBulletDamage(int bulletDamage)
     {
-        this.bulletDamage = bulletDamage;
-    }
-
-    public int GetBulletDamage()
-    {
-        return this.bulletDamage;
+        this.damage = bulletDamage;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
