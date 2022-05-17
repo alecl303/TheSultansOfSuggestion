@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int meleeDamage = 5;
     [SerializeField] private float fireRate = 1;
 
-    [SerializeField] private float iFrameTime = 2;
+    [SerializeField] private float iFrameTime = 1;
     [SerializeField] private bool isInIFrame = false;
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
@@ -210,8 +210,10 @@ public class PlayerController : MonoBehaviour
     private IEnumerator IFrame()
     {
         this.isInIFrame = true;
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 50);
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0.5f);
+
         yield return new WaitForSeconds(this.iFrameTime);
+
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
         this.isInIFrame = false;
     }
