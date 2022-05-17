@@ -29,7 +29,6 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] protected float attackBuffer = 1;
     [SerializeField] protected float bulletSpeed = 2;
 
-    [SerializeField] private float hitStunTimer = 0;
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
 
@@ -82,10 +81,6 @@ abstract public class EnemyController : MonoBehaviour
                     BufferAttack();
                 }
             }
-            else
-            {
-                HitStun();
-            }
         }
     }
 
@@ -103,7 +98,7 @@ abstract public class EnemyController : MonoBehaviour
             int damage = collision.gameObject.GetComponent<PlayerAttack>().GetDamage();
             TakeDamage(damage);
 
-            this.isInHitStun = true;
+            StartCoroutine(HitStun());
 
             Vector2 knockbackDirection = (this.gameObject.GetComponent<Rigidbody2D>().position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized;
             Knockback(knockbackDirection);
@@ -186,17 +181,11 @@ abstract public class EnemyController : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody2D>().velocity = this.knockback * direction;
     }
 
-    private void HitStun()
+    private IEnumerator HitStun()
     {
-        if (this.hitStunTimer < this.hitStunTime)
-        {
-            this.hitStunTimer += Time.deltaTime;
-        }
-        else
-        {
-            this.hitStunTimer = 0;
-            this.isInHitStun = false;
-        }
+        this.isInHitStun = true;
+        yield return new WaitForSeconds(this.hitStunTime);
+        this.isInHitStun = false;
     }
 
     public float GetBulletSpeed()

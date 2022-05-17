@@ -14,10 +14,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int meleeDamage = 5;
     [SerializeField] private float fireRate = 1;
 
-    [SerializeField] private float hitStunTimer = 0;
+    [SerializeField] private float iFrameTime = 2;
+    [SerializeField] private bool isInIFrame = false;
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
-    [SerializeField] private float attackTimer = 0;
     [SerializeField] private float attackTime = 2;
     [SerializeField] private bool isAttacking = false;
     [SerializeField] private bool isDead = false;
@@ -84,48 +84,54 @@ public class PlayerController : MonoBehaviour
                         this.fire2.Execute(this.gameObject);
                     }
                 }
-                else
-                {
-                    Attacking();
-                }
 
                 var animator = this.gameObject.GetComponent<Animator>();
                 animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
-            }
-            else
-            {
-                HitStun();
             }
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if (!this.isInIFrame)
         {
-            var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
-            var enemy = collision.gameObject.GetComponent<EnemyController>();
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+                var enemy = collision.gameObject.GetComponent<EnemyController>();
 
-            playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+                playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
-            TakeDamage(enemy.GetAttackDamage());
+                TakeDamage(enemy.GetAttackDamage());
 
-            FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
+                FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
+
+                StartCoroutine(HitStun());
+                StartCoroutine(IFrame());
+            }
+
+            if (collision.gameObject.CompareTag("EnemyAttack"))
+            {
+                var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+                var bulletKnockBack = 10; // temporary
+
+                playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+
+                TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
+
+                FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
+
+                StartCoroutine(HitStun());
+                StartCoroutine(IFrame());
+            }
         }
-
-        if (collision.gameObject.CompareTag("EnemyAttack"))
+        else
         {
-            var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
-            var bulletKnockBack = 10; // temporary
-
-            playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
-
-            TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
-            Destroy(collision.gameObject);
-
-            FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
+            if (collision.gameObject.CompareTag("EnemyAttack"))
+            {
+                Destroy(collision.gameObject);
+            }
         }
-
     }
 
     public void TakeDamage(int damage)
@@ -144,40 +150,27 @@ public class PlayerController : MonoBehaviour
         this.movementSpeed = speed;
     }
 
-    private void HitStun()
+    private IEnumerator HitStun()
     {
-        if(this.hitStunTimer < this.hitStunTime)
-        {
-            this.hitStunTimer += Time.deltaTime;
-        }
-        else
-        {
-            this.hitStunTimer = 0;
-            this.isInHitStun = false;
-        }
+        this.isInHitStun = true;
+        yield return new WaitForSeconds(this.hitStunTime);
+        this.isInHitStun = false;
     }
 
     public void IsAttacking()
     {
         this.isAttacking = true;
+        StartCoroutine(Attacking());
         //this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
 
-    private void Attacking()
+    private IEnumerator Attacking()
     {
         var animator = this.gameObject.GetComponent<Animator>();
-        if (this.attackTimer < this.attackTime)
-        {
-            this.attackTimer += Time.deltaTime;
-            animator.SetBool("Attacking", true);
-            
-        }
-        else
-        {
-            animator.SetBool("Attacking", false);
-            this.attackTimer = 0;
-            this.isAttacking = false;
-        }
+        animator.SetBool("Attacking", true);
+        yield return new WaitForSeconds(this.attackTime);
+        animator.SetBool("Attacking", false);
+        this.isAttacking = false;
     }
 
     public float GetBulletSpeed()
@@ -213,6 +206,14 @@ public class PlayerController : MonoBehaviour
     public float GetFireRate()
     {
         return this.fireRate;
+    }
+    private IEnumerator IFrame()
+    {
+        this.isInIFrame = true;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 50);
+        yield return new WaitForSeconds(this.iFrameTime);
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+        this.isInIFrame = false;
     }
 
     private IEnumerator Die()
