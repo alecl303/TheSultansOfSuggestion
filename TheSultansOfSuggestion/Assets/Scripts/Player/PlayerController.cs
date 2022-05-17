@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float attackTimer = 0;
     [SerializeField] private float attackTime = 2;
     [SerializeField] private bool isAttacking = false;
+    [SerializeField] private bool isDead = false;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
 
@@ -47,48 +48,55 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!this.isInHitStun)
+        if (this.health <= 0)
         {
-            if (Input.GetAxis("Horizontal") > 0.01)
-            {
-                this.right.Execute(this.gameObject);
-            }
-            if (Input.GetAxis("Horizontal") < -0.01)
-            {
-                this.left.Execute(this.gameObject);
-            }
-            if (Input.GetAxis("Vertical") < -0.01)
-            {
-                this.down.Execute(this.gameObject);
-            }
-            if (Input.GetAxis("Vertical") > 0.01)
-            {
-                this.up.Execute(this.gameObject);
-            }
-
-            if (!this.isAttacking)
-            {
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    this.fire1.Execute(this.gameObject);
-                }
-                if (Input.GetButtonDown("Fire2"))
-                {
-                    this.fire2.Execute(this.gameObject);
-                }
-            }
-            else
-            {
-                Attacking();
-            }
-
-            var animator = this.gameObject.GetComponent<Animator>();
-            animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
+            StartCoroutine(Die());
         }
         else
         {
-            HitStun();
-        }  
+            if (!this.isInHitStun)
+            {
+                if (Input.GetAxis("Horizontal") > 0.01)
+                {
+                    this.right.Execute(this.gameObject);
+                }
+                if (Input.GetAxis("Horizontal") < -0.01)
+                {
+                    this.left.Execute(this.gameObject);
+                }
+                if (Input.GetAxis("Vertical") < -0.01)
+                {
+                    this.down.Execute(this.gameObject);
+                }
+                if (Input.GetAxis("Vertical") > 0.01)
+                {
+                    this.up.Execute(this.gameObject);
+                }
+
+                if (!this.isAttacking)
+                {
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        this.fire1.Execute(this.gameObject);
+                    }
+                    if (Input.GetButtonDown("Fire2"))
+                    {
+                        this.fire2.Execute(this.gameObject);
+                    }
+                }
+                else
+                {
+                    Attacking();
+                }
+
+                var animator = this.gameObject.GetComponent<Animator>();
+                animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
+            }
+            else
+            {
+                HitStun();
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -205,5 +213,18 @@ public class PlayerController : MonoBehaviour
     public float GetFireRate()
     {
         return this.fireRate;
+    }
+
+    private IEnumerator Die()
+    {
+        if (!this.isDead)
+        {
+            var animator = this.gameObject.GetComponent<Animator>();
+            animator.SetBool("Dead", true);
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
+            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
+
+            FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over Long");
+        }
     }
 }
