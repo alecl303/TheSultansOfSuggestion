@@ -9,4 +9,17 @@ abstract public class PlayerAttack : MonoBehaviour
     {
         return this.damage;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("PlayerAttack"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
 }

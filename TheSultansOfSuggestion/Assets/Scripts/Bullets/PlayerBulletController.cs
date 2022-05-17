@@ -27,12 +27,4 @@ public class PlayerBulletController : PlayerAttack
     {
         this.target = target;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Environment") || collision.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(this.gameObject);
-        }
-    }
 }

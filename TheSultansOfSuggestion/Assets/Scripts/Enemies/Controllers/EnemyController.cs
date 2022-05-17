@@ -218,9 +218,9 @@ abstract public class EnemyController : MonoBehaviour
     {
         var animator = this.gameObject.GetComponent<Animator>();
         animator.SetBool("Dying", true);
-
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
         FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
+        
         Destroy(this.gameObject);
     }
     public bool IsAttacking()
