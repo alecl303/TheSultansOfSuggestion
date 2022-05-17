@@ -18,6 +18,8 @@ namespace Player.Command
 
             gameObject.GetComponent<PlayerController>().IsAttacking();
 
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Melee2");
+
         }
     }
 }

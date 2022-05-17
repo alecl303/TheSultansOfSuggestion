@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour
             playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
             TakeDamage(enemy.GetAttackDamage());
+
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
         }
 
         if (collision.gameObject.CompareTag("EnemyAttack"))
@@ -112,6 +114,8 @@ public class PlayerController : MonoBehaviour
 
             TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
             Destroy(collision.gameObject);
+
+            FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
         }
 
     }
