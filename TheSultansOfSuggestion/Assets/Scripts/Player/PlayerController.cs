@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float movementSpeed = 2.0f;
     [SerializeField] private int health = 100;
     [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int mana = 100;
+    [SerializeField] private int maxMana = 100;
     [SerializeField] private float bulletSpeed = 3;
     [SerializeField] private int rangeDamage = 2;
     [SerializeField] private int meleeDamage = 5;
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject hitboxPrefab;
     [SerializeField] public List<Weapon> weapons;
     [SerializeField] public Weapon activeWeapon;
+    [SerializeField] public IPlayerCommand activeSpell;
 
     private IPlayerCommand fire1;
     private IPlayerCommand fire2;
@@ -43,7 +46,7 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-
+        this.activeSpell = ScriptableObject.CreateInstance<Burst>();
         this.weapons.Add(this.activeWeapon);
     }
 
@@ -84,6 +87,10 @@ public class PlayerController : MonoBehaviour
                     if (Input.GetButtonDown("Fire2"))
                     {
                         this.fire2.Execute(this.gameObject);
+                    }
+                    if (Input.GetButtonDown("Fire3"))
+                    {
+                        this.activeSpell.Execute(this.gameObject);
                     }
                 }
 
@@ -205,6 +212,26 @@ public class PlayerController : MonoBehaviour
     public void Heal(int amount)
     {
         this.health += Mathf.Min(amount, this.maxHealth - this.health);
+    }
+
+    public int GetMana()
+    {
+        return this.mana;
+    }
+
+    public void DrainMana(int amount)
+    {
+        this.mana = this.mana - amount;
+    }
+
+    public void SetActiveSpell(IPlayerCommand spell)
+    {
+        this.activeSpell = spell;
+    }
+
+    public void SetActiveWeapon(Weapon weapon)
+    {
+        this.activeWeapon = weapon;
     }
 
     public void ExecuteEffect(IPlayerEffect effect)
