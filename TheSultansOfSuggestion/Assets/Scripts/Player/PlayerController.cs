@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
 
     public void DrainMana(int amount)
     {
-        this.mana = this.mana - amount;
+        this.mana -= amount;
     }
 
     public void SetActiveSpell(IPlayerCommand spell)
