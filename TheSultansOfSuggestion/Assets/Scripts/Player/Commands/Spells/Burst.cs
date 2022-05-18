@@ -31,9 +31,9 @@ namespace Player.Command
                     bulletController.SetBulletDamage(player.GetRangeDamage());
                     bulletController.SetBulletSpeed(player.GetBulletSpeed());
                 }
-            }
 
-            player.DrainMana(this.requiredMana);
+                player.DrainMana(this.requiredMana);
+            }
         }
     }
 }
