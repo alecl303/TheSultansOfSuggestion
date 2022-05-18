@@ -14,11 +14,11 @@ public class RangedEnemyController : EnemyController
     {
         base.Init();
 
-        base.attackRange = 8;
-        base.aggroDistance = 12;
-        base.bulletSpeed = 2; 
-        base.attackDamage = 1;
-        base.movementSpeed = 1.3f;
+        this.attackRange = 8;
+        this.aggroDistance = 12;
+        this.bulletSpeed = 2; 
+        this.attackDamage = 1;
+        this.movementSpeed = 1.3f;
 
         this.chase = ScriptableObject.CreateInstance<RangedEnemyChase>();
         this.attack = ScriptableObject.CreateInstance<RangedEnemyAttack>();
@@ -33,9 +33,10 @@ public class RangedEnemyController : EnemyController
             this.movement = this.chase;
         }
 
-        if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange())
+        if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking())
         {
             this.attack.Execute(this.gameObject);
+            StartCoroutine(InitiateAttack());
         }
     }
 }

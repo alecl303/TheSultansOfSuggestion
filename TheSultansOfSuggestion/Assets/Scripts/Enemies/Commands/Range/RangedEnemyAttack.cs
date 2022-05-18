@@ -14,7 +14,7 @@ namespace Enemy.Command
 
             Vector2 positionDifference = target.position - rigidBody.position;
    
-            if(positionDifference.magnitude < enemyObject.GetAttackRange() && !enemyObject.IsAttacking())
+            if(positionDifference.magnitude < enemyObject.GetAttackRange())
             {
                 GameObject bullet = (GameObject)Instantiate(gameObject.GetComponent<RangedEnemyController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (positionDifference.normalized.x/3), rigidBody.transform.position.y + (positionDifference.normalized.y/3), rigidBody.transform.position.z), new Quaternion());
               

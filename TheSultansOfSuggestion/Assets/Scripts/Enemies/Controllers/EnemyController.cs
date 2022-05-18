@@ -24,9 +24,7 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] protected int attackDamage = 2;
     [SerializeField] protected float knockback = 50;
     [SerializeField] protected bool attacking = false;
-    [SerializeField] private float attackTimer = 2;
-    [SerializeField] private float attackBufferTimer = 0;
-    [SerializeField] protected float attackBuffer = 1;
+    [SerializeField] protected float attackBuffer = 2;
     [SerializeField] protected float bulletSpeed = 2;
 
     [SerializeField] private float hitStunTime = 0.3f;
@@ -72,16 +70,8 @@ abstract public class EnemyController : MonoBehaviour
             if (!this.isInHitStun)
             {
                 this.movement.Execute(this.gameObject);
-
-                if (this.attacking == false)
-                {
-                    var animator = this.gameObject.GetComponent<Animator>();
-                    animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
-                }
-                else
-                {
-                    BufferAttack();
-                }
+                var animator = this.gameObject.GetComponent<Animator>();
+                animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
             }
         }
     }
@@ -90,9 +80,9 @@ abstract public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !this.attacking)
         {
-            InitiateAttack();
+            StartCoroutine(InitiateAttack());
         }
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
@@ -133,36 +123,19 @@ abstract public class EnemyController : MonoBehaviour
         return false;
     }
 
-    public void InitiateAttack() 
+    public IEnumerator InitiateAttack() 
     {
         var animator = this.gameObject.GetComponent<Animator>();
+
         animator.SetBool("Attacking", true);
         this.attacking = true;
+
+        yield return new WaitForSeconds(this.attackBuffer);
+
+        animator.SetBool("Attacking", false);
+        this.attacking = false;
     }
 
-    private void BufferAttack() // Pretty ugly, would like to improve some how
-    {
-        if(this.attackTimer < 1.0f) // This should be handled by anim controller, but its got a bug :(
-        {
-            this.attackTimer += Time.deltaTime;
-        }
-        else
-        {
-            var animator = this.gameObject.GetComponent<Animator>();
-            animator.SetBool("Attacking", false);
-
-            if(this.attackBufferTimer < this.attackBuffer)
-            {
-                this.attackBufferTimer += Time.deltaTime;
-            }
-            else
-            {
-                this.attackBufferTimer = 0;
-                this.attackTimer = 0;
-                this.attacking = false;
-            }
-        }
-    }
     public int GetAttackDamage()
     {
         return this.attackDamage;
