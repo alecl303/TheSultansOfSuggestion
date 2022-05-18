@@ -18,7 +18,7 @@ namespace Enemy.Command
             {
                 GameObject bullet = (GameObject)Instantiate(gameObject.GetComponent<SummonerEnemyController>().summonPrefab, new Vector3(rigidBody.transform.position.x + (positionDifference.normalized.x / 3), rigidBody.transform.position.y + (positionDifference.normalized.y / 3), rigidBody.transform.position.z), new Quaternion());
 
-                enemyObject.InitiateAttack();
+                enemyObject.StartCoroutine(enemyObject.InitiateAttack());
             }
         }
     }

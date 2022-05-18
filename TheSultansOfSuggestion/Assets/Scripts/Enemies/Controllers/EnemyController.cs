@@ -30,6 +30,8 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
 
+    private bool dying = false;
+
     //[SerializeField] private GameObject weaponDrop;
 
     // Reference to the player object
@@ -61,11 +63,11 @@ abstract public class EnemyController : MonoBehaviour
     // Actions that every enemy will do on update
     virtual protected void OnUpdate()
     {
-        if (this.health <= 0)
+        if (this.health <= 0 && !this.dying)
         {
             StartCoroutine(Die());
         }
-        else
+        else if(this.health > 0)
         {
             if (!this.isInHitStun)
             {
@@ -181,8 +183,12 @@ abstract public class EnemyController : MonoBehaviour
     private IEnumerator Die()
     {
         var animator = this.gameObject.GetComponent<Animator>();
+
         animator.SetBool("Dying", true);
         FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
+
+        this.dying = true;
+
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
 
         /*var enemyPosition = this.gameObject.GetComponent<Rigidbody2D>().transform.position;

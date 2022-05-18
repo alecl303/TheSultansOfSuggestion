@@ -21,7 +21,7 @@ namespace Enemy.Command
                 bullet.GetComponent<BulletController>().SetBulletDamage(enemyObject.GetAttackDamage());
                 bullet.GetComponent<BulletController>().SetBulletSpeed(enemyObject.GetBulletSpeed());
 
-                enemyObject.InitiateAttack();
+                enemyObject.StartCoroutine(enemyObject.InitiateAttack());
             }
         }
     }
