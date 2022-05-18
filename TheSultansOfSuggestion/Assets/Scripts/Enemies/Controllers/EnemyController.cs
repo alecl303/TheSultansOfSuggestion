@@ -22,7 +22,7 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] protected float attackRange = 0.1f;
     [SerializeField] protected int health = 20;
     [SerializeField] protected int attackDamage = 2;
-    [SerializeField] protected float knockback = 50;
+    [SerializeField] protected float knockback = 10;
     [SerializeField] protected bool attacking = false;
     [SerializeField] protected float attackBuffer = 2;
     [SerializeField] protected float bulletSpeed = 2;

@@ -15,7 +15,7 @@ public class WolfController : EnemyController
         this.movementSpeed = 2;
         this.attackRange = 2;
         this.health = 5;
-        this.aggroDistance = 5;
+        this.aggroDistance = 15;
 
         this.chase = ScriptableObject.CreateInstance<MeleeEnemyDash>();
         this.attack = ScriptableObject.CreateInstance<MeleeEnemyAttack>();

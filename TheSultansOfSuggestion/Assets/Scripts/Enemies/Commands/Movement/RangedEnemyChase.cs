@@ -7,7 +7,7 @@ namespace Enemy.Command
     public class RangedEnemyChase : ScriptableObject, IEnemyCommand
     {
         private Vector2 direction;
-        private readonly float maxDistance = 2;
+        public readonly float maxDistance = 2;
 
         public void Execute(GameObject gameObject)
         {
