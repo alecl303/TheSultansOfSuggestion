@@ -175,7 +175,7 @@ MonoBehaviour:
   attackBufferTimer: 0
   attackBuffer: 1
   bulletSpeed: 2
-  hitStunTimer: 0
   hitStunTime: 0.3
   isInHitStun: 0
+  weaponDrop: {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
   bulletPrefab: {fileID: 6087790376291015841, guid: efec521f6c503f642b9b30ea4e2930f5, type: 3}

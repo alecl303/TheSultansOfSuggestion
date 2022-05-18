@@ -32,6 +32,8 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
 
+    //[SerializeField] private GameObject weaponDrop;
+
     // Reference to the player object
     private Rigidbody2D target;
 
@@ -209,7 +211,11 @@ abstract public class EnemyController : MonoBehaviour
         animator.SetBool("Dying", true);
         FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
-        
+
+        /*var enemyPosition = this.gameObject.GetComponent<Rigidbody2D>().transform.position;
+        var drop = (GameObject)Instantiate(this.weaponDrop, new Vector3(enemyPosition.x, enemyPosition.y, enemyPosition.z), new Quaternion());
+        drop.GetComponent<SpriteRenderer>().sprite = drop.GetComponent<Weapon>().sprite;*/
+
         Destroy(this.gameObject);
     }
     public bool IsAttacking()

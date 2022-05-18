@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isDead = false;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
+    [SerializeField] public List<Weapon> weapons;
+    [SerializeField] public Weapon activeWeapon;
 
     private IPlayerCommand fire1;
     private IPlayerCommand fire2;
@@ -41,8 +43,8 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        
 
+        this.weapons.Add(this.activeWeapon);
     }
 
     // Update is called once per frame
@@ -132,6 +134,13 @@ public class PlayerController : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
+
+        // Temporary weapon pick up logic
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            this.weapons.Add(collision.gameObject.GetComponent<Weapon>());
+            Destroy(collision.gameObject);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -185,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
     public int GetMeleeDamage()
     {
-        return this.meleeDamage;
+        return this.meleeDamage + this.weapons[0].GetDamage(); // Will have to figure out active weapon in inventory
     }
 
     public void SetRangeDamage(int damage)
