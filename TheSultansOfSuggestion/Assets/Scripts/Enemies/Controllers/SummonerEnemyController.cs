@@ -6,10 +6,6 @@ using Enemy.Command;
 
 public class SummonerEnemyController : EnemyController
 {
-
-    private IEnemyCommand chase;
-
-    [SerializeField] public GameObject summonPrefab;
     protected override void Init()
     {
         base.Init();
@@ -25,19 +21,4 @@ public class SummonerEnemyController : EnemyController
         this.attack = ScriptableObject.CreateInstance<SummonerEnemyAttack>();
     }
 
-    protected override void OnUpdate()
-    {
-        base.OnUpdate();
-
-        if (this.IsInChaseRange())
-        {
-            this.movement = this.chase;
-        }
-
-        if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking())
-        {
-            this.attack.Execute(this.gameObject);
-            StartCoroutine(InitiateAttack());
-        }
-    }
 }

@@ -29,7 +29,7 @@ abstract public class EnemyController : MonoBehaviour
 
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
-
+    [SerializeField] public GameObject bulletPrefab;
     private bool dying = false;
 
     //[SerializeField] private GameObject weaponDrop;
@@ -40,6 +40,7 @@ abstract public class EnemyController : MonoBehaviour
     // Base movement and attack commands. Set any variable to 'protected' when it needs to be overwritten in child class
     protected IEnemyCommand movement;
     protected IEnemyCommand attack;
+    protected IEnemyCommand chase;
 
     // Start and Update calls virtual method init, that can be extended in inherited classes. Inherited classes will inherit Start/Update methods from this class.
     void Start()
@@ -75,6 +76,17 @@ abstract public class EnemyController : MonoBehaviour
                 var animator = this.gameObject.GetComponent<Animator>();
                 animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
             }
+        }
+
+        if (this.IsInChaseRange())
+        {
+            this.movement = this.chase;
+        }
+
+        if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking())
+        {
+            this.attack.Execute(this.gameObject);
+            StartCoroutine(InitiateAttack());
         }
     }
 

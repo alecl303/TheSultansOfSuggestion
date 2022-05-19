@@ -6,8 +6,6 @@ using Enemy.Command;
 
 public class WolfController : EnemyController
 {
-    private IEnemyCommand chase;
-
     protected override void Init()
     {
         base.Init();
@@ -20,16 +18,4 @@ public class WolfController : EnemyController
         this.chase = ScriptableObject.CreateInstance<MeleeEnemyDash>();
         this.attack = ScriptableObject.CreateInstance<MeleeEnemyAttack>();
     }
-
-    protected override void OnUpdate()
-    {
-        base.OnUpdate();
-
-        if (this.IsInChaseRange())
-        {
-            this.movement = this.chase;
-        }
-
-    }
-
 }

@@ -4,21 +4,20 @@ using UnityEngine;
 
 using Enemy.Command;
 
-public class BomberEnemyController : EnemyController
+public class EyeGuyController : EnemyController
 {
     protected override void Init()
     {
         base.Init();
 
-        this.attackRange = 1;
-        this.aggroDistance = 4;
+        this.attackRange = 2;
+        this.aggroDistance = 3;
+        this.bulletSpeed = 2;
         this.attackDamage = 10;
         this.movementSpeed = 0.5f;
-        this.attackBuffer = 5;
-        this.health = 3;
+        this.attackBuffer = 2;
 
-        this.chase = ScriptableObject.CreateInstance<EnemyChase>();
+        this.chase = ScriptableObject.CreateInstance<RangedEnemyChase>();
         this.attack = ScriptableObject.CreateInstance<SummonerEnemyAttack>();
     }
-
 }
