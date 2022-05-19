@@ -241,9 +241,13 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.0037133545
       objectReference: {fileID: 0}
+    - target: {fileID: 2572797815384593385, guid: 16acf4a010583344da48610d4392d237, type: 3}
+      propertyPath: movementSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2572797815384593391, guid: 16acf4a010583344da48610d4392d237, type: 3}
       propertyPath: m_LinearDrag
-      value: 0.5
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16acf4a010583344da48610d4392d237, type: 3}
@@ -9610,6 +9614,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2572797815384593381, guid: 16acf4a010583344da48610d4392d237, type: 3}
   m_PrefabInstance: {fileID: 102648327}
   m_PrefabAsset: {fileID: 0}
+--- !u!210 &1164049362
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164049361}
+  m_Enabled: 1
+  m_SortingLayerID: -1966802043
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!1 &1544257342
 GameObject:
   m_ObjectHideFlags: 0
