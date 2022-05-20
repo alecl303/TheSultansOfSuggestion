@@ -14,9 +14,9 @@ public class MeleeHitBoxController : PlayerAttack
     void Start()
     {
         this.player = FindObjectOfType<PlayerController>();
-        this.damage = player.GetMeleeDamage();
+        this.damage = player.GetStats().GetMeleeDamage();
         this.lifeSpan = 0;
-        this.maxDuration = player.GetFireRate();
+        this.maxDuration = player.GetStats().GetFireRate();
     }
 
     // Update is called once per frame

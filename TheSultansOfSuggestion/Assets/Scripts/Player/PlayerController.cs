@@ -4,18 +4,12 @@ using UnityEngine;
 
 using Player.Command;
 using Player.Effect;
+using Player.Stats;
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 2.0f;
-    [SerializeField] private int health = 100;
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int mana = 100;
-    [SerializeField] private int maxMana = 100;
-    [SerializeField] private float bulletSpeed = 3;
-    [SerializeField] private int rangeDamage = 2;
-    [SerializeField] private int meleeDamage = 5;
-    [SerializeField] private float fireRate = 1;
+    private PlayerStats stats;
 
+    [SerializeField] private bool canShoot = true;
     [SerializeField] private float iFrameTime = 1;
     [SerializeField] private bool isInIFrame = false;
     [SerializeField] private float hitStunTime = 0.3f;
@@ -25,8 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isDead = false;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
-    [SerializeField] public List<Weapon> weapons;
-    [SerializeField] public Weapon activeWeapon;
+
     [SerializeField] public IPlayerCommand activeSpell;
 
     private IPlayerCommand fire1;
@@ -39,7 +32,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        this.stats = this.gameObject.GetComponent<PlayerStats>();
         this.fire1 = ScriptableObject.CreateInstance<RangedAttack>();
         this.fire2 = ScriptableObject.CreateInstance<MeleeAttack>();
         this.right = ScriptableObject.CreateInstance<MoveCharacterRight>();
@@ -47,13 +40,12 @@ public class PlayerController : MonoBehaviour
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
         this.activeSpell = ScriptableObject.CreateInstance<Burst>();
-        this.weapons.Add(this.activeWeapon);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.health <= 0)
+        if (this.stats.health <= 0)
         {
             StartCoroutine(Die());
         }
@@ -80,14 +72,19 @@ public class PlayerController : MonoBehaviour
 
                 if (!this.isAttacking)
                 {
-                    if (Input.GetButtonDown("Fire1"))
+                    // Ranged Attack
+                    if (Input.GetButton("Fire1") && this.canShoot)
                     {
                         this.fire1.Execute(this.gameObject);
+                        StartCoroutine(Shooting());
                     }
+                   
+                    //Melee Attack
                     if (Input.GetButtonDown("Fire2"))
                     {
                         this.fire2.Execute(this.gameObject);
                     }
+                    // Active Spell Attack
                     if (Input.GetButtonDown("Fire3"))
                     {
                         this.activeSpell.Execute(this.gameObject);
@@ -141,29 +138,12 @@ public class PlayerController : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-
-        // Temporary weapon pick up logic
-        if (collision.gameObject.CompareTag("Item"))
-        {
-            this.weapons.Add(collision.gameObject.GetComponent<Weapon>());
-            Destroy(collision.gameObject);
-        }
     }
 
     public void TakeDamage(int damage)
     {
-        this.health -= damage;
+        this.stats.health -= damage;
         this.isInHitStun = true;
-    }
-
-    public float GetSpeed()
-    {
-        return this.movementSpeed;
-    }
-
-    public void SetMovementSpeed(float speed)
-    {
-        this.movementSpeed = speed;
     }
 
     private IEnumerator HitStun()
@@ -189,39 +169,11 @@ public class PlayerController : MonoBehaviour
         this.isAttacking = false;
     }
 
-    public float GetBulletSpeed()
+    private IEnumerator Shooting()
     {
-        return this.bulletSpeed;
-    }
-
-    public int GetRangeDamage()
-    {
-        return this.rangeDamage;
-    }
-
-    public int GetMeleeDamage()
-    {
-        return this.meleeDamage + this.weapons[0].GetDamage(); // Will have to figure out active weapon in inventory
-    }
-
-    public void SetRangeDamage(int damage)
-    {
-        this.rangeDamage = damage;
-    }
-    
-    public void Heal(int amount)
-    {
-        this.health += Mathf.Min(amount, this.maxHealth - this.health);
-    }
-
-    public int GetMana()
-    {
-        return this.mana;
-    }
-
-    public void DrainMana(int amount)
-    {
-        this.mana -= amount;
+        this.canShoot = false;
+        yield return new WaitForSeconds(this.stats.fireRate);
+        this.canShoot = true;
     }
 
     public void SetActiveSpell(IPlayerCommand spell)
@@ -229,9 +181,9 @@ public class PlayerController : MonoBehaviour
         this.activeSpell = spell;
     }
 
-    public void SetActiveWeapon(Weapon weapon)
+    public void SetActiveWeapon(GameObject weapon)
     {
-        this.activeWeapon = weapon;
+        this.stats.activeWeapon = weapon;
     }
 
     public void ExecuteEffect(IPlayerEffect effect)
@@ -239,10 +191,6 @@ public class PlayerController : MonoBehaviour
         effect.Execute(this.gameObject);
     }
 
-    public float GetFireRate()
-    {
-        return this.fireRate;
-    }
     private IEnumerator IFrame()
     {
         this.isInIFrame = true;
@@ -265,5 +213,11 @@ public class PlayerController : MonoBehaviour
 
             FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over Long");
         }
+    }
+
+    public PlayerStats GetStats()
+    {
+        var stats_copy = this.stats;
+        return stats_copy;
     }
 }

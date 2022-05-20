@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] List<Sprite> sprites;
 
     private int damage;
-    public Sprite sprite;
+    private Sprite sprite;
 
     // Start is called before the first frame update
     void Start()
     {
-        var weaponSpecs = this.GetComponent<WeaponSpecs>();
+        this.damage = Random.Range(3, 7);
 
-        this.damage = weaponSpecs.damage;
-        this.sprite = weaponSpecs.sprite;
+        var spriteIndex = Random.Range(0, 30);
+        this.sprite = this.sprites[spriteIndex];
 
         this.gameObject.GetComponent<SpriteRenderer>().sprite = this.sprite;
     }

@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4997666621483830520}
   - component: {fileID: 4997666621483830527}
-  - component: {fileID: 4997666621483830526}
   - component: {fileID: 4997666621483830521}
   - component: {fileID: 6433764998852198378}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,21 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40fd808cb6f7c214ca1cfa00df988857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4997666621483830526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4997666621483830525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42c929cdb9434c04c816024119a25410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  attackSpeed: 0
-  sprite: {fileID: 0}
   sprites:
   - {fileID: -5094286353425474703, guid: c28b36284294c0c488ece9a43c46ffdd, type: 3}
   - {fileID: 6944993636166800022, guid: c28b36284294c0c488ece9a43c46ffdd, type: 3}

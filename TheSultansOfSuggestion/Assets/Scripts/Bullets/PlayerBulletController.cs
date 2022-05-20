@@ -6,6 +6,12 @@ public class PlayerBulletController : PlayerAttack
 {
     private Vector2 target = new Vector2(0, 0);
     protected float bulletSpeed = 10;
+    private float bulletLifeSpan;
+    void Start()
+    {
+        this.bulletLifeSpan = FindObjectOfType<PlayerController>().GetStats().GetBulletRange();
+        StartCoroutine(StartBulletRangeTimer());    
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,5 +32,12 @@ public class PlayerBulletController : PlayerAttack
     public void SetTarget(Vector2 target)
     {
         this.target = target;
+    }
+
+    public IEnumerator StartBulletRangeTimer()
+    {
+        yield return new WaitForSeconds(this.bulletLifeSpan);
+
+        Destroy(this.gameObject);
     }
 }

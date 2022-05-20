@@ -9,7 +9,7 @@ namespace Player.Effect
     {
         public void Execute(GameObject gameObject)
         {
-            gameObject.GetComponent<PlayerController>().Heal(20);
+            gameObject.GetComponent<PlayerController>().GetStats().Heal(20);
         }
     }
 }

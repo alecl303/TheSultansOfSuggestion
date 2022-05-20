@@ -28,8 +28,8 @@ namespace Player.Command
             }
 
             bulletController.SetTarget(target);
-            bulletController.SetBulletDamage(playerObject.GetRangeDamage());
-            bulletController.SetBulletSpeed(playerObject.GetBulletSpeed());
+            bulletController.SetBulletDamage(playerObject.GetStats().GetRangeDamage());
+            bulletController.SetBulletSpeed(playerObject.GetStats().GetBulletSpeed());
 
         }
     }
