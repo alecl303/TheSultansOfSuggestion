@@ -16,10 +16,16 @@ namespace Player.Command
             var positionDifference = Input.mousePosition - worldTransform;
             var target = positionDifference.normalized;
 
+            var theta = Mathf.Atan((positionDifference.y - rigidBody.transform.position.y) / (positionDifference.x - rigidBody.transform.position.x)) * (180/Mathf.PI);
 
 
-            GameObject bullet = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (target.x/4), rigidBody.transform.position.y + (target.y/4), rigidBody.transform.position.z), new Quaternion());
+            GameObject bullet = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (target.x/4), rigidBody.transform.position.y + (target.y/4), rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, theta));
             var bulletController = bullet.GetComponent<PlayerBulletController>();
+
+            if(positionDifference.x - rigidBody.transform.position.x < 0)
+            {
+                bullet.GetComponent<SpriteRenderer>().flipX = true;
+            }
 
             bulletController.SetTarget(target);
             bulletController.SetBulletDamage(playerObject.GetRangeDamage());

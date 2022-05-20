@@ -16,8 +16,17 @@ namespace Enemy.Command
    
             if(positionDifference.magnitude < enemyObject.GetAttackRange())
             {
-                GameObject bullet = (GameObject)Instantiate(gameObject.GetComponent<RangedEnemyController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (positionDifference.normalized.x/3), rigidBody.transform.position.y + (positionDifference.normalized.y/3), rigidBody.transform.position.z), new Quaternion());
-              
+                var theta = Mathf.Atan((positionDifference.y) / (positionDifference.x)) * (180 / Mathf.PI);
+
+
+                GameObject bullet = (GameObject)Instantiate(enemyObject.bulletPrefab, new Vector3(rigidBody.transform.position.x, rigidBody.transform.position.y, rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, theta));
+                
+
+                if (positionDifference.x < 0)
+                {
+                    bullet.GetComponent<SpriteRenderer>().flipX = true;
+                }
+
                 bullet.GetComponent<BulletController>().SetBulletDamage(enemyObject.GetAttackDamage());
                 bullet.GetComponent<BulletController>().SetBulletSpeed(enemyObject.GetBulletSpeed());
 
