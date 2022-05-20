@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         this.stats.health -= damage;
         this.isInHitStun = true;

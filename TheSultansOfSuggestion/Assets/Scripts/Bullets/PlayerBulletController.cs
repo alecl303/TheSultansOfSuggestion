@@ -10,7 +10,9 @@ public class PlayerBulletController : PlayerAttack
     void Start()
     {
         this.bulletLifeSpan = FindObjectOfType<PlayerController>().GetStats().GetBulletRange();
-        StartCoroutine(StartBulletRangeTimer());    
+        StartCoroutine(StartBulletRangeTimer());
+
+        // TODO scale bullet to player 'bullet size' stat
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class PlayerBulletController : PlayerAttack
         this.bulletSpeed = speed;
     }
 
-    public void SetBulletDamage(int bulletDamage)
+    public void SetBulletDamage(float bulletDamage)
     {
         this.damage = bulletDamage;
     }

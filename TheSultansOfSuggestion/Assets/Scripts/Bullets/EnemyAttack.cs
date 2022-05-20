@@ -4,8 +4,8 @@ using UnityEngine;
 
 abstract public class EnemyAttack : MonoBehaviour
 {
-    protected int damage = 2;
-    public int GetDamage()
+    protected float damage = 2;
+    public float GetDamage()
     {
         return this.damage;
     }

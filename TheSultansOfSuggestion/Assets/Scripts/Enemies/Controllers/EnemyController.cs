@@ -20,8 +20,8 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] protected float movementSpeed = 1;
     [SerializeField] protected float aggroDistance = 1;
     [SerializeField] protected float attackRange = 0.1f;
-    [SerializeField] protected int health = 20;
-    [SerializeField] protected int attackDamage = 2;
+    [SerializeField] protected float health = 20;
+    [SerializeField] protected float attackDamage = 2;
     [SerializeField] protected float knockback = 10;
     [SerializeField] protected bool attacking = false;
     [SerializeField] protected float attackBuffer = 2;
@@ -101,7 +101,7 @@ abstract public class EnemyController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
-            int damage = collision.gameObject.GetComponent<PlayerAttack>().GetDamage();
+            float damage = collision.gameObject.GetComponent<PlayerAttack>().GetDamage();
             TakeDamage(damage);
 
             StartCoroutine(HitStun());
@@ -150,7 +150,7 @@ abstract public class EnemyController : MonoBehaviour
         this.attacking = false;
     }
 
-    public int GetAttackDamage()
+    public float GetAttackDamage()
     {
         return this.attackDamage;
     }
@@ -187,7 +187,7 @@ abstract public class EnemyController : MonoBehaviour
         return this.aggroDistance;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         this.health -= damage;
     }

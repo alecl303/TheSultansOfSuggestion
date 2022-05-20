@@ -6,20 +6,22 @@ namespace Player.Stats
 {
     public class PlayerStats : MonoBehaviour
     {
-        [SerializeField] public float movementSpeed = 2.0f;
-        [SerializeField] public int health = 100;
-        [SerializeField] public int maxHealth = 100;
-        [SerializeField] public int mana = 100;
-        [SerializeField] public int maxMana = 100;
-        [SerializeField] public float bulletSpeed = 3;
-        [SerializeField] public float bulletLifeSpan = 0.5f;
-        [SerializeField] public int rangeDamage = 2;
-        [SerializeField] public int meleeDamage = 5;
-        [SerializeField] public float fireRate = 0.4f;
-        [SerializeField] public List<GameObject> weapons;
-        [SerializeField] public GameObject activeWeapon;
+        public float movementSpeed = 2.0f;
+        public float health = 100;
+        public float maxHealth = 100;
+        public float mana = 100;
+        public float maxMana = 100;
+        public float bulletSpeed = 3;
+        public float bulletLifeSpan = 0.5f;
+        //public float bulletSize = 1; If we use bulletSize+ effect (YAGNI?)
+        public float rangeDamage = 2;
+        public float meleeDamage = 5;
+        public float fireRate = 0.4f;
+        public int critChance = 1;
+        public List<GameObject> weapons;
+        public GameObject activeWeapon;
 
-        [SerializeField] public int weaponDamage;
+        public int weaponDamage;
 
         //private PlayerController playerController;
         // Start is called before the first frame update
@@ -36,11 +38,6 @@ namespace Player.Stats
             return this.movementSpeed;
         }
 
-        public void SetMovementSpeed(float speed)
-        {
-            this.movementSpeed = speed;
-        }
-
         public float GetBulletSpeed()
         {
             return this.bulletSpeed;
@@ -51,22 +48,23 @@ namespace Player.Stats
             return this.bulletLifeSpan;
         }
 
-        public int GetRangeDamage()
+        public float GetRangeDamage()
         {
             return this.rangeDamage;
         }
 
-        public int GetMeleeDamage()
+        public float GetMeleeDamage()
         {
             this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
-            Debug.Log(this.weaponDamage);
-            Debug.Log(this.activeWeapon.GetComponent<Weapon>().GetDamage());
-            return this.meleeDamage + this.weaponDamage;  // Will have to figure out active weapon in inventory
-        }
 
-        public void SetRangeDamage(int damage)
-        {
-            this.rangeDamage = damage;
+            var damage = this.meleeDamage + this.weaponDamage;
+
+            if (Random.Range(0, 100) <= this.critChance)
+            {
+                Debug.Log("Crit!"); // TODO: Insert UI logic
+                return damage * 2;
+            }
+            return damage;  // Will have to figure out active weapon in inventory
         }
 
         public void Heal(int amount)
@@ -74,12 +72,12 @@ namespace Player.Stats
             this.health += Mathf.Min(amount, this.maxHealth - this.health);
         }
 
-        public int GetMana()
+        public float GetMana()
         {
             return this.mana;
         }
 
-        public void DrainMana(int amount)
+        public void DrainMana(float amount)
         {
             this.mana -= amount;
         }

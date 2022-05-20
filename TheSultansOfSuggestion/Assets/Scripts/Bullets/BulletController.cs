@@ -27,7 +27,7 @@ public class BulletController : EnemyAttack
         this.bulletSpeed = speed;
     }
 
-    public void SetBulletDamage(int bulletDamage)
+    public void SetBulletDamage(float bulletDamage)
     {
         this.damage = bulletDamage;
     }

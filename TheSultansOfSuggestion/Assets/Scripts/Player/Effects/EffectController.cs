@@ -5,11 +5,21 @@ using UnityEngine;
 using Player.Effect;
 public class EffectController : MonoBehaviour // Will probably have to change this. We will know better once the actual card setup is done
 {
-    [SerializeField] GameObject effect;
     public void AffectPlayer(IPlayerEffect effect)
     {
-        FindObjectOfType<PlayerController>().ExecuteEffect(effect);
-        Destroy(this.gameObject);
+        effect.Execute(this.gameObject);
     }
-       
+
+
+    // This is purely for testing ///////////////////////////////////////////////////////////////////////
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            IPlayerEffect test_effect = ScriptableObject.CreateInstance<BulletSizeUp>(); // Test effect
+            AffectPlayer(test_effect);
+            Debug.Log(test_effect.GetDescription());
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 }

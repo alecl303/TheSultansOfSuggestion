@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1884189440595443664}
   - component: {fileID: 1884189440595443665}
   - component: {fileID: 8517511081533375575}
+  - component: {fileID: 2231940157614114812}
   m_Layer: 5
   m_Name: Player_Object
   m_TagString: Player
@@ -197,7 +198,21 @@ MonoBehaviour:
   rangeDamage: 2
   meleeDamage: 5
   fireRate: 0.4
+  critChance: 1
   weapons:
   - {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
   activeWeapon: {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
   weaponDamage: 0
+--- !u!114 &2231940157614114812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884189440595443677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2030bf5c135bae743abdff9b2d08794a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 0}

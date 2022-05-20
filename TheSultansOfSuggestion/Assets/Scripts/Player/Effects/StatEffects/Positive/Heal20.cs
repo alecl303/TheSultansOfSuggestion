@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Player.Stats;
+
 namespace Player.Effect
 {
     // This is a Test Effect
@@ -9,7 +11,12 @@ namespace Player.Effect
     {
         public void Execute(GameObject gameObject)
         {
-            gameObject.GetComponent<PlayerController>().GetStats().Heal(20);
+            gameObject.GetComponent<PlayerStats>().Heal(20);
+        }
+
+        public string GetDescription()
+        {
+            return "Heal 20 hitpoints";
         }
     }
 }
