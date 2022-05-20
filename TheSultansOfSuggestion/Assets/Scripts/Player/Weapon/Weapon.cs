@@ -12,8 +12,9 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("init");
         this.damage = Random.Range(3, 7);
-
+        Debug.Log(this.damage);
         var spriteIndex = Random.Range(0, 30);
         this.sprite = this.sprites[spriteIndex];
 
