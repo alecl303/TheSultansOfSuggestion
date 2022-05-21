@@ -28,7 +28,7 @@ namespace Player.Command
                     var bulletController = Instantiate(bullet, new Vector3(rigidBody.transform.position.x + Mathf.Cos(theta), rigidBody.transform.position.y + Mathf.Sin(theta), rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, i)).gameObject.GetComponent<PlayerBulletController>();
                     
                     bulletController.SetTarget(target);
-                    bulletController.SetBulletDamage(playerStats.GetRangeDamage());
+                    bulletController.SetDamage(playerStats.GetRangeDamage());
                     bulletController.SetBulletSpeed(playerStats.GetBulletSpeed());
                 }
 

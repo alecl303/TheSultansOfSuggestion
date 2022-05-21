@@ -15322,6 +15322,14 @@ PrefabInstance:
       value: Player_Object
       objectReference: {fileID: 0}
     - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: lifeSteal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: stunChance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: activeWeapon
       value: 
       objectReference: {fileID: 1908909142}

@@ -16,7 +16,7 @@ public class EffectController : MonoBehaviour // Will probably have to change th
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            IPlayerEffect test_effect = ScriptableObject.CreateInstance<BulletSizeUp>(); // Test effect
+            IPlayerEffect test_effect = ScriptableObject.CreateInstance<PoisonChanceUp>(); // Test effect
             AffectPlayer(test_effect);
             Debug.Log(test_effect.GetDescription());
         }

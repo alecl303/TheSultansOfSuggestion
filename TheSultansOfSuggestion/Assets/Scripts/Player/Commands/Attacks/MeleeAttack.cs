@@ -6,7 +6,6 @@ namespace Player.Command
 {
     public class MeleeAttack : ScriptableObject, IPlayerCommand
     {
-
         public void Execute(GameObject gameObject)
         {
             var rigidBody = gameObject.GetComponent<Rigidbody2D>();
@@ -15,11 +14,17 @@ namespace Player.Command
             var target = positionDifference.normalized;
 
             GameObject hitBox = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().hitboxPrefab, new Vector3(rigidBody.transform.position.x + (target.x / 8), rigidBody.transform.position.y + (target.y / 8), rigidBody.transform.position.z), new Quaternion());
+            var hitboxController = hitBox.gameObject.GetComponent<PlayerAttack>();
 
+            var playerObject = gameObject.GetComponent<PlayerController>();
+
+            hitboxController.SetStunTime(playerObject.GetStats().GetStunTime());
+            hitboxController.SetStunChance(playerObject.GetStats().GetStunChance());
+            hitboxController.SetPoisonChance(playerObject.GetStats().GetPoisonChance());
+            hitboxController.SetPoisonTime(playerObject.GetStats().GetPoisonTime());
             gameObject.GetComponent<PlayerController>().IsAttacking();
 
             FindObjectOfType<SoundManager>().PlaySoundEffect("Melee2");
-
         }
     }
 }

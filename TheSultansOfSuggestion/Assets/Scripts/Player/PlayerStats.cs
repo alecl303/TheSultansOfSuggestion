@@ -13,6 +13,12 @@ namespace Player.Stats
         public float maxMana = 100;
         public float bulletSpeed = 3;
         public float bulletLifeSpan = 0.5f;
+        public float stunTime = 1;
+        public float stunChance = 0;
+        public float lifeSteal = 0;
+        public float poisonChance = 0;
+        public float poisonTime = 3;
+        public float poisonTickDamage = 1;
         //public float bulletSize = 1; If we use bulletSize+ effect (YAGNI?)
         public float rangeDamage = 2;
         public float meleeDamage = 5;
@@ -67,7 +73,7 @@ namespace Player.Stats
             return damage;  // Will have to figure out active weapon in inventory
         }
 
-        public void Heal(int amount)
+        public void Heal(float amount)
         {
             this.health += Mathf.Min(amount, this.maxHealth - this.health);
         }
@@ -85,6 +91,36 @@ namespace Player.Stats
         public float GetFireRate()
         {
             return this.fireRate;
+        }
+
+        public float GetStunTime()
+        {
+            return this.stunTime;
+        }
+
+        public float GetStunChance()
+        {
+            return this.stunChance;
+        }
+
+        public float GetPoisonTime()
+        {
+            return this.poisonTime;
+        }
+
+        public float GetPoisonChance()
+        {
+            return this.poisonChance;
+        }
+
+        public float GetPoisonDamage()
+        {
+            return this.poisonTickDamage;
+        }
+
+        public float GetLifeSteal()
+        {
+            return this.lifeSteal;
         }
     }
 }

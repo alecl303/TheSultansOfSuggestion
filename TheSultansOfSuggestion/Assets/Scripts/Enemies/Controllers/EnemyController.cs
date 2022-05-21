@@ -31,6 +31,7 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] private bool isInHitStun = false;
     [SerializeField] public GameObject bulletPrefab;
     private bool dying = false;
+    private bool canAct = true;
 
     //[SerializeField] private GameObject weaponDrop;
 
@@ -66,9 +67,11 @@ abstract public class EnemyController : MonoBehaviour
     {
         if (this.health <= 0 && !this.dying)
         {
+            this.canAct = false;
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             StartCoroutine(Die());
         }
-        else if(this.health > 0)
+        else if(this.canAct)
         {
             if (!this.isInHitStun)
             {
@@ -76,17 +79,16 @@ abstract public class EnemyController : MonoBehaviour
                 var animator = this.gameObject.GetComponent<Animator>();
                 animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
             }
-        }
+            if (this.IsInChaseRange())
+            {
+                this.movement = this.chase;
+            }
 
-        if (this.IsInChaseRange())
-        {
-            this.movement = this.chase;
-        }
-
-        if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking())
-        {
-            this.attack.Execute(this.gameObject);
-            StartCoroutine(InitiateAttack());
+            if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking())
+            {
+                this.attack.Execute(this.gameObject);
+                StartCoroutine(InitiateAttack());
+            }
         }
     }
 
@@ -101,15 +103,20 @@ abstract public class EnemyController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
-            float damage = collision.gameObject.GetComponent<PlayerAttack>().GetDamage();
-            TakeDamage(damage);
+            var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
+            float damage = attackObject.GetDamage();
 
+            TakeDamage(damage);
             StartCoroutine(HitStun());
 
             Vector2 knockbackDirection = (this.gameObject.GetComponent<Rigidbody2D>().position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized;
             Knockback(knockbackDirection);
 
             FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
+
+            CheckForStun(attackObject);
+            CheckForPoison(attackObject);
+            CheckForLifeDrain(attackObject);
         }
     }
 
@@ -175,6 +182,57 @@ abstract public class EnemyController : MonoBehaviour
         this.isInHitStun = true;
         yield return new WaitForSeconds(this.hitStunTime);
         this.isInHitStun = false;
+    }
+
+    private void CheckForStun(PlayerAttack attack)
+    {
+        var stunChance = attack.GetStunChance();
+
+        if (Random.Range(1, 100) <= stunChance)
+        {
+            StartCoroutine(Stun(attack.GetStunTime()));
+        }
+    }
+
+    private IEnumerator Stun(float stunTime)
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255);
+        this.canAct = false;
+        yield return new WaitForSeconds(stunTime);
+        this.canAct = true;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255);
+    }
+
+    private void CheckForPoison(PlayerAttack attack)
+    {
+        var poisonChance = attack.GetPoisonChance();
+
+        if (Random.Range(1, 100) <= poisonChance)
+        {
+            StartCoroutine(Poison(attack.GetPoisonTime()));
+        }
+    }
+
+    private IEnumerator Poison(float poisonTime)
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
+        var tickDamage = this.target.gameObject.GetComponent<PlayerController>().GetStats().GetPoisonDamage();
+        for (int i =  0; i < poisonTime; i++)
+        {
+            yield return new WaitForSeconds(1);
+            TakeDamage(tickDamage);
+        }
+
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+    }
+
+    private void CheckForLifeDrain(PlayerAttack attack)
+    {
+        if (attack.CanStealHp())
+        {
+            var playerStats = this.target.gameObject.GetComponent<PlayerController>().GetStats();
+            playerStats.Heal(playerStats.GetLifeSteal());
+        }
     }
 
     public float GetBulletSpeed()

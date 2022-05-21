@@ -26,11 +26,6 @@ public class PlayerBulletController : PlayerAttack
         this.bulletSpeed = speed;
     }
 
-    public void SetBulletDamage(float bulletDamage)
-    {
-        this.damage = bulletDamage;
-    }
-
     public void SetTarget(Vector2 target)
     {
         this.target = target;
