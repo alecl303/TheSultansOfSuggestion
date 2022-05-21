@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Player.Stats;
+using Bullet.Command;
 
 namespace Player.Effect
 {
-    public class PoisonDamageUp : ScriptableObject, IPlayerEffect
+    public class HomingBulletEffect : ScriptableObject, IPlayerEffect
     {
+        /* This is an abomonation. Maybe it gets tossed */
+
         public void Execute(GameObject gameObject)
         {
             var playerStats = gameObject.GetComponent<PlayerStats>();
-            playerStats.poisonTickDamage += 1;
+            //playerStats.bulletMovement = CreateInstance<HomingBullet>();
         }
         public string GetDescription()
         {
-            return "Increase your poison tick damage by 1";
+            return "Your bullets will become homing bullets";
         }
     }
 }

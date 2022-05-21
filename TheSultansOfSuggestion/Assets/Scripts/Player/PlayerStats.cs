@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Bullet.Command;
+
 namespace Player.Stats
 {
     public class PlayerStats : MonoBehaviour
@@ -26,6 +28,7 @@ namespace Player.Stats
         public int critChance = 1;
         public List<GameObject> weapons;
         public GameObject activeWeapon;
+        public IBulletMovement bulletMovement;
 
         public int weaponDamage;
 
@@ -37,6 +40,8 @@ namespace Player.Stats
             this.weapons.Add(this.activeWeapon);
 
             this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
+
+            this.bulletMovement = ScriptableObject.CreateInstance<StandardBullet>();
         }
 
         public float GetSpeed()
@@ -121,6 +126,11 @@ namespace Player.Stats
         public float GetLifeSteal()
         {
             return this.lifeSteal;
+        }
+
+        public IBulletMovement GetBulletMovement()
+        {
+            return this.bulletMovement;
         }
     }
 }

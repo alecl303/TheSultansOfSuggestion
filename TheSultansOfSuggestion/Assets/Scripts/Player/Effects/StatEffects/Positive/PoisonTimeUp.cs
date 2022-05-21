@@ -6,16 +6,16 @@ using Player.Stats;
 
 namespace Player.Effect
 {
-    public class PoisonDamageUp : ScriptableObject, IPlayerEffect
+    public class PoisonTimeUp : ScriptableObject, IPlayerEffect
     {
         public void Execute(GameObject gameObject)
         {
             var playerStats = gameObject.GetComponent<PlayerStats>();
-            playerStats.poisonTickDamage += 1;
+            playerStats.poisonTime += 1;
         }
         public string GetDescription()
         {
-            return "Increase your poison tick damage by 1";
+            return "Increase your poison duration by 1 second";
         }
     }
 }
