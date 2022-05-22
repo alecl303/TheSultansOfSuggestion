@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using Player.Command;
 using Player.Effect;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 2.0f;
-    [SerializeField] private int health = 100;
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int health = 1000;
+    [SerializeField] private int maxHealth = 1000;
+    [SerializeField] private float mana = 1000;
+    [SerializeField] private float maxMana = 1000;
+    [SerializeField] private float rage = 0;
+    [SerializeField] private float maxRage = 10;
     [SerializeField] private float bulletSpeed = 3;
     [SerializeField] private int rangeDamage = 2;
     [SerializeField] private int meleeDamage = 5;
@@ -30,6 +35,9 @@ public class PlayerController : MonoBehaviour
     private IPlayerCommand left;
     private IPlayerCommand up;
     private IPlayerCommand down;
+    private GameObject healthBar;
+    private GameObject manaBar;
+    private GameObject rageBar;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +50,9 @@ public class PlayerController : MonoBehaviour
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
         
-
+        this.healthBar = GameObject.Find("/HUD/HealthBar");
+        this.manaBar = GameObject.Find("/HUD/Mana");
+        this.rageBar = GameObject.Find("/HUD/Rage");
     }
 
     // Update is called once per frame
@@ -75,19 +85,22 @@ public class PlayerController : MonoBehaviour
 
                 if (!this.isAttacking)
                 {
-                    if (Input.GetButtonDown("Fire1"))
+                    if (Input.GetButtonDown("Fire1") && mana >= 20)
                     {
                         this.fire1.Execute(this.gameObject);
+                        this.mana -= 20;
+                        this.manaBar.GetComponent<Slider>().value = this.mana/this.maxMana;
                     }
                     if (Input.GetButtonDown("Fire2"))
                     {
                         this.fire2.Execute(this.gameObject);
                     }
                 }
-
                 var animator = this.gameObject.GetComponent<Animator>();
                 animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
             }
+            this.RegenMana();
+            this.CheckRage();
         }
     }
 
@@ -136,7 +149,9 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        //print(damage);
         this.health -= damage;
+        this.healthBar.GetComponent<Slider>().value = (float) this.health/ (float) this.maxHealth;
         this.isInHitStun = true;
     }
 
@@ -196,6 +211,27 @@ public class PlayerController : MonoBehaviour
     public void Heal(int amount)
     {
         this.health += Mathf.Min(amount, this.maxHealth - this.health);
+        this.healthBar.GetComponent<Slider>().value = (float) this.health/ (float) this.maxHealth;
+    }
+
+    public void RegenMana()
+    {
+        this.mana += Mathf.Min(.05f, this.maxMana - this.mana);
+        this.manaBar.GetComponent<Slider>().value = this.mana/ this.maxMana;
+    }
+
+    public void CheckRage()
+    {
+        this.rageBar.GetComponent<Slider>().value = this.rage/this.maxRage;
+    }
+
+    public void IncrementRage()
+    {
+        print("hello");
+        if(this.rage < this.maxRage)
+        {
+            this.rage += 1;
+        } 
     }
 
     public void ExecuteEffect(IPlayerEffect effect)

@@ -32,8 +32,11 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
 
+    [SerializeField] private bool isDead = false;
     // Reference to the player object
     private Rigidbody2D target;
+    
+    private PlayerController targetRage;
 
     // Base movement and attack commands. Set any variable to 'protected' when it needs to be overwritten in child class
     protected IEnemyCommand movement;
@@ -109,7 +112,9 @@ abstract public class EnemyController : MonoBehaviour
 
     private void AttatchPlayer()
     {
-        this.target = FindObjectOfType<PlayerController>().GetComponent<Rigidbody2D>();
+        var temp = FindObjectOfType<PlayerController>();
+        this.target = temp.GetComponent<Rigidbody2D>();
+        this.targetRage = temp.GetComponent<PlayerController>();
     }
 
     public float GetSpeed()
@@ -201,6 +206,10 @@ abstract public class EnemyController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         this.health -= damage;
+        if(this.health <= 0 && !isDead){
+            this.isDead = true;
+            this.targetRage.IncrementRage();
+        }
     }
 
     private IEnumerator Die()
