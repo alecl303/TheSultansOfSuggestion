@@ -14,7 +14,7 @@ namespace Player.Stats
         public float mana = 100;
         public float maxMana = 100;
         public float bulletSpeed = 3;
-        public float bulletLifeSpan = 0.5f;
+        public float bulletLifeSpan = 0.7f;
         public float stunTime = 1;
         public float stunChance = 0;
         public float lifeSteal = 0;
@@ -26,9 +26,14 @@ namespace Player.Stats
         public float meleeDamage = 5;
         public float fireRate = 0.4f;
         public int critChance = 1;
+        public float critMultiplier = 1.5f;
+        public bool manaIsHp = false;
         public List<GameObject> weapons;
         public GameObject activeWeapon;
         public IBulletMovement bulletMovement;
+
+        public GameObject freezeBox;
+        public GameObject whirlwind;
 
         public int weaponDamage;
 
@@ -73,7 +78,7 @@ namespace Player.Stats
             if (Random.Range(0, 100) <= this.critChance)
             {
                 Debug.Log("Crit!"); // TODO: Insert UI logic
-                return damage * 2;
+                return damage * this.critMultiplier;
             }
             return damage;  // Will have to figure out active weapon in inventory
         }
@@ -90,7 +95,14 @@ namespace Player.Stats
 
         public void DrainMana(float amount)
         {
-            this.mana -= amount;
+            if (this.manaIsHp)
+            {
+                this.health -= amount * 0.2f;
+            }
+            else
+            {
+                this.mana -= amount;
+            }
         }
 
         public float GetFireRate()
@@ -132,5 +144,16 @@ namespace Player.Stats
         {
             return this.bulletMovement;
         }
+        public IEnumerator BerserkForXSeconds(float duration)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 0.8f);
+            this.meleeDamage *= 2;
+            this.rangeDamage *= 2;
+            yield return new WaitForSeconds(duration);
+            this.meleeDamage *= 0.5f;
+            this.rangeDamage *= 0.5f;
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+        }
+
     }
 }

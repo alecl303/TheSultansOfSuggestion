@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float attackTime = 2;
     [SerializeField] private bool isAttacking = false;
     [SerializeField] private bool isDead = false;
+    [SerializeField] private bool isEnabled = true;
+    [SerializeField] private bool canDodge = true;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
 
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private IPlayerCommand left;
     private IPlayerCommand up;
     private IPlayerCommand down;
-
+    private IPlayerCommand roll;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,8 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell = ScriptableObject.CreateInstance<Burst>();
+        this.activeSpell = ScriptableObject.CreateInstance<Berserk>();
+        this.roll = ScriptableObject.CreateInstance<Roll>();
     }
 
     // Update is called once per frame
@@ -51,48 +54,56 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (!this.isInHitStun)
+            if (this.isEnabled)
             {
-                if (Input.GetAxis("Horizontal") > 0.01)
+                if (!this.isInHitStun)
                 {
-                    this.right.Execute(this.gameObject);
-                }
-                if (Input.GetAxis("Horizontal") < -0.01)
-                {
-                    this.left.Execute(this.gameObject);
-                }
-                if (Input.GetAxis("Vertical") < -0.01)
-                {
-                    this.down.Execute(this.gameObject);
-                }
-                if (Input.GetAxis("Vertical") > 0.01)
-                {
-                    this.up.Execute(this.gameObject);
-                }
+                    if (Input.GetAxis("Horizontal") > 0.01)
+                    {
+                        this.right.Execute(this.gameObject);
+                    }
+                    if (Input.GetAxis("Horizontal") < -0.01)
+                    {
+                        this.left.Execute(this.gameObject);
+                    }
+                    if (Input.GetAxis("Vertical") < -0.01)
+                    {
+                        this.down.Execute(this.gameObject);
+                    }
+                    if (Input.GetAxis("Vertical") > 0.01)
+                    {
+                        this.up.Execute(this.gameObject);
+                    }
 
-                if (!this.isAttacking)
-                {
-                    // Ranged Attack
-                    if (Input.GetButton("Fire1") && this.canShoot)
+                    if (!this.isAttacking)
                     {
-                        this.fire1.Execute(this.gameObject);
-                        StartCoroutine(Shooting());
-                    }
-                   
-                    //Melee Attack
-                    if (Input.GetButtonDown("Fire2"))
-                    {
-                        this.fire2.Execute(this.gameObject);
-                    }
-                    // Active Spell Attack
-                    if (Input.GetButtonDown("Fire3"))
-                    {
-                        this.activeSpell.Execute(this.gameObject);
-                    }
-                }
+                        // Ranged Attack
+                        if (Input.GetButton("Fire1") && this.canShoot)
+                        {
+                            this.fire1.Execute(this.gameObject);
+                            StartCoroutine(Shooting());
+                        }
 
-                var animator = this.gameObject.GetComponent<Animator>();
-                animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
+                        //Melee Attack
+                        if (Input.GetButtonDown("Fire2"))
+                        {
+                            this.fire2.Execute(this.gameObject);
+                        }
+                        // Active Spell Attack
+                        if (Input.GetButtonDown("Fire3"))
+                        {
+                            this.activeSpell.Execute(this.gameObject);
+                        }
+                        // Dodge roll
+                        if (Input.GetButtonDown("Jump") && this.canDodge)
+                        {
+                            this.roll.Execute(this.gameObject);
+                        }
+                    }
+
+                    var animator = this.gameObject.GetComponent<Animator>();
+                    animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
+                }
             }
         }
     }
@@ -129,6 +140,8 @@ public class PlayerController : MonoBehaviour
 
                 StartCoroutine(HitStun());
                 StartCoroutine(IFrame());
+
+                Destroy(collision.gameObject);
             }
         }
         else
@@ -215,9 +228,72 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public IEnumerator InvincibleForXSeconds(float duration)
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        yield return new WaitForSeconds(duration);
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+    }
+
     public PlayerStats GetStats()
     {
         var stats_copy = this.stats;
         return stats_copy;
+    }
+
+    public void ChangeRangedAttack(IPlayerCommand newAttack)
+    {
+        this.fire1 = newAttack;
+    }
+
+    public void ChangeMeleeAttack(IPlayerCommand newAttack)
+    {
+        this.fire2 = newAttack;
+    }
+
+    public void ChangeSpellAttack(IPlayerCommand newSpell)
+    {
+        this.activeSpell = newSpell;
+    }
+
+    public void InvertControls()
+    {
+        var left = this.left;
+        var right = this.right;
+        var up = this.up;
+        var down = this.down;
+
+        this.right = left;
+        this.left = right;
+        this.up = down;
+        this.down = up;
+    }
+
+    public IEnumerator Dodge(float duration, Vector2 direction)
+    {
+        var animator = this.gameObject.GetComponent<Animator>();
+        animator.SetBool("Rolling", true);
+        this.isEnabled = false;
+        this.canDodge = false;
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        for(int i = 0; i < 32; i++)
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = direction * this.stats.GetSpeed() * 2.5f;
+            yield return new WaitForSeconds(duration/32);
+        }
+
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        this.isEnabled = true;
+        animator.SetBool("Rolling", false);
+
+        StartCoroutine(BufferDodge());
+    }
+
+    private IEnumerator BufferDodge()
+    {
+        yield return new WaitForSeconds(2);
+        this.canDodge = true;
     }
 }

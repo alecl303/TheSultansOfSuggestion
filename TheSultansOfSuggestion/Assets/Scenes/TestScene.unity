@@ -15273,6 +15273,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1884189440595443665, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: isEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1884189440595443676, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -15322,9 +15326,25 @@ PrefabInstance:
       value: Player_Object
       objectReference: {fileID: 0}
     - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: health
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: freezeBox
+      value: 
+      objectReference: {fileID: 3110540496108732950, guid: 9a8a9d1635378b043bec17251251a11d, type: 3}
+    - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: lifeSteal
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: maxHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: whirlwind
+      value: 
+      objectReference: {fileID: 2976386931763293713, guid: ec6d55eb3a765304288bea232f484a70, type: 3}
     - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: stunChance
       value: 0
@@ -15333,6 +15353,14 @@ PrefabInstance:
       propertyPath: activeWeapon
       value: 
       objectReference: {fileID: 1908909142}
+    - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: poisonChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: bulletLifeSpan
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: weapons.Array.data[0]
       value: 
@@ -15761,18 +15789,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1884189440595443677, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
   m_PrefabInstance: {fileID: 1245763109}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1681094465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681094457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2030bf5c135bae743abdff9b2d08794a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1758071023
 GameObject:
   m_ObjectHideFlags: 0

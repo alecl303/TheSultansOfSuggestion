@@ -180,7 +180,10 @@ abstract public class EnemyController : MonoBehaviour
     private IEnumerator HitStun()
     {
         this.isInHitStun = true;
-        yield return new WaitForSeconds(this.hitStunTime);
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 0.5f);
+        yield return new WaitForSeconds(this.hitStunTime/2);
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+        yield return new WaitForSeconds(this.hitStunTime/2);
         this.isInHitStun = false;
     }
 
@@ -193,7 +196,12 @@ abstract public class EnemyController : MonoBehaviour
             StartCoroutine(Stun(attack.GetStunTime()));
         }
     }
-
+    public void InflictStun(float stunTime)
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255);
+        this.canAct = false;
+        StartCoroutine(Stun(stunTime));
+    }
     private IEnumerator Stun(float stunTime)
     {
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255);

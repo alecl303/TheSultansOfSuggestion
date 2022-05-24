@@ -174,6 +174,7 @@ MonoBehaviour:
   attackTime: 0.3
   isAttacking: 0
   isDead: 0
+  isEnabled: 1
   bulletPrefab: {fileID: 298595146526088288, guid: 64ad63427e01f6142b4a24ad046e6af8, type: 3}
   hitboxPrefab: {fileID: 3291160839767343730, guid: c92c182abec5c2640ac85e81c5e15743, type: 3}
 --- !u!114 &8517511081533375575
@@ -195,13 +196,23 @@ MonoBehaviour:
   maxMana: 100
   bulletSpeed: 3
   bulletLifeSpan: 0.5
+  stunTime: 1
+  stunChance: 0
+  lifeSteal: 0
+  poisonChance: 0
+  poisonTime: 3
+  poisonTickDamage: 1
   rangeDamage: 2
   meleeDamage: 5
   fireRate: 0.4
   critChance: 1
+  critMultiplier: 1.5
+  manaIsHp: 0
   weapons:
   - {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
   activeWeapon: {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
+  freezeBox: {fileID: 0}
+  whirlwind: {fileID: 0}
   weaponDamage: 0
 --- !u!114 &2231940157614114812
 MonoBehaviour:
@@ -215,4 +226,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2030bf5c135bae743abdff9b2d08794a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 0}
