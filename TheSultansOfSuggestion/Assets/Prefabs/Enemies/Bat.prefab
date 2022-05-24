@@ -169,13 +169,10 @@ MonoBehaviour:
   attackRange: 0.1
   health: 20
   attackDamage: 2
-  knockback: 20
+  knockback: 10
   attacking: 0
-  attackTimer: 2
-  attackBufferTimer: 0
   attackBuffer: 1
   bulletSpeed: 2
-  hitStunTimer: 0
   hitStunTime: 0.3
   isInHitStun: 0
   bulletPrefab: {fileID: 6087790376291015841, guid: efec521f6c503f642b9b30ea4e2930f5, type: 3}

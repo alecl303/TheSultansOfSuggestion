@@ -169,12 +169,9 @@ MonoBehaviour:
   attackRange: 0.1
   health: 20
   attackDamage: 2
-  knockback: 20
+  knockback: 10
   attacking: 0
-  attackTimer: 2
-  attackBufferTimer: 0
   attackBuffer: 1
   bulletSpeed: 2
-  hitStunTimer: 0
   hitStunTime: 0.3
   isInHitStun: 0

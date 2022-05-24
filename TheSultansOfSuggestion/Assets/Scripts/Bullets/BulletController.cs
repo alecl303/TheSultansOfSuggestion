@@ -12,7 +12,8 @@ public class BulletController : EnemyAttack
     void Start()
     {
         this.damage = 2;
-        this.target = (FindObjectOfType<PlayerController>().gameObject.GetComponent<Rigidbody2D>().position - this.gameObject.GetComponent<Rigidbody2D>().position).normalized;    
+        this.target = (FindObjectOfType<PlayerController>().gameObject.GetComponent<Rigidbody2D>().position - this.gameObject.GetComponent<Rigidbody2D>().position).normalized;
+
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class BulletController : EnemyAttack
         this.bulletSpeed = speed;
     }
 
-    public void SetBulletDamage(int bulletDamage)
+    public void SetBulletDamage(float bulletDamage)
     {
         this.damage = bulletDamage;
     }

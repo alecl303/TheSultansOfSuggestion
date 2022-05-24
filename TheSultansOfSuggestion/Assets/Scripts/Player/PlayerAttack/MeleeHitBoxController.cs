@@ -13,10 +13,11 @@ public class MeleeHitBoxController : PlayerAttack
     // Start is called before the first frame update
     void Start()
     {
+        this.canStealHp = true;
         this.player = FindObjectOfType<PlayerController>();
-        this.damage = player.GetMeleeDamage();
+        this.damage = player.GetStats().GetMeleeDamage();
         this.lifeSpan = 0;
-        this.maxDuration = player.GetFireRate();
+        this.maxDuration = player.GetStats().GetFireRate();
     }
 
     // Update is called once per frame

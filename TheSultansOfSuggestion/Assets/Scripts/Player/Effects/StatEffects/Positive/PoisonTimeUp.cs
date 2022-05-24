@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+using Player.Stats;
+
+namespace Player.Effect
+{
+    public class PoisonTimeUp : ScriptableObject, IPlayerEffect
+    {
+        public void Execute(GameObject gameObject)
+        {
+            var playerStats = gameObject.GetComponent<PlayerStats>();
+            playerStats.poisonTime += 1;
+        }
+        public string GetDescription()
+        {
+            return "Increase your poison duration by 1 second";
+        }
+    }
+}
