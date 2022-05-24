@@ -10,7 +10,7 @@ namespace Bullet.Command
         private Vector2 target;
         private Vector3 origin;
         private GameObject originObject;
-        private bool originSet = false;
+        //private bool originSet = false;
    
         public void Execute(GameObject gameObject)
         {

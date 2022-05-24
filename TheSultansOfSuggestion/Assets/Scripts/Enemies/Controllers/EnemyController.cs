@@ -17,9 +17,9 @@ using Enemy.Command;
 abstract public class EnemyController : MonoBehaviour
 {
     // Stats/misc variables that all enemies will have (Serialize fields are for debug purposes and ironing out game feel)
-    [SerializeField] protected float movementSpeed = 1;
-    [SerializeField] protected float aggroDistance = 1;
-    [SerializeField] protected float attackRange = 0.1f;
+    [SerializeField] protected float movementSpeed = 3;
+    [SerializeField] protected float aggroDistance = 3;
+    [SerializeField] protected float attackRange = 0.3f;
     [SerializeField] protected float health = 20;
     [SerializeField] protected float attackDamage = 2;
     [SerializeField] protected float knockback = 10;
@@ -263,7 +263,7 @@ abstract public class EnemyController : MonoBehaviour
         this.health -= damage;
         if(this.health <= 0 && !isDead){
             this.isDead = true;
-            this.targetRage.IncrementRage();
+            //this.targetRage.IncrementRage();
         }
     }
 

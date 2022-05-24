@@ -106,8 +106,8 @@ public class PlayerController : MonoBehaviour
                     animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
                 }
             }
-            this.RegenMana();
-            this.CheckRage();
+            //this.RegenMana();
+            //this.CheckRage();
         }
     }
 

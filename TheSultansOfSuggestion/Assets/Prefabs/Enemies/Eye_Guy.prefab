@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8991290593107256226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.6794193, y: -0.82023835, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   hitStunTime: 0.3
   isInHitStun: 0
   bulletPrefab: {fileID: 5259769282469972706, guid: d897c527d8767624c97e66d51b1aee14, type: 3}
+  isDead: 0
 --- !u!50 &8991290593107256228
 Rigidbody2D:
   serializedVersion: 4
