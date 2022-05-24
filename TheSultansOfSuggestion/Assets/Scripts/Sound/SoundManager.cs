@@ -85,4 +85,12 @@ public class SoundManager : MonoBehaviour
 
         track.audioSource.Play();
     }
+
+    public void ChangeMusicTrackVolume(float volume)
+    {
+        foreach (var track in this.musicTracks)
+        {
+            track.audioSource.volume = volume;
+        }
+    }
 }
