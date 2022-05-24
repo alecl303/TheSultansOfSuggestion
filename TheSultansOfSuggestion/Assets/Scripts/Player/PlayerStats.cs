@@ -50,9 +50,12 @@ namespace Player.Stats
 
         private GameObject weaponSprite;
 
+        public Sprite testSprite;
+
         void Start()
         {
             this.activeWeapon = gameObject.AddComponent<Weapon>();
+            this.activeWeapon.SetSprite(this.gameObject.GetComponent<WeaponSprites>().sprites[this.activeWeapon.spriteIndex]);
             this.weapons.Add(this.activeWeapon);
 
             this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
@@ -63,14 +66,14 @@ namespace Player.Stats
             this.manaBar = GameObject.Find("/HUD/Mana");
             this.rageBar = GameObject.Find("/HUD/Rage");
 
-            //this.weaponSprite = GameObject.Find("/HUD/Item_slot/slot/Border/Item_sprite");
-            //this.weaponSprite.GetComponent<Image>().sprite = this.activeWeapon.GetComponent<Weapon>().sprite;
+            this.weaponSprite = GameObject.Find("/HUD/Item_slot/slot/Border/Item_sprite");
+            this.weaponSprite.GetComponent<Image>().sprite = this.activeWeapon.GetComponent<Weapon>().sprite;
         }
 
         private void Update()
         {
             RegenMana();
-            CheckRage();
+            //CheckRage();
         }
 
         public float GetSpeed()
