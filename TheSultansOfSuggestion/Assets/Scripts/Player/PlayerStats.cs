@@ -37,11 +37,8 @@ namespace Player.Stats
 
         public int weaponDamage;
 
-        //private PlayerController playerController;
-        // Start is called before the first frame update
         void Start()
         {
-            //this.playerController = this.gameObject.GetComponent<PlayerController>();
             this.weapons.Add(this.activeWeapon);
 
             this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();

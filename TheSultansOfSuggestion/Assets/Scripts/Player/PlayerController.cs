@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
 
-            FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over Long");
+            FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
         }
     }
 
