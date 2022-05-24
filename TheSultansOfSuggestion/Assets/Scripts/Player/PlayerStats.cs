@@ -63,8 +63,8 @@ namespace Player.Stats
             this.manaBar = GameObject.Find("/HUD/Mana");
             this.rageBar = GameObject.Find("/HUD/Rage");
 
-            this.weaponSprite = GameObject.Find("/HUD/Item_slot/slot/Border/Item_sprite");
-            this.weaponSprite.GetComponent<Image>().sprite = this.activeWeapon.GetComponent<Weapon>().sprite;
+            //this.weaponSprite = GameObject.Find("/HUD/Item_slot/slot/Border/Item_sprite");
+            //this.weaponSprite.GetComponent<Image>().sprite = this.activeWeapon.GetComponent<Weapon>().sprite;
         }
 
         private void Update()
