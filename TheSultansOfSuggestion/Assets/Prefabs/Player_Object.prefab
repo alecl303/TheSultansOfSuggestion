@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8517511081533375575}
   - component: {fileID: 2231940157614114812}
   - component: {fileID: 5893006900433561074}
+  - component: {fileID: 2162263918682978262}
   m_Layer: 5
   m_Name: Player_Object
   m_TagString: Player
@@ -33,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 1884189440595443677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.361, y: -1.394, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -196,6 +197,8 @@ MonoBehaviour:
   maxHealth: 100
   mana: 100
   maxMana: 100
+  rage: 0
+  maxRage: 10
   bulletSpeed: 9
   bulletLifeSpan: 0.5
   stunTime: 1
@@ -238,5 +241,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08e88a0bff7e5b54ca93c991a1a3d257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2162263918682978262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884189440595443677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3151130fb220b7a49a6a0dd22ad1eea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
