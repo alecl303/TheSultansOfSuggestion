@@ -70,7 +70,7 @@ namespace Player.Stats
         private void Update()
         {
             RegenMana();
-            CheckRage();
+            //CheckRage();
         }
 
         public float GetSpeed()

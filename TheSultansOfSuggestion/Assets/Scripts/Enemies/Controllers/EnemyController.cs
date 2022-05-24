@@ -65,6 +65,7 @@ abstract public class EnemyController : MonoBehaviour
         this.movement = ScriptableObject.CreateInstance<EnemyWonder>();
         this.attack = ScriptableObject.CreateInstance<DoNothing>();
         AttatchPlayer();
+        FindObjectOfType<EnemySpawner>().liveEnemies += 1;
     }
 
     // Actions that every enemy will do on update
@@ -285,13 +286,12 @@ abstract public class EnemyController : MonoBehaviour
         FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
 
         this.dying = true;
-
+        FindObjectOfType<EnemySpawner>().liveEnemies -= 1;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
 
         /*var enemyPosition = this.gameObject.GetComponent<Rigidbody2D>().transform.position;
         var drop = (GameObject)Instantiate(this.weaponDrop, new Vector3(enemyPosition.x, enemyPosition.y, enemyPosition.z), new Quaternion());
         drop.GetComponent<SpriteRenderer>().sprite = drop.GetComponent<Weapon>().sprite;*/
-
         Destroy(this.gameObject);
     }
     public bool IsAttacking()

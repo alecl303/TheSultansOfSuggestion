@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 8517511081533375575}
   - component: {fileID: 2231940157614114812}
   - component: {fileID: 5893006900433561074}
-  - component: {fileID: 2162263918682978262}
   m_Layer: 5
   m_Name: Player_Object
   m_TagString: Player
@@ -192,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5a75ac1cefc9e45b1b9f8f543f0604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 6
   health: 100
   maxHealth: 100
   mana: 100
@@ -241,17 +240,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08e88a0bff7e5b54ca93c991a1a3d257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2162263918682978262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884189440595443677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3151130fb220b7a49a6a0dd22ad1eea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
