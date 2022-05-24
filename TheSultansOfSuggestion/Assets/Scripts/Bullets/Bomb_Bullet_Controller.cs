@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bomb_Bullet_Controller : BombController
 {
-    private float bulletSpeed = 1;
+    private float bulletSpeed = 1.5f;
     void Update()
     {
         var target = (FindObjectOfType<PlayerController>().gameObject.GetComponent<Rigidbody2D>().position - this.gameObject.GetComponent<Rigidbody2D>().position).normalized;

@@ -280,7 +280,7 @@ abstract public class EnemyController : MonoBehaviour
     private IEnumerator Die()
     {
         var animator = this.gameObject.GetComponent<Animator>();
-
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         animator.SetBool("Dying", true);
         FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
 

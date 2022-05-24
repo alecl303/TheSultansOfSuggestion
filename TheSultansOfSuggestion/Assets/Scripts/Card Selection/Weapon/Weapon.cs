@@ -5,7 +5,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public List<string> sprites;
-
     private int damage;
     public Sprite sprite;
     public int spriteIndex;
@@ -23,8 +22,9 @@ public class Weapon : MonoBehaviour
         SetRarity();
         this.damage = Random.Range(this.lowerBound, this.upperBound);
         this.spriteIndex = Random.Range(0, 30);
-        this.sprite = Resources.Load<Sprite>(this.sprites[this.spriteIndex]);
-
+        var spr = Resources.Load<Sprite>("Sprites/Weapons/File");
+        Debug.Log(spr);
+        
         this.gameObject.GetComponent<SpriteRenderer>().sprite = this.sprite;
     }
 

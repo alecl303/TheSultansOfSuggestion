@@ -10,12 +10,12 @@ public class EyeGuyController : EnemyController
     {
         base.Init();
 
-        this.attackRange = 2;
-        this.aggroDistance = 3;
-        this.bulletSpeed = 2;
+        this.attackRange = 6;
+        this.aggroDistance = 9;
+        this.bulletSpeed = 5;
         this.attackDamage = 10;
-        this.movementSpeed = 0.5f;
-        this.attackBuffer = 2;
+        this.movementSpeed = 2;
+        this.attackBuffer = 4;
 
         this.chase = ScriptableObject.CreateInstance<RangedEnemyChase>();
         this.attack = ScriptableObject.CreateInstance<SummonerEnemyAttack>();

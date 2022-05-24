@@ -17,7 +17,7 @@ public class MeleeEnemyController : EnemyController
         // V------------------    Any additional 'start' functionality will go down here    ---------------------V
 
         base.attackDamage = 2; // We can scale this stuff up as floors progress, so this will have some algorithm to do that here.
-        base.movementSpeed = 1;// 
+        base.movementSpeed = 3;// 
 
         // The chase and attack commands are specific to this kind of enemy, so they will be overwritten/declared here.
         this.chase = ScriptableObject.CreateInstance<EnemyChase>();

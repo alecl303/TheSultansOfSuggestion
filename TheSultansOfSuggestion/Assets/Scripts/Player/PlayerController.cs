@@ -280,7 +280,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Rolling", true);
         this.isEnabled = false;
         this.canDodge = false;
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        this.gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.01f, 0.01f);
+        this.isInIFrame = true;
         for(int i = 0; i < 32; i++)
         {
             this.gameObject.GetComponent<Rigidbody2D>().velocity = direction * this.stats.GetSpeed() * 2.5f;
@@ -288,6 +289,8 @@ public class PlayerController : MonoBehaviour
         }
 
         this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        this.gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.24f, 0.3f);
+        this.isInIFrame = false;
         this.isEnabled = true;
         animator.SetBool("Rolling", false);
 
