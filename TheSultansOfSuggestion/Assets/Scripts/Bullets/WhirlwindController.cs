@@ -20,15 +20,15 @@ public class WhirlwindController : PlayerAttack
 
     private IEnumerator BombFuse()
     {
-        this.gameObject.GetComponent<Transform>().localScale = new Vector3(0.1f, 0.1f, 1);
-        yield return new WaitForSeconds(this.fuseTime / 8);
         this.gameObject.GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f, 1);
         yield return new WaitForSeconds(this.fuseTime / 8);
         this.gameObject.GetComponent<Transform>().localScale = new Vector3(1.5f, 1.5f, 1);
         yield return new WaitForSeconds(this.fuseTime / 8);
-        this.gameObject.GetComponent<Transform>().localScale = new Vector3(2.5f, 2.5f, 1);
+        this.gameObject.GetComponent<Transform>().localScale = new Vector3(3.5f, 3.5f, 1);
         yield return new WaitForSeconds(this.fuseTime / 8);
-        this.gameObject.GetComponent<Transform>().localScale = new Vector3(3, 3, 1);
+        this.gameObject.GetComponent<Transform>().localScale = new Vector3(5.5f, 5.5f, 1);
+        yield return new WaitForSeconds(this.fuseTime / 8);
+        this.gameObject.GetComponent<Transform>().localScale = new Vector3(7, 7, 1);
         yield return new WaitForSeconds(this.fuseTime / 2);
         this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
 
@@ -39,15 +39,15 @@ public class WhirlwindController : PlayerAttack
     {
         yield return new WaitForSeconds(this.fuseTime / 8);
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        this.gameObject.GetComponent<Transform>().localScale = new Vector3(3, 3, 1);
+        this.gameObject.GetComponent<Transform>().localScale = new Vector3(7, 7, 1);
 
-        this.gameObject.GetComponent<Transform>().localScale = new Vector3(2.5f, 2.5f, 1);
+        this.gameObject.GetComponent<Transform>().localScale = new Vector3(5.5f, 5.5f, 1);
+        yield return new WaitForSeconds(this.fuseTime / 8);
+        this.gameObject.GetComponent<Transform>().localScale = new Vector3(3.5f, 3.5f, 1);
         yield return new WaitForSeconds(this.fuseTime / 8);
         this.gameObject.GetComponent<Transform>().localScale = new Vector3(1.5f, 1.5f, 1);
         yield return new WaitForSeconds(this.fuseTime / 8);
         this.gameObject.GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f, 1);
-        yield return new WaitForSeconds(this.fuseTime / 8);
-        this.gameObject.GetComponent<Transform>().localScale = new Vector3(0.1f, 0.1f, 1);
         Destroy(this.gameObject);
     }
 

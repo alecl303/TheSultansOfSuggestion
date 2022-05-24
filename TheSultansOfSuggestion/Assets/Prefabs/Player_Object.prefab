@@ -212,8 +212,8 @@ MonoBehaviour:
   weapons:
   - {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
   activeWeapon: {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
-  freezeBox: {fileID: 0}
-  whirlwind: {fileID: 0}
+  freezeBox: {fileID: 3110540496108732950, guid: 9a8a9d1635378b043bec17251251a11d, type: 3}
+  whirlwind: {fileID: 2976386931763293713, guid: ec6d55eb3a765304288bea232f484a70, type: 3}
   weaponDamage: 0
 --- !u!114 &2231940157614114812
 MonoBehaviour:

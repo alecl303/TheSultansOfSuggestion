@@ -13,10 +13,20 @@ namespace Player.Command
             var positionDifference = Input.mousePosition - worldTransform;
             var target = positionDifference.normalized;
 
-            GameObject hitBox = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().hitboxPrefab, new Vector3(rigidBody.transform.position.x + (target.x / 8), rigidBody.transform.position.y + (target.y / 8), rigidBody.transform.position.z), new Quaternion());
+            GameObject hitBox = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().hitboxPrefab, new Vector3(rigidBody.transform.position.x + (target.x), rigidBody.transform.position.y + (target.y), rigidBody.transform.position.z), new Quaternion());
             var hitboxController = hitBox.gameObject.GetComponent<PlayerAttack>();
 
             var playerObject = gameObject.GetComponent<PlayerController>();
+            /* Buggy -?
+            if(target.x < rigidBody.position.x)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            */
 
             hitboxController.SetStunTime(playerObject.GetStats().GetStunTime());
             hitboxController.SetStunChance(playerObject.GetStats().GetStunChance());

@@ -6,7 +6,7 @@ public class BulletController : EnemyAttack
 {
 
     private Vector2 target;
-    protected float bulletSpeed = 3;
+    protected float bulletSpeed = 9;
 
     // Start is called before the first frame update
     void Start()
