@@ -1,19 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using Player.Command;
 using Player.Effect;
+using Player.Stats;
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 2.0f;
-    [SerializeField] private int health = 100;
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private float bulletSpeed = 3;
-    [SerializeField] private int rangeDamage = 2;
-    [SerializeField] private int meleeDamage = 5;
-    [SerializeField] private float fireRate = 1;
+    private PlayerStats stats;
 
+    [SerializeField] private bool canShoot = true;
     [SerializeField] private float iFrameTime = 1;
     [SerializeField] private bool isInIFrame = false;
     [SerializeField] private float hitStunTime = 0.3f;
@@ -21,8 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float attackTime = 2;
     [SerializeField] private bool isAttacking = false;
     [SerializeField] private bool isDead = false;
+    [SerializeField] private bool isEnabled = true;
+    [SerializeField] private bool canDodge = true;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
+
+    [SerializeField] public IPlayerCommand activeSpell;
 
     private IPlayerCommand fire1;
     private IPlayerCommand fire2;
@@ -30,64 +31,83 @@ public class PlayerController : MonoBehaviour
     private IPlayerCommand left;
     private IPlayerCommand up;
     private IPlayerCommand down;
-
+    private IPlayerCommand roll;
     // Start is called before the first frame update
     void Start()
     {
-
+        this.stats = this.gameObject.GetComponent<PlayerStats>();
         this.fire1 = ScriptableObject.CreateInstance<RangedAttack>();
         this.fire2 = ScriptableObject.CreateInstance<MeleeAttack>();
         this.right = ScriptableObject.CreateInstance<MoveCharacterRight>();
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        
-
+        this.activeSpell = ScriptableObject.CreateInstance<Whirlwind>();
+        this.roll = ScriptableObject.CreateInstance<Roll>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.health <= 0)
+        if (this.stats.health <= 0)
         {
             StartCoroutine(Die());
         }
         else
         {
-            if (!this.isInHitStun)
+            if (this.isEnabled)
             {
-                if (Input.GetAxis("Horizontal") > 0.01)
+                if (!this.isInHitStun)
                 {
-                    this.right.Execute(this.gameObject);
-                }
-                if (Input.GetAxis("Horizontal") < -0.01)
-                {
-                    this.left.Execute(this.gameObject);
-                }
-                if (Input.GetAxis("Vertical") < -0.01)
-                {
-                    this.down.Execute(this.gameObject);
-                }
-                if (Input.GetAxis("Vertical") > 0.01)
-                {
-                    this.up.Execute(this.gameObject);
-                }
-
-                if (!this.isAttacking)
-                {
-                    if (Input.GetButtonDown("Fire1"))
+                    if (Input.GetAxis("Horizontal") > 0.01)
                     {
-                        this.fire1.Execute(this.gameObject);
+                        this.right.Execute(this.gameObject);
                     }
-                    if (Input.GetButtonDown("Fire2"))
+                    if (Input.GetAxis("Horizontal") < -0.01)
                     {
-                        this.fire2.Execute(this.gameObject);
+                        this.left.Execute(this.gameObject);
                     }
-                }
+                    if (Input.GetAxis("Vertical") < -0.01)
+                    {
+                        this.down.Execute(this.gameObject);
+                    }
+                    if (Input.GetAxis("Vertical") > 0.01)
+                    {
+                        this.up.Execute(this.gameObject);
+                    }
 
-                var animator = this.gameObject.GetComponent<Animator>();
-                animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
+                    if (!this.isAttacking)
+                    {
+                        // Ranged Attack
+                        if (Input.GetButton("Fire1") && this.canShoot)
+                        {
+                            this.fire1.Execute(this.gameObject);
+                            StartCoroutine(Shooting());
+                        }
+
+                        //Melee Attack
+                        if (Input.GetButtonDown("Fire2"))
+                        {
+                            this.fire2.Execute(this.gameObject);
+                        }
+                        // Active Spell Attack
+                        if (Input.GetButtonDown("Fire3"))
+                        {
+                            this.activeSpell.Execute(this.gameObject);
+                        }
+                        // Dodge roll
+                        if (Input.GetButtonDown("Jump") && this.canDodge)
+                        {
+                            this.roll.Execute(this.gameObject);
+                        }
+                    }
+
+                    var animator = this.gameObject.GetComponent<Animator>();
+                    animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
+                }
             }
+            //this.RegenMana();
+            //this.CheckRage();
         }
     }
 
@@ -123,6 +143,8 @@ public class PlayerController : MonoBehaviour
 
                 StartCoroutine(HitStun());
                 StartCoroutine(IFrame());
+
+                Destroy(collision.gameObject);
             }
         }
         else
@@ -134,20 +156,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        this.health -= damage;
+        this.stats.health -= damage;
         this.isInHitStun = true;
-    }
-
-    public float GetSpeed()
-    {
-        return this.movementSpeed;
-    }
-
-    public void SetMovementSpeed(float speed)
-    {
-        this.movementSpeed = speed;
     }
 
     private IEnumerator HitStun()
@@ -173,29 +185,21 @@ public class PlayerController : MonoBehaviour
         this.isAttacking = false;
     }
 
-    public float GetBulletSpeed()
+    private IEnumerator Shooting()
     {
-        return this.bulletSpeed;
+        this.canShoot = false;
+        yield return new WaitForSeconds(this.stats.fireRate);
+        this.canShoot = true;
     }
 
-    public int GetRangeDamage()
+    public void SetActiveSpell(IPlayerCommand spell)
     {
-        return this.rangeDamage;
+        this.activeSpell = spell;
     }
 
-    public int GetMeleeDamage()
+    public void SetActiveWeapon(Weapon weapon)
     {
-        return this.meleeDamage;
-    }
-
-    public void SetRangeDamage(int damage)
-    {
-        this.rangeDamage = damage;
-    }
-    
-    public void Heal(int amount)
-    {
-        this.health += Mathf.Min(amount, this.maxHealth - this.health);
+        this.stats.activeWeapon = weapon;
     }
 
     public void ExecuteEffect(IPlayerEffect effect)
@@ -203,10 +207,6 @@ public class PlayerController : MonoBehaviour
         effect.Execute(this.gameObject);
     }
 
-    public float GetFireRate()
-    {
-        return this.fireRate;
-    }
     private IEnumerator IFrame()
     {
         this.isInIFrame = true;
@@ -227,7 +227,79 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
 
-            FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over Long");
+            FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
         }
+    }
+
+    public IEnumerator InvincibleForXSeconds(float duration)
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        yield return new WaitForSeconds(duration);
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+    }
+
+    public PlayerStats GetStats()
+    {
+        var stats_copy = this.stats;
+        return stats_copy;
+    }
+
+    public void ChangeRangedAttack(IPlayerCommand newAttack)
+    {
+        this.fire1 = newAttack;
+    }
+
+    public void ChangeMeleeAttack(IPlayerCommand newAttack)
+    {
+        this.fire2 = newAttack;
+    }
+
+    public void ChangeSpellAttack(IPlayerCommand newSpell)
+    {
+        this.activeSpell = newSpell;
+    }
+
+    public void InvertControls()
+    {
+        var left = this.left;
+        var right = this.right;
+        var up = this.up;
+        var down = this.down;
+
+        this.right = left;
+        this.left = right;
+        this.up = down;
+        this.down = up;
+    }
+
+    public IEnumerator Dodge(float duration, Vector2 direction)
+    {
+        var animator = this.gameObject.GetComponent<Animator>();
+        animator.SetBool("Rolling", true);
+        this.isEnabled = false;
+        this.canDodge = false;
+        this.gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.01f, 0.01f);
+        this.isInIFrame = true;
+        for(int i = 0; i < 32; i++)
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = direction * this.stats.GetSpeed() * 2.5f;
+            yield return new WaitForSeconds(duration/32);
+        }
+
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        this.gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.24f, 0.3f);
+        this.isInIFrame = false;
+        this.isEnabled = true;
+        animator.SetBool("Rolling", false);
+
+        StartCoroutine(BufferDodge());
+    }
+
+    private IEnumerator BufferDodge()
+    {
+        yield return new WaitForSeconds(2);
+        this.canDodge = true;
     }
 }

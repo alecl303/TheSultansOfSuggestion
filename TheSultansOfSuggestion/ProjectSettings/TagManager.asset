@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - PlayerAttack
   - EnemyAttack
+  - Item
+  - Hole
   layers:
   - Default
   - TransparentFX

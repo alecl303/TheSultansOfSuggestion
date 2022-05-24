@@ -50,90 +50,90 @@ MonoBehaviour:
     audioSource: {fileID: 0}
     title: Drum and Bass
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: 773ea0c8d53e81e439ccdbd8f871cce7, type: 3}
     audioSource: {fileID: 0}
     title: Ominous
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: 2c63113a3f5473d4ebc2c72e0a9e019b, type: 3}
     audioSource: {fileID: 0}
     title: Game Over
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: 4e7cae18ea8667f45b0a4023f66c7821, type: 3}
     audioSource: {fileID: 0}
     title: Game Over Long
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   sfxClips:
   - clip: {fileID: 8300000, guid: 10c1b0fb429340741b77bd1e9d950edb, type: 3}
     audioSource: {fileID: 0}
     title: Death
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: 747674642abf83a4cab7112e502b1d4e, type: 3}
     audioSource: {fileID: 0}
     title: Death2
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: c83b13e4890d6c640beff17c033c0d6e, type: 3}
     audioSource: {fileID: 0}
     title: EnemyFire
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: 036641dd2701ef64ca0a80baa9160b54, type: 3}
     audioSource: {fileID: 0}
     title: Hit
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: ec09fd9cccbc41548ac9443d4a9ae65b, type: 3}
     audioSource: {fileID: 0}
     title: Item
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: 397f050d0d84fb94b866227700a1f980, type: 3}
     audioSource: {fileID: 0}
     title: Melee
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: c7c1b35785f50464f8c9ba7f87ec9bb5, type: 3}
     audioSource: {fileID: 0}
     title: Melee2
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: ddbd1b00b3b3a3e4590f7f9817c74195, type: 3}
     audioSource: {fileID: 0}
     title: MenuEditor
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: 04dce1a23a4b6be42941c9f4b8e58037, type: 3}
     audioSource: {fileID: 0}
     title: MenuSelection
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: ddbd1b00b3b3a3e4590f7f9817c74195, type: 3}
     audioSource: {fileID: 0}
     title: MenuEnter
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: b9916e00b4f42d243acaa458dad473a7, type: 3}
     audioSource: {fileID: 0}
     title: MenuEnter2
     volume: 0.495
-    pitch: 0
+    pitch: 1
     loop: 0
