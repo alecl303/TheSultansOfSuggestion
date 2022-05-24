@@ -175,4 +175,4 @@ MonoBehaviour:
   bulletSpeed: 2
   hitStunTime: 0.3
   isInHitStun: 0
-  summonPrefab: {fileID: 2547475500278135747, guid: ea2000e5585af3d42939b1e3801e97a5, type: 3}
+  bulletPrefab: {fileID: 2547475500278135747, guid: ea2000e5585af3d42939b1e3801e97a5, type: 3}
