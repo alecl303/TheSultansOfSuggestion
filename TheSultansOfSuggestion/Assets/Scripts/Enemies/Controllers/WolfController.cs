@@ -10,7 +10,7 @@ public class WolfController : EnemyController
     {
         base.Init();
 
-        this.movementSpeed = 2;
+        this.movementSpeed = 10;
         this.attackRange = 2;
         this.health = 5;
         this.aggroDistance = 15;

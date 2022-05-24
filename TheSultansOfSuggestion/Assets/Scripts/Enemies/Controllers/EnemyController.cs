@@ -18,7 +18,7 @@ abstract public class EnemyController : MonoBehaviour
 {
     // Stats/misc variables that all enemies will have (Serialize fields are for debug purposes and ironing out game feel)
     [SerializeField] protected float movementSpeed = 3;
-    [SerializeField] protected float aggroDistance = 3;
+    [SerializeField] protected float aggroDistance = 5;
     [SerializeField] protected float attackRange = 0.3f;
     [SerializeField] protected float health = 20;
     [SerializeField] protected float attackDamage = 2;
@@ -29,10 +29,12 @@ abstract public class EnemyController : MonoBehaviour
 
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
+    [SerializeField] private bool isFlying = false;
     [SerializeField] public GameObject bulletPrefab;
+
     private bool dying = false;
     private bool canAct = true;
-
+    
     //[SerializeField] private GameObject weaponDrop;
 
     [SerializeField] private bool isDead = false;
@@ -120,6 +122,14 @@ abstract public class EnemyController : MonoBehaviour
             CheckForStun(attackObject);
             CheckForPoison(attackObject);
             CheckForLifeDrain(attackObject);
+        }
+
+        if (collision.gameObject.CompareTag("Hole"))
+        {
+            if (this.isFlying)
+            {
+                Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            }
         }
     }
 

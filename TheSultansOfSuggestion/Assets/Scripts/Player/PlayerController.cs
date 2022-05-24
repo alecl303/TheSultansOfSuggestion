@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
         this.activeSpell = spell;
     }
 
-    public void SetActiveWeapon(GameObject weapon)
+    public void SetActiveWeapon(Weapon weapon)
     {
         this.stats.activeWeapon = weapon;
     }

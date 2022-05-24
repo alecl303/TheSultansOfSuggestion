@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using Bullet.Command;
 
@@ -13,6 +14,8 @@ namespace Player.Stats
         public float maxHealth = 100;
         public float mana = 100;
         public float maxMana = 100;
+        public float rage = 0;
+        public float maxRage = 10;
         public float bulletSpeed = 9;
         public float bulletLifeSpan = 0.7f;
         public float stunTime = 1;
@@ -28,8 +31,12 @@ namespace Player.Stats
         public int critChance = 1;
         public float critMultiplier = 1.5f;
         public bool manaIsHp = false;
-        public List<GameObject> weapons;
-        public GameObject activeWeapon;
+        //public List<GameObject> weapons;
+        //public GameObject activeWeapon;
+
+        public List<Weapon> weapons;
+        public Weapon activeWeapon;
+
         public IBulletMovement bulletMovement;
 
         public GameObject freezeBox;
@@ -37,13 +44,33 @@ namespace Player.Stats
 
         public int weaponDamage;
 
+        private GameObject healthBar;
+        private GameObject manaBar;
+        private GameObject rageBar;
+
+        private GameObject weaponSprite;
+
         void Start()
         {
+            this.activeWeapon = gameObject.AddComponent<Weapon>();
             this.weapons.Add(this.activeWeapon);
 
             this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
 
             this.bulletMovement = ScriptableObject.CreateInstance<StandardBullet>();
+
+            this.healthBar = GameObject.Find("/HUD/HealthBar");
+            this.manaBar = GameObject.Find("/HUD/Mana");
+            this.rageBar = GameObject.Find("/HUD/Rage");
+
+            this.weaponSprite = GameObject.Find("/HUD/Item_slot/slot/Border/Item_sprite");
+            this.weaponSprite.GetComponent<Image>().sprite = this.activeWeapon.GetComponent<Weapon>().sprite;
+        }
+
+        private void Update()
+        {
+            RegenMana();
+            CheckRage();
         }
 
         public float GetSpeed()
@@ -83,6 +110,13 @@ namespace Player.Stats
         public void Heal(float amount)
         {
             this.health += Mathf.Min(amount, this.maxHealth - this.health);
+            this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            this.health -= damage;
+            this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;
         }
 
         public float GetMana()
@@ -95,10 +129,32 @@ namespace Player.Stats
             if (this.manaIsHp)
             {
                 this.health -= amount * 0.2f;
+                this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;
+
             }
             else
             {
                 this.mana -= amount;
+                this.manaBar.GetComponent<Slider>().value = Mathf.Min(this.mana,0) / this.maxMana;
+            }
+        }
+
+        public void RegenMana()
+        {
+            this.mana += Mathf.Min(.001f, this.maxMana - this.mana);
+            this.manaBar.GetComponent<Slider>().value = this.mana / this.maxMana;
+        }
+
+        public void CheckRage()
+        {
+            this.rageBar.GetComponent<Slider>().value = this.rage / this.maxRage;
+        }
+
+        public void IncrementRage()
+        {
+            if (this.rage < this.maxRage)
+            {
+                this.rage += 1;
             }
         }
 

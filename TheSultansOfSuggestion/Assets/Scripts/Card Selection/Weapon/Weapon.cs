@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] List<Sprite> sprites;
+    public List<string> sprites;
 
     private int damage;
-    private Sprite sprite;
+    public Sprite sprite;
+    public int spriteIndex;
     private string rarity;
     private int lowerBound;
     private int upperBound;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        this.sprites = new List<string> {
+            "File_0", "File_1","File_2","File_3","File_4","File_5","File_6","File_7","File_8","File_9",
+            "File_10","File_11","File_12","File_13","File_14","File_15","File_16","File_17","File_18","File_19",
+            "File_20","File_21","File_22","File_23","File_24","File_25","File_26","File_27","File_28","File_29"
+        };
         SetRarity();
         this.damage = Random.Range(this.lowerBound, this.upperBound);
-        Debug.Log(this.damage);
-        Debug.Log(this.rarity);
-        var spriteIndex = Random.Range(0, 30);
-        this.sprite = this.sprites[spriteIndex];
+        this.spriteIndex = Random.Range(0, 30);
+        this.sprite = Resources.Load<Sprite>(this.sprites[this.spriteIndex]);
 
         this.gameObject.GetComponent<SpriteRenderer>().sprite = this.sprite;
     }
@@ -62,5 +66,10 @@ public class Weapon : MonoBehaviour
     private string GetRarity()
     {
         return this.rarity;
+    }
+
+    public Sprite GetSprite()
+    {
+        return this.sprite;
     }
 }

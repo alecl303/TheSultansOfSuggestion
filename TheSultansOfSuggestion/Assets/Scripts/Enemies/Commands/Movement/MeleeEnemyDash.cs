@@ -7,7 +7,7 @@ namespace Enemy.Command
     public class MeleeEnemyDash : ScriptableObject, IEnemyCommand
     {
         private Vector2 direction;
-        private readonly float maxDistance = 1;
+        private readonly float maxDistance = 3;
 
         public void Execute(GameObject gameObject)
         {
@@ -27,7 +27,11 @@ namespace Enemy.Command
                 else if (positionDifference < this.maxDistance && !enemy.IsAttacking())
                 {
                     enemy.StartCoroutine(enemy.InitiateAttack());
-                    rigidBody.velocity = enemy.GetSpeed() * 20 * this.direction;
+                    for(int i = 0; i < 100; i++)
+                    {
+                        rigidBody.velocity = enemy.GetSpeed() * 20 * this.direction;
+                    }
+                    
                 }
 
             }

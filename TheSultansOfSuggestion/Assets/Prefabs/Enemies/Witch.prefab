@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1
-  aggroDistance: 1
+  aggroDistance: 20
   attackRange: 0.1
   health: 20
   attackDamage: 2
@@ -175,5 +175,6 @@ MonoBehaviour:
   bulletSpeed: 2
   hitStunTime: 0.3
   isInHitStun: 0
+  isFlying: 0
   bulletPrefab: {fileID: 2547475500278135747, guid: ea2000e5585af3d42939b1e3801e97a5, type: 3}
   isDead: 0

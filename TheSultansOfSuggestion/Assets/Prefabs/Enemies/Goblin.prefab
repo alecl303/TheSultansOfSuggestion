@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1
-  aggroDistance: 1
+  aggroDistance: 5
   attackRange: 0.1
   health: 20
   attackDamage: 2
