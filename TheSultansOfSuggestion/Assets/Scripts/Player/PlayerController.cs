@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private PlayerStats stats;
 
     [SerializeField] private bool canShoot = true;
-    [SerializeField] private float iFrameTime = 1;
+    [SerializeField] private float iFrameTime = 0.5f;
     [SerializeField] private bool isInIFrame = false;
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator BufferDodge()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         this.canDodge = true;
     }
 }
