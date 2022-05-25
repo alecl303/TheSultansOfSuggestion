@@ -12,6 +12,8 @@ public class DontDestroyOnLoad : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject HUD;
     public GameObject currentCamera;
+    public GameObject eventSystem;
+    public GameObject cardSelection;
 
     public void IncrementScene()
     {
@@ -37,6 +39,8 @@ public class DontDestroyOnLoad : MonoBehaviour
         DontDestroyOnLoad(this.pauseMenu);
         DontDestroyOnLoad(this.HUD);
         DontDestroyOnLoad(this.currentCamera);
+        DontDestroyOnLoad(this.eventSystem);
+        DontDestroyOnLoad(this.cardSelection);
         scene++;
     }
 }

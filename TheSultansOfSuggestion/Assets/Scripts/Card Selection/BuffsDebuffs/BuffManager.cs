@@ -7,7 +7,9 @@ public class BuffManager : MonoBehaviour
 {
     List<IPlayerEffect> buffs;
     IPlayerEffect randomBuff;
+
     [SerializeField] string description;
+    private int buffLength;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +19,17 @@ public class BuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<DamageUp>(),
         };
 
-        this.randomBuff = this.buffs[Random.Range(0, 3)];
+        this.buffLength = this.buffs.Count;
+
+        this.randomBuff = this.buffs[Random.Range(0, this.buffLength)];
 
         this.description = this.randomBuff.GetDescription();
+    }
+
+    public IPlayerEffect GetRandomBuff()
+    {
+        
+        return(this.buffs[Random.Range(0, this.buffLength)]);
     }
 
 }

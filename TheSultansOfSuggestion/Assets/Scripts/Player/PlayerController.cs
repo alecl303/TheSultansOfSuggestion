@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
                 playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
-                TakeDamage(enemy.GetAttackDamage());
+                stats.TakeDamage(enemy.GetAttackDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
 
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
                 playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
-                TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
+                stats.TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
 

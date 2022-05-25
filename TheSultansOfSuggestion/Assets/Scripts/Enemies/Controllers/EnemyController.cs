@@ -274,7 +274,8 @@ abstract public class EnemyController : MonoBehaviour
         this.health -= damage;
         if(this.health <= 0 && !isDead){
             this.isDead = true;
-            //this.targetRage.IncrementRage();
+            var playerStats = this.target.gameObject.GetComponent<PlayerController>().GetStats();
+            playerStats.IncrementRage();
         }
     }
 
