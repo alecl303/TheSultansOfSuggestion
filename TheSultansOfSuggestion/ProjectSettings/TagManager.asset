@@ -10,6 +10,7 @@ TagManager:
   - EnemyAttack
   - Item
   - Hole
+  - PlayerMeleeAttack
   layers:
   - Default
   - TransparentFX
