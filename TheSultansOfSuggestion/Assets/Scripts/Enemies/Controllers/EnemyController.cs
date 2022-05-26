@@ -22,7 +22,7 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] protected float attackRange = 0.3f;
     [SerializeField] protected float health = 20;
     [SerializeField] protected float attackDamage = 2;
-    [SerializeField] protected float knockback = 10;
+    //[SerializeField] protected float knockback = 10;
     [SerializeField] protected bool attacking = false;
     [SerializeField] protected float attackBuffer = 2;
     [SerializeField] protected float bulletSpeed = 2;
@@ -115,8 +115,8 @@ abstract public class EnemyController : MonoBehaviour
             TakeDamage(damage);
             StartCoroutine(HitStun());
 
-            Vector2 knockbackDirection = (this.gameObject.GetComponent<Rigidbody2D>().position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized;
-            Knockback(knockbackDirection);
+            //Vector2 knockbackDirection = (this.gameObject.GetComponent<Rigidbody2D>().position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized;
+            //Knockback(knockbackDirection);
 
             FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
 
@@ -183,15 +183,15 @@ abstract public class EnemyController : MonoBehaviour
         return this.attackRange;
     }
 
-    public float GetKnockback()
-    {
-        return this.knockback;
-    }
+    //public float GetKnockback()
+    //{
+    //    return this.knockback;
+    //}
 
-    private void Knockback(Vector2 direction)
-    {
-        this.gameObject.GetComponent<Rigidbody2D>().velocity = this.knockback * direction;
-    }
+    //private void Knockback(Vector2 direction)
+    //{
+    //    this.gameObject.GetComponent<Rigidbody2D>().velocity = this.knockback * direction;
+    //}
 
     private IEnumerator HitStun()
     {
