@@ -64,7 +64,7 @@ abstract public class EnemyController : MonoBehaviour
     {
         this.movement = ScriptableObject.CreateInstance<EnemyWonder>();
         this.attack = ScriptableObject.CreateInstance<DoNothing>();
-        AttatchPlayer();
+        AttachPlayer();
         FindObjectOfType<EnemySpawner>().liveEnemies += 1;
     }
 
@@ -134,7 +134,7 @@ abstract public class EnemyController : MonoBehaviour
         }
     }
 
-    private void AttatchPlayer()
+    private void AttachPlayer()
     {
         var temp = FindObjectOfType<PlayerController>();
         this.target = temp.GetComponent<Rigidbody2D>();
