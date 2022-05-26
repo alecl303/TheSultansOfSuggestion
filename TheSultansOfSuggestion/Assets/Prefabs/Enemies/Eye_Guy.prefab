@@ -128,6 +128,7 @@ MonoBehaviour:
   bulletSpeed: 4
   hitStunTime: 0.3
   isInHitStun: 0
+  isFlying: 1
   bulletPrefab: {fileID: 5259769282469972706, guid: d897c527d8767624c97e66d51b1aee14, type: 3}
   isDead: 0
 --- !u!50 &8991290593107256228

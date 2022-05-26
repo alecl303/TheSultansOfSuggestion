@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private PlayerStats stats;
 
     [SerializeField] private bool canShoot = true;
-    [SerializeField] private float iFrameTime = 1;
+    [SerializeField] private float iFrameTime = 5f;
     [SerializeField] private bool isInIFrame = false;
     [SerializeField] private float hitStunTime = 0.3f;
     [SerializeField] private bool isInHitStun = false;
@@ -120,13 +120,13 @@ public class PlayerController : MonoBehaviour
                 var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
                 var enemy = collision.gameObject.GetComponent<EnemyController>();
 
-                playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+                //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
                 TakeDamage(enemy.GetAttackDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
 
-                StartCoroutine(HitStun());
+                //StartCoroutine(HitStun());
                 StartCoroutine(IFrame());
             }
 
@@ -135,13 +135,13 @@ public class PlayerController : MonoBehaviour
                 var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
                 var bulletKnockBack = 10; // temporary
 
-                playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+                //playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
                 TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
 
-                StartCoroutine(HitStun());
+                //StartCoroutine(HitStun());
                 StartCoroutine(IFrame());
 
                 Destroy(collision.gameObject);
@@ -156,10 +156,55 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!this.isInIFrame)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+                var enemy = collision.gameObject.GetComponent<EnemyController>();
+
+                //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+
+                TakeDamage(enemy.GetAttackDamage());
+
+                FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
+
+                //StartCoroutine(HitStun());
+                StartCoroutine(IFrame());
+            }
+
+            //if (collision.gameObject.CompareTag("EnemyAttack"))
+            //{
+            //    var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+            //    var bulletKnockBack = 10; // temporary
+
+            //    //playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+
+            //    TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
+
+            //    FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
+
+            //    //StartCoroutine(HitStun());
+            //    StartCoroutine(IFrame());
+
+            //    Destroy(collision.gameObject);
+            //}
+        }
+        //else
+        //{
+        //    if (collision.gameObject.CompareTag("EnemyAttack"))
+        //    {
+        //        Destroy(collision.gameObject);
+        //    }
+        //}
+    }
+
     public void TakeDamage(float damage)
     {
-        this.stats.health -= damage;
-        this.isInHitStun = true;
+        this.stats.TakeDamage(damage);
+        //this.isInHitStun = true;
     }
 
     private IEnumerator HitStun()
@@ -216,6 +261,11 @@ public class PlayerController : MonoBehaviour
 
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
         this.isInIFrame = false;
+    }
+
+    public bool IsInIFrame()
+    {
+        return this.isInIFrame;
     }
 
     private IEnumerator Die()
@@ -299,7 +349,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator BufferDodge()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.2f);
         this.canDodge = true;
     }
 }

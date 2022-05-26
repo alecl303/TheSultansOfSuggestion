@@ -17,7 +17,6 @@ namespace Enemy.Command
             if (positionDifference.magnitude < enemyObject.GetAttackRange())
             {
                 GameObject wolf = (GameObject)Instantiate(gameObject.GetComponent<EnemyController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (positionDifference.normalized.x / 3), rigidBody.transform.position.y + (positionDifference.normalized.y / 3), rigidBody.transform.position.z), new Quaternion());
-
                 enemyObject.StartCoroutine(enemyObject.InitiateAttack());
             }
         }
