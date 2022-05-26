@@ -48,6 +48,7 @@ public class EnemySpawner : MonoBehaviour
         if(this.liveEnemies <= 0)
         {
             Debug.Log("All done");
+            FindObjectOfType<PlayerController>().GetStats().mana = 100;
             FindObjectOfType<DontDestroyOnLoad>().IncrementScene();
         }
     }
