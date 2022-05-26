@@ -6287,6 +6287,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1884189440595443665, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: iFrameTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1884189440595443671, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1884189440595443676, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -10226,7 +10234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825570, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_Name
