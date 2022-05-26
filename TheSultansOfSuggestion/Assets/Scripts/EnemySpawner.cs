@@ -50,6 +50,26 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("All done");
             FindObjectOfType<DontDestroyOnLoad>().IncrementScene();
         }
+        if(Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("Spawn boss");
+            SpawnBoss();
+        }
+    }
+
+    public void SpawnBoss()
+    {
+        var randomX = Random.Range(this.xMin, this.xMax);
+        var randomY = Random.Range(this.yMin, this.yMax);
+
+        while (CheckOutOfBounds(randomX, randomY))
+        {
+            randomX = Random.Range(this.xMin, this.xMax);
+            randomY = Random.Range(this.yMin, this.yMax);
+        }
+
+        GameObject newBoss = Instantiate(this.enemyPrefabs[0], new Vector3(randomX, randomY, this.gameObject.transform.position.z), new Quaternion());
+        Debug.Log("boss spawn");
     }
 
     private bool CheckOutOfBounds(float x, float y)
