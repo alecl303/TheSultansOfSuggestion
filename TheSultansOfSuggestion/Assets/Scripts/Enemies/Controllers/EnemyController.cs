@@ -22,7 +22,7 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] protected float attackRange = 0.3f;
     [SerializeField] protected float health = 20;
     [SerializeField] protected float attackDamage = 2;
-    //[SerializeField] protected float knockback = 10;
+    [SerializeField] protected float knockback = 10;
     [SerializeField] protected bool attacking = false;
     [SerializeField] protected float attackBuffer = 2;
     [SerializeField] protected float bulletSpeed = 2;
@@ -64,7 +64,7 @@ abstract public class EnemyController : MonoBehaviour
     {
         this.movement = ScriptableObject.CreateInstance<EnemyWonder>();
         this.attack = ScriptableObject.CreateInstance<DoNothing>();
-        AttatchPlayer();
+        AttachPlayer();
         FindObjectOfType<EnemySpawner>().liveEnemies += 1;
     }
 
@@ -102,7 +102,7 @@ abstract public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !this.attacking)
+        if (collision.gameObject.CompareTag("Player") && !this.attacking && !collision.gameObject.GetComponent<PlayerController>().IsInIFrame())
         {
             StartCoroutine(InitiateAttack());
         }
@@ -125,6 +125,24 @@ abstract public class EnemyController : MonoBehaviour
             CheckForLifeDrain(attackObject);
         }
 
+        if (collision.gameObject.CompareTag("PlayerMeleeAttack"))
+        {
+            var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
+            float damage = attackObject.GetDamage();
+
+            TakeDamage(damage);
+            StartCoroutine(HitStun());
+
+            Vector2 knockbackDirection = (this.gameObject.GetComponent<Rigidbody2D>().position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized;
+            Knockback(knockbackDirection);
+
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
+
+            CheckForStun(attackObject);
+            CheckForPoison(attackObject);
+            CheckForLifeDrain(attackObject);
+        }
+
         if (collision.gameObject.CompareTag("Hole"))
         {
             if (this.isFlying)
@@ -134,7 +152,33 @@ abstract public class EnemyController : MonoBehaviour
         }
     }
 
-    private void AttatchPlayer()
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && !this.attacking && !collision.gameObject.GetComponent<PlayerController>().IsInIFrame())
+        {
+            StartCoroutine(InitiateAttack());
+        }
+
+        //if (collision.gameObject.CompareTag("PlayerAttack"))
+        //{
+        //    var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
+        //    float damage = attackObject.GetDamage();
+
+        //    TakeDamage(damage);
+        //    StartCoroutine(HitStun());
+
+        //    //Vector2 knockbackDirection = (this.gameObject.GetComponent<Rigidbody2D>().position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized;
+        //    //Knockback(knockbackDirection);
+
+        //    FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
+
+        //    CheckForStun(attackObject);
+        //    CheckForPoison(attackObject);
+        //    CheckForLifeDrain(attackObject);
+        //}
+    }
+
+    private void AttachPlayer()
     {
         var temp = FindObjectOfType<PlayerController>();
         this.target = temp.GetComponent<Rigidbody2D>();
@@ -167,9 +211,10 @@ abstract public class EnemyController : MonoBehaviour
         animator.SetBool("Attacking", true);
         this.attacking = true;
 
-        yield return new WaitForSeconds(this.attackBuffer);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         animator.SetBool("Attacking", false);
+        yield return new WaitForSeconds(this.attackBuffer);
         this.attacking = false;
     }
 
@@ -188,10 +233,10 @@ abstract public class EnemyController : MonoBehaviour
     //    return this.knockback;
     //}
 
-    //private void Knockback(Vector2 direction)
-    //{
-    //    this.gameObject.GetComponent<Rigidbody2D>().velocity = this.knockback * direction;
-    //}
+    private void Knockback(Vector2 direction)
+    {
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = this.knockback * direction;
+    }
 
     private IEnumerator HitStun()
     {
@@ -287,7 +332,7 @@ abstract public class EnemyController : MonoBehaviour
 
         this.dying = true;
         FindObjectOfType<EnemySpawner>().liveEnemies -= 1;
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 3);
 
         /*var enemyPosition = this.gameObject.GetComponent<Rigidbody2D>().transform.position;
         var drop = (GameObject)Instantiate(this.weaponDrop, new Vector3(enemyPosition.x, enemyPosition.y, enemyPosition.z), new Quaternion());

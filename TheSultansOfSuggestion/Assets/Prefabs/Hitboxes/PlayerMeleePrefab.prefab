@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 319299739822973305}
   m_Layer: 0
   m_Name: PlayerMeleePrefab
-  m_TagString: PlayerAttack
+  m_TagString: PlayerMeleeAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
