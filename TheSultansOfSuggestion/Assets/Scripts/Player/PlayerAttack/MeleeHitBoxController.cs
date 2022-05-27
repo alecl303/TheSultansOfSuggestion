@@ -15,7 +15,7 @@ public class MeleeHitBoxController : PlayerAttack
     {
         this.canStealHp = true;
         this.player = FindObjectOfType<PlayerController>();
-        this.damage = player.GetStats().GetMeleeDamage();
+        this.damage = this.player.GetStats().GetMeleeDamage();
         this.lifeSpan = 0;
         this.maxDuration = player.GetStats().GetFireRate();
     }
