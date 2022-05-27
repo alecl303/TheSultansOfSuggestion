@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //Debug.Log(this.liveEnemies);
         if(this.liveEnemies <= 0)

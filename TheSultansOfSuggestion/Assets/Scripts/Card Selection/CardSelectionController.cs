@@ -18,9 +18,10 @@ public class CardSelectionController : MonoBehaviour
 
     [SerializeField] private GameObject playerTarget;
 
-    void Start()
+    void OnEnable()
     {
         Time.timeScale = 0;
+        // this.GetComponentInParent<Canvas>().enabled = true;
         playerTarget.GetComponent<PlayerController> ().enabled = false;
 
         for (int i = 0; i < 3; i++)
@@ -70,10 +71,14 @@ public class CardSelectionController : MonoBehaviour
 
     void removeCardsFromScreen()
     {
-        this.GetComponentInParent<Canvas>().enabled = false;
+        //this.GetComponentInParent<Canvas>().enabled = false;
         Time.timeScale = 1;
         playerTarget.GetComponent<PlayerController> ().enabled = true;
 
+        this.buffList.Clear();
+        this.debuffList.Clear();
+
+        this.transform.parent.gameObject.SetActive(false);
         // TODO: Reenable for different scenes
     }
 

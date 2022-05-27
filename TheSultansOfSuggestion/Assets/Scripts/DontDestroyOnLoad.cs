@@ -42,5 +42,7 @@ public class DontDestroyOnLoad : MonoBehaviour
         DontDestroyOnLoad(this.eventSystem);
         DontDestroyOnLoad(this.cardSelection);
         scene++;
+
+        this.cardSelection.SetActive(true);
     }
 }

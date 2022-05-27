@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 using Player.Command;
 using Player.Effect;
@@ -226,8 +227,9 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Dead", true);
             FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
-
+            SceneManager.LoadScene(8);
             FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
+            
         }
     }
 
