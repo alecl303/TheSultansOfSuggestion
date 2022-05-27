@@ -113,7 +113,7 @@ namespace Player.Stats
             this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
             this.health -= damage;
             this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;

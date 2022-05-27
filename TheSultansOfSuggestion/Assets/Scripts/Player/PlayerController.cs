@@ -120,13 +120,13 @@ public class PlayerController : MonoBehaviour
                 var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
                 var enemy = collision.gameObject.GetComponent<EnemyController>();
 
-                playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+                //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
                 TakeDamage(enemy.GetAttackDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
 
-                StartCoroutine(HitStun());
+                //StartCoroutine(HitStun());
                 StartCoroutine(IFrame());
             }
 
@@ -135,13 +135,13 @@ public class PlayerController : MonoBehaviour
                 var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
                 var bulletKnockBack = 10; // temporary
 
-                playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+                //playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
                 TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
 
-                StartCoroutine(HitStun());
+                //StartCoroutine(HitStun());
                 StartCoroutine(IFrame());
 
                 Destroy(collision.gameObject);
@@ -158,8 +158,8 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        this.stats.health -= damage;
-        this.isInHitStun = true;
+        this.stats.TakeDamage(damage);
+        //this.isInHitStun = true;
     }
 
     private IEnumerator HitStun()
@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator BufferDodge()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         this.canDodge = true;
     }
 }
