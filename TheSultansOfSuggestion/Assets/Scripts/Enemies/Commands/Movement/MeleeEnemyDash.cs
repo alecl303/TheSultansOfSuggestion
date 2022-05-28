@@ -59,6 +59,7 @@ namespace Enemy.Command
                 gameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
         }
+        
         private IEnumerator MoveToPosition(Vector2 newPosition, float time, GameObject gameObject)
         {
             var timeElapsed  = 0.00f;
