@@ -45,4 +45,16 @@ public class DontDestroyOnLoad : MonoBehaviour
 
         this.cardSelection.SetActive(true);
     }
+
+    public void DestroyAll()
+    {
+        Destroy(this.gameObject);
+        Destroy(this.player);
+        Destroy(this.soundManager);
+        Destroy(this.pauseMenu);
+        Destroy(this.HUD);
+        Destroy(this.currentCamera);
+        Destroy(this.eventSystem);
+        Destroy(this.cardSelection);
+    }
 }

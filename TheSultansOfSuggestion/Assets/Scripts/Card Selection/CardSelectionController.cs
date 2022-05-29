@@ -26,7 +26,7 @@ public class CardSelectionController : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            print(buffManager.GetComponent<BuffManager>().GetRandomBuff());
+
             buffList.Add(buffManager.GetComponent<BuffManager>().GetRandomBuff());
             debuffList.Add(debuffManager.GetComponent<DebuffManager>().GetRandomDebuff());
         }

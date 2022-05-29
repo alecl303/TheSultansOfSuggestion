@@ -9,21 +9,6 @@ public class DebuffManager : MonoBehaviour
     IPlayerEffect randomDebuff;
     [SerializeField] string description;
     private int debuffLength = 0;
-    // Start is called before the first frame update
-    // void Start()
-    // {
-    //     this.debuffs = new List<IPlayerEffect>() {
-    //         ScriptableObject.CreateInstance<BulletSpeedDown>(),
-    //         ScriptableObject.CreateInstance<CritChanceDown>(),
-    //         ScriptableObject.CreateInstance<DamageDown>(),
-    //     };
-
-    //     this.debuffLength = this.debuffs.Count;
-
-    //     this.randomDebuff = this.debuffs[Random.Range(0, this.debuffLength)];
-
-    //     this.description = this.randomDebuff.GetDescription();
-    // }
 
     public IPlayerEffect GetRandomDebuff()
     {
@@ -39,6 +24,19 @@ public class DebuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<BulletSpeedDown>(),
             ScriptableObject.CreateInstance<CritChanceDown>(),
             ScriptableObject.CreateInstance<DamageDown>(),
+            ScriptableObject.CreateInstance<BackwardsBulletEffect>(),
+            ScriptableObject.CreateInstance<DropTo1HP>(),
+            ScriptableObject.CreateInstance<InvertControls>(),
+            ScriptableObject.CreateInstance<LoseActiveSpell>(),
+            //ScriptableObject.CreateInstance<LoseRoll>(),
+            ScriptableObject.CreateInstance<SpellsCostBlood>(),
+            ScriptableObject.CreateInstance<DamageDown>(),
+            ScriptableObject.CreateInstance<BulletSizeDown>(),
+            ScriptableObject.CreateInstance<LifeStealDown>(),
+            ScriptableObject.CreateInstance<ManaDown>(),
+            ScriptableObject.CreateInstance<MaxHealthDown>(),
+            ScriptableObject.CreateInstance<MovementSpeedDown>(),
+            ScriptableObject.CreateInstance<RangeDown>()
         };
         this.debuffLength = this.debuffs.Count;
     }

@@ -128,7 +128,9 @@ MonoBehaviour:
   bulletSpeed: 4
   hitStunTime: 0.3
   isInHitStun: 0
+  isFlying: 0
   bulletPrefab: {fileID: 5259769282469972706, guid: d897c527d8767624c97e66d51b1aee14, type: 3}
+  crosshair: {fileID: 2800000, guid: 45c50ecdf18da44459070bc07a652305, type: 3}
   isDead: 0
 --- !u!50 &8991290593107256228
 Rigidbody2D:

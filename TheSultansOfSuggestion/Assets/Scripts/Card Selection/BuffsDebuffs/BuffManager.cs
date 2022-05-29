@@ -10,18 +10,7 @@ public class BuffManager : MonoBehaviour
 
     [SerializeField] string description;
     private int buffLength = 0;
-    // Start is called before the first frame update
-    // void Start()
-    // {
-    //     this.buffs = new List<IPlayerEffect>() {
-    //         ScriptableObject.CreateInstance<BulletSpeedUp>(),
-    //         ScriptableObject.CreateInstance<CritChanceUp>(),
-    //         ScriptableObject.CreateInstance<DamageUp>(),
-    //     };
-    //     this.buffLength = this.buffs.Count;
-
-
-    // }
+    
 
     public IPlayerEffect GetRandomBuff()
     {
@@ -37,6 +26,20 @@ public class BuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<BulletSpeedUp>(),
             ScriptableObject.CreateInstance<CritChanceUp>(),
             ScriptableObject.CreateInstance<DamageUp>(),
+            ScriptableObject.CreateInstance<DoubleShot>(),
+            ScriptableObject.CreateInstance<TripleShot>(),
+            ScriptableObject.CreateInstance<BulletSizeUp>(),
+            ScriptableObject.CreateInstance<CritMultiplierUp>(),
+            ScriptableObject.CreateInstance<Heal20>(),
+            ScriptableObject.CreateInstance<LifeStealUp>(),
+            ScriptableObject.CreateInstance<ManaUp>(),
+            ScriptableObject.CreateInstance<MaxHealthUp>(),
+            ScriptableObject.CreateInstance<MovementSpeedUp>(),
+            ScriptableObject.CreateInstance<PoisonChanceUp>(),
+            ScriptableObject.CreateInstance<PoisonDamageUp>(),
+            ScriptableObject.CreateInstance<PoisonTimeUp>(),
+            ScriptableObject.CreateInstance<RangeUp>(),
+            ScriptableObject.CreateInstance<StunChanceUp>(),
         };
         this.buffLength = this.buffs.Count;
     }

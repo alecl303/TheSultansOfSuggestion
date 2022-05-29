@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
 
-    [SerializeField] public IPlayerCommand activeSpell;
+    [SerializeField] public IPlayerCommand activeSpell1;
+    [SerializeField] public IPlayerCommand activeSpell2;
+
+    private ItemBar playersCurrentItemBar;
 
     private IPlayerCommand fire1;
     private IPlayerCommand fire2;
@@ -37,14 +40,19 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         this.stats = this.gameObject.GetComponent<PlayerStats>();
+        this.playersCurrentItemBar = this.gameObject.GetComponent<ItemBar>();
         this.fire1 = ScriptableObject.CreateInstance<RangedAttack>();
         this.fire2 = ScriptableObject.CreateInstance<MeleeAttack>();
         this.right = ScriptableObject.CreateInstance<MoveCharacterRight>();
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell = ScriptableObject.CreateInstance<Whirlwind>();
+        this.activeSpell1 = ScriptableObject.CreateInstance<Whirlwind>();
+        this.activeSpell2 = ScriptableObject.CreateInstance<FreezeEnemies>();
         this.roll = ScriptableObject.CreateInstance<Roll>();
+
+        this.playersCurrentItemBar.Updateslots(2,this.stats.whirlwind.GetComponent<SpriteMask>().sprite);
+        this.playersCurrentItemBar.Updateslots(3,this.stats.freezeBox.GetComponent<SpriteMask>().sprite);
     }
 
     // Update is called once per frame
@@ -94,13 +102,18 @@ public class PlayerController : MonoBehaviour
                         // Active Spell Attack
                         if (Input.GetButtonDown("Fire3"))
                         {
-                            this.activeSpell.Execute(this.gameObject);
+                            this.activeSpell1.Execute(this.gameObject);
+                        }
+                        if (Input.GetButtonDown("spell 2") && this.canDodge)
+                        {
+                            this.activeSpell2.Execute(this.gameObject);
                         }
                         // Dodge roll
                         if (Input.GetButtonDown("Jump") && this.canDodge)
                         {
                             this.roll.Execute(this.gameObject);
                         }
+                        
                     }
 
                     var animator = this.gameObject.GetComponent<Animator>();
@@ -195,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetActiveSpell(IPlayerCommand spell)
     {
-        this.activeSpell = spell;
+        this.activeSpell1 = spell;
     }
 
     public void SetActiveWeapon(Weapon weapon)
@@ -260,7 +273,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeSpellAttack(IPlayerCommand newSpell)
     {
-        this.activeSpell = newSpell;
+        this.activeSpell1 = newSpell;
     }
 
     public void InvertControls()
