@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 6
-  health: 100
+  health: 20
   maxHealth: 100
   mana: 100
   maxMana: 100
@@ -212,11 +212,13 @@ MonoBehaviour:
   critChance: 1
   critMultiplier: 1.5
   manaIsHp: 0
+  SpellStrength: 1
   weapons:
   - {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
   activeWeapon: {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
   freezeBox: {fileID: 3110540496108732950, guid: 9a8a9d1635378b043bec17251251a11d, type: 3}
   whirlwind: {fileID: 2976386931763293713, guid: ec6d55eb3a765304288bea232f484a70, type: 3}
+  healCircle: {fileID: 0}
   weaponDamage: 0
 --- !u!114 &2231940157614114812
 MonoBehaviour:

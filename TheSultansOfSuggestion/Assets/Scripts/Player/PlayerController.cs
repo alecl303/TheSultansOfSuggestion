@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell = ScriptableObject.CreateInstance<Whirlwind>();
+        this.activeSpell = ScriptableObject.CreateInstance<Heal>();
         this.roll = ScriptableObject.CreateInstance<Roll>();
     }
 
@@ -111,6 +111,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.CompareTag("PlayerBuffSpell"))
+        {
+            Debug.Log("Hit by playerbuff spell");
+            other.gameObject.GetComponent<HealEffect>().SetOverlap(true);
+            StartCoroutine(other.gameObject.GetComponent<HealEffect>().ApplyEffect(this));
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("PlayerBuffSpell"))
+        {
+            Debug.Log("Hit by playerbuff spell");
+            other.gameObject.GetComponent<HealEffect>().SetOverlap(false);
+        }
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (!this.isInIFrame)
@@ -354,4 +371,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         this.canDodge = true;
     }
+
 }
