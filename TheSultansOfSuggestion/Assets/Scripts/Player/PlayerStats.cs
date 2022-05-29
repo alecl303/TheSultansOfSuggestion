@@ -43,6 +43,7 @@ namespace Player.Stats
         public GameObject freezeBox;
         public GameObject whirlwind;
         public GameObject healCircle;
+        public GameObject icicleTrap;
 
         public int weaponDamage;
 

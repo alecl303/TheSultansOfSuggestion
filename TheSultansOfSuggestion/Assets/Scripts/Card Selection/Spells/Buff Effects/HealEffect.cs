@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class HealEffect : MonoBehaviour, ISpellEffect
+public class HealEffect : MonoBehaviour, IPlayerFloorSpellEffect
 {
     // [SerializeField] private GameObject target;
     [SerializeField] private float flatHeal;
@@ -15,6 +15,10 @@ public class HealEffect : MonoBehaviour, ISpellEffect
     public void SetOverlap(bool overlap)
     {
         this.overlap = overlap;
+    }
+    void OnDestroy() 
+    {   
+        overlap = false;
     }
     public IEnumerator ApplyEffect(PlayerController target)
     {

@@ -180,7 +180,13 @@ abstract public class EnemyController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if(other.gameObject.CompareTag("PlayerTrapSpell"))
+        {
+            Debug.Log("Activating player trap spell");
+            other.gameObject.GetComponent<IEnemyTrapSpellEffect>().SetOverlap(true);
+            // StartCoroutine(other.gameObject.GetComponent<IEnemyTrapSpellEffect>().ApplyEffect(this, targetRage.GetStats()));
+            StartCoroutine(other.gameObject.GetComponent<IEnemyTrapSpellEffect>().ApplyEffect(this, targetRage.GetStats()));
+        }
     }
 
     private void AttachPlayer()

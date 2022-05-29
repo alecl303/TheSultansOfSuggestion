@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell = ScriptableObject.CreateInstance<Heal>();
+        this.activeSpell = ScriptableObject.CreateInstance<FancyBurst>();
         this.roll = ScriptableObject.CreateInstance<Roll>();
     }
 
@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerBuffSpell"))
         {
+            
             Debug.Log("Hit by playerbuff spell");
             other.gameObject.GetComponent<IPlayerFloorSpellEffect>().SetOverlap(true);
             StartCoroutine(other.gameObject.GetComponent<IPlayerFloorSpellEffect>().ApplyEffect(this));

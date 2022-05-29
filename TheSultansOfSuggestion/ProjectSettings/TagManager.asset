@@ -12,6 +12,7 @@ TagManager:
   - Hole
   - PlayerMeleeAttack
   - PlayerBuffSpell
+  - PlayerTrapSpell
   layers:
   - Default
   - TransparentFX
