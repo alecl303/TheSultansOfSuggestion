@@ -116,8 +116,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerBuffSpell"))
         {
             Debug.Log("Hit by playerbuff spell");
-            other.gameObject.GetComponent<HealEffect>().SetOverlap(true);
-            StartCoroutine(other.gameObject.GetComponent<HealEffect>().ApplyEffect(this));
+            other.gameObject.GetComponent<IPlayerFloorSpellEffect>().SetOverlap(true);
+            StartCoroutine(other.gameObject.GetComponent<IPlayerFloorSpellEffect>().ApplyEffect(this));
         }
     }
     void OnTriggerExit2D(Collider2D other)

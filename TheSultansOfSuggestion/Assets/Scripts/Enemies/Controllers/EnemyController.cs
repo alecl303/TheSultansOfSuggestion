@@ -177,6 +177,11 @@ abstract public class EnemyController : MonoBehaviour
         //    CheckForLifeDrain(attackObject);
         //}
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+    }
 
     private void AttachPlayer()
     {
