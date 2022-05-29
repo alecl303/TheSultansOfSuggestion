@@ -146,6 +146,8 @@ public class PlayerController : MonoBehaviour
 
                 Destroy(collision.gameObject);
             }
+
+            // if (collision.gameOBject.CompareTag(""))
         }
         else
         {
