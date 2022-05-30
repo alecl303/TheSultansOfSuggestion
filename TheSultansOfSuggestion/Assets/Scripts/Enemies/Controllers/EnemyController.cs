@@ -314,12 +314,27 @@ abstract public class EnemyController : MonoBehaviour
         return this.aggroDistance;
     }
 
+    private void FlashStart()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 1);
+        Invoke("FlashStop", 0.3f);
+    }
+
+    private void FlashStop()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+    }
+
     public void TakeDamage(float damage)
     {
         this.health -= damage;
         if(this.health <= 0 && !isDead){
             this.isDead = true;
             //this.targetRage.IncrementRage();
+        }
+        else
+        {
+            FlashStart();
         }
     }
 
