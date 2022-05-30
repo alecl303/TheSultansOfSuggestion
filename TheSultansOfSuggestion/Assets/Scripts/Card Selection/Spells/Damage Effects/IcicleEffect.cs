@@ -32,7 +32,13 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
 
                 var r = Mathf.Sin(1.3f * i);
 
-                var targetPos = new Vector2(rigidBody.transform.position.x + (r * Mathf.Cos(theta)), rigidBody.transform.position.y + (r * Mathf.Sin(theta)));
+                var directionX = Random.Range(-1.0f, 1.0f);
+                var hypo = 2.0f;
+                var angle = Mathf.Acos(directionX/hypo);
+                var directionY = Mathf.Sin(angle)*hypo;
+                Debug.Log(directionX + " - " + directionY);
+                Debug.Log(Mathf.Tan(directionX/directionY));
+                var targetPos = new Vector2(directionX* (r * Mathf.Cos(theta)),  directionY * (r * Mathf.Sin(theta)));
                 
                 var x = rigidBody.transform.position.x;
                 var y = rigidBody.transform.position.y;
