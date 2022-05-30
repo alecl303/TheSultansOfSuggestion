@@ -166,9 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 3
   aggroDistance: 5
-  attackRange: 0.3
-  health: 20
-  attackDamage: 2
+  attackRange: 3
+  health: 50
+  attackDamage: 5
   knockback: 10
   attacking: 0
   attackBuffer: 2
