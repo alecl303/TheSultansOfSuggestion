@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public List<string> sprites;
+    public Sprite[] sprites;
     private int damage;
     public Sprite sprite;
     public int spriteIndex;
     private string rarity;
     private int lowerBound;
     private int upperBound;
-    // Start is called before the first frame update
     void Awake()
     {
         SetRarity();
         this.damage = Random.Range(this.lowerBound, this.upperBound);
-        //this.spriteIndex = Random.Range(0, 30);
-        //this.sprite = Resources.Load<Sprite>("Sprites/Weapons/File"); ?????? Not loading anything ?????
-        //Debug.Log(this.sprite);
-        
-        //this.gameObject.GetComponent<SpriteRenderer>().sprite = this.sprite;
+        this.spriteIndex = Random.Range(0, 30);
     }
 
     public int GetDamage()
@@ -66,5 +61,10 @@ public class Weapon : MonoBehaviour
     public Sprite GetSprite()
     {
         return this.sprite;
+    }
+
+    public void SetSprite(Sprite sprite)
+    {
+        this.sprite = sprite;
     }
 }
