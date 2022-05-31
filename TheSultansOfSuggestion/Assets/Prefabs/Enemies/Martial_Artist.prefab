@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5438485253675737470}
   - component: {fileID: 5438485253675737458}
   - component: {fileID: 5438485253675737457}
-  - component: {fileID: 5438485253675737459}
+  - component: {fileID: -1376127607865207563}
   m_Layer: 0
   m_Name: Martial_Artist
   m_TagString: Enemy
@@ -152,7 +152,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5438485253675737459
+--- !u!114 &-1376127607865207563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,14 +161,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5438485253675737469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3854e7fc59482d24784724d730fc4033, type: 3}
+  m_Script: {fileID: 11500000, guid: 6238f2ebe78ae47438a1ab47f7d70cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
   aggroDistance: 5
-  attackRange: 3
-  health: 50
-  attackDamage: 5
+  attackRange: 0.3
+  health: 20
+  attackDamage: 2
   knockback: 10
   attacking: 0
   attackBuffer: 2
