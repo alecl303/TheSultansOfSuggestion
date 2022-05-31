@@ -358,4 +358,7 @@ abstract public class EnemyController : MonoBehaviour
     {
         return this.attacking;
     }
+    public void StartCoroutineCaller(IEnumerator action) {
+        StartCoroutine(action);
+    }
 }
