@@ -31,7 +31,7 @@ public class DebuffManager : MonoBehaviour
             //ScriptableObject.CreateInstance<LoseRoll>(),
             ScriptableObject.CreateInstance<SpellsCostBlood>(),
             ScriptableObject.CreateInstance<DamageDown>(),
-            ScriptableObject.CreateInstance<BulletSizeDown>(),
+            //ScriptableObject.CreateInstance<BulletSizeDown>(),
             ScriptableObject.CreateInstance<LifeStealDown>(),
             ScriptableObject.CreateInstance<ManaDown>(),
             ScriptableObject.CreateInstance<MaxHealthDown>(),

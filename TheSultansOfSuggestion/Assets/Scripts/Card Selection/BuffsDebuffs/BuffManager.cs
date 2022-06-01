@@ -18,7 +18,7 @@ public class BuffManager : MonoBehaviour
         {
             initBuffs();
         }
-        return(this.buffs[Random.Range(0, this.buffLength)]);
+        return(this.buffs[Random.Range(0, this.buffs.Count)]);
     }
 
     void initBuffs(){
@@ -28,7 +28,7 @@ public class BuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<DamageUp>(),
             ScriptableObject.CreateInstance<DoubleShot>(),
             ScriptableObject.CreateInstance<TripleShot>(),
-            ScriptableObject.CreateInstance<BulletSizeUp>(),
+            //ScriptableObject.CreateInstance<BulletSizeUp>(),
             ScriptableObject.CreateInstance<CritMultiplierUp>(),
             ScriptableObject.CreateInstance<Heal20>(),
             ScriptableObject.CreateInstance<LifeStealUp>(),
