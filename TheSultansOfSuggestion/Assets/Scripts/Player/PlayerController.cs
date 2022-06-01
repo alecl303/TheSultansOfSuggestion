@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         this.activeSpell2 = ScriptableObject.CreateInstance<FreezeEnemies>();
         this.roll = ScriptableObject.CreateInstance<Roll>();
 
+        this.playersCurrentItemBar.Updateslots(0, this.stats.activeWeapon.GetComponent<Weapon>().sprite);
         this.playersCurrentItemBar.Updateslots(2,this.stats.whirlwind.GetComponent<SpriteMask>().sprite);
         this.playersCurrentItemBar.Updateslots(3,this.stats.freezeBox.GetComponent<SpriteMask>().sprite);
     }
