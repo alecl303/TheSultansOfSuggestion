@@ -21948,6 +21948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1189305791}
   - component: {fileID: 1189305790}
+  - component: {fileID: 1189305792}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -21986,6 +21987,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1189305792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189305789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7b23c323bd2db4b93f280b59229613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicTrack: Drum and Bass
 --- !u!1001 &1901393611967465203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22039,7 +22053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyCount
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825570, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_Name

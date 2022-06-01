@@ -5357,7 +5357,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 21
-      m_TileSpriteIndex: 33
+      m_TileSpriteIndex: 34
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10494,10 +10494,10 @@ Tilemap:
     m_Data: {fileID: -658789682138578740, guid: 37ae5bd5707fecd47ac5ad2dfe1f0fca, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: -6584079447439274270, guid: 37ae5bd5707fecd47ac5ad2dfe1f0fca, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 2729052689172261016, guid: 37ae5bd5707fecd47ac5ad2dfe1f0fca, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 2729052689172261016, guid: 37ae5bd5707fecd47ac5ad2dfe1f0fca, type: 3}
   - m_RefCount: 145
     m_Data: {fileID: 6454345358516974573, guid: 37ae5bd5707fecd47ac5ad2dfe1f0fca, type: 3}
   - m_RefCount: 146
@@ -46412,7 +46412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyCount
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825570, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_Name

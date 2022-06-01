@@ -70,6 +70,24 @@ MonoBehaviour:
     volume: 0.495
     pitch: 1
     loop: 0
+  - clip: {fileID: 8300000, guid: 3a603f0072057664ca8365770bfd994c, type: 3}
+    audioSource: {fileID: 0}
+    title: Menu
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 350b8f30eae95ef4cb5150adfbca7dcc, type: 3}
+    audioSource: {fileID: 0}
+    title: Water
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: c1ea9a13ee75d764893f707ca8070c20, type: 3}
+    audioSource: {fileID: 0}
+    title: Boss
+    volume: 0.495
+    pitch: 1
+    loop: 0
   sfxClips:
   - clip: {fileID: 8300000, guid: 10c1b0fb429340741b77bd1e9d950edb, type: 3}
     audioSource: {fileID: 0}
