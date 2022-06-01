@@ -5,14 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
-    // Start is called before the first frame update(
+    public GameObject DontDestroyOnLoad;
+
+    void OnSceneLoaded()
+    {
+        DeleteOldGame();
+    }
     public void ContinueGame()
     {
-        SceneManager.LoadScene(0);
+        // Load Atlantis Scene
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
     {
-        Application.Quit();
+        // Return to MainMenu
+        SceneManager.LoadScene(0);
+    }
+
+    private void DeleteOldGame()
+    {
+        this.DontDestroyOnLoad = GameObject.Find("/DontDestroyOnLoad");
+        this.DontDestroyOnLoad.GetComponent<DontDestroyOnLoad>().DestroyAll();
+        Destroy(this.DontDestroyOnLoad);
     }
 }

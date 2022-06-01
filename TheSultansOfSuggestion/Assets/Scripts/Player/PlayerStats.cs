@@ -10,7 +10,7 @@ namespace Player.Stats
     public class PlayerStats : MonoBehaviour
     {
         public float movementSpeed = 6.0f;
-        public float health = 10;
+        public float health = 100;
         public float maxHealth = 100;
         public float mana = 100;
         public float maxMana = 100;
