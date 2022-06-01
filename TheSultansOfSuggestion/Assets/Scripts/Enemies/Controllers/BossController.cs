@@ -6,6 +6,7 @@ using Enemy.Command;
 
 public class BossController : EnemyController
 {
+
     protected override void Init()
     {
         base.Init();
@@ -18,6 +19,8 @@ public class BossController : EnemyController
         this.attackDamage = 2;
 
         this.chase = ScriptableObject.CreateInstance<BossChase>();
-        this.attack = ScriptableObject.CreateInstance<MeleeEnemyAttack>();
+        this.attack = ScriptableObject.CreateInstance<BossRange>();
+        //this.rangedAttack = ScriptableObject.CreateInstance<BossRange>();
+        //this.attack = ScriptableObject.CreateInstance<MeleeEnemyAttack>();
     }
 }

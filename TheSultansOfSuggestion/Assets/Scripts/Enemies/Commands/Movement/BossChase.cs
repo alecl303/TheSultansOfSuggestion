@@ -33,7 +33,7 @@ namespace Enemy.Command
             else if (this.state == "firePattern")
             {
                 this.state = "idle";
-                for (int i = 0; i < 8; i ++)
+                /* for (int i = 0; i < 8; i ++)
                 {
                     float theta = i * 360 * (Mathf.PI / 180);
 
@@ -48,7 +48,7 @@ namespace Enemy.Command
                     // bulletController.SetBulletTarget(1.1f * target);
                     bulletController.SetBulletDamage(enemy.GetAttackDamage());
                     bulletController.SetBulletSpeed(enemy.GetBulletSpeed());
-                }
+                }*/
             }
             else if (this.state == "dashing")
             {
