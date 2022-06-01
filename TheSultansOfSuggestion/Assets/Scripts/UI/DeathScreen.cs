@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
-    public GameObject DontDestroyOnLoad;
-
-    void OnSceneLoaded()
-    {
-        DeleteOldGame();
-    }
     public void ContinueGame()
     {
         // Load Atlantis Scene
@@ -21,12 +15,5 @@ public class DeathScreen : MonoBehaviour
     {
         // Return to MainMenu
         SceneManager.LoadScene(0);
-    }
-
-    private void DeleteOldGame()
-    {
-        this.DontDestroyOnLoad = GameObject.Find("/DontDestroyOnLoad");
-        this.DontDestroyOnLoad.GetComponent<DontDestroyOnLoad>().DestroyAll();
-        Destroy(this.DontDestroyOnLoad);
     }
 }

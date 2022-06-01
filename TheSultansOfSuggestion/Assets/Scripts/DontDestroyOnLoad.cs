@@ -14,6 +14,7 @@ public class DontDestroyOnLoad : MonoBehaviour
     public GameObject currentCamera;
     public GameObject eventSystem;
     public GameObject cardSelection;
+    public GameObject death;
 
     public void IncrementScene()
     {
@@ -41,6 +42,7 @@ public class DontDestroyOnLoad : MonoBehaviour
         DontDestroyOnLoad(this.currentCamera);
         DontDestroyOnLoad(this.eventSystem);
         DontDestroyOnLoad(this.cardSelection);
+        DontDestroyOnLoad(this.death);
         scene++;
 
         this.cardSelection.SetActive(true);
@@ -56,5 +58,6 @@ public class DontDestroyOnLoad : MonoBehaviour
         Destroy(this.currentCamera);
         Destroy(this.eventSystem);
         Destroy(this.cardSelection);
+        Destroy(this.death);
     }
 }
