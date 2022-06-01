@@ -18,7 +18,7 @@ public class BuffManager : MonoBehaviour
         {
             initBuffs();
         }
-        return(this.buffs[Random.Range(0, this.buffs.Count)]);
+        return(this.buffs[Random.Range(0, this.buffLength)]);
     }
 
     void initBuffs(){

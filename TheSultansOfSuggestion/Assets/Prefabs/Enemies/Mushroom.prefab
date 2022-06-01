@@ -177,4 +177,5 @@ MonoBehaviour:
   isInHitStun: 0
   isFlying: 0
   bulletPrefab: {fileID: 0}
+  crosshair: {fileID: 2800000, guid: 45c50ecdf18da44459070bc07a652305, type: 3}
   isDead: 0
