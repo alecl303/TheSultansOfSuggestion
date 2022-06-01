@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3026326317570799646}
   - component: {fileID: 3026326317570799621}
   - component: {fileID: 3026326317570799642}
-  - component: {fileID: 3026326317570799643}
+  - component: {fileID: 1603879038776507215}
   m_Layer: 0
   m_Name: Demon Boss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.23921588, y: -0.19783244}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -150,9 +150,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.34, y: 1.24}
+  m_Size: {x: 0.59913796, y: 0.84433514}
   m_EdgeRadius: 0
---- !u!114 &3026326317570799643
+--- !u!114 &1603879038776507215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,19 +161,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3026326317570799647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6710386fb7426b541abee2f3e3904f06, type: 3}
+  m_Script: {fileID: 11500000, guid: fc43d34ef3e4dc54e94c34c14c48924e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  aggroDistance: 5
-  attackRange: 0.3
-  health: 20
-  attackDamage: 2
+  health: 200
+  maxHealth: 200
   attacking: 0
   attackBuffer: 2
   bulletSpeed: 2
-  hitStunTime: 0.3
-  isInHitStun: 0
-  isFlying: 0
+  attackDamage: 2
+  isFlying: 1
   bulletPrefab: {fileID: 6087790376291015841, guid: efec521f6c503f642b9b30ea4e2930f5, type: 3}
+  crosshair: {fileID: 2800000, guid: 45c50ecdf18da44459070bc07a652305, type: 3}
   isDead: 0

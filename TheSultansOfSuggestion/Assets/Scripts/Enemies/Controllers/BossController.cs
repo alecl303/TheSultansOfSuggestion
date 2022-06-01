@@ -14,7 +14,7 @@ using Boss.Command;
  * 
  */
 
-abstract public class BossController : MonoBehaviour
+public class BossController : MonoBehaviour
 {
     // Stats/misc variables that all enemies will have (Serialize fields are for debug purposes and ironing out game feel)
     [SerializeField] protected float movementSpeed = 3;
