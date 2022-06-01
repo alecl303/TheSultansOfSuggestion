@@ -29,5 +29,11 @@ namespace Player.Command
                 playerStats.DrainMana(this.requiredMana);
             }
         }
+
+        // public Sprite ReturnSprite(GameObject gameObject)
+        // {
+        //     var playerStats = gameObject.GetComponent<PlayerController>().GetStats();
+        //     return (playerStats.whirlwind.GetComponent<SpriteMask>().sprite);
+        // }
     }
 }

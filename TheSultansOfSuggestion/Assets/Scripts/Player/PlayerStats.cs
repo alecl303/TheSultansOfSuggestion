@@ -14,6 +14,7 @@ namespace Player.Stats
         public float maxHealth = 100;
         public float mana = 100;
         public float maxMana = 100;
+        public float manaRechargeRate = .02f;
         public float rage = 0;
         public float maxRage = 10;
         public float bulletSpeed = 9;
@@ -73,7 +74,7 @@ namespace Player.Stats
         private void Update()
         {
             RegenMana();
-            //CheckRage();
+            CheckRage();
         }
 
         public float GetSpeed()
@@ -144,7 +145,7 @@ namespace Player.Stats
 
         public void RegenMana()
         {
-            this.mana += Mathf.Min(.001f, this.maxMana - this.mana);
+            this.mana += Mathf.Min(this.manaRechargeRate, this.maxMana - this.mana);
             this.manaBar.GetComponent<Slider>().value = this.mana / this.maxMana;
         }
 

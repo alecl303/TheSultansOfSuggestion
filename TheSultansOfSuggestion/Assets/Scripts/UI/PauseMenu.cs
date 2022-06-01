@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     GameObject CanvasObject;
     GameObject PlayerObject;
     GameObject SoundManager;
+
+    public GameObject DontDestroyOnLoad;
     
     public void Pause()
     {
@@ -38,7 +40,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Menu"))
         {
             Pause();
         }
@@ -48,6 +50,13 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1;
+        CanvasObject.GetComponent<Canvas> ().enabled = false;
+        this.DontDestroyOnLoad.GetComponent<DontDestroyOnLoad>().DestroyAll();
+        Destroy(this.DontDestroyOnLoad);
+        //Destroy(this.DontDestroyOnLoad);
         SceneManager.LoadScene(0);
+        
+
+        //Application.Quit();
     }
 }
