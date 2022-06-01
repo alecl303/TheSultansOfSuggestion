@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell = ScriptableObject.CreateInstance<FancyBurst>();
+        this.activeSpell = ScriptableObject.CreateInstance<Heal>();
         this.roll = ScriptableObject.CreateInstance<Roll>();
     }
 
