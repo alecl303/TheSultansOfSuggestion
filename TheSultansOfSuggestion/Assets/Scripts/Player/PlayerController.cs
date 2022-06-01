@@ -145,6 +145,21 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(IFrame());
             }
 
+            if (collision.gameObject.CompareTag("Boss"))
+            {
+                var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+                var enemy = collision.gameObject.GetComponent<BossController>();
+
+                //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+
+                stats.TakeDamage(enemy.GetAttackDamage());
+
+                FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
+
+                //StartCoroutine(HitStun());
+                StartCoroutine(IFrame());
+            }
+
             if (collision.gameObject.CompareTag("EnemyAttack"))
             {
                 var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
