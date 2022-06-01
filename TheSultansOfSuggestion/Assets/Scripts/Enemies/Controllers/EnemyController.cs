@@ -32,8 +32,15 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] private bool isFlying = false;
     [SerializeField] public GameObject bulletPrefab;
 
+
+    [SerializeField] private Texture2D crosshair;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotSpot = Vector2.zero;
+    
     private bool dying = false;
     private bool canAct = true;
+
+    
     
     //[SerializeField] private GameObject weaponDrop;
 
@@ -314,12 +321,28 @@ abstract public class EnemyController : MonoBehaviour
         return this.aggroDistance;
     }
 
+    private void FlashStart()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 1);
+        Invoke("FlashStop", 0.3f);
+    }
+
+    private void FlashStop()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+    }
+
     public void TakeDamage(float damage)
     {
         this.health -= damage;
         if(this.health <= 0 && !isDead){
             this.isDead = true;
-            //this.targetRage.IncrementRage();
+            var playerStats = this.target.gameObject.GetComponent<PlayerController>().GetStats();
+            playerStats.IncrementRage();
+        }
+        else
+        {
+            FlashStart();
         }
     }
 
@@ -342,5 +365,14 @@ abstract public class EnemyController : MonoBehaviour
     public bool IsAttacking()
     {
         return this.attacking;
+    }
+
+    public void OnMouseEnter()
+    {
+        Cursor.SetCursor(crosshair, new Vector2(crosshair.width/2, crosshair.height/2), cursorMode);
+    }
+    public void OnMouseExit()
+    {
+        Cursor.SetCursor(null, new Vector2(0,0), cursorMode);
     }
 }

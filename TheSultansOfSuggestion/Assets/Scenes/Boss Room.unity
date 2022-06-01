@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 458485423}
   - component: {fileID: 458485422}
+  - component: {fileID: 458485424}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -169,6 +170,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &458485424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458485421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7b23c323bd2db4b93f280b59229613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicTrack: Boss
 --- !u!1 &584326185
 GameObject:
   m_ObjectHideFlags: 0

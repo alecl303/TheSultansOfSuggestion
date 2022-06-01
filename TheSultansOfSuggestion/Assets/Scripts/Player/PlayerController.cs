@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 using Player.Command;
 using Player.Effect;
@@ -23,7 +24,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
 
-    [SerializeField] public IPlayerCommand activeSpell;
+    [SerializeField] public IPlayerCommand activeSpell1;
+    [SerializeField] public IPlayerCommand activeSpell2;
+
+    private ItemBar playersCurrentItemBar;
 
     private IPlayerCommand fire1;
     private IPlayerCommand fire2;
@@ -36,14 +40,20 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         this.stats = this.gameObject.GetComponent<PlayerStats>();
+        this.playersCurrentItemBar = this.gameObject.GetComponent<ItemBar>();
         this.fire1 = ScriptableObject.CreateInstance<RangedAttack>();
         this.fire2 = ScriptableObject.CreateInstance<MeleeAttack>();
         this.right = ScriptableObject.CreateInstance<MoveCharacterRight>();
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell = ScriptableObject.CreateInstance<Whirlwind>();
+        this.activeSpell1 = ScriptableObject.CreateInstance<Burst>();
+        this.activeSpell2 = ScriptableObject.CreateInstance<FreezeEnemies>();
         this.roll = ScriptableObject.CreateInstance<Roll>();
+
+        this.playersCurrentItemBar.Updateslots(0, this.stats.activeWeapon.GetComponent<Weapon>().sprite);
+        this.playersCurrentItemBar.Updateslots(2,this.stats.whirlwind.GetComponent<SpriteMask>().sprite);
+        this.playersCurrentItemBar.Updateslots(3,this.stats.freezeBox.GetComponent<SpriteMask>().sprite);
     }
 
     // Update is called once per frame
@@ -93,13 +103,18 @@ public class PlayerController : MonoBehaviour
                         // Active Spell Attack
                         if (Input.GetButtonDown("Fire3"))
                         {
-                            this.activeSpell.Execute(this.gameObject);
+                            this.activeSpell1.Execute(this.gameObject);
+                        }
+                        if (Input.GetButtonDown("spell 2") && this.canDodge)
+                        {
+                            this.activeSpell2.Execute(this.gameObject);
                         }
                         // Dodge roll
                         if (Input.GetButtonDown("Jump") && this.canDodge)
                         {
                             this.roll.Execute(this.gameObject);
                         }
+                        
                     }
 
                     var animator = this.gameObject.GetComponent<Animator>();
@@ -122,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
                 //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
-                TakeDamage(enemy.GetAttackDamage());
+                stats.TakeDamage(enemy.GetAttackDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
 
@@ -137,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
                 //playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
-                TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
+                stats.TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
 
@@ -239,7 +254,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetActiveSpell(IPlayerCommand spell)
     {
-        this.activeSpell = spell;
+        this.activeSpell1 = spell;
     }
 
     public void SetActiveWeapon(Weapon weapon)
@@ -277,7 +292,9 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
 
+            SceneManager.LoadScene(8);
             FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
+            
         }
     }
 
@@ -308,7 +325,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeSpellAttack(IPlayerCommand newSpell)
     {
-        this.activeSpell = newSpell;
+        this.activeSpell1 = newSpell;
     }
 
     public void InvertControls()

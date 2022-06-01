@@ -2,67 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Player.Effect;
 
 public class CardSelectionController : MonoBehaviour 
 {
-    public Buff [] buffList;
-    public Debuff [] debuffList;
+    public GameObject buffManager;
+    public GameObject debuffManager;
+    private List<IPlayerEffect> buffList = new List<IPlayerEffect>();
+    private List<IPlayerEffect> debuffList = new List<IPlayerEffect>();
 
     public GameObject Card1;
     public GameObject Card2;
     public GameObject Card3;
 
-    void Start()
+    [SerializeField] private GameObject playerTarget;
+
+    void OnEnable()
     {
         Time.timeScale = 0;
-        GameObject.Find("/Player_Object").GetComponent<PlayerController> ().enabled = false;
-        Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[Random.Range(0, buffList.Length)].description + "\n\n\n\n" + debuffList[Random.Range(0, debuffList.Length)].description;
-        Card2.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[Random.Range(0, buffList.Length)].description + "\n\n\n\n" + debuffList[Random.Range(0, debuffList.Length)].description;
-        Card3.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[Random.Range(0, buffList.Length)].description + "\n\n\n\n" + debuffList[Random.Range(0, debuffList.Length)].description;
-    }
-    
-    void ApplyCard()
-    {
+        // this.GetComponentInParent<Canvas>().enabled = true;
+        playerTarget.GetComponent<PlayerController> ().enabled = false;
 
-    }
-    // public void Pause()
-    // {
-    //     if (isPaused) 
-    //     {
-    //         Time.timeScale = 1;
-    //         isPaused = false;
-    //         PlayerObject.GetComponent<PlayerController> ().enabled = true;
-    //         CanvasObject.GetComponent<Canvas> ().enabled = false;
-    //     }
-    //     else
-    //     {
-    //         Time.timeScale = 0;
-    //         isPaused = true;
-    //         PlayerObject.GetComponent<PlayerController> ().enabled = false;
-    //         CanvasObject.GetComponent<Canvas> ().enabled = true;
-    //     }
-    // }
+        for (int i = 0; i < 3; i++)
+        {
 
-    // void Awake()
-    // {
-    //     CanvasObject = GameObject.Find("/Pause");
-    //     PlayerObject = GameObject.Find("/Player_Object");
+            buffList.Add(buffManager.GetComponent<BuffManager>().GetRandomBuff());
+            debuffList.Add(debuffManager.GetComponent<DebuffManager>().GetRandomDebuff());
+        }
         
-    //     print(CanvasObject);
-    // }
+        Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[0].GetDescription() + "\n\n\n\n" + debuffList[0].GetDescription();
+        Card2.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[1].GetDescription() + "\n\n\n\n" + debuffList[1].GetDescription();
+        Card3.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[2].GetDescription() + "\n\n\n\n" + debuffList[2].GetDescription();
 
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Escape))
-    //     {
-    //         Pause();
-    //     }
-    // }
+        AssignButtons();
+    }
 
-    // public void Quit()
-    // {
-    //     isPaused = false;
-    //     Time.timeScale = 1;
-    //     SceneManager.LoadScene(0);
-    // }
+    
+    
+    void ApplyCard1()
+    {
+        buffList[0].Execute(playerTarget);
+        debuffList[0].Execute(playerTarget);
+        removeCardsFromScreen();
+    
+    }
+
+    void ApplyCard2()
+    {
+        buffList[1].Execute(playerTarget);
+        debuffList[1].Execute(playerTarget);
+        removeCardsFromScreen();
+    }
+
+    void ApplyCard3()
+    {
+        buffList[2].Execute(playerTarget);
+        debuffList[2].Execute(playerTarget);
+        removeCardsFromScreen();
+    }
+
+    void AssignButtons()
+    {
+        Card1.GetComponentInParent<Button>().onClick.AddListener(ApplyCard1);
+        Card2.GetComponentInParent<Button>().onClick.AddListener(ApplyCard2);
+        Card3.GetComponentInParent<Button>().onClick.AddListener(ApplyCard3);
+    }
+
+    void removeCardsFromScreen()
+    {
+        //this.GetComponentInParent<Canvas>().enabled = false;
+        Time.timeScale = 1;
+        playerTarget.GetComponent<PlayerController> ().enabled = true;
+
+        this.buffList.Clear();
+        this.debuffList.Clear();
+
+        this.transform.parent.gameObject.SetActive(false);
+        // TODO: Reenable for different scenes
+    }
+
 }
