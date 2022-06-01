@@ -46418,7 +46418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyPrefabs.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyPrefabs.Array.data[2]
@@ -46436,6 +46436,10 @@ PrefabInstance:
       propertyPath: enemyPrefabs.Array.data[6]
       value: 
       objectReference: {fileID: 3948569413282670104, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 2299152097316473200, guid: 6954fa7c5ff18834b81f4f94bb382817, type: 3}
     - target: {fileID: 1901393612936825570, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
