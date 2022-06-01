@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell1 = ScriptableObject.CreateInstance<Whirlwind>();
+        this.activeSpell1 = ScriptableObject.CreateInstance<Burst>();
         this.activeSpell2 = ScriptableObject.CreateInstance<FreezeEnemies>();
         this.roll = ScriptableObject.CreateInstance<Roll>();
 

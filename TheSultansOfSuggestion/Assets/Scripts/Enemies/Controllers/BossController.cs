@@ -149,6 +149,7 @@ abstract public class BossController : MonoBehaviour
                 this.rangedAttack1,
                 this.rangedAttack2
             };
+            this.movement = ScriptableObject.CreateInstance<DoNothingBoss>();
         }
         else if(this.health < 50)
         {

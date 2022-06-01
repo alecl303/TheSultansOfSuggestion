@@ -15,6 +15,6 @@ public class MushroomController : EnemyController
 
         // The chase and attack commands are specific to this kind of enemy, so they will be overwritten/declared here.
         this.chase = ScriptableObject.CreateInstance<EnemyChase>();
-        this.attack = ScriptableObject.CreateInstance<MeleeEnemyAttack>();
+        this.attack = ScriptableObject.CreateInstance<RangedEnemyAttack>();
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7882205624649935768}
   - component: {fileID: 7882205624649935769}
   - component: {fileID: 7882205624649935766}
-  - component: {fileID: 7882205624649935767}
+  - component: {fileID: 5859425272667907177}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Enemy
@@ -152,7 +152,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.23, y: 0.37}
   m_EdgeRadius: 0
---- !u!114 &7882205624649935767
+--- !u!114 &5859425272667907177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,21 +161,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7882205624649935762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf84a49d37ed55f4cbd01028ac354ea6, type: 3}
+  m_Script: {fileID: 11500000, guid: 11fd2f75b8bfa5247b0e4463dc50887d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 3
   aggroDistance: 5
-  attackRange: 1
+  attackRange: 3
   health: 20
-  attackDamage: 5
+  attackDamage: 2
   knockback: 10
   attacking: 0
   attackBuffer: 2
-  bulletSpeed: 2
+  bulletSpeed: 4
   hitStunTime: 0.3
   isInHitStun: 0
   isFlying: 0
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 2498820437805211660, guid: 92abf1d11fe0b324185d2be978fa3cb4, type: 3}
   crosshair: {fileID: 2800000, guid: 45c50ecdf18da44459070bc07a652305, type: 3}
   isDead: 0
