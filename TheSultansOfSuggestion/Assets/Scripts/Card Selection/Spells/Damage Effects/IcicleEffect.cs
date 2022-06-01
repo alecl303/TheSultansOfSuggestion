@@ -9,6 +9,8 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
     [SerializeField] private GameObject bulletPrefab;
     private bool overlap = false;
     private bool repeat = true;
+    private Vector2 direction; 
+    private float speed = 5.0f;
     // private PlayerStats target;
 
     public void SetOverlap(bool overlap)
@@ -23,7 +25,6 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
         // playerStats.Heal(flatHeal*playerStats.SpellStrength);
 
         var rigidBody = this.GetComponent<Rigidbody2D>();
-        Debug.Log(rigidBody.transform.position.x + " y " + rigidBody.transform.position.y);
         while (repeat)
         {
             for (int i = 0; i < 360; i += 15)
@@ -32,23 +33,20 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
 
                 var r = Mathf.Sin(1.3f * i);
 
-                var directionX = Random.Range(-1.0f, 1.0f);
-                var hypo = 2.0f;
-                var angle = Mathf.Acos(directionX/hypo);
-                var directionY = Mathf.Sin(angle)*hypo;
-                Debug.Log(directionX + " - " + directionY);
-                Debug.Log(Mathf.Tan(directionX/directionY));
-                var targetPos = new Vector2(directionX* (r * Mathf.Cos(theta)),  directionY * (r * Mathf.Sin(theta)));
+                this.direction = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta)).normalized;
                 
                 var x = rigidBody.transform.position.x;
                 var y = rigidBody.transform.position.y;
+
+                var targetPos = new Vector2(this.direction.x, this.direction.y);
+
                 var bulletController = Instantiate(bulletPrefab, new Vector3(x, y, rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, i)).gameObject.GetComponent<PlayerBulletController>();
 
                 bulletController.SetTarget(targetPos);
                 bulletController.SetDamage(playerStats.GetRangeDamage());
-                bulletController.SetBulletSpeed(playerStats.GetBulletSpeed());
+                bulletController.SetBulletSpeed(speed);
                 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
