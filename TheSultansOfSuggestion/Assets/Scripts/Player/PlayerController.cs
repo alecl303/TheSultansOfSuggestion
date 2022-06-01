@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject hitboxPrefab;
 
     [SerializeField] public IPlayerCommand activeSpell;
+    private bool onCooldown = false;
 
     private IPlayerCommand fire1;
     private IPlayerCommand fire2;
@@ -93,7 +94,11 @@ public class PlayerController : MonoBehaviour
                         // Active Spell Attack
                         if (Input.GetButtonDown("Fire3"))
                         {
-                            this.activeSpell.Execute(this.gameObject);
+                            if (!onCooldown) {
+                                this.activeSpell.Execute(this.gameObject);
+                                var cooldownTime = 5.0f;
+                                StartCoroutine(WaitCoolDown(cooldownTime));
+                            }
                         }
                         // Dodge roll
                         if (Input.GetButtonDown("Jump") && this.canDodge)
@@ -221,6 +226,10 @@ public class PlayerController : MonoBehaviour
         //}
     }
 
+    public IEnumerator WaitCoolDown(float duration) {
+        yield return new WaitForSeconds(duration);
+        onCooldown = false;
+    }
     public void TakeDamage(float damage)
     {
         this.stats.TakeDamage(damage);
