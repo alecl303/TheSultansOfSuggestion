@@ -10822,7 +10822,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8706399922993544813, guid: d04308f4fd0162f4fa3e29b338118dd3, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8706399922993544813, guid: d04308f4fd0162f4fa3e29b338118dd3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23696,6 +23696,22 @@ PrefabInstance:
       propertyPath: enemyCount
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 5438485253675737469, guid: 88e31848fe03eb744b02f773f6db3e12, type: 3}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 3948569413282670104, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 3948569413282670104, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
     - target: {fileID: 1901393612936825570, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

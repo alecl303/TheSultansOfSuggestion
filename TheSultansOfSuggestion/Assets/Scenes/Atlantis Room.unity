@@ -184,75 +184,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicTrack: Water
---- !u!1001 &110897721
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3948569413282670104, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_Name
-      value: Hellhound
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670105, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670105, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_FlipY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.825
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670106, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3948569413282670108, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
 --- !u!1 &198530042 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5374691942973915439, guid: 15ee93c546f154e4ca741caa8094e8c5, type: 3}
@@ -336,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 6488341689251900862, guid: 1f9b51ef3e4f6be4f9dc1d1cd41f9694, type: 3}
       propertyPath: cardSelection
       value: 
-      objectReference: {fileID: 857461997}
+      objectReference: {fileID: 819367719}
     - target: {fileID: 6488341689251900862, guid: 1f9b51ef3e4f6be4f9dc1d1cd41f9694, type: 3}
       propertyPath: currentCamera
       value: 
@@ -6542,6 +6473,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621442141}
   m_CullTransparentMesh: 1
+--- !u!1 &819367719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7606321513367771227, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
+  m_PrefabInstance: {fileID: 1288936215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &848741745
 GameObject:
   m_ObjectHideFlags: 0
@@ -9872,11 +9808,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &857461997 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7606321513367771227, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
-  m_PrefabInstance: {fileID: 1288936215}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &952521005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2246675353442255959, guid: c7e06b2a5e6bc13499dbe46471d3f61a, type: 3}
@@ -10924,8 +10855,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyCount
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3950984211767848169, guid: e9b888f51bb561b428b7362c90605cef, type: 3}
     - target: {fileID: 1901393612936825570, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
