@@ -18,7 +18,6 @@ public class EnemySpawner : MonoBehaviour
 
     private List<GameObject> enemies;
     
-    // Start is called before the first frame update
     void Start()
     {
         for(int i = 0; i < this.enemyCount; i++)
@@ -41,7 +40,6 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         //Debug.Log(this.liveEnemies);
