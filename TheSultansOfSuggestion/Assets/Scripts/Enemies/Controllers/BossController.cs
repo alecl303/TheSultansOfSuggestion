@@ -10,12 +10,14 @@ public class BossController : EnemyController
     {
         base.Init();
 
-        this.movementSpeed = 20;
+        this.movementSpeed = 5.0f;
         this.attackRange = 2;
-        this.health = 100;
+        this.health = 300;
         this.aggroDistance = 100;
+        this.bulletSpeed = 3;
+        this.attackDamage = 2;
 
-        this.chase = ScriptableObject.CreateInstance<MeleeEnemyDash>();
+        this.chase = ScriptableObject.CreateInstance<BossChase>();
         this.attack = ScriptableObject.CreateInstance<MeleeEnemyAttack>();
     }
 }
