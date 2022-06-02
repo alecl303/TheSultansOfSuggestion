@@ -97,10 +97,15 @@ abstract public class EnemyController : MonoBehaviour
                 this.movement = this.chase;
             }
 
-            if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking() && isFlying)
+            
+
+            if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking())
             {
                 this.attack.Execute(this.gameObject);
-                StartCoroutine(InitiateAttack());
+                if (isFlying)
+                {
+                    StartCoroutine(InitiateAttack());
+                }
             }
         }
     }
