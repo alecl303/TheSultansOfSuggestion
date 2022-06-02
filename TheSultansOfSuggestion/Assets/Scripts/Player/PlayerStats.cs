@@ -32,7 +32,6 @@ namespace Player.Stats
         public int critChance = 1;
         public float critMultiplier = 1.5f;
         public bool manaIsHp = false;
-        public float SpellStrength = 1;
         //public List<GameObject> weapons;
         //public GameObject activeWeapon;
 
