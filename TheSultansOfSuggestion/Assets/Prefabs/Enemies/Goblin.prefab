@@ -171,7 +171,7 @@ MonoBehaviour:
   attackDamage: 2
   knockback: 10
   attacking: 0
-  attackBuffer: 1
+  attackBuffer: 1.25
   bulletSpeed: 2
   hitStunTime: 0.3
   isInHitStun: 0
