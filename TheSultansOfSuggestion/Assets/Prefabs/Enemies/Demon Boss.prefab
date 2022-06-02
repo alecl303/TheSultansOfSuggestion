@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  health: 200
-  maxHealth: 200
+  health: 300
+  maxHealth: 300
   attacking: 0
   attackBuffer: 2
   bulletSpeed: 2
@@ -176,3 +176,4 @@ MonoBehaviour:
   targetBulletPrefab: {fileID: 6087790376291015841, guid: efec521f6c503f642b9b30ea4e2930f5, type: 3}
   crosshair: {fileID: 2800000, guid: 45c50ecdf18da44459070bc07a652305, type: 3}
   isDead: 0
+  currentAttackIndex: 0

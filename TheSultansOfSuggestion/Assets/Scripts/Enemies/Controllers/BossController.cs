@@ -69,8 +69,10 @@ public class BossController : MonoBehaviour
     {
         this.movement = ScriptableObject.CreateInstance<DoNothingBoss>();
         this.attacks = new List<IBossCommand>{
+            ScriptableObject.CreateInstance<BulletSpawn4>(),
+            ScriptableObject.CreateInstance<BulletSpawn3>(),
+            ScriptableObject.CreateInstance<BulletSpawn2>(),
             ScriptableObject.CreateInstance<BulletSpawn1>(),
-            ScriptableObject.CreateInstance<BulletSpawn2>()
         };
         this.rangedAttack1 = ScriptableObject.CreateInstance<BulletSpawn2>();
         this.stompAttack = ScriptableObject.CreateInstance<DoNothingBoss>();
@@ -101,7 +103,7 @@ public class BossController : MonoBehaviour
             }
         }
 
-        SetState();
+        //SetState();
     }
 
     // Misc helper functions that all enemies will be able to use
