@@ -17,7 +17,7 @@ namespace Player.Command
             var theta = Mathf.Atan((positionDifference.y - rigidBody.transform.position.y) / (positionDifference.x - rigidBody.transform.position.x)) * (180 / Mathf.PI);
 
             GameObject bullet1 = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (target.x / 4) + (0.2f * Mathf.Cos(theta + 2)), rigidBody.transform.position.y + (target.y / 4) + (0.1f * Mathf.Sin(theta + 2)), rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, theta));
-            GameObject bullet2 = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (target.x / 4) + (0.2f * Mathf.Cos(theta - 2)), rigidBody.transform.position.y + (target.y / 4) + (0.1f * Mathf.Sin(theta - 2)), rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, theta));
+            GameObject bullet2 = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (target.x) + (0.2f * Mathf.Cos(theta - 2)), rigidBody.transform.position.y + (target.y / 4) + (0.1f * Mathf.Sin(theta - 2)), rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, theta));
             GameObject bullet3 = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (target.x / 4), rigidBody.transform.position.y + (target.y / 4), rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, theta));
 
             var bulletController1 = bullet1.GetComponent<PlayerBulletController>();

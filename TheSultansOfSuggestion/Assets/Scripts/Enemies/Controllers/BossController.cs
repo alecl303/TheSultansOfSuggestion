@@ -14,7 +14,7 @@ using Boss.Command;
  * 
  */
 
-abstract public class BossController : MonoBehaviour
+public class BossController : MonoBehaviour
 {
     // Stats/misc variables that all enemies will have (Serialize fields are for debug purposes and ironing out game feel)
     [SerializeField] protected float movementSpeed = 3;
@@ -26,7 +26,7 @@ abstract public class BossController : MonoBehaviour
     [SerializeField] private float attackDamage = 2;
     [SerializeField] private bool isFlying = true;
     [SerializeField] public GameObject bulletPrefab;
-
+    [SerializeField] public GameObject targetBulletPrefab;
 
     [SerializeField] private Texture2D crosshair;
     private CursorMode cursorMode = CursorMode.Auto;
@@ -51,7 +51,7 @@ abstract public class BossController : MonoBehaviour
 
     protected IBossCommand chase;
 
-    private int currentAttackIndex = 0;
+    [SerializeField] private int currentAttackIndex = 0;
 
     // Start and Update calls virtual method init, that can be extended in inherited classes. Inherited classes will inherit Start/Update methods from this class.
     void Start()
@@ -69,11 +69,14 @@ abstract public class BossController : MonoBehaviour
     {
         this.movement = ScriptableObject.CreateInstance<DoNothingBoss>();
         this.attacks = new List<IBossCommand>{
-            ScriptableObject.CreateInstance<DoNothingBoss>(),
+            ScriptableObject.CreateInstance<BulletSpawn4>(),
+            ScriptableObject.CreateInstance<BulletSpawn3>(),
+            ScriptableObject.CreateInstance<BulletSpawn2>(),
+            ScriptableObject.CreateInstance<BulletSpawn1>(),
         };
-        this.rangedAttack1 = ScriptableObject.CreateInstance<DoNothingBoss>();
+        this.rangedAttack1 = ScriptableObject.CreateInstance<BulletSpawn2>();
         this.stompAttack = ScriptableObject.CreateInstance<DoNothingBoss>();
-        this.rangedAttack2 = ScriptableObject.CreateInstance<DoNothingBoss>();
+        this.rangedAttack2 = ScriptableObject.CreateInstance<BulletSpawn1>();
         AttachPlayer();
         FindObjectOfType<EnemySpawner>().liveEnemies += 1;
     }
@@ -94,10 +97,13 @@ abstract public class BossController : MonoBehaviour
             animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
            
             this.attacks[this.currentAttackIndex].Execute(this.gameObject);
-            StartCoroutine(InitiateAttack(this.attacks[this.currentAttackIndex].GetDuration()));
+            if (!this.attacking)
+            {
+                StartCoroutine(InitiateAttack(this.attacks[this.currentAttackIndex].GetDuration()));
+            }
         }
 
-        SetState();
+        //SetState();
     }
 
     // Misc helper functions that all enemies will be able to use
@@ -149,6 +155,7 @@ abstract public class BossController : MonoBehaviour
                 this.rangedAttack1,
                 this.rangedAttack2
             };
+            this.movement = ScriptableObject.CreateInstance<DoNothingBoss>();
         }
         else if(this.health < 50)
         {
@@ -187,15 +194,15 @@ abstract public class BossController : MonoBehaviour
     {
         var animator = this.gameObject.GetComponent<Animator>();
         animator.SetBool("Attacking", true);
-        //this.attacking = true;
+        this.attacking = true;
 
         yield return new WaitForSeconds(duration);
 
         animator.SetBool("Attacking", false);
         yield return new WaitForSeconds(this.attackBuffer);
-        //this.attacking = false;
 
         this.currentAttackIndex = (this.currentAttackIndex + 1) % this.attacks.Count;
+        this.attacking = false;
     }
 
     public float GetAttackDamage()

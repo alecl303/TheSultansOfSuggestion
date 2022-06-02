@@ -23694,12 +23694,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyCount
-      value: 9
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyPrefabs.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 7882205624649935762, guid: a6d6d67fdaf27334e99a9c95297e6c8a, type: 3}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyPrefabs.Array.data[4]
       value: 
@@ -23711,7 +23715,7 @@ PrefabInstance:
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyPrefabs.Array.data[6]
       value: 
-      objectReference: {fileID: 3948569413282670104, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
+      objectReference: {fileID: 2299152097316473200, guid: 6954fa7c5ff18834b81f4f94bb382817, type: 3}
     - target: {fileID: 1901393612936825570, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

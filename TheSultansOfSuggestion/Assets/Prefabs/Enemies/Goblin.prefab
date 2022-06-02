@@ -164,11 +164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf84a49d37ed55f4cbd01028ac354ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  movementSpeed: 2
   aggroDistance: 5
   attackRange: 0.1
   health: 20
   attackDamage: 2
+  knockback: 10
   attacking: 0
   attackBuffer: 1
   bulletSpeed: 2

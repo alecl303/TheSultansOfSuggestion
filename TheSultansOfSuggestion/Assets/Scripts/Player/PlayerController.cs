@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell1 = ScriptableObject.CreateInstance<Whirlwind>();
+        this.activeSpell1 = ScriptableObject.CreateInstance<Burst>();
         this.activeSpell2 = ScriptableObject.CreateInstance<FreezeEnemies>();
         this.roll = ScriptableObject.CreateInstance<Roll>();
 
@@ -134,6 +134,21 @@ public class PlayerController : MonoBehaviour
             {
                 var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
                 var enemy = collision.gameObject.GetComponent<EnemyController>();
+
+                //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+
+                stats.TakeDamage(enemy.GetAttackDamage());
+
+                FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
+
+                //StartCoroutine(HitStun());
+                StartCoroutine(IFrame());
+            }
+
+            if (collision.gameObject.CompareTag("Boss"))
+            {
+                var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+                var enemy = collision.gameObject.GetComponent<BossController>();
 
                 //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
