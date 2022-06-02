@@ -36,7 +36,6 @@ namespace Player.Stats
         //public GameObject activeWeapon;
 
 
-        public GameObject activeSpell;
 
         public List<Weapon> weapons;
         public Weapon activeWeapon;
@@ -218,7 +217,7 @@ namespace Player.Stats
         public void SetActiveWeapon(Weapon weapon)
         {
             this.activeWeapon = weapon;
-            this.activeWeapon.SetSprite(this.gameObject.GetComponent<WeaponSprites>().sprites[this.activeWeapon.spriteIndex]);
+            //this.activeWeapon.SetSprite(this.gameObject.GetComponent<WeaponSprites>().sprites[this.activeWeapon.spriteIndex]);
             this.weapons.Add(this.activeWeapon);
 
             this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();

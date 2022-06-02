@@ -6,7 +6,7 @@ using Player.Command;
 
 namespace Player.Command
 {
-    public class Whirlwind : ScriptableObject, IPlayerCommand
+    public class Whirlwind : ScriptableObject, IPlayerSpell
     {
 
         private int requiredMana = 50;
@@ -30,6 +30,15 @@ namespace Player.Command
             }
         }
 
+        public string GetDescription()
+        {
+            return "Deal melee damage to all enemies in a large radius. Costs" + this.requiredMana + " mana.";
+        }
 
+        // public Sprite ReturnSprite(GameObject gameObject)
+        // {
+        //     var playerStats = gameObject.GetComponent<PlayerController>().GetStats();
+        //     return (playerStats.whirlwind.GetComponent<SpriteMask>().sprite);
+        // }
     }
 }

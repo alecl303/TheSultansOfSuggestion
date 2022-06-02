@@ -11,16 +11,21 @@ public class CardSelectionController : MonoBehaviour
     public GameObject buffManager;
     public GameObject debuffManager;
     public GameObject SpellManager;
+    public GameObject weapon;
+    [SerializeField] private GameObject Icon;
     private List<IPlayerEffect> buffList = new List<IPlayerEffect>();
     private List<IPlayerEffect> debuffList = new List<IPlayerEffect>();
-    private GameObject newSpell;
-    private IPlayerCommand playerSpell;
+    private IPlayerSpell playerSpell;
+    private Weapon newWeapon;
     public GameObject Card1;
     public GameObject Card2;
     public GameObject Card3;
-
+    private Sprite newSprite;
     [SerializeField] private GameObject playerTarget;
 
+    void Awake(){
+        Icon = GameObject.Find("Icon");
+    }
     void OnEnable()
     {
         Time.timeScale = 0;
@@ -29,25 +34,31 @@ public class CardSelectionController : MonoBehaviour
         // this.GetComponentInParent<Canvas>().enabled = true;
         playerTarget.GetComponent<PlayerController> ().enabled = false;
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
-            do {
-                randomBuff = buffManager.GetComponent<BuffManager>().GetRandomBuff();
-            } while (buffList.Contains(randomBuff));
+            
 
             do {
                 randomDebuff = debuffManager.GetComponent<DebuffManager>().GetRandomDebuff();
             } while (debuffList.Contains(randomDebuff));
 
-            buffList.Add(randomBuff);
             debuffList.Add( randomDebuff);
 
         }
 
+        do {
+                randomBuff = buffManager.GetComponent<BuffManager>().GetRandomBuff();
+        } while (buffList.Contains(randomBuff));
+        buffList.Add(randomBuff);
+        this.newWeapon =  this.weapon.GetComponent<Weapon>();
+        this.newWeapon.randomize();
+        this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
+        this.newWeapon.SetSprite(this.newSprite);
+        Icon.GetComponent<Image>().sprite = this.newSprite;
         playerSpell = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
         Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[0].GetDescription() + "\n\n\n\n" + debuffList[0].GetDescription();
-        Card2.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[1].GetDescription() + "\n\n\n\n" + debuffList[1].GetDescription();
-        Card3.GetComponent<TMPro.TextMeshProUGUI>().text = playerSpell + "\n\n\n\n exchange for a current random spell";
+        Card2.GetComponent<TMPro.TextMeshProUGUI>().text = this.newWeapon.GetDescription() + "\n\n\n\n" + debuffList[1].GetDescription();
+        Card3.GetComponent<TMPro.TextMeshProUGUI>().text = playerSpell.GetDescription() + "\n\n\n\n" + debuffList[2].GetDescription();
 
         //AssignButtons();
     }
@@ -66,16 +77,16 @@ public class CardSelectionController : MonoBehaviour
     public void ApplyCard2()
     {
 
-        buffList[1].Execute(playerTarget);
+        this.playerTarget.GetComponent<PlayerController>().ChangeWeapon(this.newWeapon);
         debuffList[1].Execute(playerTarget);
         removeCardsFromScreen();
     }
 
     public void ApplyCard3()
     {
-        //this.playerTarget.GetComponent<PlayerStats>().activeSpell = this.newSpell;
 
-        this.playerTarget.GetComponent<PlayerController>().ChangeSpellAttack(this.playerSpell);
+        this.playerTarget.GetComponent<PlayerController>().SetActiveSpell(this.playerSpell);
+        debuffList[2].Execute(playerTarget);
         removeCardsFromScreen();
     }
 

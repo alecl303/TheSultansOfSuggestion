@@ -6,13 +6,13 @@ using Player.Effect;
 public class SpellManager : MonoBehaviour
 {
 
-    private List<IPlayerCommand> spellsScriptable;
+    private List<IPlayerSpell> spellsScriptable;
     private int spellLength=0;
 
 
     
 
-    public IPlayerCommand GetRandomSpell()
+    public IPlayerSpell GetRandomSpell()
     {
         if(this.spellLength == 0)
         {
@@ -22,9 +22,11 @@ public class SpellManager : MonoBehaviour
     }
 
     void initSpells(){
-        this.spellsScriptable = new List<IPlayerCommand>() {
+        this.spellsScriptable = new List<IPlayerSpell>() {
             ScriptableObject.CreateInstance<Whirlwind>(),
             ScriptableObject.CreateInstance<FreezeEnemies>(),
+            ScriptableObject.CreateInstance<Invincibility>(),
+            ScriptableObject.CreateInstance<Berserk>(),
         };
         this.spellLength = this.spellsScriptable.Count;
     }

@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject hitboxPrefab;
 
     [SerializeField] public IPlayerSpell activeSpell1;
-    [SerializeField] public IPlayerSpell activeSpell2;
+
 
     private ItemBar playersCurrentItemBar;
 
@@ -47,13 +47,11 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell1 = ScriptableObject.CreateInstance<Burst>();
-        this.activeSpell2 = ScriptableObject.CreateInstance<FreezeEnemies>();
+        this.activeSpell1 = ScriptableObject.CreateInstance<SpellNothing>();
+        
         this.roll = ScriptableObject.CreateInstance<Roll>();
 
         this.playersCurrentItemBar.Updateslots(0, this.stats.activeWeapon.GetComponent<Weapon>().sprite);
-        this.playersCurrentItemBar.Updateslots(2,this.stats.whirlwind.GetComponent<SpriteMask>().sprite);
-        this.playersCurrentItemBar.Updateslots(3,this.stats.freezeBox.GetComponent<SpriteMask>().sprite);
     }
 
     // Update is called once per frame
@@ -104,10 +102,6 @@ public class PlayerController : MonoBehaviour
                         if (Input.GetButtonDown("Fire3"))
                         {
                             this.activeSpell1.Execute(this.gameObject);
-                        }
-                        if (Input.GetButtonDown("spell 2") && this.canDodge)
-                        {
-                            this.activeSpell2.Execute(this.gameObject);
                         }
                         // Dodge roll
                         if (Input.GetButtonDown("Jump") && this.canDodge)
@@ -373,5 +367,11 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         this.canDodge = true;
+    }
+
+    public void ChangeWeapon(Weapon weapon)
+    {
+        this.stats.SetActiveWeapon(weapon);
+        this.playersCurrentItemBar.Updateslots(0, this.stats.activeWeapon.GetComponent<Weapon>().sprite);
     }
 }
