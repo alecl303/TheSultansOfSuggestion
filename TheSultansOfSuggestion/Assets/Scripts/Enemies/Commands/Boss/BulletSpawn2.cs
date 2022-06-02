@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Boss.Command
 {
-    public class BulletSpawn1 : ScriptableObject, IBossCommand
+    public class BulletSpawn2 : ScriptableObject, IBossCommand
     {
         private Vector2 direction;
         private float radius;
@@ -12,33 +12,36 @@ namespace Boss.Command
         private bool ready = true;
         private float bulletDamage = 2;
         private float speed = 5;
-        private float attackBuffer = 1.5f;
+        private float attackBuffer = 1f;
         public void Execute(GameObject gameObject)
         {
             var rigidBody = gameObject.GetComponent<Rigidbody2D>();
             var boss = gameObject.GetComponent<BossController>();
             var bullet = boss.bulletPrefab;
+            var targetBullet = boss.targetBulletPrefab;
 
             if (rigidBody != null && this.ready)
             {
-                for (int i = 0; i < 360; i += 8)
+                for (int i = 0; i < 360; i += 4)
                 {
                     float theta = i * (Mathf.PI / 180);
 
-                    var r = new Vector2 (Mathf.Cos(theta), Mathf.Sin(theta)).normalized;
+                    var r = Mathf.Sin(1.3f * i);
 
-                    var target = r;
+                    var target = new Vector2((r * Mathf.Cos(theta)), (r * Mathf.Sin(theta)));
 
                     var x = rigidBody.transform.position.x;
                     var y = rigidBody.transform.position.y;
-                    var bulletController = Instantiate(bullet, new Vector3(x + r.x, y + r.y, rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, i)).gameObject.GetComponent<BossBulletController>();
+                    var bulletController = Instantiate(bullet, new Vector3(x, y, rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, i)).gameObject.GetComponent<BossBulletController>();
 
                     bulletController.SetTarget(target);
                     bulletController.SetBulletDamage(this.bulletDamage);
-                    bulletController.SetBulletSpeed(this.speed + r.magnitude);
+                    bulletController.SetBulletSpeed(this.speed);
 
                     boss.StartCoroutine(bufferAttacks(this.attackBuffer));
                 }
+
+
             }
         }
 
@@ -51,7 +54,7 @@ namespace Boss.Command
 
         public float GetDuration()
         {
-            return 10;
+            return 5;
         }
     }
 }

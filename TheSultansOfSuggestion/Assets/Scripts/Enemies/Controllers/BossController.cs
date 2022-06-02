@@ -26,7 +26,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private float attackDamage = 2;
     [SerializeField] private bool isFlying = true;
     [SerializeField] public GameObject bulletPrefab;
-
+    [SerializeField] public GameObject targetBulletPrefab;
 
     [SerializeField] private Texture2D crosshair;
     private CursorMode cursorMode = CursorMode.Auto;
@@ -51,7 +51,7 @@ public class BossController : MonoBehaviour
 
     protected IBossCommand chase;
 
-    private int currentAttackIndex = 0;
+    [SerializeField] private int currentAttackIndex = 0;
 
     // Start and Update calls virtual method init, that can be extended in inherited classes. Inherited classes will inherit Start/Update methods from this class.
     void Start()
@@ -69,11 +69,12 @@ public class BossController : MonoBehaviour
     {
         this.movement = ScriptableObject.CreateInstance<DoNothingBoss>();
         this.attacks = new List<IBossCommand>{
-            ScriptableObject.CreateInstance<BulletSpawn1>(),
+            ScriptableObject.CreateInstance<BulletSpawn2>(),
+            ScriptableObject.CreateInstance<BulletSpawn1>()
         };
         this.rangedAttack1 = ScriptableObject.CreateInstance<BulletSpawn1>();
         this.stompAttack = ScriptableObject.CreateInstance<DoNothingBoss>();
-        this.rangedAttack2 = ScriptableObject.CreateInstance<DoNothingBoss>();
+        this.rangedAttack2 = ScriptableObject.CreateInstance<BulletSpawn2>();
         AttachPlayer();
         FindObjectOfType<EnemySpawner>().liveEnemies += 1;
     }
@@ -94,7 +95,10 @@ public class BossController : MonoBehaviour
             animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
            
             this.attacks[this.currentAttackIndex].Execute(this.gameObject);
-            StartCoroutine(InitiateAttack(this.attacks[this.currentAttackIndex].GetDuration()));
+            if (!this.attacking)
+            {
+                StartCoroutine(InitiateAttack(this.attacks[this.currentAttackIndex].GetDuration()));
+            }
         }
 
         SetState();
@@ -188,15 +192,15 @@ public class BossController : MonoBehaviour
     {
         var animator = this.gameObject.GetComponent<Animator>();
         animator.SetBool("Attacking", true);
-        //this.attacking = true;
+        this.attacking = true;
 
         yield return new WaitForSeconds(duration);
 
         animator.SetBool("Attacking", false);
         yield return new WaitForSeconds(this.attackBuffer);
-        //this.attacking = false;
 
         this.currentAttackIndex = (this.currentAttackIndex + 1) % this.attacks.Count;
+        this.attacking = false;
     }
 
     public float GetAttackDamage()
