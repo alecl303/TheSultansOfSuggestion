@@ -3,11 +3,10 @@ using System.Collections;
 
 public class HealEffect : MonoBehaviour, IPlayerFloorSpellEffect
 {
-    // [SerializeField] private GameObject target;
     [SerializeField] private float flatHeal;
     private bool overlap = false;
-    // private PlayerStats target;
-
+    private float timeBeforeHeal = 1.0f;
+    
     public void SetFlatHeal(float flatHeal)
     {
         this.flatHeal = flatHeal;
@@ -16,22 +15,20 @@ public class HealEffect : MonoBehaviour, IPlayerFloorSpellEffect
     {
         this.overlap = overlap;
     }
-    void OnDestroy() 
+    public void SetTimeBeforeHeal(float timeBeforeHeal){
+        this.timeBeforeHeal = timeBeforeHeal;
+    }
+    void OnDestroy()  
     {   
         overlap = false;
     }
     public IEnumerator ApplyEffect(PlayerController target)
     {
-        Debug.Log("Applying effect");
-        // Debug.Log(target);
         var playerStats = target.GetStats();
         while(overlap) 
         {
-        // this.target.GetComponent<PlayerController>().GetStats().Heal(flatHeal*statsMultiplier);
-            Debug.Log("Healing");
-            playerStats.Heal(flatHeal*playerStats.SpellStrength);
-            yield return new WaitForSeconds(1.0f);
+            playerStats.Heal(flatHeal);
+            yield return new WaitForSeconds(timeBeforeHeal);
         }
-        Debug.Log("Finished applying effect");
     }
 }

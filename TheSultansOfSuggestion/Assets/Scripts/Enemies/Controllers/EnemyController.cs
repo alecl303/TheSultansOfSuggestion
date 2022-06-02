@@ -193,8 +193,7 @@ abstract public class EnemyController : MonoBehaviour
         {
             Debug.Log("Activating player trap spell");
             other.gameObject.GetComponent<IEnemyTrapSpellEffect>().SetOverlap(true);
-            // StartCoroutine(other.gameObject.GetComponent<IEnemyTrapSpellEffect>().ApplyEffect(this, targetRage.GetStats()));
-            StartCoroutine(other.gameObject.GetComponent<IEnemyTrapSpellEffect>().ApplyEffect(this, targetRage.GetStats()));
+            StartCoroutine(other.gameObject.GetComponent<IEnemyTrapSpellEffect>().ApplyEffect(this));
         }
     }
 

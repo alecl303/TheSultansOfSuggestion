@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell1 = ScriptableObject.CreateInstance<SpellNothing>();
+        this.activeSpell1 = ScriptableObject.CreateInstance<IcicleTrap>();
         
         this.roll = ScriptableObject.CreateInstance<Roll>();
 
@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
                         if (Input.GetButtonDown("Fire3"))
                         {
                             if (!onCooldown) {
+                                this.onCooldown = true;
                                 this.activeSpell1.Execute(this.gameObject);
                                 var cooldownTime = this.activeSpell1.GetCooldown();
                                 StartCoroutine(WaitCoolDown(cooldownTime));

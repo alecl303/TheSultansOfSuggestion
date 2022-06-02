@@ -5,5 +5,6 @@ using Player.Stats;
 public interface IEnemyTrapSpellEffect
 {
     void SetOverlap(bool overlap);
-    IEnumerator ApplyEffect(EnemyController target, PlayerStats playerStats);
+    
+    IEnumerator ApplyEffect(EnemyController target);
 }
