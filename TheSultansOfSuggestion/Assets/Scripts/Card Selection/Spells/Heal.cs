@@ -6,13 +6,19 @@ using Player.Command;
 
 namespace Player.Command
 {
-    public class Heal : ScriptableObject, IPlayerCommand
+    public class Heal : ScriptableObject, IPlayerSpell
     {
 
         private int requiredMana = 100;
         private int duration = 8;
         private float flatHeal = 5.0f; // There is also scaling base on spell strength
         private float cooldown = 10.0f;
+        private float timeBeforeHeal = 1.5f;
+
+        public float GetCooldown() 
+        {
+            return this.cooldown;
+        }
 
         public void Execute(GameObject gameObject)
         {
@@ -29,8 +35,10 @@ namespace Player.Command
                 playerStats.DrainMana(this.requiredMana);
             }
         }
-        public float GetCooldown() {
-            return this.cooldown;
+
+        public string GetDescription()
+        {
+            return "Create a healing circle for " + this.duration + " seconds and heal " + this.flatHeal + " by standing on the circle for " + this.timeBeforeHeal + ". Costs " + this.requiredMana + " mana and has a " + this.cooldown + " cooldown time.";
         }
     }
 }

@@ -24,15 +24,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
 
-<<<<<<< HEAD
-    [SerializeField] public IPlayerCommand activeSpell;
-    private bool onCooldown = false;
-=======
     [SerializeField] public IPlayerSpell activeSpell1;
-
+    private bool onCooldown = false;
 
     private ItemBar playersCurrentItemBar;
->>>>>>> c7d58eaa21e6445ed3d40d680c9937671750d7a0
 
     private IPlayerCommand fire1;
     private IPlayerCommand fire2;
@@ -52,12 +47,8 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-<<<<<<< HEAD
-        this.activeSpell = ScriptableObject.CreateInstance<Heal>();
-=======
         this.activeSpell1 = ScriptableObject.CreateInstance<SpellNothing>();
         
->>>>>>> c7d58eaa21e6445ed3d40d680c9937671750d7a0
         this.roll = ScriptableObject.CreateInstance<Roll>();
 
         this.playersCurrentItemBar.Updateslots(0, this.stats.activeWeapon.GetComponent<Weapon>().sprite);
@@ -111,8 +102,8 @@ public class PlayerController : MonoBehaviour
                         if (Input.GetButtonDown("Fire3"))
                         {
                             if (!onCooldown) {
-                                this.activeSpell.Execute(this.gameObject);
-                                var cooldownTime = 5.0f;
+                                this.activeSpell1.Execute(this.gameObject);
+                                var cooldownTime = this.activeSpell1.GetCooldown();
                                 StartCoroutine(WaitCoolDown(cooldownTime));
                             }
                         }
@@ -137,8 +128,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerBuffSpell"))
         {
-            
-            Debug.Log("Hit by playerbuff spell");
             other.gameObject.GetComponent<IPlayerFloorSpellEffect>().SetOverlap(true);
             StartCoroutine(other.gameObject.GetComponent<IPlayerFloorSpellEffect>().ApplyEffect(this));
         }
@@ -147,7 +136,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerBuffSpell"))
         {
-            Debug.Log("Hit by playerbuff spell");
             other.gameObject.GetComponent<HealEffect>().SetOverlap(false);
         }
     }
