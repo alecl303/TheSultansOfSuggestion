@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
 
-    [SerializeField] public IPlayerCommand activeSpell1;
-    [SerializeField] public IPlayerCommand activeSpell2;
+    [SerializeField] public IPlayerSpell activeSpell1;
+    [SerializeField] public IPlayerSpell activeSpell2;
 
     private ItemBar playersCurrentItemBar;
 
@@ -267,16 +267,6 @@ public class PlayerController : MonoBehaviour
         this.canShoot = true;
     }
 
-    public void SetActiveSpell(IPlayerCommand spell)
-    {
-        this.activeSpell1 = spell;
-    }
-
-    public void SetActiveWeapon(Weapon weapon)
-    {
-        this.stats.activeWeapon = weapon;
-    }
-
     public void ExecuteEffect(IPlayerEffect effect)
     {
         effect.Execute(this.gameObject);
@@ -338,9 +328,9 @@ public class PlayerController : MonoBehaviour
         this.fire2 = newAttack;
     }
 
-    public void ChangeSpellAttack(IPlayerCommand newSpell)
+    public void SetActiveSpell(IPlayerSpell spell)
     {
-        this.activeSpell1 = newSpell;
+        this.activeSpell1 = spell;
     }
 
     public void InvertControls()
