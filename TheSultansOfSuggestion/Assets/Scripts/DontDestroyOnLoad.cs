@@ -18,6 +18,7 @@ public class DontDestroyOnLoad : MonoBehaviour
 
     public void IncrementScene()
     {
+
         switch (scene)
         {
             case 1:
@@ -45,6 +46,10 @@ public class DontDestroyOnLoad : MonoBehaviour
         DontDestroyOnLoad(this.death);
         scene++;
 
+    }
+
+    public void SelectCard()
+    {
         this.cardSelection.SetActive(true);
     }
 

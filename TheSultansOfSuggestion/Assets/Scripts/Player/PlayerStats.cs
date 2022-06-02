@@ -35,6 +35,8 @@ namespace Player.Stats
         //public List<GameObject> weapons;
         //public GameObject activeWeapon;
 
+
+
         public List<Weapon> weapons;
         public Weapon activeWeapon;
 
@@ -212,5 +214,13 @@ namespace Player.Stats
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
         }
 
+        public void SetActiveWeapon(Weapon weapon)
+        {
+            this.activeWeapon = weapon;
+            //this.activeWeapon.SetSprite(this.gameObject.GetComponent<WeaponSprites>().sprites[this.activeWeapon.spriteIndex]);
+            this.weapons.Add(this.activeWeapon);
+
+            this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
+        }
     }
 }

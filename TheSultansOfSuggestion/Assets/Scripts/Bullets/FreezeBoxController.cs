@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FreezeBoxController : PlayerAttack
 {
+
     private float fuseTime = 0.2f;
     void Start()
     {

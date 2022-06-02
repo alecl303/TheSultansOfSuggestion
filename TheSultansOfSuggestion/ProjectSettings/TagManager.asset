@@ -11,6 +11,7 @@ TagManager:
   - Item
   - Hole
   - PlayerMeleeAttack
+  - Boss
   layers:
   - Default
   - TransparentFX

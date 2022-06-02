@@ -6,7 +6,7 @@ using Player.Command;
 
 namespace Player.Command
 {
-    public class Berserk : ScriptableObject, IPlayerCommand
+    public class Berserk : ScriptableObject, IPlayerSpell
     {
 
         private int requiredMana = 50;
@@ -23,6 +23,10 @@ namespace Player.Command
                 playerStats.DrainMana(this.requiredMana);
                 playerStats.StartCoroutine(playerStats.BerserkForXSeconds(duration));
             }
+        }
+
+        public string GetDescription() {
+            return "Greatly increase melee damage for " + this.duration + " seconds. Costs " + requiredMana + " mana.";
         }
     }
 }

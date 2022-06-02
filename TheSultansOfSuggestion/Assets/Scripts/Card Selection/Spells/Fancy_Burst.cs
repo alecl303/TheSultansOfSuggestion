@@ -20,7 +20,7 @@ namespace Player.Command
 
             if (rigidBody != null && playerStats.GetMana() >= this.requiredMana)
             {
-                for (int i = 0; i < 360; i += 2)
+                for (int i = 0; i < 360; i += 4)
                 {
                     float theta = i * (Mathf.PI / 180);
 

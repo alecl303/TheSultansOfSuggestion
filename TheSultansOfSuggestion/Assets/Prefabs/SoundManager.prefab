@@ -51,13 +51,13 @@ MonoBehaviour:
     title: Drum and Bass
     volume: 0.495
     pitch: 1
-    loop: 0
+    loop: 1
   - clip: {fileID: 8300000, guid: 773ea0c8d53e81e439ccdbd8f871cce7, type: 3}
     audioSource: {fileID: 0}
     title: Ominous
     volume: 0.495
     pitch: 1
-    loop: 0
+    loop: 1
   - clip: {fileID: 8300000, guid: 2c63113a3f5473d4ebc2c72e0a9e019b, type: 3}
     audioSource: {fileID: 0}
     title: Game Over
@@ -75,19 +75,19 @@ MonoBehaviour:
     title: Menu
     volume: 0.495
     pitch: 1
-    loop: 0
+    loop: 1
   - clip: {fileID: 8300000, guid: 350b8f30eae95ef4cb5150adfbca7dcc, type: 3}
     audioSource: {fileID: 0}
     title: Water
     volume: 0.495
     pitch: 1
-    loop: 0
+    loop: 1
   - clip: {fileID: 8300000, guid: c1ea9a13ee75d764893f707ca8070c20, type: 3}
     audioSource: {fileID: 0}
     title: Boss
     volume: 0.495
     pitch: 1
-    loop: 0
+    loop: 1
   sfxClips:
   - clip: {fileID: 8300000, guid: 10c1b0fb429340741b77bd1e9d950edb, type: 3}
     audioSource: {fileID: 0}

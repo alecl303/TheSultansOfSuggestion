@@ -18,6 +18,10 @@ public class Weapon : MonoBehaviour
         this.spriteIndex = Random.Range(0, 30);
     }
 
+    public void randomize()
+    {
+        this.Awake();
+    }
     public int GetDamage()
     {
         return this.damage;
@@ -66,5 +70,10 @@ public class Weapon : MonoBehaviour
     public void SetSprite(Sprite sprite)
     {
         this.sprite = sprite;
+    }
+
+    public string GetDescription()
+    {
+        return (this.rarity + " weapon with " + this.damage + " damage.");
     }
 }

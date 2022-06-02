@@ -47,7 +47,13 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.Log("All done");
             FindObjectOfType<PlayerController>().GetStats().mana = 100;
-            FindObjectOfType<DontDestroyOnLoad>().IncrementScene();
+
+            FindObjectOfType<DontDestroyOnLoad>().SelectCard();
+            // added this in because stopping and letting players choose after all enemies were
+            // dead caused late update to call this selectcard multiple times causing
+            // players to skip levels
+            // and since each level has its own spawner this value will not impact after scene incre
+            this.liveEnemies++;
         }
     }
 
