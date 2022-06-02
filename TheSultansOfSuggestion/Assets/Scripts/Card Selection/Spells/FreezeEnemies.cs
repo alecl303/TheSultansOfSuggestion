@@ -31,7 +31,7 @@ namespace Player.Command
         }
         public string GetDescription()
         {
-            return "Temporarily stun all enemies in a large radius. Costs" + this.requiredMana + " mana.";
+            return "Temporarily stun all enemies in a large radius. Costs " + this.requiredMana + " mana.";
         }
     }
 }

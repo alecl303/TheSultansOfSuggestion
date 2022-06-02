@@ -37,7 +37,7 @@ namespace Player.Command
         }
         public string GetDescription()
         {
-            return "Generates a burst of bullets around the player. Costs" + requiredMana + " mana.";
+            return "Generates a burst of bullets around the player. Costs " + requiredMana + " mana.";
         }
     }
 }

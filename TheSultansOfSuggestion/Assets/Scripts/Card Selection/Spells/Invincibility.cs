@@ -27,7 +27,7 @@ namespace Player.Command
 
         public string GetDescription()
         {
-            return "Gain temporary invincibility for " + this.duration + " seconds. Costs" + this.requiredMana + " mana.";
+            return "Gain temporary invincibility for " + this.duration + " seconds. Costs " + this.requiredMana + " mana.";
         }
     }
 }

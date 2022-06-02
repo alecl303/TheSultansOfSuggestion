@@ -301,11 +301,11 @@ public class BossController : MonoBehaviour
     {
         var animator = this.gameObject.GetComponent<Animator>();
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        animator.SetBool("Dying", true);
+        //animator.SetBool("Dying", true);
         FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
 
         this.dying = true;
-        FindObjectOfType<EnemySpawner>().liveEnemies -= 1;
+        //FindObjectOfType<EnemySpawner>().liveEnemies -= 1;
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 3);
 
         Destroy(this.gameObject);

@@ -32,7 +32,7 @@ namespace Player.Command
 
         public string GetDescription()
         {
-            return "Deal melee damage to all enemies in a large radius. Costs" + this.requiredMana + " mana.";
+            return "Deal melee damage to all enemies in a large radius. Costs " + this.requiredMana + " mana.";
         }
 
         // public Sprite ReturnSprite(GameObject gameObject)
