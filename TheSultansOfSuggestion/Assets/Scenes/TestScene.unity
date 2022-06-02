@@ -41468,7 +41468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: mana
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: health
@@ -41476,7 +41476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: maxMana
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 8517511081533375575, guid: 543f288fd2244dc448a560e5aee2789c, type: 3}
       propertyPath: maxHealth
