@@ -69,12 +69,12 @@ public class BossController : MonoBehaviour
     {
         this.movement = ScriptableObject.CreateInstance<DoNothingBoss>();
         this.attacks = new List<IBossCommand>{
-            ScriptableObject.CreateInstance<BulletSpawn2>(),
-            ScriptableObject.CreateInstance<BulletSpawn1>()
+            ScriptableObject.CreateInstance<BulletSpawn1>(),
+            ScriptableObject.CreateInstance<BulletSpawn2>()
         };
-        this.rangedAttack1 = ScriptableObject.CreateInstance<BulletSpawn1>();
+        this.rangedAttack1 = ScriptableObject.CreateInstance<BulletSpawn2>();
         this.stompAttack = ScriptableObject.CreateInstance<DoNothingBoss>();
-        this.rangedAttack2 = ScriptableObject.CreateInstance<BulletSpawn2>();
+        this.rangedAttack2 = ScriptableObject.CreateInstance<BulletSpawn1>();
         AttachPlayer();
         FindObjectOfType<EnemySpawner>().liveEnemies += 1;
     }

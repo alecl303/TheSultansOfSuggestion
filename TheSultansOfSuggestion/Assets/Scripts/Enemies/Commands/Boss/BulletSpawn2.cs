@@ -11,8 +11,9 @@ namespace Boss.Command
         private float bulletSpeed;
         private bool ready = true;
         private float bulletDamage = 2;
-        private float speed = 5;
+        private float speed = 2;
         private float attackBuffer = 1f;
+        private int angleOffset = 0;
         public void Execute(GameObject gameObject)
         {
             var rigidBody = gameObject.GetComponent<Rigidbody2D>();
@@ -22,13 +23,13 @@ namespace Boss.Command
 
             if (rigidBody != null && this.ready)
             {
-                for (int i = 0; i < 360; i += 4)
+                for (int i = angleOffset ; i < 720 + angleOffset; i += 15)
                 {
                     float theta = i * (Mathf.PI / 180);
 
-                    var r = Mathf.Sin(1.3f * i);
+                    var r = Mathf.Sin(1.4f * theta);
 
-                    var target = new Vector2((r * Mathf.Cos(theta)), (r * Mathf.Sin(theta)));
+                    var target = new Vector2((Mathf.Max(r, 0.01f) * Mathf.Cos(theta)), (Mathf.Max(r, 0.01f) * Mathf.Sin(theta))).normalized;
 
                     var x = rigidBody.transform.position.x;
                     var y = rigidBody.transform.position.y;
@@ -41,7 +42,7 @@ namespace Boss.Command
                     boss.StartCoroutine(bufferAttacks(this.attackBuffer));
                 }
 
-
+                this.angleOffset += 30;
             }
         }
 
@@ -54,7 +55,7 @@ namespace Boss.Command
 
         public float GetDuration()
         {
-            return 5;
+            return 3;
         }
     }
 }

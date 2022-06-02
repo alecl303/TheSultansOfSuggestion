@@ -43,7 +43,7 @@ public class BossBulletController : EnemyAttack
             Destroy(this.gameObject);
         }
 
-        if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("EnemyAttack") || collision.gameObject.CompareTag("Hole"))
+        if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("EnemyAttack") || collision.gameObject.CompareTag("Hole") || collision.gameObject.CompareTag("PlayerAttack"))
         {
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
         }
