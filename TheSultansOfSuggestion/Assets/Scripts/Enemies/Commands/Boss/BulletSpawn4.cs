@@ -9,7 +9,7 @@ namespace Boss.Command
         private bool ready = true;
         private float bulletDamage = 2;
         private float speed = 10;
-        private float attackBuffer = 0.01f;
+        private float attackBuffer = 0.05f;
         private float i = 0;
         public void Execute(GameObject gameObject)
         {
