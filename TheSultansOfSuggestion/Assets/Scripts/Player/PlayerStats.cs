@@ -35,6 +35,9 @@ namespace Player.Stats
         //public List<GameObject> weapons;
         //public GameObject activeWeapon;
 
+
+        public GameObject activeSpell;
+
         public List<Weapon> weapons;
         public Weapon activeWeapon;
 

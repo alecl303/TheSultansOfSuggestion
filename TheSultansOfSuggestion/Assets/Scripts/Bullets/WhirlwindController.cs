@@ -5,6 +5,7 @@ using UnityEngine;
 public class WhirlwindController : PlayerAttack
 {
     private float fuseTime = 0.2f;
+
     void Start()
     {
         this.stunTime = 2.0f;
