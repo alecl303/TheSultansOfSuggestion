@@ -13,7 +13,7 @@ namespace Player.Effect
         public void Execute(GameObject gameObject)
         {
             var player = gameObject.GetComponent<PlayerController>();
-            player.ChangeRangedAttack(ScriptableObject.CreateInstance<TripleShotRangedAttack>());
+            player.ChangeRangedAttack(ScriptableObject.CreateInstance<DualShotRangedAttack>());
         }
         public string GetDescription()
         {

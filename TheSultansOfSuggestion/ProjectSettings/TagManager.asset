@@ -13,6 +13,7 @@ TagManager:
   - PlayerMeleeAttack
   - PlayerBuffSpell
   - PlayerTrapSpell
+  - Boss
   layers:
   - Default
   - TransparentFX

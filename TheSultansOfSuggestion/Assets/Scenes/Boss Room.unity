@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 458485423}
   - component: {fileID: 458485422}
+  - component: {fileID: 458485424}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -169,6 +170,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &458485424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458485421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7b23c323bd2db4b93f280b59229613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicTrack: Boss
 --- !u!1 &584326185
 GameObject:
   m_ObjectHideFlags: 0
@@ -9243,6 +9257,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &658765075
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.56765
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.7605925
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3026326317570799647, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
+      propertyPath: m_Name
+      value: Demon Boss
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
 --- !u!1 &1999546309
 GameObject:
   m_ObjectHideFlags: 0

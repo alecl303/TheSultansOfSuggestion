@@ -18,7 +18,6 @@ public class EnemySpawner : MonoBehaviour
 
     private List<GameObject> enemies;
     
-    // Start is called before the first frame update
     void Start()
     {
         for(int i = 0; i < this.enemyCount; i++)
@@ -41,7 +40,6 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         //Debug.Log(this.liveEnemies);
@@ -49,7 +47,13 @@ public class EnemySpawner : MonoBehaviour
         {
             Debug.Log("All done");
             FindObjectOfType<PlayerController>().GetStats().mana = 100;
-            FindObjectOfType<DontDestroyOnLoad>().IncrementScene();
+
+            FindObjectOfType<DontDestroyOnLoad>().SelectCard();
+            // added this in because stopping and letting players choose after all enemies were
+            // dead caused late update to call this selectcard multiple times causing
+            // players to skip levels
+            // and since each level has its own spawner this value will not impact after scene incre
+            this.liveEnemies++;
         }
     }
 
@@ -57,19 +61,19 @@ public class EnemySpawner : MonoBehaviour
     {
         var currentScene = SceneManager.GetActiveScene().buildIndex;
 
-        //if (currentScene == 2)
-        //{
-        //    float xMinOffLimit = 4.5f;
-        //    float xMaxOffLimit = 8.5f;
+        if (currentScene == 2)
+        {
+            float xMinOffLimit = 4.5f;
+            float xMaxOffLimit = 8.5f;
 
-        //    float yMinOffLimit = 2;
-        //    float yMaxOffLimit = 8;
+            float yMinOffLimit = 2;
+            float yMaxOffLimit = 8;
 
-        //    if ((x > xMinOffLimit && x < xMaxOffLimit) && (y > yMinOffLimit && y < yMaxOffLimit))
-        //    {
-        //        return true;
-        //    }
-        //}
+            if ((x > xMinOffLimit && x < xMaxOffLimit) && (y > yMinOffLimit && y < yMaxOffLimit))
+            {
+                return true;
+            }
+        }
 
         if (currentScene == 3)
         {
@@ -85,39 +89,39 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        //if (currentScene == 4)
-        //{
-        //    float xMinOffLimit = -17;
-        //    float xMaxOffLimit = 15;
+        if (currentScene == 4)
+        {
+            float xMinOffLimit = -17;
+            float xMaxOffLimit = 15;
 
-        //    float yMinOffLimit = -20;
-        //    float yMaxOffLimit = 9;
+            float yMinOffLimit = -20;
+            float yMaxOffLimit = 9;
 
-        //    if ((x > xMinOffLimit && x < xMaxOffLimit) && (y > yMinOffLimit && y < yMaxOffLimit))
-        //    {
-        //        return true;
-        //    }
+            if ((x > xMinOffLimit && x < xMaxOffLimit) && (y > yMinOffLimit && y < yMaxOffLimit))
+            {
+                return true;
+            }
 
-        //    yMinOffLimit = -17;
+            yMinOffLimit = -17;
 
-        //    var xMax = 9;
-        //    var xMin = -10;
+            var xMax = 9;
+            var xMin = -10;
 
-        //    if ((y < yMinOffLimit) && (x > xMax || x < xMin))
-        //    {
-        //        return true;
-        //    }
+            if ((y < yMinOffLimit) && (x > xMax || x < xMin))
+            {
+                return true;
+            }
 
-        //    yMaxOffLimit = 4;
+            yMaxOffLimit = 4;
 
-        //    xMax = 9;
-        //    xMin = -10;
+            xMax = 9;
+            xMin = -10;
 
-        //    if ((y > yMaxOffLimit) && (x > xMax || x < xMin))
-        //    {
-        //        return true;
-        //    }
-        //}
+            if ((y > yMaxOffLimit) && (x > xMax || x < xMin))
+            {
+                return true;
+            }
+        }
 
         return false;
     }

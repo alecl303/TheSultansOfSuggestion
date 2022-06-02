@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8517511081533375575}
   - component: {fileID: 2231940157614114812}
   - component: {fileID: 5893006900433561074}
+  - component: {fileID: 9114760936522791102}
   m_Layer: 5
   m_Name: Player_Object
   m_TagString: Player
@@ -142,7 +143,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.006400861, y: 0.016002093}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -153,7 +154,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.3}
+  m_Size: {x: 0.057931714, y: 0.080237955}
   m_EdgeRadius: 0
 --- !u!114 &1884189440595443665
 MonoBehaviour:
@@ -196,6 +197,7 @@ MonoBehaviour:
   maxHealth: 100
   mana: 100
   maxMana: 100
+  manaRechargeRate: 0.02
   rage: 0
   maxRage: 10
   bulletSpeed: 9
@@ -220,6 +222,8 @@ MonoBehaviour:
   whirlwind: {fileID: 2976386931763293713, guid: ec6d55eb3a765304288bea232f484a70, type: 3}
   healCircle: {fileID: 0}
   weaponDamage: 0
+  weaponSprite: {fileID: 0}
+  testSprite: {fileID: 0}
 --- !u!114 &2231940157614114812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,3 +248,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e88a0bff7e5b54ca93c991a1a3d257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DontDestroyOnLoad: {fileID: 0}
+--- !u!114 &9114760936522791102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884189440595443677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2a2f3989907624a950ede5a250441d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -5094286353425474703, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 6944993636166800022, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -6475567878920213498, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -5655367976358485658, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -8976271568068494015, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -1136435792311686488, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 5259279630547520280, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -4423461354295232719, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 2973196339833971244, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -2028688851913010192, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -6043287856328268441, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -717948757351087841, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 2442444717609808699, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -51584727777324280, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 150766373639474161, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 7419430652907273270, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 5391065225326712535, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -6484314445415610259, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 8745350808813169781, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -309866779058396218, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -326503617094608405, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -6654294767708167405, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -6843697996630115695, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 1860639349040602798, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 1308781841532267919, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -8530016073693660033, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 3657847755676317406, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -8615656212396171245, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: 728606063864621372, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}
+  - {fileID: -7530464330562586920, guid: 78ebbeba1e58f4541a3dc2306de0d427, type: 3}

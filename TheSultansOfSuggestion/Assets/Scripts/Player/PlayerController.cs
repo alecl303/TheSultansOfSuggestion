@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 using Player.Command;
 using Player.Effect;
@@ -23,8 +24,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
 
+<<<<<<< HEAD
     [SerializeField] public IPlayerCommand activeSpell;
     private bool onCooldown = false;
+=======
+    [SerializeField] public IPlayerSpell activeSpell1;
+
+
+    private ItemBar playersCurrentItemBar;
+>>>>>>> c7d58eaa21e6445ed3d40d680c9937671750d7a0
 
     private IPlayerCommand fire1;
     private IPlayerCommand fire2;
@@ -37,14 +45,22 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         this.stats = this.gameObject.GetComponent<PlayerStats>();
+        this.playersCurrentItemBar = this.gameObject.GetComponent<ItemBar>();
         this.fire1 = ScriptableObject.CreateInstance<RangedAttack>();
         this.fire2 = ScriptableObject.CreateInstance<MeleeAttack>();
         this.right = ScriptableObject.CreateInstance<MoveCharacterRight>();
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
+<<<<<<< HEAD
         this.activeSpell = ScriptableObject.CreateInstance<Heal>();
+=======
+        this.activeSpell1 = ScriptableObject.CreateInstance<SpellNothing>();
+        
+>>>>>>> c7d58eaa21e6445ed3d40d680c9937671750d7a0
         this.roll = ScriptableObject.CreateInstance<Roll>();
+
+        this.playersCurrentItemBar.Updateslots(0, this.stats.activeWeapon.GetComponent<Weapon>().sprite);
     }
 
     // Update is called once per frame
@@ -105,6 +121,7 @@ public class PlayerController : MonoBehaviour
                         {
                             this.roll.Execute(this.gameObject);
                         }
+                        
                     }
 
                     var animator = this.gameObject.GetComponent<Animator>();
@@ -145,7 +162,22 @@ public class PlayerController : MonoBehaviour
 
                 //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
-                TakeDamage(enemy.GetAttackDamage());
+                stats.TakeDamage(enemy.GetAttackDamage());
+
+                FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
+
+                //StartCoroutine(HitStun());
+                StartCoroutine(IFrame());
+            }
+
+            if (collision.gameObject.CompareTag("Boss"))
+            {
+                var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+                var enemy = collision.gameObject.GetComponent<BossController>();
+
+                //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+
+                stats.TakeDamage(enemy.GetAttackDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
 
@@ -160,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
                 //playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
 
-                TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
+                stats.TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
 
                 FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
 
@@ -266,16 +298,6 @@ public class PlayerController : MonoBehaviour
         this.canShoot = true;
     }
 
-    public void SetActiveSpell(IPlayerCommand spell)
-    {
-        this.activeSpell = spell;
-    }
-
-    public void SetActiveWeapon(Weapon weapon)
-    {
-        this.stats.activeWeapon = weapon;
-    }
-
     public void ExecuteEffect(IPlayerEffect effect)
     {
         effect.Execute(this.gameObject);
@@ -297,6 +319,10 @@ public class PlayerController : MonoBehaviour
         return this.isInIFrame;
     }
 
+    public float GetIFrameTime()
+    {
+        return this.iFrameTime;
+    }
     private IEnumerator Die()
     {
         if (!this.isDead)
@@ -306,7 +332,9 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
 
+            SceneManager.LoadScene(8);
             FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
+            
         }
     }
 
@@ -335,9 +363,9 @@ public class PlayerController : MonoBehaviour
         this.fire2 = newAttack;
     }
 
-    public void ChangeSpellAttack(IPlayerCommand newSpell)
+    public void SetActiveSpell(IPlayerSpell spell)
     {
-        this.activeSpell = newSpell;
+        this.activeSpell1 = spell;
     }
 
     public void InvertControls()
@@ -382,4 +410,9 @@ public class PlayerController : MonoBehaviour
         this.canDodge = true;
     }
 
+    public void ChangeWeapon(Weapon weapon)
+    {
+        this.stats.SetActiveWeapon(weapon);
+        this.playersCurrentItemBar.Updateslots(0, this.stats.activeWeapon.GetComponent<Weapon>().sprite);
+    }
 }

@@ -2,67 +2,112 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+using Player.Effect;
+using Player.Command;
+using Player.Stats;
 public class CardSelectionController : MonoBehaviour 
 {
-    public Buff [] buffList;
-    public Debuff [] debuffList;
-
+    public GameObject buffManager;
+    public GameObject debuffManager;
+    public GameObject SpellManager;
+    public GameObject weapon;
+    [SerializeField] private GameObject Icon;
+    private List<IPlayerEffect> buffList = new List<IPlayerEffect>();
+    private List<IPlayerEffect> debuffList = new List<IPlayerEffect>();
+    private IPlayerSpell playerSpell;
+    private Weapon newWeapon;
     public GameObject Card1;
     public GameObject Card2;
     public GameObject Card3;
+    private Sprite newSprite;
+    [SerializeField] private GameObject playerTarget;
 
-    void Start()
+    void Awake(){
+        Icon = GameObject.Find("Icon");
+    }
+    void OnEnable()
     {
         Time.timeScale = 0;
-        GameObject.Find("/Player_Object").GetComponent<PlayerController> ().enabled = false;
-        Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[Random.Range(0, buffList.Length)].description + "\n\n\n\n" + debuffList[Random.Range(0, debuffList.Length)].description;
-        Card2.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[Random.Range(0, buffList.Length)].description + "\n\n\n\n" + debuffList[Random.Range(0, debuffList.Length)].description;
-        Card3.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[Random.Range(0, buffList.Length)].description + "\n\n\n\n" + debuffList[Random.Range(0, debuffList.Length)].description;
+        IPlayerEffect randomBuff;
+        IPlayerEffect randomDebuff;
+        // this.GetComponentInParent<Canvas>().enabled = true;
+        playerTarget.GetComponent<PlayerController> ().enabled = false;
+
+        for (int i = 0; i < 3; i++)
+        {
+            
+
+            do {
+                randomDebuff = debuffManager.GetComponent<DebuffManager>().GetRandomDebuff();
+            } while (debuffList.Contains(randomDebuff));
+
+            debuffList.Add( randomDebuff);
+
+        }
+
+        do {
+                randomBuff = buffManager.GetComponent<BuffManager>().GetRandomBuff();
+        } while (buffList.Contains(randomBuff));
+        buffList.Add(randomBuff);
+        this.newWeapon =  this.weapon.GetComponent<Weapon>();
+        this.newWeapon.randomize();
+        this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
+        this.newWeapon.SetSprite(this.newSprite);
+        Icon.GetComponent<Image>().sprite = this.newSprite;
+        playerSpell = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
+        Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[0].GetDescription() + "\n\n\n\n" + debuffList[0].GetDescription();
+        Card2.GetComponent<TMPro.TextMeshProUGUI>().text = this.newWeapon.GetDescription() + "\n\n\n\n" + debuffList[1].GetDescription();
+        Card3.GetComponent<TMPro.TextMeshProUGUI>().text = playerSpell.GetDescription() + "\n\n\n\n" + debuffList[2].GetDescription();
+
+        //AssignButtons();
     }
+
     
-    void ApplyCard()
+    
+    public void ApplyCard1()
     {
 
+        buffList[0].Execute(playerTarget);
+        debuffList[0].Execute(playerTarget);
+        removeCardsFromScreen();
+    
     }
-    // public void Pause()
+
+    public void ApplyCard2()
+    {
+
+        this.playerTarget.GetComponent<PlayerController>().ChangeWeapon(this.newWeapon);
+        debuffList[1].Execute(playerTarget);
+        removeCardsFromScreen();
+    }
+
+    public void ApplyCard3()
+    {
+
+        this.playerTarget.GetComponent<PlayerController>().SetActiveSpell(this.playerSpell);
+        debuffList[2].Execute(playerTarget);
+        removeCardsFromScreen();
+    }
+
+    // void AssignButtons()
     // {
-    //     if (isPaused) 
-    //     {
-    //         Time.timeScale = 1;
-    //         isPaused = false;
-    //         PlayerObject.GetComponent<PlayerController> ().enabled = true;
-    //         CanvasObject.GetComponent<Canvas> ().enabled = false;
-    //     }
-    //     else
-    //     {
-    //         Time.timeScale = 0;
-    //         isPaused = true;
-    //         PlayerObject.GetComponent<PlayerController> ().enabled = false;
-    //         CanvasObject.GetComponent<Canvas> ().enabled = true;
-    //     }
+    //     Card1.GetComponentInParent<Button>().onClick.AddListener(ApplyCard1);
+    //     Card2.GetComponentInParent<Button>().onClick.AddListener(ApplyCard2);
+    //     Card3.GetComponentInParent<Button>().onClick.AddListener(ApplyCard3);
     // }
 
-    // void Awake()
-    // {
-    //     CanvasObject = GameObject.Find("/Pause");
-    //     PlayerObject = GameObject.Find("/Player_Object");
+    void removeCardsFromScreen()
+    {
+        //this.GetComponentInParent<Canvas>().enabled = false;
+        this.buffList.Clear();
+        this.debuffList.Clear();
+
+        this.transform.parent.gameObject.SetActive(false);
         
-    //     print(CanvasObject);
-    // }
+        Time.timeScale = 1;
+        playerTarget.GetComponent<PlayerController> ().enabled = true;
+        // TODO: Reenable for different scenes
+    }
 
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Escape))
-    //     {
-    //         Pause();
-    //     }
-    // }
-
-    // public void Quit()
-    // {
-    //     isPaused = false;
-    //     Time.timeScale = 1;
-    //     SceneManager.LoadScene(0);
-    // }
 }

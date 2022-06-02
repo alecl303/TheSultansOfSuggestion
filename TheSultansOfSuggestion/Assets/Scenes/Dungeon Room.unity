@@ -10822,7 +10822,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8706399922993544813, guid: d04308f4fd0162f4fa3e29b338118dd3, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8706399922993544813, guid: d04308f4fd0162f4fa3e29b338118dd3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23590,6 +23590,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1308923433}
   - component: {fileID: 1308923432}
+  - component: {fileID: 1308923434}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -23627,6 +23628,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1308923434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308923431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7b23c323bd2db4b93f280b59229613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicTrack: Ominous
 --- !u!1001 &1791374739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23680,8 +23694,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyCount
-      value: 5
+      value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 7882205624649935762, guid: a6d6d67fdaf27334e99a9c95297e6c8a, type: 3}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 5438485253675737469, guid: 88e31848fe03eb744b02f773f6db3e12, type: 3}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 3948569413282670104, guid: 42a384e6bc14a9a4d8044a9e5401a57a, type: 3}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: enemyPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 2299152097316473200, guid: 6954fa7c5ff18834b81f4f94bb382817, type: 3}
     - target: {fileID: 1901393612936825570, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

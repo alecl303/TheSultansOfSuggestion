@@ -6,7 +6,7 @@ using Player.Command;
 
 namespace Player.Command
 {
-    public class FreezeEnemies : ScriptableObject, IPlayerCommand
+    public class FreezeEnemies : ScriptableObject, IPlayerSpell
     {
 
         private int requiredMana = 30;
@@ -28,6 +28,10 @@ namespace Player.Command
 
                 playerStats.DrainMana(this.requiredMana);
             }
+        }
+        public string GetDescription()
+        {
+            return "Temporarily stun all enemies in a large radius. Costs " + this.requiredMana + " mana.";
         }
     }
 }

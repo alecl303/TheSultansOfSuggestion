@@ -27,7 +27,7 @@ namespace Enemy.Command
                 else if (positionDifference < this.maxDistance && !enemy.IsAttacking())
                 {
                     enemy.StartCoroutine(enemy.InitiateAttack());
-                    enemy.StartCoroutineCaller(MoveToPosition(enemy.GetTarget().transform.position, 0.25f, gameObject));
+                    enemy.StartCoroutine(MoveToPosition(enemy.GetTarget().transform.position, 0.25f, gameObject));
                     // for(int i = 0; i < 100; i++)
                     // {
                     //     // rigidBody.velocity = enemy.GetSpeed() * 20 * this.direction;
@@ -59,6 +59,7 @@ namespace Enemy.Command
                 gameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
         }
+        
         private IEnumerator MoveToPosition(Vector2 newPosition, float time, GameObject gameObject)
         {
             var timeElapsed  = 0.00f;
@@ -68,7 +69,7 @@ namespace Enemy.Command
             while (timeElapsed < time)
             {
                 Debug.Log(timeElapsed + " out of  " + time);
-                transform.position = Vector2.Lerp(startPos, newPosition, (timeElapsed / time));
+                rigidBody.MovePosition(Vector2.Lerp(startPos, newPosition, (timeElapsed / time)));
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }

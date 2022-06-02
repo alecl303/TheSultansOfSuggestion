@@ -14,6 +14,7 @@ namespace Player.Stats
         public float maxHealth = 100;
         public float mana = 100;
         public float maxMana = 100;
+        public float manaRechargeRate = .02f;
         public float rage = 0;
         public float maxRage = 10;
         public float bulletSpeed = 9;
@@ -35,6 +36,8 @@ namespace Player.Stats
         //public List<GameObject> weapons;
         //public GameObject activeWeapon;
 
+
+
         public List<Weapon> weapons;
         public Weapon activeWeapon;
 
@@ -51,11 +54,14 @@ namespace Player.Stats
         private GameObject manaBar;
         private GameObject rageBar;
 
-        private GameObject weaponSprite;
+        public GameObject weaponSprite;
 
-        void Start()
+        public Sprite testSprite;
+
+        void Awake()
         {
             this.activeWeapon = gameObject.AddComponent<Weapon>();
+            this.activeWeapon.SetSprite(this.gameObject.GetComponent<WeaponSprites>().sprites[this.activeWeapon.spriteIndex]);
             this.weapons.Add(this.activeWeapon);
 
             this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
@@ -73,7 +79,7 @@ namespace Player.Stats
         private void Update()
         {
             RegenMana();
-            //CheckRage();
+            CheckRage();
         }
 
         public float GetSpeed()
@@ -144,7 +150,7 @@ namespace Player.Stats
 
         public void RegenMana()
         {
-            this.mana += Mathf.Min(.001f, this.maxMana - this.mana);
+            this.mana += Mathf.Min(this.manaRechargeRate, this.maxMana - this.mana);
             this.manaBar.GetComponent<Slider>().value = this.mana / this.maxMana;
         }
 
@@ -211,5 +217,13 @@ namespace Player.Stats
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
         }
 
+        public void SetActiveWeapon(Weapon weapon)
+        {
+            this.activeWeapon = weapon;
+            //this.activeWeapon.SetSprite(this.gameObject.GetComponent<WeaponSprites>().sprites[this.activeWeapon.spriteIndex]);
+            this.weapons.Add(this.activeWeapon);
+
+            this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
+        }
     }
 }

@@ -124,12 +124,13 @@ MonoBehaviour:
   attackDamage: 2
   knockback: 10
   attacking: 0
-  attackBuffer: 1
+  attackBuffer: 1.25
   bulletSpeed: 2
   hitStunTime: 0.3
   isInHitStun: 0
   isFlying: 0
   bulletPrefab: {fileID: 0}
+  crosshair: {fileID: 2800000, guid: 45c50ecdf18da44459070bc07a652305, type: 3}
   isDead: 0
 --- !u!50 &2547475500278135758
 Rigidbody2D:
