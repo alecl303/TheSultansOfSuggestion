@@ -9,6 +9,7 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
     [SerializeField] private GameObject bulletPrefab;
     private bool overlap = false;
     private bool repeat = true;
+    private bool triggered = false;
     private Vector2 direction; 
     private float speed = 5.0f;
     // private PlayerStats target;
@@ -17,16 +18,17 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
     {
         this.overlap = overlap;
     }
+    
     public IEnumerator ApplyEffect(EnemyController target, PlayerStats playerStats)
     {
 
         // this.target.GetComponent<PlayerController>().GetStats().Heal(flatHeal*statsMultiplier);
         // Debug.Log("Healing");
         // playerStats.Heal(flatHeal*playerStats.SpellStrength);
-
         var rigidBody = this.GetComponent<Rigidbody2D>();
         while (repeat)
         {
+            this.triggered = true;
             for (int i = 0; i < 360; i += 15)
             {
                 float theta = i * (Mathf.PI / 180);
@@ -49,7 +51,7 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
                 yield return new WaitForSeconds(0.1f);
             }
         }
-
+        this.triggered = false;
         
         Debug.Log("Finished applying effect");
     }
