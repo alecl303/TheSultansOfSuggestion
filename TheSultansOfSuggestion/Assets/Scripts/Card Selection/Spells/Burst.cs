@@ -6,7 +6,7 @@ using Player.Command;
 
 namespace Player.Command
 {
-    public class Burst : ScriptableObject, IPlayerCommand
+    public class Burst : ScriptableObject, IPlayerSpell
     {
 
         private int requiredMana = 25;
@@ -34,6 +34,10 @@ namespace Player.Command
 
                 playerStats.DrainMana(this.requiredMana);
             }
+        }
+        public string GetDescription()
+        {
+            return "Generates a burst of bullets around the player. Costs" + requiredMana + " mana.";
         }
     }
 }

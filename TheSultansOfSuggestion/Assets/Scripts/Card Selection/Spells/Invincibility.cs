@@ -6,7 +6,7 @@ using Player.Command;
 
 namespace Player.Command
 {
-    public class Invincibility : ScriptableObject, IPlayerCommand
+    public class Invincibility : ScriptableObject, IPlayerSpell
     {
 
         private int requiredMana = 50;
@@ -23,6 +23,11 @@ namespace Player.Command
                 playerStats.DrainMana(this.requiredMana);
                 player.StartCoroutine(player.InvincibleForXSeconds(duration));
             }
+        }
+
+        public string GetDescription()
+        {
+            return "Gain temporary invincibility for " + this.duration + " seconds. Costs" + this.requiredMana + " mana.";
         }
     }
 }
