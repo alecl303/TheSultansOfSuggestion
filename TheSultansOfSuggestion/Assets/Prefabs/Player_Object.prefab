@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 6
-  health: 20
+  health: 100
   maxHealth: 100
   mana: 100
   maxMana: 100
