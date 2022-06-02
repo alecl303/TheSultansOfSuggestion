@@ -298,6 +298,10 @@ public class PlayerController : MonoBehaviour
         return this.isInIFrame;
     }
 
+    public float GetIFrameTime()
+    {
+        return this.iFrameTime;
+    }
     private IEnumerator Die()
     {
         if (!this.isDead)

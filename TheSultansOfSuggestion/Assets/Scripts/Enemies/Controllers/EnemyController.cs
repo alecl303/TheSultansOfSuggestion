@@ -97,7 +97,7 @@ abstract public class EnemyController : MonoBehaviour
                 this.movement = this.chase;
             }
 
-            if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking())
+            if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking() && isFlying)
             {
                 this.attack.Execute(this.gameObject);
                 StartCoroutine(InitiateAttack());
@@ -112,6 +112,7 @@ abstract public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !this.attacking && !collision.gameObject.GetComponent<PlayerController>().IsInIFrame())
         {
             StartCoroutine(InitiateAttack());
+            StartCoroutine(InitiateBuffer(collision));
         }
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
@@ -163,6 +164,7 @@ abstract public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !this.attacking && !collision.gameObject.GetComponent<PlayerController>().IsInIFrame())
         {
+            StartCoroutine(InitiateBuffer(collision));
             StartCoroutine(InitiateAttack());
         }
 
@@ -223,6 +225,15 @@ abstract public class EnemyController : MonoBehaviour
         animator.SetBool("Attacking", false);
         yield return new WaitForSeconds(this.attackBuffer);
         this.attacking = false;
+    }
+
+    public IEnumerator InitiateBuffer(Collision2D collision)
+    {
+        var oldChase = this.chase;
+        this.chase = ScriptableObject.CreateInstance<DoNothing>();
+        float waitTime = this.attackBuffer + collision.gameObject.GetComponent<PlayerController>().GetIFrameTime();
+        yield return new WaitForSeconds(waitTime);
+        this.chase = oldChase;
     }
 
     public float GetAttackDamage()
