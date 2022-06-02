@@ -10,7 +10,7 @@ namespace Player.Command
     {
 
         private int requiredMana = 75;
-        private int duration = 20;
+        private int duration = 10;
 
         public void Execute(GameObject gameObject)
         {
