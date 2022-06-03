@@ -117,14 +117,23 @@ namespace Player.Stats
 
         public void SetMaxHealth(float maxHealth)
         {
+            // Heal the player if health increase is greater
+            if (maxHealth > this.maxHealth) 
+            {
+                var healthIncrease = maxHealth this.maxHealth;
+                this.maxHealth = maxHealth;
+                this.health += healthIncrease;
+            }
             this.maxHealth = maxHealth;
             this.health = Mathf.Clamp(this.health, 0, this.maxHealth);
+            // Update health bar indication
             this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;
         }
 
         public void Heal(float amount)
         {
             this.health += Mathf.Min(amount, this.maxHealth - this.health);
+            // Update health bar indication
             this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;
         }
 
