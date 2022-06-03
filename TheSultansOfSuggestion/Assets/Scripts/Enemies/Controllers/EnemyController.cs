@@ -82,6 +82,7 @@ abstract public class EnemyController : MonoBehaviour
         {
             this.canAct = false;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            StopAllCoroutines();
             StartCoroutine(Die());
         }
         else if(this.canAct)
