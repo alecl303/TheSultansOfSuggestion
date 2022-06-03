@@ -8,9 +8,6 @@ namespace Player.Command
 {
     public class SpellNothing : ScriptableObject, IPlayerSpell
     {
-
-        private int requiredMana = 0;
-
         public void Execute(GameObject gameObject)
         {
             // Do nothing
@@ -19,6 +16,11 @@ namespace Player.Command
         public string GetDescription()
         {
             return "Do nothing for free.";
+        }
+
+        public string GetName()
+        {
+            return "Nothing";
         }
     }
 }

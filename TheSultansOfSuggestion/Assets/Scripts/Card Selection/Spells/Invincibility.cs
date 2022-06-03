@@ -29,5 +29,10 @@ namespace Player.Command
         {
             return "Gain temporary invincibility for " + this.duration + " seconds. Costs " + this.requiredMana + " mana.";
         }
+
+        public string GetName()
+        {
+            return "Invincibility";
+        }
     }
 }

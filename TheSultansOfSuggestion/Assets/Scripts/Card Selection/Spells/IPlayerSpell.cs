@@ -7,5 +7,7 @@ namespace Player.Command
         void Execute(GameObject gameObject);
 
         public string GetDescription();
+
+        public string GetName();
     }
 }

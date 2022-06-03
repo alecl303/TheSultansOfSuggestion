@@ -28,5 +28,10 @@ namespace Player.Command
         public string GetDescription() {
             return "Greatly increase melee damage for " + this.duration + " seconds. Costs " + requiredMana + " mana.";
         }
+
+        public string GetName()
+        {
+            return "Berserk";
+        }
     }
 }
