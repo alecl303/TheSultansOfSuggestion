@@ -338,9 +338,11 @@ public class PlayerController : MonoBehaviour
     public IEnumerator InvincibleForXSeconds(float duration)
     {
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        this.canDodge = false;
+        this.isInIFrame = true;
         yield return new WaitForSeconds(duration);
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        this.canDodge = true;
+        this.isInIFrame = false;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
     }
 

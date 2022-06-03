@@ -11,7 +11,7 @@ namespace Player.Command
 
         private int requiredMana = 50;
         private float duration = 5;
-        private float cooldown = 0.0f;
+        private float cooldown = 10.0f;
 
         public float GetCooldown() 
         {

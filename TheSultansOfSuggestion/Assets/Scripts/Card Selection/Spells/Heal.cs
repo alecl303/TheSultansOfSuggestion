@@ -12,7 +12,7 @@ namespace Player.Command
         private int requiredMana = 100;
         private int duration = 8;
         private float flatHeal = 5.0f; // There is also scaling base on spell strength
-        private float cooldown = 10.0f;
+        private float cooldown = 14.0f;
         private float timeBeforeHeal = 1.5f;
 
         public float GetCooldown() 
