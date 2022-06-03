@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell1 = ScriptableObject.CreateInstance<SpellNothing>();
+        this.activeSpell1 = ScriptableObject.CreateInstance<Berserk>();
         
         this.roll = ScriptableObject.CreateInstance<Roll>();
 
@@ -269,11 +269,19 @@ public class PlayerController : MonoBehaviour
     private IEnumerator IFrame()
     {
         this.isInIFrame = true;
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0.5f);
+        var playerSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>().color;
+        var red = playerSpriteRenderer.r;
+        var blue = playerSpriteRenderer.b;
+        var green = playerSpriteRenderer.g;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(red, blue, green, 0.5f);
 
         yield return new WaitForSeconds(this.iFrameTime);
 
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+        playerSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>().color;
+        red = playerSpriteRenderer.r;
+        blue = playerSpriteRenderer.b;
+        green = playerSpriteRenderer.g;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(red, blue, green, 1.0f);
         this.isInIFrame = false;
     }
 
