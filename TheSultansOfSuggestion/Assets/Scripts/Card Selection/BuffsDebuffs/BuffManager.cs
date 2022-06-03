@@ -16,13 +16,13 @@ public class BuffManager : MonoBehaviour
     {
         if(this.buffLength == 0)
         {
-            initBuffs();
+            InitBuffs();
         }
 
         return(this.buffs[Random.Range(0, this.buffLength)]);
     }
 
-    void initBuffs(){
+    void InitBuffs(){
         this.buffs = new List<IPlayerEffect>() {
             ScriptableObject.CreateInstance<BulletSpeedUp>(),
             ScriptableObject.CreateInstance<CritChanceUp>(),
@@ -44,4 +44,9 @@ public class BuffManager : MonoBehaviour
         };
         this.buffLength = this.buffs.Count;
     }
+
+    public List<IPlayerEffect> GetList()
+    {
+        return buffs;
+    } 
 }

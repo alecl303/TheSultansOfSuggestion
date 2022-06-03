@@ -17,5 +17,10 @@ namespace Player.Effect
         {
             return "Increase your poison chance by 3%";
         }
+
+        public string GetName()
+        {
+            return "PoisonChanceUp";
+        }
     }
 }

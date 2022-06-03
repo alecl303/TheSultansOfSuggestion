@@ -20,5 +20,10 @@ namespace Player.Effect
         {
             return "Your bullets will become homing bullets";
         }
+
+        public string GetName()
+        {
+            return "HomingBullet";
+        }
     }
 }

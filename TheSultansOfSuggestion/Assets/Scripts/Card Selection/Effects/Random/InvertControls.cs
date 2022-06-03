@@ -19,5 +19,10 @@ namespace Player.Effect
         {
             return "Movement controls are inverted";
         }
+
+        public string GetName()
+        {
+            return "InvertControls";
+        }
     }
 }

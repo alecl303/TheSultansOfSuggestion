@@ -13,12 +13,18 @@ namespace Player.Effect
             base.Init();
             this.affectedStat = "bullet speed";
             this.affliction = "Decrease";
+            this.name = "BulletSpeedDown";
         }
 
         public override void Execute(GameObject gameObject)
         {
             var playerStats = gameObject.GetComponent<PlayerStats>();
             playerStats.bulletLifeSpan *= (1 - this.changeAmount);
+        }
+
+        public string GetName()
+        {
+            return "BulletSpeedDown";
         }
     }
 }

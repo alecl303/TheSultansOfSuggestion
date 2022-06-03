@@ -18,5 +18,10 @@ namespace Player.Effect
         {
             return "Increase your poison duration by 1 second, and poison chance by 1%";
         }
+
+        public string GetName()
+        {
+            return "PoisonTimeUp";
+        }
     }
 }

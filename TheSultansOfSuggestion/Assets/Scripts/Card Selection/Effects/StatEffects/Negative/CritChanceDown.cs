@@ -17,5 +17,10 @@ namespace Player.Effect
         {
             return "Decrease your crit chance by 1%";
         }
+
+        public string GetName()
+        {
+            return "CritChanceDown";
+        }
     }
 }

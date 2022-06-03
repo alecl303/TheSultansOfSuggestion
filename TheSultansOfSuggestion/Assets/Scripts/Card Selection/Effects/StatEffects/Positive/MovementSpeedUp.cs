@@ -12,6 +12,7 @@ namespace Player.Effect
         {
             base.Init();
             this.affectedStat = "movement speed";
+            this.name = "MovementSpeedUp";
         }
 
         public override void Execute(GameObject gameObject)

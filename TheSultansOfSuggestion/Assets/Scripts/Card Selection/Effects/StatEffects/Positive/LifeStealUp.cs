@@ -17,5 +17,10 @@ namespace Player.Effect
         {
             return "Increase your melee life drain by 1 hp";
         }
+
+        public string GetName()
+        {
+            return "LifestealUp";
+        }
     }
 }

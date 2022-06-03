@@ -36,19 +36,17 @@ public class CardSelectionController : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            
-
             do {
                 randomDebuff = debuffManager.GetComponent<DebuffManager>().GetRandomDebuff();
             } while (debuffList.Contains(randomDebuff));
 
-            debuffList.Add( randomDebuff);
-
+            debuffList.Add(randomDebuff);
         }
 
         do {
                 randomBuff = buffManager.GetComponent<BuffManager>().GetRandomBuff();
         } while (buffList.Contains(randomBuff));
+
         buffList.Add(randomBuff);
         this.newWeapon =  this.weapon.GetComponent<Weapon>();
         this.newWeapon.Randomize();
@@ -67,16 +65,13 @@ public class CardSelectionController : MonoBehaviour
     
     public void ApplyCard1()
     {
-
         buffList[0].Execute(playerTarget);
         debuffList[0].Execute(playerTarget);
         removeCardsFromScreen();
-    
     }
 
     public void ApplyCard2()
     {
-
         this.playerTarget.GetComponent<PlayerController>().ChangeWeapon(this.newWeapon);
         debuffList[1].Execute(playerTarget);
         removeCardsFromScreen();
@@ -84,7 +79,6 @@ public class CardSelectionController : MonoBehaviour
 
     public void ApplyCard3()
     {
-
         this.playerTarget.GetComponent<PlayerController>().SetActiveSpell(this.playerSpell);
         debuffList[2].Execute(playerTarget);
         removeCardsFromScreen();

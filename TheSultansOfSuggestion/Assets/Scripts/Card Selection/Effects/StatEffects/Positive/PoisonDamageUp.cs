@@ -18,5 +18,10 @@ namespace Player.Effect
         {
             return "Increase your poison tick damage by 1, and poison chance by 1%";
         }
+
+        public string GetName()
+        {
+            return "PoisonDamageUp";
+        }
     }
 }

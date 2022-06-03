@@ -28,6 +28,11 @@ namespace Player.Effect
             //var playerStats = gameObject.GetComponent<PlayerStats>();
         }
 
+        public string GetName()
+        {
+            return this.name;
+        }
+
         public string GetDescription()
         {
             return (this.affliction + " your " + this.affectedStat + " by " + ((int)(this.changeAmount * 100)) + "%");

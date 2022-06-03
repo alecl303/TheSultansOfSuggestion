@@ -19,5 +19,10 @@ namespace Player.Effect
         {
             return "You will lose your active spell";
         }
+
+        public string GetName()
+        {
+            return "LoseActiveSpell";
+        }
     }
 }

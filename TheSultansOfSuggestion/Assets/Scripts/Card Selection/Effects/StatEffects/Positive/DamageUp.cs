@@ -13,6 +13,7 @@ namespace Player.Effect
         {
             base.Init();
             this.affectedStat = "base damage";
+            this.name = "DamageUp";
         }
 
         public override void Execute(GameObject gameObject)

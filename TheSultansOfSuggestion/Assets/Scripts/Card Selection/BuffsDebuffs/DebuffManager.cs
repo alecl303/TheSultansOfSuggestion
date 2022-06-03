@@ -14,18 +14,18 @@ public class DebuffManager : MonoBehaviour
     {
         if(this.debuffLength == 0)
         {
-            initDebuffs();
+            InitDebuffs();
         }
         return(this.debuffs[Random.Range(0, this.debuffLength)]);
     }
 
-    void initDebuffs(){
+    void InitDebuffs(){
         this.debuffs = new List<IPlayerEffect>() {
             ScriptableObject.CreateInstance<BulletSpeedDown>(),
             ScriptableObject.CreateInstance<CritChanceDown>(),
             ScriptableObject.CreateInstance<DamageDown>(),
             ScriptableObject.CreateInstance<BackwardsBulletEffect>(),
-            ScriptableObject.CreateInstance<DropTo1HP>(),
+            //ScriptableObject.CreateInstance<DropTo1HP>(),
             ScriptableObject.CreateInstance<InvertControls>(),
             ScriptableObject.CreateInstance<LoseActiveSpell>(),
             ScriptableObject.CreateInstance<SpellsCostBlood>(),
