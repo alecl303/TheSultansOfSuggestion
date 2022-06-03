@@ -331,6 +331,11 @@ public class PlayerController : MonoBehaviour
         this.activeSpell1 = spell;
     }
 
+    public string GetActiveSpell()
+    {
+        return activeSpell1.GetName();
+    }
+
     public void InvertControls()
     {
         var left = this.left;

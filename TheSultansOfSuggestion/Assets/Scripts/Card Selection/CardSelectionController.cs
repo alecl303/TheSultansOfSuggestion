@@ -32,7 +32,7 @@ public class CardSelectionController : MonoBehaviour
         IPlayerEffect randomBuff;
         IPlayerEffect randomDebuff;
         // this.GetComponentInParent<Canvas>().enabled = true;
-        playerTarget.GetComponent<PlayerController> ().enabled = false;
+        playerTarget.GetComponent<PlayerController>().enabled = false;
 
         for (int i = 0; i < 3; i++)
         {
@@ -106,8 +106,19 @@ public class CardSelectionController : MonoBehaviour
         this.transform.parent.gameObject.SetActive(false);
         
         Time.timeScale = 1;
-        playerTarget.GetComponent<PlayerController> ().enabled = true;
+        playerTarget.GetComponent<PlayerController>().enabled = true;
         // TODO: Reenable for different scenes
     }
 
+    IPlayerSpell DetermineRandomSpell()
+    {
+        IPlayerSpell spellPlaceholder;
+
+        do
+        {
+            spellPlaceholder = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
+        } while (playerTarget.GetComponent<PlayerController>().GetActiveSpell() == spellPlaceholder.GetName());
+
+        return spellPlaceholder;
+    }
 }
