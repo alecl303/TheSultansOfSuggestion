@@ -28,7 +28,6 @@ public class DebuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<DropTo1HP>(),
             ScriptableObject.CreateInstance<InvertControls>(),
             ScriptableObject.CreateInstance<LoseActiveSpell>(),
-            //ScriptableObject.CreateInstance<LoseRoll>(),
             ScriptableObject.CreateInstance<SpellsCostBlood>(),
             ScriptableObject.CreateInstance<DamageDown>(),
             //ScriptableObject.CreateInstance<BulletSizeDown>(),
