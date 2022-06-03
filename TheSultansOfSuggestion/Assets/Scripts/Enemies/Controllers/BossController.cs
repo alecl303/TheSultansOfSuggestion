@@ -78,7 +78,7 @@ public class BossController : MonoBehaviour
         this.stompAttack = ScriptableObject.CreateInstance<DoNothingBoss>();
         this.rangedAttack2 = ScriptableObject.CreateInstance<BulletSpawn1>();
         AttachPlayer();
-        FindObjectOfType<EnemySpawner>().liveEnemies += 1;
+        //FindObjectOfType<EnemySpawner>().liveEnemies += 1;
     }
 
     // Actions that every enemy will do on update

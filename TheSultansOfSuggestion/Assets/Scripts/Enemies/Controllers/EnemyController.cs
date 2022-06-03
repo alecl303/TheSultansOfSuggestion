@@ -82,6 +82,7 @@ abstract public class EnemyController : MonoBehaviour
         {
             this.canAct = false;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            StopAllCoroutines();
             StartCoroutine(Die());
         }
         else if(this.canAct)
@@ -97,10 +98,15 @@ abstract public class EnemyController : MonoBehaviour
                 this.movement = this.chase;
             }
 
-            if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking() && isFlying)
+            
+
+            if ((this.gameObject.GetComponent<Rigidbody2D>().position - this.GetTarget().position).magnitude < this.GetAttackRange() && !this.IsAttacking())
             {
                 this.attack.Execute(this.gameObject);
-                StartCoroutine(InitiateAttack());
+                if (isFlying)
+                {
+                    StartCoroutine(InitiateAttack());
+                }
             }
         }
     }
