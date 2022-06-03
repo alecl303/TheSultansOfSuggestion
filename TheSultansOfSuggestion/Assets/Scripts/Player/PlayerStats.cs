@@ -113,6 +113,13 @@ namespace Player.Stats
             return damage;  // Will have to figure out active weapon in inventory
         }
 
+        public void SetMaxHealth(float maxHealth)
+        {
+            this.maxHealth = maxHealth;
+            this.health = Mathf.Clamp(this.health, 0, this.maxHealth);
+            this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;
+        }
+
         public void Heal(float amount)
         {
             this.health += Mathf.Min(amount, this.maxHealth - this.health);
