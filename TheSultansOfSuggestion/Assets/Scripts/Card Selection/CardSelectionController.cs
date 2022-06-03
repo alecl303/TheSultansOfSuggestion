@@ -55,7 +55,7 @@ public class CardSelectionController : MonoBehaviour
         this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
         this.newWeapon.SetSprite(this.newSprite);
         Icon.GetComponent<Image>().sprite = this.newSprite;
-        playerSpell = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
+        playerSpell = DetermineRandomSpell();
         Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[0].GetDescription() + "\n\n\n\n" + debuffList[0].GetDescription();
         Card2.GetComponent<TMPro.TextMeshProUGUI>().text = this.newWeapon.GetDescription() + "\n\n\n\n" + debuffList[1].GetDescription();
         Card3.GetComponent<TMPro.TextMeshProUGUI>().text = playerSpell.GetDescription() + "\n\n\n\n" + debuffList[2].GetDescription();
@@ -112,6 +112,7 @@ public class CardSelectionController : MonoBehaviour
 
     IPlayerSpell DetermineRandomSpell()
     {
+        // To prevent players from getting the same spell they currently have. 
         IPlayerSpell spellPlaceholder;
 
         do
