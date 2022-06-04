@@ -40,5 +40,10 @@ namespace Player.Command
         {
             return "Create a healing circle for " + this.duration + " seconds and heal " + this.flatHeal + " by standing on the circle for " + this.timeBeforeHeal + ". Costs " + this.requiredMana + " mana and has a " + this.cooldown + " cooldown time.";
         }
+
+        public string GetName()
+        {
+            return "HealSpell";
+        }
     }
 }

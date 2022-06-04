@@ -37,5 +37,10 @@ namespace Player.Command
         {
             return "Create a trap spell on the floor for " + this.duration + " seconds. Enemies that step on the trap activates a barrage of bullets. Costs " + this.requiredMana + " mana and has a " + this.cooldown + " cooldown time.";
         }
+
+        public string GetName()
+        {
+            return "IcicleTrap";
+        }
     }
 }
