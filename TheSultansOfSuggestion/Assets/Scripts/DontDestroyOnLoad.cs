@@ -53,6 +53,12 @@ public class DontDestroyOnLoad : MonoBehaviour
         this.cardSelection.SetActive(true);
     }
 
+    public void enabletext()
+    {
+        var Story = GameObject.Find("/Story");
+        Story.GetComponent<Canvas>().enabled=true;
+
+    }
     public void DestroyAll()
     {
         Destroy(this.gameObject);

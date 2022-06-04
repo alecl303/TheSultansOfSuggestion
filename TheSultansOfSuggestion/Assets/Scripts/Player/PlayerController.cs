@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canDodge = true;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
-
+    [SerializeField] private Sprite empty;
     [SerializeField] public IPlayerSpell activeSpell1;
     private bool onCooldown = false;
 
@@ -362,9 +362,17 @@ public class PlayerController : MonoBehaviour
         this.fire2 = newAttack;
     }
 
-    public void SetActiveSpell(IPlayerSpell spell)
+    public void SetActiveSpell(IPlayerSpell spell, Sprite sprite)
     {
         this.activeSpell1 = spell;
+        if(sprite == null)
+        {
+            this.playersCurrentItemBar.Updateslots(2,sprite);
+        }else
+        {
+            this.playersCurrentItemBar.Updateslots(2,sprite);
+        }
+
     }
 
     public string GetActiveSpell()

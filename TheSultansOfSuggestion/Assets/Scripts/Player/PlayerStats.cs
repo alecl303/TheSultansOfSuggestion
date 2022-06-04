@@ -78,7 +78,7 @@ namespace Player.Stats
         private void Update()
         {
             RegenMana();
-            CheckRage();
+            //CheckRage();
         }
 
         public float GetSpeed()
@@ -162,10 +162,10 @@ namespace Player.Stats
             this.manaBar.GetComponent<Slider>().value = this.mana / this.maxMana;
         }
 
-        public void CheckRage()
-        {
-            this.rageBar.GetComponent<Slider>().value = this.rage / this.maxRage;
-        }
+        // public void CheckRage()
+        // {
+        //     this.rageBar.GetComponent<Slider>().value = this.rage / this.maxRage;
+        // }
 
         public void IncrementRage()
         {

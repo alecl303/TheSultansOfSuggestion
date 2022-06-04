@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     GameObject CanvasObject;
     GameObject PlayerObject;
     GameObject SoundManager;
+    GameObject HUD;
 
     public GameObject DontDestroyOnLoad;
     
@@ -20,6 +21,7 @@ public class PauseMenu : MonoBehaviour
             isPaused = false;
             PlayerObject.GetComponent<PlayerController> ().enabled = true;
             CanvasObject.GetComponent<Canvas> ().enabled = false;
+            HUD.GetComponent<Canvas> ().enabled = true;
         }
         else
         {
@@ -27,6 +29,7 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             PlayerObject.GetComponent<PlayerController> ().enabled = false;
             CanvasObject.GetComponent<Canvas> ().enabled = true;
+            HUD.GetComponent<Canvas> ().enabled = false;
         }
     }
 
@@ -34,7 +37,7 @@ public class PauseMenu : MonoBehaviour
     {
         CanvasObject = GameObject.Find("/Pause");
         PlayerObject = GameObject.Find("/Player_Object");
-        
+        HUD= GameObject.Find("/HUD");
         print(CanvasObject);
     }
 
