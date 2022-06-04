@@ -36,40 +36,50 @@ public class CardSelectionController : MonoBehaviour
     void OnEnable()
     {
         Time.timeScale = 0;
-        IPlayerEffect randomBuff;
-        IPlayerEffect randomDebuff;
         playerTarget.GetComponent<PlayerController>().enabled = false;
 
         DetermineRandomWeapon();
-        playerSpell = DetermineRandomSpell();
+        DetermineRandomSpell();
+        InitializeDebuffs();
+        InitializeBuff();
+        InitializeCardText();
+    }
 
+    void InitializeDebuffs()
+    {
+        IPlayerEffect randomDebuff;
         for (int i = 0; i < 3; i++)
         {
             do
             {
                 randomDebuff = debuffManager.GetComponent<DebuffManager>().GetRandomDebuff();
-            } while (debuffList.Contains(randomDebuff) || 
-            (randomDebuff.GetName() == "InvertControls" && invertControlsBanned) || 
-            (randomDebuff.GetName() == "BackwardsBulletEffect" && backwardsBulletBanned) || 
+            } while (debuffList.Contains(randomDebuff) ||
+            (randomDebuff.GetName() == "InvertControls" && invertControlsBanned) ||
+            (randomDebuff.GetName() == "BackwardsBulletEffect" && backwardsBulletBanned) ||
             (randomDebuff.GetName() == "SpellsCostBlood" && bloodForSpellsBanned) ||
             (randomDebuff.GetName() == "LoseActiveSpell" && !hasActiveSpell) ||
             (randomDebuff.GetName() == "LoseActiveSpell" && hasActiveSpell && i == 2));
 
             debuffList.Add(randomDebuff);
         }
+    }
 
+    void InitializeBuff()
+    {
+        IPlayerEffect randomBuff;
         do
         {
             randomBuff = buffManager.GetComponent<BuffManager>().GetRandomBuff();
         } while (randomBuff.GetName() == "DoubleShot" && doubleShotBanned);
         buffList.Add(randomBuff);
+    }
 
+    void InitializeCardText()
+    {
         Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[0].GetDescription() + "\n\n\n\n" + debuffList[0].GetDescription();
         Card2.GetComponent<TMPro.TextMeshProUGUI>().text = this.newWeapon.GetDescription() + "\n\n\n\n" + debuffList[1].GetDescription();
         Card3.GetComponent<TMPro.TextMeshProUGUI>().text = playerSpell.GetDescription() + "\n\n\n\n" + debuffList[2].GetDescription();
     }
-
-    
     
     public void ApplyCard1()
     {
@@ -139,7 +149,7 @@ public class CardSelectionController : MonoBehaviour
         Icon.GetComponent<Image>().sprite = this.newSprite;
     }
 
-    IPlayerSpell DetermineRandomSpell()
+    void DetermineRandomSpell()
     {
         // To prevent players from getting the same spell they currently have. 
         IPlayerSpell spellPlaceholder;
@@ -149,6 +159,6 @@ public class CardSelectionController : MonoBehaviour
             spellPlaceholder = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
         } while (playerTarget.GetComponent<PlayerController>().GetActiveSpell() == spellPlaceholder.GetName());
 
-        return spellPlaceholder;
+        this.playerSpell = spellPlaceholder;
     }
 }
