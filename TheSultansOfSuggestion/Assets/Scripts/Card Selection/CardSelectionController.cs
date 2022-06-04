@@ -21,12 +21,11 @@ public class CardSelectionController : MonoBehaviour
     public GameObject Card2;
     public GameObject Card3;
     private Sprite newSprite;
+    private Sprite spellSprite;
     [SerializeField] private GameObject playerTarget;
 
     void Awake(){
         Icon = GameObject.Find("Icon");
-        var Story = GameObject.Find("Story");
-        Story.SetActive(true);
     }
     void OnEnable()
     {
@@ -56,8 +55,10 @@ public class CardSelectionController : MonoBehaviour
         this.newWeapon.randomize();
         this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
         this.newWeapon.SetSprite(this.newSprite);
+
         Icon.GetComponent<Image>().sprite = this.newSprite;
         playerSpell = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
+        this.spellSprite= SpellManager.GetComponent<SpellManager>().GetSpellSprite();
         Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[0].GetDescription() + "\n\n\n\n" + debuffList[0].GetDescription();
         Card2.GetComponent<TMPro.TextMeshProUGUI>().text = this.newWeapon.GetDescription() + "\n\n\n\n" + debuffList[1].GetDescription();
         Card3.GetComponent<TMPro.TextMeshProUGUI>().text = playerSpell.GetDescription() + "\n\n\n\n" + debuffList[2].GetDescription();
@@ -87,7 +88,7 @@ public class CardSelectionController : MonoBehaviour
     public void ApplyCard3()
     {
 
-        this.playerTarget.GetComponent<PlayerController>().SetActiveSpell(this.playerSpell);
+        this.playerTarget.GetComponent<PlayerController>().SetActiveSpell(this.playerSpell, this.spellSprite);
         debuffList[2].Execute(playerTarget);
         removeCardsFromScreen();
     }

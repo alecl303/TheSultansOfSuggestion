@@ -13,7 +13,7 @@ namespace Player.Effect
         public void Execute(GameObject gameObject)
         {
             var player = gameObject.GetComponent<PlayerController>();
-            player.SetActiveSpell(ScriptableObject.CreateInstance<SpellNothing>());
+            player.SetActiveSpell(ScriptableObject.CreateInstance<SpellNothing>(),null);
         }
         public string GetDescription()
         {
