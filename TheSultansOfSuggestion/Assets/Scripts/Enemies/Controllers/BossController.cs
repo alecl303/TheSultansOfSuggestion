@@ -310,6 +310,7 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 3);
 
         Destroy(this.gameObject);
+        FindObjectOfType<DontDestroyOnLoad>().DestroyAll();
         SceneManager.LoadScene(9);
         FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
     }

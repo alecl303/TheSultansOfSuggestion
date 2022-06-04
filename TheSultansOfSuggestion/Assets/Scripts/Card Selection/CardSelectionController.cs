@@ -21,6 +21,7 @@ public class CardSelectionController : MonoBehaviour
     public GameObject Card2;
     public GameObject Card3;
     private Sprite newSprite;
+    private Sprite spellSprite;
     [SerializeField] private GameObject playerTarget;
 
     private bool doubleShotBanned = false;
@@ -72,6 +73,14 @@ public class CardSelectionController : MonoBehaviour
             randomBuff = buffManager.GetComponent<BuffManager>().GetRandomBuff();
         } while (randomBuff.GetName() == "DoubleShot" && doubleShotBanned);
         buffList.Add(randomBuff);
+        this.newWeapon =  this.weapon.GetComponent<Weapon>();
+        this.newWeapon.Randomize();
+        this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
+        this.newWeapon.SetSprite(this.newSprite);
+
+        Icon.GetComponent<Image>().sprite = this.newSprite;
+        playerSpell = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
+        this.spellSprite= SpellManager.GetComponent<SpellManager>().GetSpellSprite();
     }
 
     void InitializeCardText()
@@ -99,7 +108,8 @@ public class CardSelectionController : MonoBehaviour
 
     public void ApplyCard3()
     {
-        this.playerTarget.GetComponent<PlayerController>().SetActiveSpell(this.playerSpell);
+
+        this.playerTarget.GetComponent<PlayerController>().SetActiveSpell(this.playerSpell, this.spellSprite);
         debuffList[2].Execute(playerTarget);
         hasActiveSpell = true;
         UpdateBans(false, 2);
@@ -119,7 +129,7 @@ public class CardSelectionController : MonoBehaviour
 
     void UpdateBans(bool buffTaken, int debuffIndex)
     {
-        if (buffTaken && (this.buffList[0].GetName() == "TripleShot" || this.buffList[0].GetName() == "DoubleShot")) 
+        if (buffTaken && buffList[0].GetName() == "TripleShot")
         {
             this.doubleShotBanned = true;
         }
