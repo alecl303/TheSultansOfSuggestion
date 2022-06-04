@@ -141,7 +141,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerBuffSpell"))
         {
-            Debug.Log("exiting");
             other.gameObject.GetComponent<IPlayerFloorSpellEffect>().SetOverlap(false);
         }
     }
