@@ -22,8 +22,6 @@ public class CardSelectionController : MonoBehaviour
     public GameObject Card3;
     private Sprite newSprite;
     [SerializeField] private GameObject playerTarget;
-    //private List<int> debuffIndices;
-    //private int buffIndex;
 
     private bool doubleShotBanned = false;
     private bool invertControlsBanned = false;
@@ -33,9 +31,6 @@ public class CardSelectionController : MonoBehaviour
 
     void Awake(){
         Icon = GameObject.Find("Icon");
-        //buffList = buffManager.GetComponent<BuffManager>().GetList();
-        //debuffList = debuffManager.GetComponent<DebuffManager>().GetList();
-        //debuffIndices = new List<int>();
     }
 
     void OnEnable()
@@ -43,18 +38,10 @@ public class CardSelectionController : MonoBehaviour
         Time.timeScale = 0;
         IPlayerEffect randomBuff;
         IPlayerEffect randomDebuff;
-        // this.GetComponentInParent<Canvas>().enabled = true;
         playerTarget.GetComponent<PlayerController>().enabled = false;
 
-        //this.newWeapon = this.weapon.GetComponent<Weapon>();
-        //this.newWeapon.Randomize();
-        //this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
-        //this.newWeapon.SetSprite(this.newSprite);
-        //Icon.GetComponent<Image>().sprite = this.newSprite;
         DetermineRandomWeapon();
         playerSpell = DetermineRandomSpell();
-        //Generate 3 random debuff indices and 1 buff index
-        //Do the spell check
 
         for (int i = 0; i < 3; i++)
         {
@@ -71,24 +58,6 @@ public class CardSelectionController : MonoBehaviour
             debuffList.Add(randomDebuff);
         }
 
-        //Ensures uniqueness
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    int index = GetRandomEffectIndex(debuffList);
-        //    if (debuffIndices.Count > 0)
-        //    {
-        //        do
-        //        {
-        //            index = GetRandomEffectIndex(debuffList);
-        //        } while (debuffIndices.Contains(index));
-        //    }
-
-        //    debuffIndices.Add(index);
-        //}
-        //buffIndex = GetRandomEffectIndex(buffList);
-        //EnsureCantLoseNoSpell();
-
-
         do
         {
             randomBuff = buffManager.GetComponent<BuffManager>().GetRandomBuff();
@@ -98,12 +67,6 @@ public class CardSelectionController : MonoBehaviour
         Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[0].GetDescription() + "\n\n\n\n" + debuffList[0].GetDescription();
         Card2.GetComponent<TMPro.TextMeshProUGUI>().text = this.newWeapon.GetDescription() + "\n\n\n\n" + debuffList[1].GetDescription();
         Card3.GetComponent<TMPro.TextMeshProUGUI>().text = playerSpell.GetDescription() + "\n\n\n\n" + debuffList[2].GetDescription();
-
-        //Card1.GetComponent<TMPro.TextMeshProUGUI>().text = buffList[buffIndex].GetDescription() + "\n\n\n\n" + debuffList[debuffIndices[0]].GetDescription();
-        //Card2.GetComponent<TMPro.TextMeshProUGUI>().text = this.newWeapon.GetDescription() + "\n\n\n\n" + debuffList[debuffIndices[1]].GetDescription();
-        //Card3.GetComponent<TMPro.TextMeshProUGUI>().text = playerSpell.GetDescription() + "\n\n\n\n" + debuffList[debuffIndices[2]].GetDescription();
-
-        //AssignButtons();
     }
 
     
@@ -135,10 +98,8 @@ public class CardSelectionController : MonoBehaviour
 
     void removeCardsFromScreen()
     {
-        //this.GetComponentInParent<Canvas>().enabled = false;
         this.buffList.Clear();
         this.debuffList.Clear();
-        //CleanLists(debuffIndices, buffIndex);
         this.transform.parent.gameObject.SetActive(false);
         
         Time.timeScale = 1;
@@ -190,59 +151,4 @@ public class CardSelectionController : MonoBehaviour
 
         return spellPlaceholder;
     }
-
-    //int GetRandomEffectIndex(List<IPlayerEffect> effectList)
-    //{
-    //    return Random.Range(0, effectList.Count);
-    //}
-
-    // Post
-    //void CleanLists(List<int> debuffIndices, int buffIndex)
-    //{
-    //    List<string> permaDebuffs = new List<string>() {"InvertControls", "BackwardsBulletEffect", "SpellsCostBlood"};
-    //    List<IPlayerEffect> debuffsToRemove = new List<IPlayerEffect>();
-
-    //    if (buffList[buffIndex].GetName() == "TripleShot")
-    //    {
-    //        buffList.ForEach((buff) =>
-    //        {
-    //            if (buff.GetName() == "DoubleShot")
-    //            {
-    //                buffList.Remove(buff);
-    //            }
-    //        });
-    //    }
-
-    //    debuffIndices.ForEach((index) =>
-    //    {
-    //        if (permaDebuffs.Contains(debuffList[index].GetName()))
-    //        {
-    //            debuffsToRemove.Add(debuffList[index]);
-    //        }
-    //    });
-
-    //    debuffsToRemove.ForEach((debuff) =>
-    //    {
-    //        debuffList.Remove(debuff);
-    //    });
-    //}
-
-    // Pre
-    //void EnsureCantLoseNoSpell()
-    //{
-    //    int counter = 0;
-    //    debuffIndices.ForEach((index) =>
-    //    {
-    //        if (debuffList[index].GetName() == "LoseActiveSpell" && playerTarget.GetComponent<PlayerController>().GetActiveSpell() == "Nothing")
-    //        {
-    //            int newIndex = 0;
-    //            do
-    //            {
-    //                newIndex = GetRandomEffectIndex(debuffList);
-    //            } while (debuffList[newIndex].GetName() == "LoseActiveSpell" || debuffIndices.Contains(newIndex));
-    //            debuffIndices[counter] = newIndex;
-    //        }
-    //        counter++;
-    //    });
-    //}
 }
