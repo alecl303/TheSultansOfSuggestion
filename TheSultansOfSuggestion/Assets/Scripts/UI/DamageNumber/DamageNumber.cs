@@ -63,11 +63,11 @@ public class DamageNumber : MonoBehaviour
     {
         if(isCrit)
         {
-            this.fontSize = 32;
+            this.fontSize = 24;
             this.textColor = new Color32(231, 40, 40, 255);
         }
         else{
-            this.fontSize = 24;
+            this.fontSize = 16;
             this.textColor = new Color32(255, 255, 255, 255);
         }
 
