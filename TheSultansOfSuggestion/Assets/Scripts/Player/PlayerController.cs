@@ -37,6 +37,10 @@ public class PlayerController : MonoBehaviour
     private IPlayerCommand down;
     private IPlayerCommand roll;
     // Start is called before the first frame update
+
+    // For keeping track of collision iframe 
+    private Coroutine iframeRoutine;
+
     void Start()
     {
         this.stats = this.gameObject.GetComponent<PlayerStats>();
@@ -47,7 +51,7 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
-        this.activeSpell1 = ScriptableObject.CreateInstance<SpellNothing>();
+        this.activeSpell1 = ScriptableObject.CreateInstance<Invincibility>();
         
         this.roll = ScriptableObject.CreateInstance<Roll>();
 
@@ -156,7 +160,7 @@ public class PlayerController : MonoBehaviour
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
 
                 //StartCoroutine(HitStun());
-                StartCoroutine(IFrame());
+                this.iframeRoutine = StartCoroutine(IFrame());
             }
 
             if (collision.gameObject.CompareTag("Boss"))
@@ -171,7 +175,7 @@ public class PlayerController : MonoBehaviour
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
 
                 //StartCoroutine(HitStun());
-                StartCoroutine(IFrame());
+                this.iframeRoutine = StartCoroutine(IFrame());
             }
 
             if (collision.gameObject.CompareTag("EnemyAttack"))
@@ -186,7 +190,7 @@ public class PlayerController : MonoBehaviour
                 FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
 
                 //StartCoroutine(HitStun());
-                StartCoroutine(IFrame());
+                this.iframeRoutine = StartCoroutine(IFrame());
 
                 Destroy(collision.gameObject);
             }
@@ -337,10 +341,19 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator InvincibleForXSeconds(float duration)
     {
+        // Check if there is any other iframe coroutine running, stop it and start invincibility one
+        if(iframeRoutine != null) 
+        {
+            StopCoroutine(iframeRoutine);
+        }
+
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
         this.canDodge = false;
         this.isInIFrame = true;
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(3*duration/5);
+        // Change slightly back to color, for indication its ending soon
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 0, 0.5f);
+        yield return new WaitForSeconds(2*duration/5);
         this.canDodge = true;
         this.isInIFrame = false;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
