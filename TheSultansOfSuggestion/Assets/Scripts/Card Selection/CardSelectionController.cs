@@ -119,7 +119,7 @@ public class CardSelectionController : MonoBehaviour
 
     void UpdateBans(bool buffTaken, int debuffIndex)
     {
-        if (buffTaken && buffList[0].GetName() == "DoubleShot")
+        if (buffTaken && buffList[0].GetName() == "TripleShot")
         {
             doubleShotBanned = true;
         }
