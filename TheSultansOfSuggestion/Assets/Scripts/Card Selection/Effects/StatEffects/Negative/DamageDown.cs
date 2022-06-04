@@ -24,9 +24,9 @@ namespace Player.Effect
             playerStats.rangeDamage *= (1 - this.changeAmount);
         }
 
-        public string GetName()
-        {
-            return "DamageDown";
-        }
+        //public string GetName()
+        //{
+        //    return "DamageDown";
+        //}
     }
 }

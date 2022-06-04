@@ -22,10 +22,10 @@ namespace Player.Effect
             playerStats.bulletLifeSpan *= (1 - this.changeAmount);
         }
 
-        public string GetName()
-        {
-            return "BulletSpeedDown";
-        }
+        //public string GetName()
+        //{
+        //    return "BulletSpeedDown";
+        //}
     }
 }
 
