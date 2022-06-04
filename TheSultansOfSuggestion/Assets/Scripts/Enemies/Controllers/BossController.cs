@@ -114,6 +114,8 @@ public class BossController : MonoBehaviour
         {
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
+            bool isCrit = attackObject.IsCrit();
+            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
 
             TakeDamage(damage);
 
@@ -128,6 +130,8 @@ public class BossController : MonoBehaviour
         {
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
+            bool isCrit = attackObject.IsCrit();
+            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
 
             TakeDamage(damage);
 
