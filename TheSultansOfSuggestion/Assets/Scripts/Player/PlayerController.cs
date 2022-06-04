@@ -36,6 +36,12 @@ public class PlayerController : MonoBehaviour
     private IPlayerCommand up;
     private IPlayerCommand down;
     private IPlayerCommand roll;
+
+    // Diagonal movement
+    private IPlayerCommand upRight;
+    private IPlayerCommand upLeft;
+    private IPlayerCommand downRight;
+    private IPlayerCommand downLeft;
     // Start is called before the first frame update
 
     // For keeping track of collision iframe 
@@ -51,6 +57,10 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
+        this.upRight = ScriptableObject.CreateInstance<MoveCharacterUpRight>();
+        this.upLeft = ScriptableObject.CreateInstance<MoveCharacterUpLeft>();
+        this.downRight = ScriptableObject.CreateInstance<MoveCharacterDownRight>();
+        this.downLeft = ScriptableObject.CreateInstance<MoveCharacterDownLeft>();
         this.activeSpell1 = ScriptableObject.CreateInstance<SpellNothing>();
         
         this.roll = ScriptableObject.CreateInstance<Roll>();
@@ -71,21 +81,41 @@ public class PlayerController : MonoBehaviour
             {
                 if (!this.isInHitStun)
                 {
-                    if (Input.GetAxis("Horizontal") > 0.01)
+                    // Check for movement if diagional or just one direction.
+                    if (Input.GetAxis("Horizontal") > 0.01 && Input.GetAxis("Vertical") < -0.01)
                     {
-                        this.right.Execute(this.gameObject);
+                        this.downRight.Execute(this.gameObject);
                     }
-                    if (Input.GetAxis("Horizontal") < -0.01)
+                    else if (Input.GetAxis("Horizontal") > 0.01 && Input.GetAxis("Vertical") > 0.01)
                     {
-                        this.left.Execute(this.gameObject);
+                        this.upRight.Execute(this.gameObject);
                     }
-                    if (Input.GetAxis("Vertical") < -0.01)
+                    else if (Input.GetAxis("Horizontal") < -0.01 && Input.GetAxis("Vertical") < -0.01)
                     {
-                        this.down.Execute(this.gameObject);
+                        this.downLeft.Execute(this.gameObject);
                     }
-                    if (Input.GetAxis("Vertical") > 0.01)
+                    else if (Input.GetAxis("Horizontal") < -0.01 && Input.GetAxis("Vertical") > 0.01)
                     {
-                        this.up.Execute(this.gameObject);
+                        this.upLeft.Execute(this.gameObject);
+                    }
+                    else 
+                    {
+                        if (Input.GetAxis("Horizontal") > 0.01)
+                        {
+                            this.right.Execute(this.gameObject);
+                        }
+                        if (Input.GetAxis("Horizontal") < -0.01)
+                        {
+                            this.left.Execute(this.gameObject);
+                        }
+                        if (Input.GetAxis("Vertical") < -0.01)
+                        {
+                            this.down.Execute(this.gameObject);
+                        }
+                        if (Input.GetAxis("Vertical") > 0.01)
+                        {
+                            this.up.Execute(this.gameObject);
+                        }
                     }
 
                     if (!this.isAttacking)
@@ -386,11 +416,19 @@ public class PlayerController : MonoBehaviour
         var right = this.right;
         var up = this.up;
         var down = this.down;
+        var upLeft = this.upLeft;
+        var upRight = this.upRight;
+        var downRight = this.downRight;
+        var downLeft = this.downLeft;
 
         this.right = left;
         this.left = right;
         this.up = down;
         this.down = up;
+        this.upLeft = downRight;
+        this.upRight = downLeft;
+        this.downRight = upLeft;
+        this.downLeft = upRight;
     }
 
     public IEnumerator Dodge(float duration, Vector2 direction)
