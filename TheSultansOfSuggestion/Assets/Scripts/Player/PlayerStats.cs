@@ -44,6 +44,8 @@ namespace Player.Stats
 
         public GameObject freezeBox;
         public GameObject whirlwind;
+        public GameObject healCircle;
+        public GameObject icicleTrap;
 
         public int weaponDamage;
 
@@ -113,9 +115,18 @@ namespace Player.Stats
             return damage;  // Will have to figure out active weapon in inventory
         }
 
+        public void SetMaxHealth(float maxHealth)
+        {
+            this.maxHealth = maxHealth;
+            this.health = Mathf.Clamp(this.health, 0, this.maxHealth);
+            // Update health bar indication
+            this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;
+        }
+
         public void Heal(float amount)
         {
             this.health += Mathf.Min(amount, this.maxHealth - this.health);
+            // Update health bar indication
             this.healthBar.GetComponent<Slider>().value = (float)this.health / (float)this.maxHealth;
         }
 

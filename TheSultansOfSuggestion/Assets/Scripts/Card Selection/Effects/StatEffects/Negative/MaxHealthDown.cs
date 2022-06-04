@@ -19,7 +19,8 @@ namespace Player.Effect
         public override void Execute(GameObject gameObject)
         {
             var playerStats = gameObject.GetComponent<PlayerStats>();
-            playerStats.maxHealth *= (1 - this.changeAmount);
+            var newMaxHealth = playerStats.maxHealth * (1 - this.changeAmount);
+            playerStats.SetMaxHealth(newMaxHealth);
         }
 
         //public string GetName()

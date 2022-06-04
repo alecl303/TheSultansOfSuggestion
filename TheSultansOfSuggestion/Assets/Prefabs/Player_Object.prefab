@@ -219,6 +219,8 @@ MonoBehaviour:
   activeWeapon: {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
   freezeBox: {fileID: 3110540496108732950, guid: 9a8a9d1635378b043bec17251251a11d, type: 3}
   whirlwind: {fileID: 2976386931763293713, guid: ec6d55eb3a765304288bea232f484a70, type: 3}
+  healCircle: {fileID: 931630928268226514, guid: ccd83df78e1373244ac3fc1e16ea4c66, type: 3}
+  icicleTrap: {fileID: 4106657398878484062, guid: 96427bfb21a1836449ef8c5259b38964, type: 3}
   weaponDamage: 0
   weaponSprite: {fileID: 0}
   testSprite: {fileID: 0}

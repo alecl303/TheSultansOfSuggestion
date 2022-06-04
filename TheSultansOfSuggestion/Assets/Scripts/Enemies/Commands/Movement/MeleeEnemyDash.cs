@@ -68,7 +68,6 @@ namespace Enemy.Command
             var startPos = rigidBody.transform.position;
             while (timeElapsed < time)
             {
-                //Debug.Log(timeElapsed + " out of  " + time);
                 rigidBody.MovePosition(Vector2.Lerp(startPos, newPosition, (timeElapsed / time)));
                 timeElapsed += Time.deltaTime;
                 yield return null;

@@ -88,6 +88,12 @@ MonoBehaviour:
     volume: 0.495
     pitch: 1
     loop: 1
+  - clip: {fileID: 8300000, guid: 2177c41b1532e5c4f9cb1b99572c17c8, type: 3}
+    audioSource: {fileID: 0}
+    title: Funk
+    volume: 0.495
+    pitch: 1
+    loop: 1
   sfxClips:
   - clip: {fileID: 8300000, guid: 10c1b0fb429340741b77bd1e9d950edb, type: 3}
     audioSource: {fileID: 0}
