@@ -38,7 +38,7 @@ abstract public class EnemyController : MonoBehaviour
     private Vector2 hotSpot = Vector2.zero;
     
     private bool dying = false;
-    private bool canAct = true;
+    [SerializeField] private bool canAct = true;
 
     
     
@@ -275,10 +275,7 @@ abstract public class EnemyController : MonoBehaviour
     private IEnumerator HitStun()
     {
         this.isInHitStun = true;
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 0.5f);
-        yield return new WaitForSeconds(this.hitStunTime/2);
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
-        yield return new WaitForSeconds(this.hitStunTime/2);
+        yield return new WaitForSeconds(this.hitStunTime);
         this.isInHitStun = false;
     }
 
@@ -291,17 +288,25 @@ abstract public class EnemyController : MonoBehaviour
             StartCoroutine(Stun(attack.GetStunTime()));
         }
     }
+    // InflictStun is used for just spells 
     public void InflictStun(float stunTime)
     {
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255);
-        this.canAct = false;
         StartCoroutine(Stun(stunTime));
     }
+    // Stun the enemy, and set them blue
     private IEnumerator Stun(float stunTime)
     {
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255);
-        this.canAct = false;
-        yield return new WaitForSeconds(stunTime);
+        // Take damage will occur first for 0.15 seconds, so wait .2 seconds
+        yield return new WaitForSeconds(0.2f);
+
+        // Call x number of times and keep changing the color to blue. This means enemy is still
+        var numCalls = 16;
+        for (int i = 0; i < numCalls; i++)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255);
+            this.canAct = false;
+            yield return new WaitForSeconds(stunTime/numCalls);
+        }
         this.canAct = true;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255);
     }
@@ -320,12 +325,15 @@ abstract public class EnemyController : MonoBehaviour
     {
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
         var tickDamage = this.target.gameObject.GetComponent<PlayerController>().GetStats().GetPoisonDamage();
+        // Tick damage for poison
         for (int i =  0; i < poisonTime; i++)
         {
             yield return new WaitForSeconds(1);
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
             TakeDamage(tickDamage);
         }
-
+        // Wait 0.5 seconds, since TakeDamage will revert color after 0.15 seconds. This will ensure the color below is last to run
+        yield return new WaitForSeconds(0.2f);
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
     }
 
@@ -348,15 +356,14 @@ abstract public class EnemyController : MonoBehaviour
         return this.aggroDistance;
     }
 
-    private void FlashStart()
+    // Make enemy flash red for 0.15 seconds when taking damage 
+    private IEnumerator FlashStart()
     {
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 1);
-        Invoke("FlashStop", 0.3f);
-    }
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
 
-    private void FlashStop()
-    {
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+        yield return new WaitForSeconds(0.15f);
+
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
     }
 
     public void TakeDamage(float damage)
@@ -369,7 +376,7 @@ abstract public class EnemyController : MonoBehaviour
         }
         else
         {
-            FlashStart();
+            StartCoroutine(FlashStart());
         }
     }
 
@@ -378,6 +385,8 @@ abstract public class EnemyController : MonoBehaviour
         var animator = this.gameObject.GetComponent<Animator>();
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         animator.SetBool("Dying", true);
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+
         FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
 
         this.dying = true;
