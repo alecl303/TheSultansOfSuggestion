@@ -25,6 +25,8 @@ public class CardSelectionController : MonoBehaviour
 
     void Awake(){
         Icon = GameObject.Find("Icon");
+        var Story = GameObject.Find("Story");
+        Story.SetActive(true);
     }
     void OnEnable()
     {

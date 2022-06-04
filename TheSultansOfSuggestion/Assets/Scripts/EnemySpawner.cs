@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("All done");
             FindObjectOfType<PlayerController>().GetStats().mana = 100;
 
-            FindObjectOfType<DontDestroyOnLoad>().SelectCard();
+            FindObjectOfType<DontDestroyOnLoad>().enabletext();
             // added this in because stopping and letting players choose after all enemies were
             // dead caused late update to call this selectcard multiple times causing
             // players to skip levels
