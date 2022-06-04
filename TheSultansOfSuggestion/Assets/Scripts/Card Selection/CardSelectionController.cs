@@ -119,24 +119,24 @@ public class CardSelectionController : MonoBehaviour
 
     void UpdateBans(bool buffTaken, int debuffIndex)
     {
-        if (buffTaken && buffList[0].GetName() == "DoubleShot")
+        if (buffTaken && (this.buffList[0].GetName() == "TripleShot" || this.buffList[0].GetName() == "DoubleShot")) 
         {
-            doubleShotBanned = true;
+            this.doubleShotBanned = true;
         }
 
         if (debuffList[debuffIndex].GetName() == "InvertControls")
         {
-            invertControlsBanned = true;
+            this.invertControlsBanned = true;
         }
 
         if (debuffList[debuffIndex].GetName() == "BackwardsBulletEffect")
         {
-            backwardsBulletBanned = true;
+            this.backwardsBulletBanned = true;
         }
 
         if (debuffList[debuffIndex].GetName() == "SpellsCostBlood")
         {
-            bloodForSpellsBanned = true;
+            this.bloodForSpellsBanned = true;
         }
     }
 
