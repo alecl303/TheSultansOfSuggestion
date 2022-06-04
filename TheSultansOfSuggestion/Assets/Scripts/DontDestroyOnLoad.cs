@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroyOnLoad : MonoBehaviour
 {
-
     int scene = 1;
     public GameObject player;
     public GameObject soundManager;
@@ -18,7 +17,6 @@ public class DontDestroyOnLoad : MonoBehaviour
 
     public void IncrementScene()
     {
-
         switch (scene)
         {
             case 1:
@@ -53,12 +51,12 @@ public class DontDestroyOnLoad : MonoBehaviour
         this.cardSelection.SetActive(true);
     }
 
-    public void enabletext()
+    public void EnableText()
     {
         var Story = GameObject.Find("/Story");
         Story.GetComponent<Canvas>().enabled=true;
-
     }
+
     public void DestroyAll()
     {
         Destroy(this.gameObject);
