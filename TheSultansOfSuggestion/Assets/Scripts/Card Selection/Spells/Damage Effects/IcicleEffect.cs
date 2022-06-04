@@ -6,7 +6,6 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
 {
     [SerializeField] private GameObject bulletPrefab;
     private bool overlap = false;
-    private bool repeat = true;
     private Vector2 direction; 
     private float speed = 5.0f;
     private float bulletDamage; 
@@ -65,11 +64,7 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
     }
     
     void OnDestroy()
-    {
-        repeat = false;      
-        if (activated == null)
-        {
-            StopAllCoroutines();
-        }
+    {  
+        StopAllCoroutines();   
     }
 }
