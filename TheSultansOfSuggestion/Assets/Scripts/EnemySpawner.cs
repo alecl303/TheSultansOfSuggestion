@@ -48,8 +48,6 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("All done");
             FindObjectOfType<PlayerController>().GetStats().mana = 100;
             FindObjectOfType<PlayerController>().GetStats().Heal(20);
-            FindObjectOfType<DontDestroyOnLoad>().SelectCard();
-
             FindObjectOfType<DontDestroyOnLoad>().EnableText();
             // added this in because stopping and letting players choose after all enemies were
             // dead caused late update to call this selectcard multiple times causing
