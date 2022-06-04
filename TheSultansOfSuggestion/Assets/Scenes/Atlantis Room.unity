@@ -11255,15 +11255,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
     - target: {fileID: 197715700692107282, guid: f5441efe6f416e343b37741c52f5bb10, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.026225207
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 197715700692107282, guid: f5441efe6f416e343b37741c52f5bb10, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.026225207
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 197715700692107282, guid: f5441efe6f416e343b37741c52f5bb10, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.03773582
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 197715700692107282, guid: f5441efe6f416e343b37741c52f5bb10, type: 3}
       propertyPath: m_sharedMaterial
