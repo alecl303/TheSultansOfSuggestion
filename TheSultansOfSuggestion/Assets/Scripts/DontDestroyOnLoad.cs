@@ -14,6 +14,7 @@ public class DontDestroyOnLoad : MonoBehaviour
     public GameObject eventSystem;
     public GameObject cardSelection;
     public GameObject death;
+    public GameObject damageNumbers;
 
     public void IncrementScene()
     {
@@ -42,6 +43,7 @@ public class DontDestroyOnLoad : MonoBehaviour
         DontDestroyOnLoad(this.eventSystem);
         DontDestroyOnLoad(this.cardSelection);
         DontDestroyOnLoad(this.death);
+        DontDestroyOnLoad(this.damageNumbers);
         scene++;
 
     }
@@ -68,5 +70,6 @@ public class DontDestroyOnLoad : MonoBehaviour
         Destroy(this.eventSystem);
         Destroy(this.cardSelection);
         Destroy(this.death);
+        Destroy(this.damageNumbers);
     }
 }
