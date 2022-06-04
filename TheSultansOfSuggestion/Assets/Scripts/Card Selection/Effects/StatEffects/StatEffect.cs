@@ -40,7 +40,9 @@ namespace Player.Effect
 
         private float GetRandomAmount()
         {
-            return Random.Range(0.2f, 0.6f);
+            List<float> randomValues = [0.2f, 0.25f, 0.3f, 0.35f, 0.4f];
+            int index = Random.Range(0, 5);
+            return randomValues[index];
         }
     }
 }

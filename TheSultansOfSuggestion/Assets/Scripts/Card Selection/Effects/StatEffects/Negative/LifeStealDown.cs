@@ -15,7 +15,7 @@ namespace Player.Effect
         }
         public string GetDescription()
         {
-            return "Decrease your melee life drain by 1 hp. (Values can be negative)";
+            return "Decrease your melee lifesteal by 1 hp. (Values can be negative)";
         }
 
         public string GetName()

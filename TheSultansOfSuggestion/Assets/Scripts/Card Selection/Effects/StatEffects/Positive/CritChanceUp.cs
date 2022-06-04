@@ -11,11 +11,11 @@ namespace Player.Effect
         public void Execute(GameObject gameObject)
         {
             var playerStats = gameObject.GetComponent<PlayerStats>();
-            playerStats.critChance += 10;
+            playerStats.critChance += 15;
         }
         public string GetDescription()
         {
-            return "Increase your crit chance by 10%";
+            return "Increase your crit chance by 15%";
         }
 
         public string GetName()

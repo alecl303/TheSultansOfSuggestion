@@ -1,26 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 using Player.Stats;
 
 namespace Player.Effect
 {
-    public class LifeStealUp : ScriptableObject, IPlayerEffect
+    public class CritMultiplierDown : ScriptableObject, IPlayerEffect
     {
         public void Execute(GameObject gameObject)
         {
             var playerStats = gameObject.GetComponent<PlayerStats>();
-            playerStats.lifeSteal += 1;
+            playerStats.critMultiplier -= 0.25f;
         }
         public string GetDescription()
         {
-            return "Increase your melee lifesteal by 1 hp";
+            return "Decrease your crit multiplier by 25%";
         }
 
         public string GetName()
         {
-            return "LifestealUp";
+            return "CritMultiplierUp";
         }
     }
 }

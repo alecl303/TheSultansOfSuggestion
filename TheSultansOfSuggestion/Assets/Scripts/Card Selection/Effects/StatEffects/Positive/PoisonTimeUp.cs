@@ -12,11 +12,11 @@ namespace Player.Effect
         {
             var playerStats = gameObject.GetComponent<PlayerStats>();
             playerStats.poisonTime += 1;
-            playerStats.poisonChance += 1;
+            playerStats.poisonChance += 3;
         }
         public string GetDescription()
         {
-            return "Increase your poison duration by 1 second, and poison chance by 1%";
+            return "Increase your poison duration by 1 second, and poison chance by 3%";
         }
 
         public string GetName()

@@ -27,7 +27,7 @@ public class BuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<TripleShot>(),
             //ScriptableObject.CreateInstance<BulletSizeUp>(),
             ScriptableObject.CreateInstance<CritMultiplierUp>(),
-            ScriptableObject.CreateInstance<Heal20>(),
+            //ScriptableObject.CreateInstance<Heal20>(),
             ScriptableObject.CreateInstance<LifeStealUp>(),
             ScriptableObject.CreateInstance<ManaUp>(),
             ScriptableObject.CreateInstance<MaxHealthUp>(),

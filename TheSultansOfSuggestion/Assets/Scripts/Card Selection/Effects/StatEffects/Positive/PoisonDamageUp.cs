@@ -12,11 +12,11 @@ namespace Player.Effect
         {
             var playerStats = gameObject.GetComponent<PlayerStats>();
             playerStats.poisonTickDamage += 1;
-            playerStats.poisonChance += 1;
+            playerStats.poisonChance += 3;
         }
         public string GetDescription()
         {
-            return "Increase your poison tick damage by 1, and poison chance by 1%";
+            return "Increase your poison tick damage by 1, and poison chance by 3%";
         }
 
         public string GetName()
