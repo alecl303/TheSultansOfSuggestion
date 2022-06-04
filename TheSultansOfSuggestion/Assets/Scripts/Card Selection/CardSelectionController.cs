@@ -25,14 +25,16 @@ public class CardSelectionController : MonoBehaviour
     private List<int> debuffIndices;
     private int buffIndex;
 
-    void Start(){
+    void OnEnable(){
         Icon = GameObject.Find("Icon");
         buffList = buffManager.GetComponent<BuffManager>().GetList();
         debuffList = debuffManager.GetComponent<DebuffManager>().GetList();
+        debuffIndices = new List<int>();
     }
 
-    void OnEnable()
+    void Start()
     {
+        //debuffList = debuffManager.GetComponent<DebuffManager>().GetList();
         Time.timeScale = 0;
         //IPlayerEffect randomBuff;
         //IPlayerEffect randomDebuff;
@@ -61,11 +63,15 @@ public class CardSelectionController : MonoBehaviour
         //Ensures uniqueness
         for (int i = 0; i < 3; i++)
         {
-            int index = 0;
-            do
+            int index = GetRandomEffectIndex(debuffList);
+            if (debuffIndices.Count > 0)
             {
-                index = GetRandomEffectIndex(debuffList);
-            } while (debuffIndices.Contains(index));
+                do
+                {
+                    index = GetRandomEffectIndex(debuffList);
+                } while (debuffIndices.Contains(index));
+            }
+            
             debuffIndices.Add(index);
         }
         buffIndex = GetRandomEffectIndex(buffList);
@@ -160,7 +166,7 @@ public class CardSelectionController : MonoBehaviour
     // Post
     void CleanLists(List<int> debuffIndices, int buffIndex)
     {
-        List<string> permaDebuffs = ["InvertControls", "BackwardsBulletEffect", "SpellsCostBlood"];
+        List<string> permaDebuffs = new List<string>() {"InvertControls", "BackwardsBulletEffect", "SpellsCostBlood"};
         List<IPlayerEffect> debuffsToRemove = new List<IPlayerEffect>();
 
         if (buffList[buffIndex].GetName() == "TripleShot")
@@ -200,9 +206,8 @@ public class CardSelectionController : MonoBehaviour
                 do
                 {
                     newIndex = GetRandomEffectIndex(debuffList);
-                } while (debuffList[newIndex].GetName() == "LoseActiveSpell" || debuffIndices.Contains(newIndex);
+                } while (debuffList[newIndex].GetName() == "LoseActiveSpell" || debuffIndices.Contains(newIndex));
                 debuffIndices[counter] = newIndex;
-                break;
             }
             counter++;
         });

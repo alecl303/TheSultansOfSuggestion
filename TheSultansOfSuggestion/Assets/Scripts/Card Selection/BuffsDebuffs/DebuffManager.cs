@@ -40,6 +40,22 @@ public class DebuffManager : MonoBehaviour
 
     public List<IPlayerEffect> GetList()
     {
-        return debuffs;
+        return new List<IPlayerEffect>() {
+            ScriptableObject.CreateInstance<BulletSpeedDown>(),
+            ScriptableObject.CreateInstance<CritChanceDown>(),
+            ScriptableObject.CreateInstance<DamageDown>(),
+            ScriptableObject.CreateInstance<BackwardsBulletEffect>(),
+            //ScriptableObject.CreateInstance<DropTo1HP>(),
+            ScriptableObject.CreateInstance<InvertControls>(),
+            ScriptableObject.CreateInstance<LoseActiveSpell>(),
+            ScriptableObject.CreateInstance<SpellsCostBlood>(),
+            ScriptableObject.CreateInstance<DamageDown>(),
+            //ScriptableObject.CreateInstance<BulletSizeDown>(),
+            ScriptableObject.CreateInstance<LifeStealDown>(),
+            ScriptableObject.CreateInstance<ManaDown>(),
+            ScriptableObject.CreateInstance<MaxHealthDown>(),
+            ScriptableObject.CreateInstance<MovementSpeedDown>(),
+            ScriptableObject.CreateInstance<RangeDown>()
+        };
     }
 }
