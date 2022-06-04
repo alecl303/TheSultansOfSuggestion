@@ -6,17 +6,16 @@ using Player.Effect;
 public class DebuffManager : MonoBehaviour
 {
     List<IPlayerEffect> debuffs;
-    IPlayerEffect randomDebuff;
     [SerializeField] string description;
-    private int debuffLength = 0;
+
+    private void Awake()
+    {
+        InitDebuffs();
+    }
 
     public IPlayerEffect GetRandomDebuff()
     {
-        if(this.debuffLength == 0)
-        {
-            InitDebuffs();
-        }
-        return(this.debuffs[Random.Range(0, this.debuffLength)]);
+        return(this.debuffs[Random.Range(0, this.debuffs.Count)]);
     }
 
     void InitDebuffs(){
@@ -37,7 +36,10 @@ public class DebuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<MovementSpeedDown>(),
             ScriptableObject.CreateInstance<RangeDown>()
         };
-        this.debuffLength = this.debuffs.Count;
     }
 
+    public List<IPlayerEffect> GetList()
+    {
+        return debuffs;
+    }
 }

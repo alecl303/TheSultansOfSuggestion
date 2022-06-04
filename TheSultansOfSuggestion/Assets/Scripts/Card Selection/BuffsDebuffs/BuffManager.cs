@@ -6,20 +6,16 @@ using Player.Effect;
 public class BuffManager : MonoBehaviour
 {
     List<IPlayerEffect> buffs;
-    IPlayerEffect randomBuff;
-
     [SerializeField] string description;
-    private int buffLength = 0;
-    
+
+    private void Awake()
+    {
+        InitBuffs();
+    }
 
     public IPlayerEffect GetRandomBuff()
     {
-        if(this.buffLength == 0)
-        {
-            InitBuffs();
-        }
-
-        return(this.buffs[Random.Range(0, this.buffLength)]);
+        return(this.buffs[Random.Range(0, this.buffs.Count)]);
     }
 
     void InitBuffs(){
@@ -42,7 +38,6 @@ public class BuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<RangeUp>(),
             ScriptableObject.CreateInstance<StunChanceUp>(),
         };
-        this.buffLength = this.buffs.Count;
     }
 
     public List<IPlayerEffect> GetList()
