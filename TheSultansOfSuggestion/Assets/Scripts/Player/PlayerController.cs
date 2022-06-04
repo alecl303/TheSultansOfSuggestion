@@ -134,14 +134,15 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerBuffSpell"))
         {
             other.gameObject.GetComponent<IPlayerFloorSpellEffect>().SetOverlap(true);
-            StartCoroutine(other.gameObject.GetComponent<IPlayerFloorSpellEffect>().ApplyEffect(this));
+            other.gameObject.GetComponent<IPlayerFloorSpellEffect>().ApplyEffect(this);
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("PlayerBuffSpell"))
         {
-            other.gameObject.GetComponent<HealEffect>().SetOverlap(false);
+            Debug.Log("exiting");
+            other.gameObject.GetComponent<IPlayerFloorSpellEffect>().SetOverlap(false);
         }
     }
     void OnCollisionEnter2D(Collision2D collision)

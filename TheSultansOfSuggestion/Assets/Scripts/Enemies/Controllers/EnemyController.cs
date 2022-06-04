@@ -197,9 +197,7 @@ abstract public class EnemyController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PlayerTrapSpell"))
         {
-            Debug.Log("Activating player trap spell");
-            other.gameObject.GetComponent<IEnemyTrapSpellEffect>().SetOverlap(true);
-            StartCoroutine(other.gameObject.GetComponent<IEnemyTrapSpellEffect>().ApplyEffect(this));
+            other.gameObject.GetComponent<IEnemyTrapSpellEffect>().ApplyEffect(this);
         }
     }
 
