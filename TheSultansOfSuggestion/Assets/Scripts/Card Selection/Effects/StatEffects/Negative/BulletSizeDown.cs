@@ -13,6 +13,7 @@ namespace Player.Effect
             base.Init();
             this.affectedStat = "bullet size";
             this.affliction = "Decrease";
+            this.name = "BulletSizeDown";
         }
 
         public override void Execute(GameObject gameObject)
@@ -20,5 +21,10 @@ namespace Player.Effect
             var playerStats = gameObject.GetComponent<PlayerStats>();
             //playerStats.bulletSize *= 0.9f;
         }
+
+        //public string GetName()
+        //{
+        //    return "BulletSizeDown";
+        //}
     }
 }

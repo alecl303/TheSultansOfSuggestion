@@ -19,7 +19,7 @@ namespace Player.Effect
 
         public virtual void Init()
         {
-            this.changeAmount = RandomAmount.GetRandomAmount();
+            this.changeAmount = GetRandomAmount();
             this.affliction = "Increase";
         }
 
@@ -27,9 +27,22 @@ namespace Player.Effect
         {
             //var playerStats = gameObject.GetComponent<PlayerStats>();
         }
+
+        public string GetName()
+        {
+            return this.name;
+        }
+
         public string GetDescription()
         {
             return (this.affliction + " your " + this.affectedStat + " by " + ((int)(this.changeAmount * 100)) + "%");
+        }
+
+        private float GetRandomAmount()
+        {
+            List<float> randomValues = new List<float>(){0.2f, 0.25f, 0.3f, 0.35f, 0.4f};
+            int index = Random.Range(0, 5);
+            return randomValues[index];
         }
     }
 }

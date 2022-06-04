@@ -10,6 +10,12 @@ namespace Player.Command
     {
 
         private int requiredMana = 0;
+        private float cooldown = 0.0f;
+
+        public float GetCooldown() 
+        {
+            return this.cooldown;
+        }
 
         public void Execute(GameObject gameObject)
         {
@@ -19,6 +25,11 @@ namespace Player.Command
         public string GetDescription()
         {
             return "Do nothing for free.";
+        }
+
+        public string GetName()
+        {
+            return "Nothing";
         }
     }
 }

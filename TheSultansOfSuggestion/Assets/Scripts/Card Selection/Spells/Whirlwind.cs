@@ -10,6 +10,12 @@ namespace Player.Command
     {
 
         private int requiredMana = 50;
+        private float cooldown = 0.0f;
+
+        public float GetCooldown() {
+            
+            return this.cooldown;
+        }
 
         public void Execute(GameObject gameObject)
         {
@@ -33,6 +39,11 @@ namespace Player.Command
         public string GetDescription()
         {
             return "Deal melee damage to all enemies in a large radius. Costs " + this.requiredMana + " mana.";
+        }
+
+        public string GetName()
+        {
+            return "Whirlwind";
         }
 
         // public Sprite ReturnSprite(GameObject gameObject)

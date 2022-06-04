@@ -20,5 +20,10 @@ namespace Player.Effect
         {
             return "Your bullets will fly in reverse";
         }
+
+        public string GetName()
+        {
+            return "BackwardsBullet";
+        }
     }
 }

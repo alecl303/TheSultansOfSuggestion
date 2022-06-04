@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject hitboxPrefab;
     [SerializeField] private Sprite empty;
     [SerializeField] public IPlayerSpell activeSpell1;
-
+    private bool onCooldown = false;
 
     private ItemBar playersCurrentItemBar;
 
@@ -101,7 +101,12 @@ public class PlayerController : MonoBehaviour
                         // Active Spell Attack
                         if (Input.GetButtonDown("Fire3"))
                         {
-                            this.activeSpell1.Execute(this.gameObject);
+                            if (!onCooldown) {
+                                this.onCooldown = true;
+                                this.activeSpell1.Execute(this.gameObject);
+                                var cooldownTime = this.activeSpell1.GetCooldown();
+                                StartCoroutine(WaitCoolDown(cooldownTime));
+                            }
                         }
                         // Dodge roll
                         if (Input.GetButtonDown("Jump") && this.canDodge)
@@ -120,6 +125,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.CompareTag("PlayerBuffSpell"))
+        {
+            other.gameObject.GetComponent<IPlayerFloorSpellEffect>().SetOverlap(true);
+            StartCoroutine(other.gameObject.GetComponent<IPlayerFloorSpellEffect>().ApplyEffect(this));
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("PlayerBuffSpell"))
+        {
+            other.gameObject.GetComponent<HealEffect>().SetOverlap(false);
+        }
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (!this.isInIFrame)
@@ -170,6 +190,8 @@ public class PlayerController : MonoBehaviour
 
                 Destroy(collision.gameObject);
             }
+
+            // if (collision.gameOBject.CompareTag(""))
         }
         else
         {
@@ -225,6 +247,10 @@ public class PlayerController : MonoBehaviour
         //}
     }
 
+    public IEnumerator WaitCoolDown(float duration) {
+        yield return new WaitForSeconds(duration);
+        onCooldown = false;
+    }
     public void TakeDamage(float damage)
     {
         this.stats.TakeDamage(damage);
@@ -269,11 +295,19 @@ public class PlayerController : MonoBehaviour
     private IEnumerator IFrame()
     {
         this.isInIFrame = true;
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0.5f);
+        var playerSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>().color;
+        var red = playerSpriteRenderer.r;
+        var blue = playerSpriteRenderer.b;
+        var green = playerSpriteRenderer.g;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(red, blue, green, 0.5f);
 
         yield return new WaitForSeconds(this.iFrameTime);
 
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+        playerSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>().color;
+        red = playerSpriteRenderer.r;
+        blue = playerSpriteRenderer.b;
+        green = playerSpriteRenderer.g;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(red, blue, green, 1.0f);
         this.isInIFrame = false;
     }
 
@@ -304,9 +338,11 @@ public class PlayerController : MonoBehaviour
     public IEnumerator InvincibleForXSeconds(float duration)
     {
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        this.canDodge = false;
+        this.isInIFrame = true;
         yield return new WaitForSeconds(duration);
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        this.canDodge = true;
+        this.isInIFrame = false;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
     }
 
@@ -337,6 +373,11 @@ public class PlayerController : MonoBehaviour
             this.playersCurrentItemBar.Updateslots(2,sprite);
         }
 
+    }
+
+    public string GetActiveSpell()
+    {
+        return activeSpell1.GetName();
     }
 
     public void InvertControls()

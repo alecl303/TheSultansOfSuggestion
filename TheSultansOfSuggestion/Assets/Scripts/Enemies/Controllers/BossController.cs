@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 using Boss.Command;
 
@@ -309,6 +310,8 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 3);
 
         Destroy(this.gameObject);
+        SceneManager.LoadScene(9);
+        FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
     }
     public bool IsAttacking()
     {

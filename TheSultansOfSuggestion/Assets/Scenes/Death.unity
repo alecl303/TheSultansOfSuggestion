@@ -615,6 +615,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathTitle Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8373697981254795321, guid: 86d1785e2042e16499ca886b3c17058a, type: 3}
+      propertyPath: m_text
+      value: 'You Died!
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373697981254795321, guid: 86d1785e2042e16499ca886b3c17058a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a03ffe16ae467a346ab7e4f2e6925021, type: 2}
+    - target: {fileID: 8373697981254795321, guid: 86d1785e2042e16499ca886b3c17058a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4217590955041073766, guid: a03ffe16ae467a346ab7e4f2e6925021, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86d1785e2042e16499ca886b3c17058a, type: 3}
 --- !u!1001 &3252423947085091630

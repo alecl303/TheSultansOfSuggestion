@@ -453,9 +453,53 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 845654503}
     m_Modifications:
+    - target: {fileID: 4321922016602508005, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_text
+      value: The Sultans of Suggestion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321922016602508005, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321922016602508005, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_margin.y
+      value: 5.3085938
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321922016602508005, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_margin.z
+      value: -1.2453918
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321922016602508005, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a03ffe16ae467a346ab7e4f2e6925021, type: 2}
+    - target: {fileID: 4321922016602508005, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321922016602508005, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4217590955041073766, guid: a03ffe16ae467a346ab7e4f2e6925021, type: 2}
     - target: {fileID: 4321922016602508010, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321922016602508010, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1059.4382
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321922016602508010, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 181.5672
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321922016602508010, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 36.446335
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321922016602508010, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 311.5437
       objectReference: {fileID: 0}
     - target: {fileID: 7263595794311273074, guid: bb28978d6e3c4374ca78cf2bffd8798b, type: 3}
       propertyPath: m_Pivot.x

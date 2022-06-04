@@ -18,6 +18,11 @@ namespace Player.Effect
         {
             return "Hp drops to 1";
         }
+
+        public string GetName()
+        {
+            return "DropTo1HP";
+        }
     }
 }
 

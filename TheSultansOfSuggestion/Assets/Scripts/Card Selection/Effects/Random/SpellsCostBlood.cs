@@ -19,5 +19,10 @@ namespace Player.Effect
         {
             return "Spells will use hp instead of mana (reduce cost by 80%)";
         }
+
+        public string GetName()
+        {
+            return "SpellsCostBlood";
+        }
     }
 }

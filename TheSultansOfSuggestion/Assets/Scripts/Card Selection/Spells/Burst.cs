@@ -10,6 +10,12 @@ namespace Player.Command
     {
 
         private int requiredMana = 25;
+        private float cooldown = 0.0f;
+
+        public float GetCooldown() 
+        {
+            return this.cooldown;
+        }
 
         public void Execute(GameObject gameObject)
         {
@@ -38,6 +44,11 @@ namespace Player.Command
         public string GetDescription()
         {
             return "Generates a burst of bullets around the player. Costs " + requiredMana + " mana.";
+        }
+
+        public string GetName()
+        {
+            return "Burst";
         }
     }
 }

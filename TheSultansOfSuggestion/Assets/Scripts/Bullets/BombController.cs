@@ -28,7 +28,7 @@ public class BombController : EnemyAttack
 
     private IEnumerator BombDisolve()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.2f);
         Destroy(this.gameObject);
     }
 }

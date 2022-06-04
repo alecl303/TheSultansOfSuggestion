@@ -15,7 +15,12 @@ namespace Player.Effect
         }
         public string GetDescription()
         {
-            return "Increase your melee life drain by 1 hp";
+            return "Increase your melee lifesteal by 1 hp";
+        }
+
+        public string GetName()
+        {
+            return "LifestealUp";
         }
     }
 }

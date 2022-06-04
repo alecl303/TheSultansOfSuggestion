@@ -12,6 +12,7 @@ namespace Player.Effect
         {
             base.Init();
             this.affectedStat = "bullet range";
+            this.name = "ManaUp";
         }
 
         public override void Execute(GameObject gameObject)

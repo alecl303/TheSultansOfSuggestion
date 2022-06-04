@@ -33,6 +33,8 @@ public class SpellManager : MonoBehaviour
             ScriptableObject.CreateInstance<Invincibility>(),
             ScriptableObject.CreateInstance<Berserk>(),
             ScriptableObject.CreateInstance<Burst>()
+            ScriptableObject.CreateInstance<Heal>(),
+            ScriptableObject.CreateInstance<IcicleTrap>()
         };
         this.spellLength = this.spellsScriptable.Count;
     }
