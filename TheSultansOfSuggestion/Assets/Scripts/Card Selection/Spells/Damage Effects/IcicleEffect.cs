@@ -6,11 +6,14 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
 {
     [SerializeField] private GameObject bulletPrefab;
     private bool overlap = false;
-    private bool repeat = true;
     private Vector2 direction; 
     private float speed = 5.0f;
     private float bulletDamage; 
     private bool isFiring = false;
+
+    // Keep track if there is a coroutine running right now (the trap activated)
+    Coroutine activated = null;
+
 
     public void SetOverlap(bool overlap)
     {
@@ -21,7 +24,15 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
         this.bulletDamage = bulletDamage;
     }
     
-    public IEnumerator ApplyEffect(EnemyController target)
+    public void ApplyEffect(EnemyController target)
+    {
+        if (activated == null)
+        {
+            StartCoroutine(TrapEffect(target));
+        }
+    }
+
+    private IEnumerator TrapEffect(EnemyController target)
     {
         if (!isFiring){
             isFiring = true;
@@ -51,8 +62,9 @@ public class IcicleEffect : MonoBehaviour, IEnemyTrapSpellEffect
             isFiring = false;
         }
     }
+    
     void OnDestroy()
-    {
-        repeat = false;      
+    {  
+        StopAllCoroutines();   
     }
 }

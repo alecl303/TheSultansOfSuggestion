@@ -5,7 +5,10 @@ public class HealEffect : MonoBehaviour, IPlayerFloorSpellEffect
 {
     [SerializeField] private float flatHeal;
     private bool overlap = false;
-    private float timeBeforeHeal = 1.0f;
+    private float timeBeforeHeal = 2.0f;
+
+    // Keep track if if the effect is already active 
+    Coroutine activated = null;
     
     public void SetFlatHeal(float flatHeal)
     {
@@ -14,21 +17,37 @@ public class HealEffect : MonoBehaviour, IPlayerFloorSpellEffect
     public void SetOverlap(bool overlap)
     {
         this.overlap = overlap;
+        if (activated != null) 
+        {
+            StopCoroutine(activated);
+        }
     }
     public void SetTimeBeforeHeal(float timeBeforeHeal){
         this.timeBeforeHeal = timeBeforeHeal;
     }
+
     void OnDestroy()  
     {   
-        overlap = false;
+        // Stop the effect and set overlap to false once the floor spell is destroyed.
+        SetOverlap(false);
     }
-    public IEnumerator ApplyEffect(PlayerController target)
+
+    public void ApplyEffect(PlayerController target)
+    {
+        if (activated == null)
+        {
+            activated = StartCoroutine(Effect(target));
+        }
+    }
+
+    public IEnumerator Effect(PlayerController target)
     {
         var playerStats = target.GetStats();
         while(overlap) 
         {
-            playerStats.Heal(flatHeal);
             yield return new WaitForSeconds(timeBeforeHeal);
+            playerStats.Heal(flatHeal);
         }
     }
+    
 }
