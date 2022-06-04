@@ -32,7 +32,7 @@ public class SpellManager : MonoBehaviour
             ScriptableObject.CreateInstance<FreezeEnemies>(),
             ScriptableObject.CreateInstance<Invincibility>(),
             ScriptableObject.CreateInstance<Berserk>(),
-            ScriptableObject.CreateInstance<Burst>()
+            ScriptableObject.CreateInstance<Burst>(),
             ScriptableObject.CreateInstance<Heal>(),
             ScriptableObject.CreateInstance<IcicleTrap>()
         };

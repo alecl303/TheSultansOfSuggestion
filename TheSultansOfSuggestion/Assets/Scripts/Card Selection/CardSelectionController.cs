@@ -74,7 +74,7 @@ public class CardSelectionController : MonoBehaviour
         } while (randomBuff.GetName() == "DoubleShot" && doubleShotBanned);
         buffList.Add(randomBuff);
         this.newWeapon =  this.weapon.GetComponent<Weapon>();
-        this.newWeapon.randomize();
+        this.newWeapon.Randomize();
         this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
         this.newWeapon.SetSprite(this.newSprite);
 
