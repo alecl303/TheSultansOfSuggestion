@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using Enemy.Command;
 
@@ -32,6 +33,9 @@ abstract public class EnemyController : MonoBehaviour
     [SerializeField] private bool isFlying = false;
     [SerializeField] public GameObject bulletPrefab;
 
+    [SerializeField] protected GameObject healthBarUI;
+    [SerializeField] protected Slider healthBar;
+
 
     [SerializeField] private Texture2D crosshair;
     private CursorMode cursorMode = CursorMode.Auto;
@@ -39,6 +43,8 @@ abstract public class EnemyController : MonoBehaviour
     
     private bool dying = false;
     private bool canAct = true;
+
+    private float maxHealth;
 
     
     
@@ -59,6 +65,8 @@ abstract public class EnemyController : MonoBehaviour
     void Start()
     {
         Init();
+        this.maxHealth = this.health;
+        this.healthBar.value = this.GetHealthRatio();
     }
 
     void Update()
@@ -78,8 +86,10 @@ abstract public class EnemyController : MonoBehaviour
     // Actions that every enemy will do on update
     virtual protected void OnUpdate()
     {
+        this.healthBar.value = this.GetHealthRatio();
         if (this.health <= 0 && !this.dying)
         {
+            this.healthBarUI.SetActive(false);
             this.canAct = false;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             StartCoroutine(Die());
@@ -249,6 +259,11 @@ abstract public class EnemyController : MonoBehaviour
     public float GetAttackRange()
     {
         return this.attackRange;
+    }
+
+    public float GetHealthRatio()
+    {
+        return(this.health/this.maxHealth);
     }
 
     //public float GetKnockback()
