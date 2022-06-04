@@ -10,6 +10,12 @@ namespace Player.Command
     {
 
         private int requiredMana = 0;
+        private float cooldown = 0.0f;
+
+        public float GetCooldown() 
+        {
+            return this.cooldown;
+        }
 
         public void Execute(GameObject gameObject)
         {

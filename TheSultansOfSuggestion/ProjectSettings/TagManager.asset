@@ -11,6 +11,8 @@ TagManager:
   - Item
   - Hole
   - PlayerMeleeAttack
+  - PlayerBuffSpell
+  - PlayerTrapSpell
   - Boss
   layers:
   - Default
