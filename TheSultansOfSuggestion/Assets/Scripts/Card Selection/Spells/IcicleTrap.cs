@@ -35,7 +35,7 @@ namespace Player.Command
         }
         public string GetDescription()
         {
-            return "Create a trap spell on the floor for " + this.duration + " seconds. Enemies that step on the trap activates a barrage of bullets. Costs " + this.requiredMana + " mana and has a " + this.cooldown + " cooldown time.";
+            return "Create a trap spell on the floor for " + this.duration + " seconds. Enemies that step on the trap activates a barrage of bullets. Costs " + this.requiredMana + " mana and has a " + this.cooldown + "s cooldown time.";
         }
 
         public string GetName()

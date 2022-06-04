@@ -38,7 +38,8 @@ namespace Player.Command
 
         public string GetDescription()
         {
-            return "Create a healing circle for " + this.duration + " seconds and heal " + this.flatHeal + " by standing on the circle for " + this.timeBeforeHeal + ". Costs " + this.requiredMana + " mana and has a " + this.cooldown + " cooldown time.";
+            return "Create a healing circle for " + this.duration + " seconds and heal " + this.flatHeal + " by standing on the circle for " + this.timeBeforeHeal + ". Costs " + 
+                this.requiredMana + " mana and has a " + this.cooldown + "s cooldown time.";
         }
 
         public string GetName()
