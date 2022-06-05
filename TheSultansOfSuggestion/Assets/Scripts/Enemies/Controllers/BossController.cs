@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using Boss.Command;
 
@@ -32,6 +33,9 @@ public class BossController : MonoBehaviour
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
 
+    [SerializeField] protected GameObject healthBarUI;
+    [SerializeField] protected Slider healthBar;
+
     private bool dying = false;
     private bool canAct = true;
 
@@ -57,6 +61,7 @@ public class BossController : MonoBehaviour
     void Start()
     {
         Init();
+        this.healthBar.value = this.GetHealthRatio();
     }
 
     void Update()
@@ -84,6 +89,7 @@ public class BossController : MonoBehaviour
     // Actions that every enemy will do on update
     protected void OnUpdate()
     {
+        this.healthBar.value = this.GetHealthRatio();
         if (this.health <= 0 && !this.dying)
         {
             this.canAct = false;
@@ -212,6 +218,11 @@ public class BossController : MonoBehaviour
     public float GetAttackDamage()
     {
         return this.attackDamage;
+    }
+
+    public float GetHealthRatio()
+    {
+        return(this.health/this.maxHealth);
     }
 
     private void CheckForStun(PlayerAttack attack)
