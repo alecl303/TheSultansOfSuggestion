@@ -57,6 +57,7 @@ public class DontDestroyOnLoad : MonoBehaviour
     {
         var Story = GameObject.Find("/Story");
         Story.GetComponent<Canvas>().enabled=true;
+        //Story.GetComponentInChildren<UnityEngine.UI.Text>().text = "bob";
     }
 
     public void DestroyAll()

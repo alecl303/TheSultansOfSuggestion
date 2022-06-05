@@ -137,7 +137,7 @@ abstract public class EnemyController : MonoBehaviour
             float damage = attackObject.GetDamage();
             bool isCrit = attackObject.IsCrit();
             //print(isCrit);
-            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
+            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit, false);
 
             TakeDamage(damage);
             StartCoroutine(HitStun());
@@ -158,7 +158,7 @@ abstract public class EnemyController : MonoBehaviour
             float damage = attackObject.GetDamage();
             bool isCrit = attackObject.IsCrit();
             //print(isCrit);
-            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
+            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit, false);
 
             TakeDamage(damage);
             StartCoroutine(HitStun());
@@ -334,7 +334,7 @@ abstract public class EnemyController : MonoBehaviour
     {
         var poisonChance = attack.GetPoisonChance();
 
-        if (Random.Range(1, 100) <= poisonChance)
+        if (Random.Range(0, 100) <= poisonChance)
         {
             StartCoroutine(Poison(attack.GetPoisonTime()));
         }
@@ -349,6 +349,7 @@ abstract public class EnemyController : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
+            DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, tickDamage, false, true);
             TakeDamage(tickDamage);
         }
         // Wait 0.5 seconds, since TakeDamage will revert color after 0.15 seconds. This will ensure the color below is last to run
