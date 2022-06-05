@@ -57,12 +57,12 @@ public class DontDestroyOnLoad : MonoBehaviour
     {
         var Story = GameObject.Find("/Story");
         Story.GetComponent<Canvas>().enabled = true;
-        //Story.GetComponentInChildren<UnityEngine.UI.Text>().text = "bob";
     }
 
-    public void EnablePostChoiceText()
+    public void EnablePostChoiceText(string response)
     {
         var PostChoiceText = GameObject.Find("/PostCardChoiceText");
+        PostChoiceText.GetComponentInChildren<UnityEngine.UI.Text>().text = response;
         PostChoiceText.GetComponent<Canvas>().enabled = true;
     }
 

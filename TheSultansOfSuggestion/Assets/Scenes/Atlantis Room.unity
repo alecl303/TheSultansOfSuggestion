@@ -11221,11 +11221,11 @@ PrefabInstance:
     - target: {fileID: 7819215623763576559, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2088400747}
+      objectReference: {fileID: 1944284109}
     - target: {fileID: 7819215623763576559, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2088400747}
+      objectReference: {fileID: 1944284109}
     - target: {fileID: 7819215623763576559, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -11248,11 +11248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7819215623763576559, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncrementScene
+      value: ApplyCard3
       objectReference: {fileID: 0}
     - target: {fileID: 7819215623763576559, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: IncrementScene
+      value: ApplyCard3
       objectReference: {fileID: 0}
     - target: {fileID: 7819215623763576559, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -11264,11 +11264,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7819215623763576559, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DontDestroyOnLoad, Assembly-CSharp
+      value: CardSelectionController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7819215623763576559, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: DontDestroyOnLoad, Assembly-CSharp
+      value: CardSelectionController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7819215623763576559, guid: eaeeb0c96a98b2042bfb2320463a809c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName

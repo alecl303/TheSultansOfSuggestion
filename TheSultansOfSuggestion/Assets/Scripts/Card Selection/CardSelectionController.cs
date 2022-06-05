@@ -109,7 +109,7 @@ public class CardSelectionController : MonoBehaviour
         buffList[0].Execute(playerTarget);
         debuffList[0].Execute(playerTarget);
         UpdateBans(true, 0);
-        removeCardsFromScreen();
+        removeCardsFromScreen(0);
     }
 
     public void ApplyCard2()
@@ -117,7 +117,7 @@ public class CardSelectionController : MonoBehaviour
         this.playerTarget.GetComponent<PlayerController>().ChangeWeapon(this.newWeapon);
         debuffList[1].Execute(playerTarget);
         UpdateBans(false, 1);
-        removeCardsFromScreen();
+        removeCardsFromScreen(1);
     }
 
     public void ApplyCard3()
@@ -126,15 +126,16 @@ public class CardSelectionController : MonoBehaviour
         debuffList[2].Execute(playerTarget);
         hasActiveSpell = true;
         UpdateBans(false, 2);
-        removeCardsFromScreen();
+        removeCardsFromScreen(2);
     }
 
-    void removeCardsFromScreen()
+    void removeCardsFromScreen(int cardNumber)
     {
+        string response = DeterminePostChoiceText(cardNumber);
         this.buffList.Clear();
         this.debuffList.Clear();
         this.transform.parent.gameObject.SetActive(false);
-        FindObjectOfType<DontDestroyOnLoad>().EnablePostChoiceText();
+        FindObjectOfType<DontDestroyOnLoad>().EnablePostChoiceText(response);
         Time.timeScale = 1;
         playerTarget.GetComponent<PlayerController>().enabled = true;
         // TODO: Reenable for different scenes
@@ -161,5 +162,80 @@ public class CardSelectionController : MonoBehaviour
         {
             bloodForSpellsBanned = true;
         }
+    }
+
+    string DeterminePostChoiceText(int cardNumber)
+    {
+        List<string> possibleResponses = new List<string>();
+        if (cardNumber == 0)
+        {
+            string buffName = buffList[cardNumber].GetName();
+            if (buffName == "CritChanceUp" || buffName == "CritMultiplierUp")
+            {
+                possibleResponses.Add("Gambling on lucky strikes, our contestant chooses the dramatic flair of a critical hit!");
+            }
+            else if (buffName == "LifestealUp")
+            {
+                possibleResponses.Add("Our champion obtains the power of vampirism... bleed 'em dry!");
+            }
+            else if (buffName == "PoisonChanceUp" || buffName == "PoisonDamageUp" || buffName == "PoisonTimeUp" || buffName == "StunChanceUp")
+            {
+                possibleResponses.Add("Our hero opts for tactical combat. Enemies will be completely disoriented!");
+            }
+            else if (buffName == "DoubleShot" || buffName == "TripleShot")
+            {
+                possibleResponses.Add("A spread-shot weapon! Our contestant's efficiency will be multiplied!");
+            }
+            else if (buffName == "BulletSpeedUp" || buffName == "DamageUp" || buffName == "RangeUp" || buffName == "MovementSpeedUp" || buffName == "ManaUp" || buffName == "MaxHealthUp")
+            {
+                possibleResponses.Add("Our hero finds a hearty meal to increase their basic abilities!");
+            }
+        }
+
+        if (cardNumber == 1)
+        {
+            possibleResponses.Add("Our contestant picks up a powerful new weapon! Slice 'em up, hero! " +
+            "Remember, if you like what you see, replica weapons can be obtained through our online shop!");
+        }
+
+        if (cardNumber == 2)
+        {
+            possibleResponses.Add("Our hero obtains a powerful magic spell! The arcane strength of the earth is on their side. " +
+            "Many thanks to our special effects team for bringing the magic to life.");
+        }
+
+        string debuffName = debuffList[cardNumber].GetName();
+        if (debuffName == "CritChanceDown" || debuffName == "CritMultiplierDown")
+        {
+            possibleResponses.Add("Our contestant chooses to reject critical hits. No luck needed for our champion!");
+        } 
+        else if (debuffName == "LifestealDown")
+        {
+            possibleResponses.Add("Our champion bleeds as much as their enemies, walking a thin line between life and death! Exciting!");
+        }
+        else if (debuffName == "InvertControls")
+        {
+            possibleResponses.Add("Oh no! Our contestant stumbles into a dizzy trap! Get your bearings quick!");
+        }
+        else if (debuffName == "LoseActiveSpell")
+        {
+            possibleResponses.Add("Deciding to reject magic, our hero takes on enemies head-on!");
+        }
+        else if (debuffName == "SpellsCostBlood")
+        {
+            possibleResponses.Add("Blood magic... Pain to one's enemies at the cost of one's own life force. Dramatic!");
+        }
+        else if (debuffName == "BulletSpeedDown" || debuffName == "DamageDown" || debuffName == "RangeDown" || debuffName == "MovementSpeedDown" || debuffName == "ManaDown" || debuffName == "MaxHealthDown")
+        {
+            possibleResponses.Add("Our contestant seems a little sick... Their basic abilities are reduced. Hopefully some bloodshed will perk them back up!");
+        }
+
+        if (possibleResponses.Count == 0)
+        {
+            possibleResponses.Add("Our contestant continues onward in the hopes that they succeed! Ha! Like that will happen!");
+        }
+
+        int responseChoice = Random.Range(0, possibleResponses.Count);
+        return possibleResponses[responseChoice];
     }
 }
