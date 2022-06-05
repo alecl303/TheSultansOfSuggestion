@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : PlayerAttack
+public class WhirlwindController : PlayerAttack
 {
     private float fuseTime = 0.2f;
 
