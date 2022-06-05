@@ -66,6 +66,13 @@ public class DontDestroyOnLoad : MonoBehaviour
         PostChoiceText.GetComponent<Canvas>().enabled = true;
     }
 
+    public void EnableStartingText()
+    {
+        var OnEntranceText = GameObject.Find("/OnEntranceText");
+        Time.timeScale = 0;
+        player.GetComponent<PlayerController>().enabled = false;
+        OnEntranceText.GetComponent<Canvas>().enabled = true;
+    }
 
     public void DestroyAll()
     {

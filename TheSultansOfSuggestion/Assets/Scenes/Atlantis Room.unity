@@ -6114,6 +6114,23 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &426104523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7322834628437633639, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+  m_PrefabInstance: {fileID: 1072849062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &426104524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426104523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b726ed1d8b5ccf438d0ecdc1ac40911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &449894703 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6965377776155719431, guid: 15ee93c546f154e4ca741caa8094e8c5, type: 3}
@@ -10561,6 +10578,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7322834626908033862, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 426104524}
+    - target: {fileID: 7322834626908033862, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisableStartingCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834626908033862, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StartingSceneStory, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7322834626908033863, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_SizeDelta.x
       value: 192.3932
@@ -10587,11 +10616,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_Text
-      value: 'You killed everying how great right? Here take these they''re great,
-        well mostly . . . Theres a reason they''re free, anyhow pick wisely you''re
-        gonna need it
-
-        Good Luck Have Fun ;)'
+      value: "Another thrilling episode of the Sultans of Suggestion!\r Everyone,
+        welcome our new contestant to Atlantis!\r Let's see how much havoc and bloodshed
+        they can cause in Poseidon's kingdom.\r The small space leaves enemies no
+        space to run- let's hope they aren't claustrophobic!"
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -10727,9 +10755,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628437633639, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6793823636269478143, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
 --- !u!1001 &1276045637
 PrefabInstance:

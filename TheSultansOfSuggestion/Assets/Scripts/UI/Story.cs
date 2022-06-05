@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Story : MonoBehaviour 
 {
-
-
     public void DisableCanvas()
     {
         this.gameObject.GetComponent<Canvas>().enabled = false;
@@ -18,5 +16,4 @@ public class Story : MonoBehaviour
         this.gameObject.GetComponent<Canvas>().enabled = false;
         FindObjectOfType<DontDestroyOnLoad>().IncrementScene();
     }
-
 }

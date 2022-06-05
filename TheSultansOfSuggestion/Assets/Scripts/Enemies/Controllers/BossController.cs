@@ -327,7 +327,7 @@ public class BossController : MonoBehaviour
 
         Destroy(this.gameObject);
         FindObjectOfType<DontDestroyOnLoad>().DestroyAll();
-        SceneManager.LoadScene(9);
+        SceneManager.LoadScene(8);
         FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
     }
     public bool IsAttacking()
