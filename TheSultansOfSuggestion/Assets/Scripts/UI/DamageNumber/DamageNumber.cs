@@ -47,7 +47,18 @@ public class DamageNumber : MonoBehaviour
         Transform damageNumberTransform = Instantiate(DamageAsset.instance, enemyPosition, Quaternion.identity);
 
         DamageNumber popup = damageNumberTransform.GetComponent<DamageNumber>();
-        popup.InitPopup(isCrit, isPoison);
+        popup.InitPopup(isCrit, isPoison, false);
+        popup.SetPopupDamage(damageAmount);
+
+        return popup;
+    }
+
+    public static DamageNumber CreatePopup(Vector3 enemyPosition, float damageAmount, bool isCrit, bool isPoison, bool isHeal)
+    {
+        Transform damageNumberTransform = Instantiate(DamageAsset.instance, enemyPosition, Quaternion.identity);
+
+        DamageNumber popup = damageNumberTransform.GetComponent<DamageNumber>();
+        popup.InitPopup(isCrit, isPoison, true);
         popup.SetPopupDamage(damageAmount);
 
         return popup;
@@ -59,7 +70,7 @@ public class DamageNumber : MonoBehaviour
         text.SetText(((int)damageAmount).ToString());
     }
 
-    public void InitPopup(bool isCrit, bool isPoison)
+    public void InitPopup(bool isCrit, bool isPoison, bool isHeal)
     {
         if(isCrit)
         {
@@ -70,6 +81,11 @@ public class DamageNumber : MonoBehaviour
         {
             this.fontSize = 16;
             this.textColor = new Color32(13, 170, 21, 255);
+        }
+        else if (isHeal)
+        {
+            this.fontSize = 16;
+            this.textColor = new Color32(0, 150, 94, 255);
         }
         else
         {

@@ -51,6 +51,7 @@ public class HealEffect : MonoBehaviour, IPlayerFloorSpellEffect
             yield return new WaitForSeconds(timeBeforeHeal);
             Debug.Log("Heal!"); 
             playerStats.Heal(flatHeal);
+            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, flatHeal, false, false, true);
         }
     }
     
