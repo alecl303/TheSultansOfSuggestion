@@ -6832,8 +6832,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628437633636, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628437633636, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628437633637, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628437633637, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628437633637, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628437633637, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628437633639, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_Name
@@ -10784,6 +10804,22 @@ PrefabInstance:
     - target: {fileID: 7322834628437633636, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628437633637, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628437633637, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628437633637, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628437633637, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628437633639, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_Name
