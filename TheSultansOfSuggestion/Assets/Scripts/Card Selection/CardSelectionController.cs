@@ -66,6 +66,7 @@ public class CardSelectionController : MonoBehaviour
         } while (playerTarget.GetComponent<PlayerController>().GetActiveSpell() == spellPlaceholder.GetName());
 
         this.playerSpell = spellPlaceholder;
+        this.spellSprite = SpellManager.GetComponent<SpellManager>().GetSpellSprite();
     }
 
     void InitializeDebuffs()
