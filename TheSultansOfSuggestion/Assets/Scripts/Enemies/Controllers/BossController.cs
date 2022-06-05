@@ -29,6 +29,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private bool isFlying = true;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject targetBulletPrefab;
+    [SerializeField] public GameObject razerBulletPrefab;
 
     [SerializeField] private Texture2D crosshair;
     private CursorMode cursorMode = CursorMode.Auto;
@@ -75,10 +76,11 @@ public class BossController : MonoBehaviour
     {
         this.movement = ScriptableObject.CreateInstance<DoNothingBoss>();
         this.attacks = new List<IBossCommand>{
-            ScriptableObject.CreateInstance<BulletSpawn4>(),
-            ScriptableObject.CreateInstance<BulletSpawn3>(),
-            ScriptableObject.CreateInstance<BulletSpawn2>(),
-            ScriptableObject.CreateInstance<BulletSpawn1>(),
+            // ScriptableObject.CreateInstance<BulletSpawn4>(),
+            // ScriptableObject.CreateInstance<BulletSpawn3>(),
+            // ScriptableObject.CreateInstance<BulletSpawn2>(),
+            // ScriptableObject.CreateInstance<BulletSpawn1>(),
+            ScriptableObject.CreateInstance<RazerSpawn1>()
         };
         this.rangedAttack1 = ScriptableObject.CreateInstance<BulletSpawn2>();
         this.stompAttack = ScriptableObject.CreateInstance<DoNothingBoss>();
