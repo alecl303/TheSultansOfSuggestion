@@ -26,9 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: af4bc357bfc71f24da6f7bd50e2ffaed
-  - enabled: 1
-    path: Assets/Scenes/Jungle Room.unity
-    guid: 69543e66aa18e504c88b4fa37a990d5a
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Death.unity
     guid: c8dafbb201edd8c499e58dc5800ef110

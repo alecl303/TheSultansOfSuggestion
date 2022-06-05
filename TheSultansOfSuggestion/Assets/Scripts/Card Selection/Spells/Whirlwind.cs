@@ -45,11 +45,5 @@ namespace Player.Command
         {
             return "Whirlwind";
         }
-
-        // public Sprite ReturnSprite(GameObject gameObject)
-        // {
-        //     var playerStats = gameObject.GetComponent<PlayerController>().GetStats();
-        //     return (playerStats.whirlwind.GetComponent<SpriteMask>().sprite);
-        // }
     }
 }
