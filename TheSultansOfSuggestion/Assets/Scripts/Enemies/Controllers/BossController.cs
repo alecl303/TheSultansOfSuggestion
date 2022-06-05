@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 using Boss.Command;
 
@@ -34,9 +33,6 @@ public class BossController : MonoBehaviour
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
 
-    [SerializeField] protected GameObject healthBarUI;
-    [SerializeField] protected Slider healthBar;
-
     private bool dying = false;
     private bool canAct = true;
 
@@ -62,7 +58,6 @@ public class BossController : MonoBehaviour
     void Start()
     {
         Init();
-        this.healthBar.value = this.GetHealthRatio();
     }
 
     void Update()
@@ -90,7 +85,6 @@ public class BossController : MonoBehaviour
     // Actions that every enemy will do on update
     protected void OnUpdate()
     {
-        this.healthBar.value = this.GetHealthRatio();
         if (this.health <= 0 && !this.dying)
         {
             this.canAct = false;
@@ -122,7 +116,7 @@ public class BossController : MonoBehaviour
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
             bool isCrit = attackObject.IsCrit();
-            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit, false);
+            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
 
             TakeDamage(damage);
 
@@ -138,7 +132,7 @@ public class BossController : MonoBehaviour
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
             bool isCrit = attackObject.IsCrit();
-            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit, false);
+            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
 
             TakeDamage(damage);
 
@@ -221,11 +215,6 @@ public class BossController : MonoBehaviour
         return this.attackDamage;
     }
 
-    public float GetHealthRatio()
-    {
-        return(this.health/this.maxHealth);
-    }
-
     private void CheckForStun(PlayerAttack attack)
     {
         var stunChance = attack.GetStunChance();
@@ -254,7 +243,7 @@ public class BossController : MonoBehaviour
     {
         var poisonChance = attack.GetPoisonChance();
 
-        if (Random.Range(0, 100) <= poisonChance)
+        if (Random.Range(1, 100) <= poisonChance)
         {
             StartCoroutine(Poison(attack.GetPoisonTime()));
         }
@@ -267,7 +256,6 @@ public class BossController : MonoBehaviour
         for (int i = 0; i < poisonTime; i++)
         {
             yield return new WaitForSeconds(1);
-            DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, tickDamage, false, true);
             TakeDamage(tickDamage);
         }
 

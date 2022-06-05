@@ -105,6 +105,7 @@ namespace Player.Stats
         {
             if (Random.Range(0, 100) <= this.critChance)
             {
+                Debug.Log("Crit!"); // TODO: Insert UI logic
                 return this.critMultiplier;
             }
             else

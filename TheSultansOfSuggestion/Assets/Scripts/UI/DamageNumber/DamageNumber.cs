@@ -42,12 +42,12 @@ public class DamageNumber : MonoBehaviour
         this.disappearTimer -= Time.deltaTime;
     }
 
-    public static DamageNumber CreatePopup(Vector3 enemyPosition, float damageAmount, bool isCrit, bool isPoison)
+    public static DamageNumber CreatePopup(Vector3 enemyPosition, float damageAmount, bool isCrit)
     {
         Transform damageNumberTransform = Instantiate(DamageAsset.instance, enemyPosition, Quaternion.identity);
 
         DamageNumber popup = damageNumberTransform.GetComponent<DamageNumber>();
-        popup.InitPopup(isCrit, isPoison);
+        popup.initPopup(isCrit);
         popup.SetPopupDamage(damageAmount);
 
         return popup;
@@ -59,25 +59,18 @@ public class DamageNumber : MonoBehaviour
         text.SetText(((int)damageAmount).ToString());
     }
 
-    public void InitPopup(bool isCrit, bool isPoison)
+    public void initPopup(bool isCrit)
     {
         if(isCrit)
         {
             this.fontSize = 24;
             this.textColor = new Color32(231, 40, 40, 255);
         }
-        else if (isPoison)
-        {
-            this.fontSize = 16;
-            this.textColor = new Color32(13, 170, 21, 255);
-        }
-        else
-        {
+        else{
             this.fontSize = 16;
             this.textColor = new Color32(255, 255, 255, 255);
         }
 
-        
         text.fontSize = this.fontSize;
         text.faceColor = this.textColor;
         this.disappearTimer = TIME_TO_DISAPPEAR;
