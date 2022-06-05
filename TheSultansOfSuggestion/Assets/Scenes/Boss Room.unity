@@ -210,6 +210,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossHealthBar 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6698912979012432689, guid: a291548246aac2f4da828bbb2883b5d1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 684.5623
+      objectReference: {fileID: 0}
+    - target: {fileID: 6698912979012432689, guid: a291548246aac2f4da828bbb2883b5d1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 71.4365
+      objectReference: {fileID: 0}
+    - target: {fileID: 6698912979012432689, guid: a291548246aac2f4da828bbb2883b5d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000045776
+      objectReference: {fileID: 0}
+    - target: {fileID: 6698912979012432689, guid: a291548246aac2f4da828bbb2883b5d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 628
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a291548246aac2f4da828bbb2883b5d1, type: 3}
 --- !u!114 &428638646 stripped
