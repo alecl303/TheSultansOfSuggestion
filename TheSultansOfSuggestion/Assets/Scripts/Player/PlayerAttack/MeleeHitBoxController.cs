@@ -18,17 +18,6 @@ public class MeleeHitBoxController : PlayerAttack
         this.damage = player.GetStats().GetMeleeDamage();
         this.lifeSpan = 0;
         this.maxDuration = player.GetStats().GetFireRate();
-
-        var critMultiplier = player.GetStats().GetCritMultiplier();
-        if(critMultiplier > 1)
-        {
-            this.isCrit = true;
-            this.damage = this.damage * critMultiplier;
-        }
-        else
-        {
-            this.isCrit = false;
-        }
     }
 
     // Update is called once per frame

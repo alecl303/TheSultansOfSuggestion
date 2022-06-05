@@ -6,5 +6,5 @@ public interface IEnemyTrapSpellEffect
 {
     void SetOverlap(bool overlap);
     
-    void ApplyEffect(EnemyController target);
+    IEnumerator ApplyEffect(EnemyController target);
 }

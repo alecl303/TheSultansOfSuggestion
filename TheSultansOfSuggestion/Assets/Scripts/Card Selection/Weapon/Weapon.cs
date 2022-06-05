@@ -13,15 +13,14 @@ public class Weapon : MonoBehaviour
     private int upperBound;
     void Awake()
     {
-        this.damage = 3;
-        this.spriteIndex = Random.Range(0, 30);
-    }
-
-    public void Randomize()
-    {
         SetRarity();
         this.damage = Random.Range(this.lowerBound, this.upperBound);
         this.spriteIndex = Random.Range(0, 30);
+    }
+
+    public void randomize()
+    {
+        this.Awake();
     }
     public int GetDamage()
     {
@@ -35,26 +34,26 @@ public class Weapon : MonoBehaviour
         if(randomValue < 5)
         {
             this.rarity = "Legendary";
-            this.lowerBound = 10;
-            this.upperBound = 12;
+            this.lowerBound = 8;
+            this.upperBound = 10;
         }
         else if (randomValue < 20)
         {
             this.rarity = "Rare";
-            this.lowerBound = 8;
-            this.upperBound = 10;
+            this.lowerBound = 6;
+            this.upperBound = 9;
         }
         else if (randomValue < 50)
         {
             this.rarity = "Good";
-            this.lowerBound = 6;
-            this.upperBound = 8;
+            this.lowerBound = 4;
+            this.upperBound = 7;
         }
         else
         {
             this.rarity = "Common";
-            this.lowerBound = 4;
-            this.upperBound = 6;
+            this.lowerBound = 3;
+            this.upperBound = 5;
         }
     }
 

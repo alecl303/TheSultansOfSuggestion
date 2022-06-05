@@ -13,16 +13,11 @@ namespace Player.Effect
         public void Execute(GameObject gameObject)
         {
             var player = gameObject.GetComponent<PlayerController>();
-            player.SetActiveSpell(ScriptableObject.CreateInstance<SpellNothing>(),null);
+            player.SetActiveSpell(ScriptableObject.CreateInstance<SpellNothing>());
         }
         public string GetDescription()
         {
-            return "Lose your active spell";
-        }
-
-        public string GetName()
-        {
-            return "LoseActiveSpell";
+            return "You will lose your active spell";
         }
     }
 }

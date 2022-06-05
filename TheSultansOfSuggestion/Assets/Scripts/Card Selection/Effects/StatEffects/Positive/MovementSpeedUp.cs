@@ -12,8 +12,6 @@ namespace Player.Effect
         {
             base.Init();
             this.affectedStat = "movement speed";
-            this.name = "MovementSpeedUp";
-            this.changeAmount = Random.Range(0.1f, 0.2f);
         }
 
         public override void Execute(GameObject gameObject)

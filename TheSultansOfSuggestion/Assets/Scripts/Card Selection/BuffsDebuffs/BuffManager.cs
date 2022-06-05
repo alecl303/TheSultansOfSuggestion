@@ -6,21 +6,23 @@ using Player.Effect;
 public class BuffManager : MonoBehaviour
 {
     List<IPlayerEffect> buffs;
+    IPlayerEffect randomBuff;
+
     [SerializeField] string description;
     private int buffLength = 0;
+    
 
     public IPlayerEffect GetRandomBuff()
     {
-        if (this.buffLength == 0)
+        if(this.buffLength == 0)
         {
             initBuffs();
         }
 
-        return (this.buffs[Random.Range(0, this.buffLength)]);
+        return(this.buffs[Random.Range(0, this.buffLength)]);
     }
 
-    void initBuffs()
-    {
+    void initBuffs(){
         this.buffs = new List<IPlayerEffect>() {
             ScriptableObject.CreateInstance<BulletSpeedUp>(),
             ScriptableObject.CreateInstance<CritChanceUp>(),
@@ -29,7 +31,7 @@ public class BuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<TripleShot>(),
             //ScriptableObject.CreateInstance<BulletSizeUp>(),
             ScriptableObject.CreateInstance<CritMultiplierUp>(),
-            //ScriptableObject.CreateInstance<Heal20>(),
+            ScriptableObject.CreateInstance<Heal20>(),
             ScriptableObject.CreateInstance<LifeStealUp>(),
             ScriptableObject.CreateInstance<ManaUp>(),
             ScriptableObject.CreateInstance<MaxHealthUp>(),

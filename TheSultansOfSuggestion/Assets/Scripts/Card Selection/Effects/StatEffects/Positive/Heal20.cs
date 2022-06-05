@@ -18,11 +18,6 @@ namespace Player.Effect
         {
             return "Heal 20 hitpoints";
         }
-
-        public string GetName()
-        {
-            return "Heal20";
-        }
     }
 }
 

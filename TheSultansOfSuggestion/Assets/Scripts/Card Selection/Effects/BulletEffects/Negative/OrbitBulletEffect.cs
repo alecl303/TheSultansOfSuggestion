@@ -20,10 +20,5 @@ namespace Player.Effect
         {
             return "Your bullets will do math";
         }
-
-        public string GetName()
-        {
-            return "OrbitBullet";
-        }
     }
 }

@@ -12,7 +12,6 @@ namespace Player.Effect
         {
             base.Init();
             this.affectedStat = "max health";
-            this.name = "MaxHealthUp";
         }
 
         public override void Execute(GameObject gameObject)

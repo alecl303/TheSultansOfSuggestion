@@ -39,10 +39,5 @@ namespace Player.Command
         {
             return "Temporarily stun all enemies in a large radius. Costs " + this.requiredMana + " mana.";
         }
-
-        public string GetName()
-        {
-            return "Freeze";
-        }
     }
 }

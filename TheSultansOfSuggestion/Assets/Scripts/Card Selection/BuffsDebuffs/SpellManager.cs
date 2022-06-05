@@ -8,8 +8,8 @@ public class SpellManager : MonoBehaviour
 
     private List<IPlayerSpell> spellsScriptable;
     private int spellLength=0;
-    public int spellsprite=0;
-    [SerializeField]private List<Sprite> listOfSprites;
+
+
     
 
     public IPlayerSpell GetRandomSpell()
@@ -18,21 +18,15 @@ public class SpellManager : MonoBehaviour
         {
             initSpells();
         }
-        this.spellsprite=UnityEngine.Random.Range(0, spellLength);
-        return this.spellsScriptable[spellsprite];
+        return this.spellsScriptable[UnityEngine.Random.Range(0, spellLength)];
     }
 
-    public Sprite GetSpellSprite()
-    {
-        return this.listOfSprites[this.spellsprite];
-    }
     void initSpells(){
         this.spellsScriptable = new List<IPlayerSpell>() {
             ScriptableObject.CreateInstance<Whirlwind>(),
             ScriptableObject.CreateInstance<FreezeEnemies>(),
             ScriptableObject.CreateInstance<Invincibility>(),
             ScriptableObject.CreateInstance<Berserk>(),
-            ScriptableObject.CreateInstance<Burst>(),
             ScriptableObject.CreateInstance<Heal>(),
             ScriptableObject.CreateInstance<IcicleTrap>()
         };

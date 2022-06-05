@@ -17,10 +17,5 @@ namespace Player.Effect
         {
             return "Increase your stun chance by 5%";
         }
-
-        public string GetName()
-        {
-            return "StunChanceUp";
-        }
     }
 }

@@ -29,7 +29,7 @@ namespace Player.Stats
         public float rangeDamage = 2;
         public float meleeDamage = 5;
         public float fireRate = 0.4f;
-        public int critChance = 2;
+        public int critChance = 1;
         public float critMultiplier = 1.5f;
         public bool manaIsHp = false;
         //public List<GameObject> weapons;
@@ -78,7 +78,7 @@ namespace Player.Stats
         private void Update()
         {
             RegenMana();
-            //CheckRage();
+            CheckRage();
         }
 
         public float GetSpeed()
@@ -101,25 +101,17 @@ namespace Player.Stats
             return this.rangeDamage;
         }
 
-        public float GetCritMultiplier()
-        {
-            if (Random.Range(0, 100) <= this.critChance)
-            {
-                Debug.Log("Crit!"); // TODO: Insert UI logic
-                return this.critMultiplier;
-            }
-            else
-            {
-                return 1;
-            }
-        }
-
         public float GetMeleeDamage()
         {
             this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
 
             var damage = this.meleeDamage + this.weaponDamage;
 
+            if (Random.Range(0, 100) <= this.critChance)
+            {
+                Debug.Log("Crit!"); // TODO: Insert UI logic
+                return damage * this.critMultiplier;
+            }
             return damage;  // Will have to figure out active weapon in inventory
         }
 
@@ -170,10 +162,10 @@ namespace Player.Stats
             this.manaBar.GetComponent<Slider>().value = this.mana / this.maxMana;
         }
 
-        // public void CheckRage()
-        // {
-        //     this.rageBar.GetComponent<Slider>().value = this.rage / this.maxRage;
-        // }
+        public void CheckRage()
+        {
+            this.rageBar.GetComponent<Slider>().value = this.rage / this.maxRage;
+        }
 
         public void IncrementRage()
         {

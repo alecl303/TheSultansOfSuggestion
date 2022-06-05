@@ -7,7 +7,5 @@ namespace Player.Effect
         void Execute(GameObject gameObject);
 
         public string GetDescription();
-
-        public string GetName();
     }
 }

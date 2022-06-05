@@ -10,8 +10,6 @@ abstract public class PlayerAttack : MonoBehaviour
     protected float poisonChance;
     protected float poisonTime;
     protected bool canStealHp = false;
-    protected bool isCrit = false;
-
     public float GetDamage()
     {
         return this.damage;
@@ -35,11 +33,6 @@ abstract public class PlayerAttack : MonoBehaviour
     public float GetPoisonTime()
     {
         return this.poisonTime;
-    }
-
-    public bool IsCrit()
-    {
-        return this.isCrit;
     }
 
     public void SetDamage(float amount)
@@ -70,11 +63,6 @@ abstract public class PlayerAttack : MonoBehaviour
     public void SetLifeDrain(bool canSteal)
     {
         this.canStealHp = canSteal;
-    }
-
-    public void setIsCrit(bool isCrit)
-    {
-        this.isCrit = isCrit;
     }
 
     public bool CanStealHp()

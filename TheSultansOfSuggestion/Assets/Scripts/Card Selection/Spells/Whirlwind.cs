@@ -41,11 +41,6 @@ namespace Player.Command
             return "Deal melee damage to all enemies in a large radius. Costs " + this.requiredMana + " mana.";
         }
 
-        public string GetName()
-        {
-            return "Whirlwind";
-        }
-
         // public Sprite ReturnSprite(GameObject gameObject)
         // {
         //     var playerStats = gameObject.GetComponent<PlayerController>().GetStats();

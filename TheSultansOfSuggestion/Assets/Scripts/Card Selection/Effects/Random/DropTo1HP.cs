@@ -11,17 +11,11 @@ namespace Player.Effect
         public void Execute(GameObject gameObject)
         {
             gameObject.GetComponent<PlayerStats>().health = 1;
-            gameObject.GetComponent<PlayerStats>().TakeDamage(0);
         }
 
         public string GetDescription()
         {
             return "Hp drops to 1";
-        }
-
-        public string GetName()
-        {
-            return "DropTo1HP";
         }
     }
 }

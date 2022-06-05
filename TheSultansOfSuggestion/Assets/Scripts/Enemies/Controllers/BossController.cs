@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 using Boss.Command;
 
@@ -115,8 +114,6 @@ public class BossController : MonoBehaviour
         {
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
-            bool isCrit = attackObject.IsCrit();
-            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
 
             TakeDamage(damage);
 
@@ -131,8 +128,6 @@ public class BossController : MonoBehaviour
         {
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
-            bool isCrit = attackObject.IsCrit();
-            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
 
             TakeDamage(damage);
 
@@ -314,9 +309,6 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 3);
 
         Destroy(this.gameObject);
-        FindObjectOfType<DontDestroyOnLoad>().DestroyAll();
-        SceneManager.LoadScene(9);
-        FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
     }
     public bool IsAttacking()
     {

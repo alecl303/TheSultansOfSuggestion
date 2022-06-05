@@ -19,10 +19,5 @@ namespace Player.Effect
         {
             return "You will now fire three bullets at a time";
         }
-
-        public string GetName()
-        {
-            return "TripleShot";
-        }
     }
 }

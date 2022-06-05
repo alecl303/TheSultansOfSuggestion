@@ -11,16 +11,11 @@ namespace Player.Effect
         public void Execute(GameObject gameObject)
         {
             var playerStats = gameObject.GetComponent<PlayerStats>();
-            playerStats.critMultiplier += 0.4f;
+            playerStats.critMultiplier *= 1.5f;
         }
         public string GetDescription()
         {
-            return "Increase your crit multiplier by 40%";
-        }
-
-        public string GetName()
-        {
-            return "CritMultiplierUp";
+            return "Increase your crit chance by 10%";
         }
     }
 }

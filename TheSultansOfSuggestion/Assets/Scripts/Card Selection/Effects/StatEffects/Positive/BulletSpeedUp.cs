@@ -12,7 +12,6 @@ namespace Player.Effect
         {
             base.Init();
             this.affectedStat = "bullet speed";
-            this.name = "BulletSpeedUp";
         }
 
         public override void Execute(GameObject gameObject)
@@ -20,11 +19,6 @@ namespace Player.Effect
             var playerStats = gameObject.GetComponent<PlayerStats>();
             playerStats.bulletLifeSpan *= (1 + this.changeAmount);
         }
-
-        //public string GetName()
-        //{
-        //    return "BulletSpeedUp";
-        //}
     }
 }
 
