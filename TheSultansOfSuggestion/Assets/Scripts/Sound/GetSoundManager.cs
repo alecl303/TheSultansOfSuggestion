@@ -10,6 +10,7 @@ public class GetSoundManager : MonoBehaviour
     {
         var soundManager = FindObjectOfType<SoundManager>();
         this.gameObject.GetComponent<Slider>().onValueChanged.AddListener(soundManager.ChangeMusicTrackVolume);
+        this.gameObject.GetComponent<Slider>().value = soundManager.GetVolume();
     }
 
 }
