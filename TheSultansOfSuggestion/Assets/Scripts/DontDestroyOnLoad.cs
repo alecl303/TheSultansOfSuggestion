@@ -7,7 +7,7 @@ public class DontDestroyOnLoad : MonoBehaviour
 {
     int scene = 1;
     public GameObject player;
-    public GameObject soundManager;
+    //public GameObject soundManager;
     public GameObject pauseMenu;
     public GameObject HUD;
     public GameObject currentCamera;
@@ -36,7 +36,7 @@ public class DontDestroyOnLoad : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(this.player);
-        DontDestroyOnLoad(this.soundManager);
+        DontDestroyOnLoad(FindObjectOfType<SoundManager>().gameObject);
         DontDestroyOnLoad(this.pauseMenu);
         DontDestroyOnLoad(this.HUD);
         DontDestroyOnLoad(this.currentCamera);
@@ -78,7 +78,7 @@ public class DontDestroyOnLoad : MonoBehaviour
     {
         Destroy(this.gameObject);
         Destroy(this.player);
-        Destroy(this.soundManager);
+        Destroy(FindObjectOfType<SoundManager>().gameObject);
         Destroy(this.pauseMenu);
         Destroy(this.HUD);
         Destroy(this.currentCamera);

@@ -92,5 +92,15 @@ public class SoundManager : MonoBehaviour
         {
             track.audioSource.volume = volume;
         }
+
+        foreach (var clip in this.sfxClips)
+        {
+            clip.audioSource.volume = volume;
+        }
+    }
+
+    public float GetVolume()
+    {
+        return this.musicTracks[0].audioSource.volume;
     }
 }
