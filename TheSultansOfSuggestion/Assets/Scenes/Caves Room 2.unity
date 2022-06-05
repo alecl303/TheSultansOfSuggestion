@@ -50195,6 +50195,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_Text
+      value: "Here's a perk from the Stunt Actors Guild! Supporting your favorite
+        martial arts stars for centuries.\r Remember, no martial artists were harmed
+        in production."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2dd723c07c3c4684590111282d850dd2, type: 3}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7322834628437633563, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -50325,12 +50339,20 @@ PrefabInstance:
       value: trying out
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2dd723c07c3c4684590111282d850dd2, type: 3}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282135, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_SizeDelta.x
@@ -50508,12 +50530,20 @@ PrefabInstance:
         every last one of them!\n"
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2dd723c07c3c4684590111282d850dd2, type: 3}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282135, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_SizeDelta.x

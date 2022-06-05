@@ -21206,9 +21206,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_Text
-      value: Wow, slaughtered all those monsters minding their own business? All
-        in the name of entertainment I guess, Well don't let me stop you. Go right
-        on ahead
+      value: "Here's a perk from the Mushroom Museum! Come see the mycological specimens
+        today.\r The Mushroom Museum would like to note that no mutant mushrooms
+        are kept in the museum."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2dd723c07c3c4684590111282d850dd2, type: 3}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628437633563, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_Pivot.x
@@ -21353,12 +21361,20 @@ PrefabInstance:
         to the Caves. In this cramped space, paint the walls red, champion!"
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2dd723c07c3c4684590111282d850dd2, type: 3}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282135, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_SizeDelta.x
@@ -22351,12 +22367,20 @@ PrefabInstance:
       value: trying out
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2dd723c07c3c4684590111282d850dd2, type: 3}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7322834628386282134, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7322834628386282135, guid: a4a1b61cca8fcc248b116e3af307d0d1, type: 3}
       propertyPath: m_SizeDelta.x
