@@ -8,5 +8,7 @@ namespace Player.Command
         
         public float GetCooldown();
         public string GetDescription();
+
+        public string GetName();
     }
 }

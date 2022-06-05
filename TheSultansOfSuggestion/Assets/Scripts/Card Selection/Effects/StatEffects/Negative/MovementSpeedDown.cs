@@ -13,6 +13,8 @@ namespace Player.Effect
             base.Init();
             this.affectedStat = "movement speed";
             this.affliction = "Decrease";
+            this.name = "MovementSpeedDown";
+            this.changeAmount = Random.Range(0.1f, 0.2f);
         }
 
         public override void Execute(GameObject gameObject)
@@ -20,5 +22,10 @@ namespace Player.Effect
             var playerStats = gameObject.GetComponent<PlayerStats>();
             playerStats.movementSpeed *= (1 - this.changeAmount);
         }
+
+        //public string GetName()
+        //{
+        //    return "MovementSpeedDown";
+        //}
     }
 }

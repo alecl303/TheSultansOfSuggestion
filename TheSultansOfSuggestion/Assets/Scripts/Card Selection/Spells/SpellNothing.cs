@@ -26,5 +26,10 @@ namespace Player.Command
         {
             return "Do nothing for free.";
         }
+
+        public string GetName()
+        {
+            return "Nothing";
+        }
     }
 }

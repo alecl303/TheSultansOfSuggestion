@@ -45,5 +45,10 @@ namespace Player.Command
         {
             return "Generates a burst of bullets around the player. Costs " + requiredMana + " mana.";
         }
+
+        public string GetName()
+        {
+            return "Burst";
+        }
     }
 }

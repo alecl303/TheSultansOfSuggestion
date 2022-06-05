@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canDodge = true;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
-
+    [SerializeField] private Sprite empty;
     [SerializeField] public IPlayerSpell activeSpell1;
     private bool onCooldown = false;
 
@@ -36,7 +36,17 @@ public class PlayerController : MonoBehaviour
     private IPlayerCommand up;
     private IPlayerCommand down;
     private IPlayerCommand roll;
+
+    // Diagonal movement
+    private IPlayerCommand upRight;
+    private IPlayerCommand upLeft;
+    private IPlayerCommand downRight;
+    private IPlayerCommand downLeft;
     // Start is called before the first frame update
+
+    // For keeping track of collision iframe 
+    private Coroutine iframeRoutine;
+
     void Start()
     {
         this.stats = this.gameObject.GetComponent<PlayerStats>();
@@ -47,6 +57,10 @@ public class PlayerController : MonoBehaviour
         this.left = ScriptableObject.CreateInstance<MoveCharacterLeft>();
         this.up = ScriptableObject.CreateInstance<MoveCharacterUp>();
         this.down = ScriptableObject.CreateInstance<MoveCharacterDown>();
+        this.upRight = ScriptableObject.CreateInstance<MoveCharacterUpRight>();
+        this.upLeft = ScriptableObject.CreateInstance<MoveCharacterUpLeft>();
+        this.downRight = ScriptableObject.CreateInstance<MoveCharacterDownRight>();
+        this.downLeft = ScriptableObject.CreateInstance<MoveCharacterDownLeft>();
         this.activeSpell1 = ScriptableObject.CreateInstance<SpellNothing>();
         
         this.roll = ScriptableObject.CreateInstance<Roll>();
@@ -67,21 +81,41 @@ public class PlayerController : MonoBehaviour
             {
                 if (!this.isInHitStun)
                 {
-                    if (Input.GetAxis("Horizontal") > 0.01)
+                    // Check for movement if diagional or just one direction.
+                    if (Input.GetAxis("Horizontal") > 0.01 && Input.GetAxis("Vertical") < -0.01)
                     {
-                        this.right.Execute(this.gameObject);
+                        this.downRight.Execute(this.gameObject);
                     }
-                    if (Input.GetAxis("Horizontal") < -0.01)
+                    else if (Input.GetAxis("Horizontal") > 0.01 && Input.GetAxis("Vertical") > 0.01)
                     {
-                        this.left.Execute(this.gameObject);
+                        this.upRight.Execute(this.gameObject);
                     }
-                    if (Input.GetAxis("Vertical") < -0.01)
+                    else if (Input.GetAxis("Horizontal") < -0.01 && Input.GetAxis("Vertical") < -0.01)
                     {
-                        this.down.Execute(this.gameObject);
+                        this.downLeft.Execute(this.gameObject);
                     }
-                    if (Input.GetAxis("Vertical") > 0.01)
+                    else if (Input.GetAxis("Horizontal") < -0.01 && Input.GetAxis("Vertical") > 0.01)
                     {
-                        this.up.Execute(this.gameObject);
+                        this.upLeft.Execute(this.gameObject);
+                    }
+                    else 
+                    {
+                        if (Input.GetAxis("Horizontal") > 0.01)
+                        {
+                            this.right.Execute(this.gameObject);
+                        }
+                        if (Input.GetAxis("Horizontal") < -0.01)
+                        {
+                            this.left.Execute(this.gameObject);
+                        }
+                        if (Input.GetAxis("Vertical") < -0.01)
+                        {
+                            this.down.Execute(this.gameObject);
+                        }
+                        if (Input.GetAxis("Vertical") > 0.01)
+                        {
+                            this.up.Execute(this.gameObject);
+                        }
                     }
 
                     if (!this.isAttacking)
@@ -130,14 +164,14 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerBuffSpell"))
         {
             other.gameObject.GetComponent<IPlayerFloorSpellEffect>().SetOverlap(true);
-            StartCoroutine(other.gameObject.GetComponent<IPlayerFloorSpellEffect>().ApplyEffect(this));
+            other.gameObject.GetComponent<IPlayerFloorSpellEffect>().ApplyEffect(this);
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("PlayerBuffSpell"))
         {
-            other.gameObject.GetComponent<HealEffect>().SetOverlap(false);
+            other.gameObject.GetComponent<IPlayerFloorSpellEffect>().SetOverlap(false);
         }
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -156,7 +190,7 @@ public class PlayerController : MonoBehaviour
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
 
                 //StartCoroutine(HitStun());
-                StartCoroutine(IFrame());
+                this.iframeRoutine = StartCoroutine(IFrame());
             }
 
             if (collision.gameObject.CompareTag("Boss"))
@@ -171,7 +205,7 @@ public class PlayerController : MonoBehaviour
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
 
                 //StartCoroutine(HitStun());
-                StartCoroutine(IFrame());
+                this.iframeRoutine = StartCoroutine(IFrame());
             }
 
             if (collision.gameObject.CompareTag("EnemyAttack"))
@@ -186,7 +220,7 @@ public class PlayerController : MonoBehaviour
                 FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
 
                 //StartCoroutine(HitStun());
-                StartCoroutine(IFrame());
+                this.iframeRoutine = StartCoroutine(IFrame());
 
                 Destroy(collision.gameObject);
             }
@@ -337,10 +371,19 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator InvincibleForXSeconds(float duration)
     {
+        // Check if there is any other iframe coroutine running, stop it and start invincibility one
+        if(iframeRoutine != null) 
+        {
+            StopCoroutine(iframeRoutine);
+        }
+
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0.5f);
         this.canDodge = false;
         this.isInIFrame = true;
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(3*duration/5);
+        // Change slightly back to color, for indication its ending soon
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 0, 0.5f);
+        yield return new WaitForSeconds(2*duration/5);
         this.canDodge = true;
         this.isInIFrame = false;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
@@ -362,9 +405,22 @@ public class PlayerController : MonoBehaviour
         this.fire2 = newAttack;
     }
 
-    public void SetActiveSpell(IPlayerSpell spell)
+    public void SetActiveSpell(IPlayerSpell spell, Sprite sprite)
     {
         this.activeSpell1 = spell;
+        if(sprite == null)
+        {
+            this.playersCurrentItemBar.Updateslots(2,sprite);
+        }else
+        {
+            this.playersCurrentItemBar.Updateslots(2,sprite);
+        }
+
+    }
+
+    public string GetActiveSpell()
+    {
+        return activeSpell1.GetName();
     }
 
     public void InvertControls()
@@ -373,11 +429,19 @@ public class PlayerController : MonoBehaviour
         var right = this.right;
         var up = this.up;
         var down = this.down;
+        var upLeft = this.upLeft;
+        var upRight = this.upRight;
+        var downRight = this.downRight;
+        var downLeft = this.downLeft;
 
         this.right = left;
         this.left = right;
         this.up = down;
         this.down = up;
+        this.upLeft = downRight;
+        this.upRight = downLeft;
+        this.downRight = upLeft;
+        this.downLeft = upRight;
     }
 
     public IEnumerator Dodge(float duration, Vector2 direction)

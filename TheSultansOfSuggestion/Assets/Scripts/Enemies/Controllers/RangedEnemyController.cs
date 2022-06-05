@@ -13,7 +13,7 @@ public class RangedEnemyController : EnemyController
 
         this.attackRange = 8;
         this.aggroDistance = 12;
-        this.bulletSpeed = 2; 
+        this.bulletSpeed = 4; 
         this.attackDamage = 1;
         this.movementSpeed = 1.3f;
         this.attackBuffer = 1;

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroyOnLoad : MonoBehaviour
 {
-
     int scene = 1;
     public GameObject player;
     public GameObject soundManager;
@@ -15,10 +14,10 @@ public class DontDestroyOnLoad : MonoBehaviour
     public GameObject eventSystem;
     public GameObject cardSelection;
     public GameObject death;
+    public GameObject damageNumbers;
 
     public void IncrementScene()
     {
-
         switch (scene)
         {
             case 1:
@@ -44,6 +43,7 @@ public class DontDestroyOnLoad : MonoBehaviour
         DontDestroyOnLoad(this.eventSystem);
         DontDestroyOnLoad(this.cardSelection);
         DontDestroyOnLoad(this.death);
+        DontDestroyOnLoad(this.damageNumbers);
         scene++;
 
     }
@@ -51,6 +51,12 @@ public class DontDestroyOnLoad : MonoBehaviour
     public void SelectCard()
     {
         this.cardSelection.SetActive(true);
+    }
+
+    public void EnableText()
+    {
+        var Story = GameObject.Find("/Story");
+        Story.GetComponent<Canvas>().enabled=true;
     }
 
     public void DestroyAll()
@@ -64,5 +70,6 @@ public class DontDestroyOnLoad : MonoBehaviour
         Destroy(this.eventSystem);
         Destroy(this.cardSelection);
         Destroy(this.death);
+        Destroy(this.damageNumbers);
     }
 }

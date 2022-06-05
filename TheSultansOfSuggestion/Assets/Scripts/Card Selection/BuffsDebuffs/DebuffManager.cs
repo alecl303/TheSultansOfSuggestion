@@ -6,26 +6,27 @@ using Player.Effect;
 public class DebuffManager : MonoBehaviour
 {
     List<IPlayerEffect> debuffs;
-    IPlayerEffect randomDebuff;
     [SerializeField] string description;
     private int debuffLength = 0;
 
     public IPlayerEffect GetRandomDebuff()
     {
-        if(this.debuffLength == 0)
+        if (this.debuffLength == 0)
         {
             initDebuffs();
         }
-        return(this.debuffs[Random.Range(0, this.debuffLength)]);
+        return (this.debuffs[Random.Range(0, this.debuffLength)]);
     }
 
-    void initDebuffs(){
+    void initDebuffs()
+    {
         this.debuffs = new List<IPlayerEffect>() {
             ScriptableObject.CreateInstance<BulletSpeedDown>(),
             ScriptableObject.CreateInstance<CritChanceDown>(),
+            ScriptableObject.CreateInstance<CritMultiplierDown>(),
             ScriptableObject.CreateInstance<DamageDown>(),
             ScriptableObject.CreateInstance<BackwardsBulletEffect>(),
-            ScriptableObject.CreateInstance<DropTo1HP>(),
+            //ScriptableObject.CreateInstance<DropTo1HP>(),
             ScriptableObject.CreateInstance<InvertControls>(),
             ScriptableObject.CreateInstance<LoseActiveSpell>(),
             //ScriptableObject.CreateInstance<LoseRoll>(),

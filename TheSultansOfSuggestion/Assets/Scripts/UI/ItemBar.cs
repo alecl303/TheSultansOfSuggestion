@@ -12,8 +12,7 @@ public class ItemBar : MonoBehaviour
         slots.Add(itemSlots.transform.GetChild(0).gameObject);
         slots.Add(itemSlots.transform.GetChild(1).gameObject);
         slots.Add(itemSlots.transform.GetChild(2).gameObject);
-        slots.Add(itemSlots.transform.GetChild(3).gameObject);
-        slots.Add(itemSlots.transform.GetChild(4).gameObject);
+
 
 
     }
