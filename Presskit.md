@@ -21,7 +21,7 @@ Welcome to The Sultans of Suggestion! World peace has been achieved, but humanit
 
 
 
-![alt text](../PresskitImages/image1.jpg?raw=true)
+![alt text](./PresskitImages/image1.png?raw=true)
 
 
 
