@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000030994, y: -78}
-  m_SizeDelta: {x: 167.6836, y: 40.1042}
+  m_AnchoredPosition: {x: -0.00003624, y: -209}
+  m_SizeDelta: {x: 192.3932, y: 55.3101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7322834626908033860
 CanvasRenderer:
@@ -200,10 +200,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -247,8 +247,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00024104, y: -0.00033569336}
-  m_SizeDelta: {x: 610.64, y: 241.6967}
+  m_AnchoredPosition: {x: -0.000039458, y: 21}
+  m_SizeDelta: {x: 770.3022, y: 329.1307}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7322834628386282133
 CanvasRenderer:
@@ -280,20 +280,22 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 15
+    m_FontSize: 28
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 116
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: "You killed everying how great right? Here take these they're great, well
-    mostly . . . \nTheres a reason they're free, anyhow pick wisely you're gonna
-    need it\nGood Luck Have Fun ;)"
+  m_Text: 'You killed everying how great right? Here take these they''re great, well
+    mostly . . . Theres a reason they''re free, anyhow pick wisely you''re gonna
+    need it
+
+    Good Luck Have Fun ;)'
 --- !u!1 &7322834628404165460
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,8 +331,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.9665527, y: 35.000305}
-  m_SizeDelta: {x: 610.64, y: 241.7}
+  m_AnchoredPosition: {x: 0, y: 29}
+  m_SizeDelta: {x: 1068.7184, y: 602.8406}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7322834628404165449
 CanvasRenderer:

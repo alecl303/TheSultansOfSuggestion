@@ -136,7 +136,7 @@ abstract public class EnemyController : MonoBehaviour
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
             bool isCrit = attackObject.IsCrit();
-            print(isCrit);
+            //print(isCrit);
             var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
 
             TakeDamage(damage);
@@ -157,7 +157,7 @@ abstract public class EnemyController : MonoBehaviour
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
             bool isCrit = attackObject.IsCrit();
-            print(isCrit);
+            //print(isCrit);
             var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
 
             TakeDamage(damage);
@@ -213,9 +213,7 @@ abstract public class EnemyController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PlayerTrapSpell"))
         {
-            Debug.Log("Activating player trap spell");
-            other.gameObject.GetComponent<IEnemyTrapSpellEffect>().SetOverlap(true);
-            StartCoroutine(other.gameObject.GetComponent<IEnemyTrapSpellEffect>().ApplyEffect(this));
+            other.gameObject.GetComponent<IEnemyTrapSpellEffect>().ApplyEffect(this);
         }
     }
 
