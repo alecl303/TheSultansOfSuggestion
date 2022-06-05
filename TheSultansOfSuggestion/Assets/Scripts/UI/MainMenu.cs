@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
+        DontDestroyOnLoad(FindObjectOfType<SoundManager>().gameObject);
     }
 
     public void QuitGame()
