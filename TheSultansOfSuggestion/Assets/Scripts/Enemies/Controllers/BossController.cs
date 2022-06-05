@@ -116,7 +116,7 @@ public class BossController : MonoBehaviour
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
             bool isCrit = attackObject.IsCrit();
-            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
+            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit, false);
 
             TakeDamage(damage);
 
@@ -132,7 +132,7 @@ public class BossController : MonoBehaviour
             var attackObject = collision.gameObject.GetComponent<PlayerAttack>();
             float damage = attackObject.GetDamage();
             bool isCrit = attackObject.IsCrit();
-            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit);
+            var popup = DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, damage, isCrit, false);
 
             TakeDamage(damage);
 
@@ -243,7 +243,7 @@ public class BossController : MonoBehaviour
     {
         var poisonChance = attack.GetPoisonChance();
 
-        if (Random.Range(1, 100) <= poisonChance)
+        if (Random.Range(0, 100) <= poisonChance)
         {
             StartCoroutine(Poison(attack.GetPoisonTime()));
         }
@@ -256,6 +256,7 @@ public class BossController : MonoBehaviour
         for (int i = 0; i < poisonTime; i++)
         {
             yield return new WaitForSeconds(1);
+            DamageNumber.CreatePopup(this.gameObject.GetComponent<Rigidbody2D>().position, tickDamage, false, true);
             TakeDamage(tickDamage);
         }
 
