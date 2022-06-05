@@ -46,6 +46,28 @@ public class CardSelectionController : MonoBehaviour
         InitializeCardText();
     }
 
+    void DetermineRandomWeapon()
+    {
+        this.newWeapon = this.weapon.GetComponent<Weapon>();
+        this.newWeapon.Randomize();
+        this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
+        this.newWeapon.SetSprite(this.newSprite);
+        Icon.GetComponent<Image>().sprite = this.newSprite;
+    }
+
+    void DetermineRandomSpell()
+    {
+        // To prevent players from getting the same spell they currently have. 
+        IPlayerSpell spellPlaceholder;
+
+        do
+        {
+            spellPlaceholder = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
+        } while (playerTarget.GetComponent<PlayerController>().GetActiveSpell() == spellPlaceholder.GetName());
+
+        this.playerSpell = spellPlaceholder;
+    }
+
     void InitializeDebuffs()
     {
         IPlayerEffect randomDebuff;
@@ -73,14 +95,6 @@ public class CardSelectionController : MonoBehaviour
             randomBuff = buffManager.GetComponent<BuffManager>().GetRandomBuff();
         } while (randomBuff.GetName() == "DoubleShot" && doubleShotBanned);
         buffList.Add(randomBuff);
-        this.newWeapon =  this.weapon.GetComponent<Weapon>();
-        this.newWeapon.Randomize();
-        this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
-        this.newWeapon.SetSprite(this.newSprite);
-
-        Icon.GetComponent<Image>().sprite = this.newSprite;
-        playerSpell = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
-        this.spellSprite= SpellManager.GetComponent<SpellManager>().GetSpellSprite();
     }
 
     void InitializeCardText()
@@ -108,7 +122,6 @@ public class CardSelectionController : MonoBehaviour
 
     public void ApplyCard3()
     {
-
         this.playerTarget.GetComponent<PlayerController>().SetActiveSpell(this.playerSpell, this.spellSprite);
         debuffList[2].Execute(playerTarget);
         hasActiveSpell = true;
@@ -121,7 +134,7 @@ public class CardSelectionController : MonoBehaviour
         this.buffList.Clear();
         this.debuffList.Clear();
         this.transform.parent.gameObject.SetActive(false);
-        
+        FindObjectOfType<DontDestroyOnLoad>().EnablePostChoiceText();
         Time.timeScale = 1;
         playerTarget.GetComponent<PlayerController>().enabled = true;
         // TODO: Reenable for different scenes
@@ -148,27 +161,5 @@ public class CardSelectionController : MonoBehaviour
         {
             bloodForSpellsBanned = true;
         }
-    }
-
-    void DetermineRandomWeapon()
-    {
-        this.newWeapon = this.weapon.GetComponent<Weapon>();
-        this.newWeapon.Randomize();
-        this.newSprite = this.playerTarget.GetComponent<WeaponSprites>().sprites[this.newWeapon.spriteIndex];
-        this.newWeapon.SetSprite(this.newSprite);
-        Icon.GetComponent<Image>().sprite = this.newSprite;
-    }
-
-    void DetermineRandomSpell()
-    {
-        // To prevent players from getting the same spell they currently have. 
-        IPlayerSpell spellPlaceholder;
-
-        do
-        {
-            spellPlaceholder = SpellManager.GetComponent<SpellManager>().GetRandomSpell();
-        } while (playerTarget.GetComponent<PlayerController>().GetActiveSpell() == spellPlaceholder.GetName());
-
-        this.playerSpell = spellPlaceholder;
     }
 }
