@@ -410,7 +410,7 @@ public class PlayerController : MonoBehaviour
         this.activeSpell1 = spell;
         if(sprite == null)
         {
-            this.playersCurrentItemBar.Updateslots(2,sprite);
+            this.playersCurrentItemBar.Updateslots(2, empty);
         }else
         {
             this.playersCurrentItemBar.Updateslots(2,sprite);

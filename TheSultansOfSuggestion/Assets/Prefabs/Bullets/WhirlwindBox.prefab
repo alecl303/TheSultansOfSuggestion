@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5430218900989906857}
   - component: {fileID: 5584598800531516908}
   - component: {fileID: 1058549795902067058}
-  - component: {fileID: 3896618959531094276}
   - component: {fileID: -8898192788298708358}
   - component: {fileID: -8872528705083333282}
+  - component: {fileID: 6125295115123626468}
   m_Layer: 0
   m_Name: WhirlwindBox
   m_TagString: PlayerAttack
@@ -134,18 +134,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3896618959531094276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2976386931763293713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002e529d1c456694582b2725ede06e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!331 &-8898192788298708358
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -209,3 +197,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: swing your sword hurting enemies around you
+--- !u!114 &6125295115123626468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976386931763293713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002e529d1c456694582b2725ede06e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -56,8 +56,22 @@ public class DontDestroyOnLoad : MonoBehaviour
     public void EnableText()
     {
         var Story = GameObject.Find("/Story");
-        Story.GetComponent<Canvas>().enabled=true;
-        //Story.GetComponentInChildren<UnityEngine.UI.Text>().text = "bob";
+        Story.GetComponent<Canvas>().enabled = true;
+    }
+
+    public void EnablePostChoiceText(string response)
+    {
+        var PostChoiceText = GameObject.Find("/PostCardChoiceText");
+        PostChoiceText.GetComponentInChildren<UnityEngine.UI.Text>().text = response;
+        PostChoiceText.GetComponent<Canvas>().enabled = true;
+    }
+
+    public void EnableStartingText()
+    {
+        var OnEntranceText = GameObject.Find("/OnEntranceText");
+        Time.timeScale = 0;
+        player.GetComponent<PlayerController>().enabled = false;
+        OnEntranceText.GetComponent<Canvas>().enabled = true;
     }
 
     public void DestroyAll()
