@@ -28,10 +28,16 @@ For the user interface we have several components. Starting off, we begin in a m
 ### Menu Scene
 In this scene we implemented a canvas with four separate buttons. Play begins the game by loading the next scene. Options enable a separate canvas and disables the current canvas. This options canvas has a slider that currently controls the volume and has a back button which disables the option canvas and reenables the main menu canvas. The Controls button goes through the same transition phase as options, but opens another canvas which displays controls for keyboard and mouse. This menu also contains some animated sprites to demonstrate the actions for the controls. Lastly, we have the quit button which should close the .exe file if you are playing on the built version of our game.
 
+![alt text](project-description-images/MainMenu.png)
+![alt text](project-description-images/MainMenuControls.png)
+![alt text](project-description-images/MainMenuVolume.png)
+
 ### Game Scenes
 
 ####  Level Entry
 This canvas is enabled in every scene/level. This scene freezes all enemies as well as the player while also displaying some story text for the user. The game begins when the player hits the Continue button.
+
+![alt text]()
 
 #### Normal Gameplay
 During normal gameplay/combat, the UI has several elements. To start, there is a simple HUD with a health bar and mana bar that depletes and refills depending on the user's actions. These bars are built on sliders that are connected to the player. There is also a 3 slot item bar which houses the range attack indicator, weapon, and spell. This bar can change when a new weapon or spell is picked. Enemy health bars are also built from sliders which are connected to each respective enemy and indicate their current health ([referenced this tutorial](https://www.youtube.com/watch?v=ZYeXmze5gxg)). The boss has a larger health bar located at the top of the screen due to it being more significant. The bars change whenever the enemy takes damage and fully disappear when they die. Damage popup numbers appear whenever you attack an enemy ([referenced this tutorial](https://www.youtube.com/watch?app=desktop&v=iD1_JczQcFY)). The numbers grow in scale and fade over time. Additionally, normal attacks will generate white numbers, crits red numbers, and poison green numbers. Crit damage popups are scaled larger than normal ones to make it more noticeable and satisfying.
@@ -105,7 +111,22 @@ Assets Used:
 
 Due to a lack of time and artistic expertise, free art assets were used for all the environments, weapons, characters, HUD, and transition screens. Since the narrative follows being on some dark, futuristic game show, there are a variety of environments and enemies to make the player feel as if they are being transported between different biomes. All assets used for the environments were 16x16 or 32x32 (and most other assets were as well). Levels were designed to be progressively more complex and larger to match the increase in difficulty. The exception is the final room containing the boss which is smaller to simplify the fight's design. Every map has walls so the player cannot escape as well as a myriad of ground accessories, both collidable and to make the room more visually pleasing and more fun to play through.
 
-All animations are composed from the included sprite sheets and each character/enemy has their own animation controller. Most of the enemies use some collection of walking and/or running, idling, attacking, and dying animations in their lifespans. The boss's lack of animations from the pack it was obtained from are masked by the fight being based on the bullet-hell aspect. 
+All animations are composed from the included sprite sheets and each character/enemy has their own animation controller. Most of the enemies use some collection of walking and/or running, idling, attacking, and dying animations in their lifespans. The boss's lack of animations from the pack it was obtained from are masked by the fight being based on the bullet-hell aspect.
+
+### Atlantis
+![alt text](project-description-images/AtlantisRoom.png)
+
+### Caves 1
+![alt text](project-description-images/CavesRoom1.png)
+
+### Dungeon
+![alt text](project-description-images/DungeonRoom.png)
+
+### Caves 2
+![alt text](project-description-images/CavesRoom2.png)
+
+### Boss Dungeon
+![alt text]()
 
 ## Input
 When we were originally designing our game, we wanted to create something simple enough that anyone could play. Due to this, we decided on having four main actions. This works well for our input methods as most controllers have four face buttons or shoulder buttons if the user prefers. Additionally, if the user prefers mouse and keyboard, the mouse has both attacks while the keyboard has the hotkeys for spells and the dodge roll.
