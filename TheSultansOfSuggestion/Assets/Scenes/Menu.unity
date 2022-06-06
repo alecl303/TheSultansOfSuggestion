@@ -1114,11 +1114,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2516992480246587729, guid: e5aeedb2e567cc940a878758147c6da3, type: 3}
       propertyPath: m_text
-      value: Music Volume
+      value: Music
       objectReference: {fileID: 0}
     - target: {fileID: 2516992480621991015, guid: e5aeedb2e567cc940a878758147c6da3, type: 3}
       propertyPath: m_text
-      value: SFX Volume
+      value: SFX
       objectReference: {fileID: 0}
     - target: {fileID: 5706072790626999769, guid: e5aeedb2e567cc940a878758147c6da3, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
