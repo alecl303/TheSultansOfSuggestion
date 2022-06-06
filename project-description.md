@@ -1,8 +1,10 @@
 # Basic Game Information
 
 # Summary
+Welcome to The Sultans of Suggestion! World peace has been achieved, but humanity’s desire for violence rages on. In this game show of the future, our lucky contestants battle out of the Neo Colosseum&trade;, as wave after wave of mobs are torn apart to satisfy the bloodlust of contestants and audience alike. If an unlucky participant happens to fall in battle, no matter- there are always more entrants for the most popular program on air. There’s no greater calling- all are welcome to fight and die for the sake of entertainment!
 
 # How to Play
+Use WASD or the arrow keys to move around the maps. Press shift to do a quick roll in the direction you're facing (if you're standing still, you can do a dodge in place). You can press or hold left click to fire your ranged weapon and right click to slash with your melee weapon. If a spell is acquired, press E to activate it. 
 
 # Main Roles
 
