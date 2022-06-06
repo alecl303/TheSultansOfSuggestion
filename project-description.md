@@ -28,21 +28,20 @@ For the user interface we have several components. Starting off, we begin in a m
 ### Menu Scene
 In this scene we implemented a canvas with four separate buttons. Play begins the game by loading the next scene. Options enable a separate canvas and disables the current canvas. This options canvas has a slider that currently controls the volume and has a back button which disables the option canvas and reenables the main menu canvas. The Controls button goes through the same transition phase as options, but opens another canvas which displays controls for keyboard and mouse. This menu also contains some animated sprites to demonstrate the actions for the controls. Lastly, we have the quit button which should close the .exe file if you are playing on the built version of our game.
 
-![alt text](project-description-images/MainMenu.png)
-![alt text](project-description-images/MainMenuControls.png)
-![alt text](project-description-images/MainMenuVolume.png)
+![alt text](MainMenuControls.png)
+![alt text](MainMenuVolume.png)
 
 ### Game Scenes
 
 ####  Level Entry
 This canvas is enabled in every scene/level. This scene freezes all enemies as well as the player while also displaying some story text for the user. The game begins when the player hits the Continue button.
 
-![alt text](project-description-images/PreBattleCanvas.png)
+![alt text](PreBattleCanvas.png)
 
 #### Normal Gameplay
 During normal gameplay/combat, the UI has several elements. To start, there is a simple HUD with a health bar and mana bar that depletes and refills depending on the user's actions. These bars are built on sliders that are connected to the player. There is also a 3 slot item bar which houses the range attack indicator, weapon, and spell. This bar can change when a new weapon or spell is picked. Enemy health bars are also built from sliders which are connected to each respective enemy and indicate their current health ([referenced this tutorial](https://www.youtube.com/watch?v=ZYeXmze5gxg)). The boss has a larger health bar located at the top of the screen due to it being more significant. The bars change whenever the enemy takes damage and fully disappear when they die. Damage popup numbers appear whenever you attack an enemy ([referenced this tutorial](https://www.youtube.com/watch?app=desktop&v=iD1_JczQcFY)). The numbers grow in scale and fade over time. Additionally, normal attacks will generate white numbers, crits red numbers, and poison green numbers. Crit damage popups are scaled larger than normal ones to make it more noticeable and satisfying.
 
-![alt text](project-description-images/CasualBattle.png)
+![alt text](CasualBattle.png)
 
 #### Post Room Completion
 This canvas appears after all enemies are defeated in the current stage. Upon killing all the enemies, this should trigger a canvas to load displaying some more story text. After dismissing that text, a card selection screen is enabled. Here there are three random cards, each card has a randomly generated buff and debuff. Card one displays a stat buff, card two displays a new random weapon, and card three has a new spell. There is a description for each buff and debuff generated. Choosing either a new weapon or spell, also changes the HUD item bar. After choosing another text box will appear with some flavor text depending on what was chosen. After that box is closed, the next level is loaded. When either one of the dialogue text boxes is open, the player is free to move around as they wish but they cannot continue until they press the respective button.
@@ -50,13 +49,13 @@ This canvas appears after all enemies are defeated in the current stage. Upon ki
 ### Pause Menu
 If the player is participating in normal gameplay and has not reached during the room completion phase, the player can hit Esc in which a pause canvas will be loaded and the game will be paused. In this canvas, there is a resume button that continues the game, an options button for the volume again, a controls screen, and a quit button that leads back to the main menu screen.
 
-![alt text](project-description-images/PauseMenu.png)
+![alt text](PauseMenu.png)
 
 ### Death and Credits Scenes
 If the player's health depletes to 0, then a death scene loads which informs the player they died and allows for a direct continuation which resets the player back to the first level or a main menu option that returns them to the main menu. The credits scene is very similar to death but it portrays a more cheery connotation then its counterpart.
 
-![alt text](project-description-images/DeathScreen.png)
-![alt text](project-description-images/CreditsScreen.png)
+![alt text](DeathScreen.png)
+![alt text](CreditsScreen.png)
 
 ## Movement/Physics
 
@@ -125,19 +124,19 @@ Due to a lack of time and artistic expertise, free art assets were used for all 
 All animations are composed from the included sprite sheets and each character/enemy has their own animation controller. Most of the enemies use some collection of walking and/or running, idling, attacking, and dying animations in their lifespans. The boss's lack of animations from the pack it was obtained from are masked by the fight being based on the bullet-hell aspect.
 
 ### Atlantis
-![alt text](project-description-images/AtlantisRoom.png)
+![alt text](AtlantisRoom.png)
 
 ### Caves 1
-![alt text](project-description-images/CavesRoom1.png)
+![alt text](CavesRoom1.png)
 
 ### Dungeon
-![alt text](project-description-images/DungeonRoom.png)
+![alt text](DungeonRoom.png)
 
 ### Caves 2
-![alt text](project-description-images/CavesRoom2.png)
+![alt text](CavesRoom2.png)
 
 ### Boss Dungeon
-![alt text](project-description-images/BossRoom.png)
+![alt text](BossRoom.png)
 
 ## Input
 When we were originally designing our game, we wanted to create something simple enough that anyone could play. Due to this, we decided on having four main actions. This works well for our input methods as most controllers have four face buttons or shoulder buttons if the user prefers. Additionally, if the user prefers mouse and keyboard, the mouse has both attacks while the keyboard has the hotkeys for spells and the dodge roll.
