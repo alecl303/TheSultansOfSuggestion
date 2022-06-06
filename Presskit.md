@@ -1,12 +1,12 @@
 ![alt text](./PresskitImages/title.png?raw=true)
 
-**Developer:** Frogger 2 
+**Developer:** Frogger 2 <br>
 **Release Date:** 6/6/22 <br>
 **Supported Platforms:** Desktop/Laptop <br>
 **Price:** Free <br>
 **Availability:** [need to add, aka itchio/download] <br>
 **Languages:** English <br>
-**ESRB:** E for everyone <br>
+**ESRB:** T for teens <br>
 **Genre:** 2D, roguelike, bullet hell, single-player, action-adventure <br> <br>
 
 -----
