@@ -22,16 +22,7 @@ namespace Player.Command
                 hitBox.GetComponentInChildren<SpriteRenderer>().flipY = true;
             }
             var playerObject = gameObject.GetComponent<PlayerController>();
-            /* Buggy -?
-            if(target.x < rigidBody.position.x)
-            {
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else
-            {
-                gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            }
-            */
+            
 
             hitboxController.SetStunTime(playerObject.GetStats().GetStunTime());
             hitboxController.SetStunChance(playerObject.GetStats().GetStunChance());
