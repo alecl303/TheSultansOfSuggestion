@@ -36,7 +36,7 @@ difficulty as they approach the boss.
 
 -----
 
-[Insert trailer link here when done]
+[Trailer here!](https://youtu.be/vQLqbzaNdg0)
 
 
 ### Fight enemies! <br>
