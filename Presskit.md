@@ -5,7 +5,7 @@
 **Release Date:** 6/6/22 <br>
 **Supported Platforms:** Desktop/Laptop <br>
 **Price:** Free <br>
-**Availability:** [need to add, aka itchio/download] <br>
+**Availability:** [Play now!](https://cmpires.itch.io/the-sultans-of-suggestion) <br>
 **Languages:** English <br>
 **ESRB:** T for teens <br>
 **Genre:** 2D, roguelike, bullet hell, single-player, action-adventure <br> <br>
@@ -16,7 +16,7 @@
 ## Description 
 Welcome to The Sultans of Suggestion! World peace has been achieved, but humanity’s desire for violence rages on. In this game show of the future, our lucky contestants battle out of the Neo ColosseumTM, as wave after wave of mobs are torn apart to satisfy the bloodlust of contestants and audience alike. If an unlucky participant happens to fall in battle, no matter- there are always more entrants for the most popular program on air. There’s no greater calling- all are welcome to fight and die for the sake of entertainment!
 
-## Gameplay explanation 
+## Gameplay Explanation 
 The game genre will be a roguelike 2D bullet hell game, where the player starts in a dungeon room and
 needs to beat the boss. The player will progress through rooms and gain upgrades until they 
 reach the final boss. These upgrades will be represented in card format and there will both be generally
