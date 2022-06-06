@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
                     if (!this.isAttacking)
                     {
                         // Ranged Attack
-                        if (Input.GetButton("Fire1") && this.canShoot)
+                        if ((Input.GetButton("Fire1") || Input.GetAxis("Fire1") > 0.5 )&& this.canShoot)
                         {
                             this.fire1.Execute(this.gameObject);
                             StartCoroutine(Shooting());
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
                             }
                         }
                         // Dodge roll
-                        if (Input.GetButtonDown("Jump") && this.canDodge)
+                        if ((Input.GetButtonDown("Jump") || Input.GetAxis("Fire1") < -0.5) && this.canDodge)
                         {
                             this.roll.Execute(this.gameObject);
                         }

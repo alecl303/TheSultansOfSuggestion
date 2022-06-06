@@ -11,10 +11,34 @@ namespace Player.Command
         {
             var playerObject = gameObject.GetComponent<PlayerController>();
             var rigidBody = gameObject.GetComponent<Rigidbody2D>();
-            var worldTransform = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-            var positionDifference = Input.mousePosition - worldTransform;
-            var target = positionDifference.normalized;
-            var theta = Mathf.Atan((positionDifference.y - rigidBody.transform.position.y) / (positionDifference.x - rigidBody.transform.position.x)) * (180/Mathf.PI);
+            var target = new Vector2(0, 0);
+            var positionDifference = new Vector2(0, 0);
+
+            if(Input.GetJoystickNames().Length == 0)
+            {
+                var worldTransform = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+                positionDifference = Input.mousePosition - worldTransform;
+                target = positionDifference.normalized;
+                
+            }
+            else
+            {
+                target = new Vector2(-Input.GetAxis("4"), -Input.GetAxis("5")).normalized;
+
+                if(target.magnitude == 0)
+                {
+                    var xValue = 1;
+                    if (gameObject.GetComponent<SpriteRenderer>().flipX)
+                    {
+                        xValue = -1;
+                    }
+                    target = new Vector2(xValue, 0);
+                }
+
+                positionDifference = rigidBody.position + target;
+            }
+
+            var theta = Mathf.Atan((positionDifference.y - rigidBody.transform.position.y) / (positionDifference.x - rigidBody.transform.position.x)) * (180 / Mathf.PI);
 
             GameObject bullet = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().bulletPrefab, new Vector3(rigidBody.transform.position.x + (target.x), rigidBody.transform.position.y + (target.y), rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, theta));
             var bulletController = bullet.GetComponent<PlayerBulletController>();
