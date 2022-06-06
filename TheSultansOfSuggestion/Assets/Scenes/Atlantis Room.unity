@@ -11792,6 +11792,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 340
       objectReference: {fileID: 0}
+    - target: {fileID: 1448452615239589477, guid: f5441efe6f416e343b37741c52f5bb10, type: 3}
+      propertyPath: m_text
+      value: Music Volume
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118459393015286824, guid: f5441efe6f416e343b37741c52f5bb10, type: 3}
+      propertyPath: m_text
+      value: SFX Volume
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444501362790950948, guid: f5441efe6f416e343b37741c52f5bb10, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8775196052566608807, guid: f5441efe6f416e343b37741c52f5bb10, type: 3}
       propertyPath: m_Sprite
       value: 

@@ -24223,7 +24223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825568, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.967126
+      value: -5.05
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825568, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24256,6 +24256,10 @@ PrefabInstance:
     - target: {fileID: 1901393612936825568, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
+      propertyPath: yMin
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1901393612936825569, guid: 127ba2698296e21469e9f2ff13753339, type: 3}
       propertyPath: enemyCount

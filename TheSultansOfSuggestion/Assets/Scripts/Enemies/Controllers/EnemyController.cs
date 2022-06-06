@@ -46,7 +46,7 @@ abstract public class EnemyController : MonoBehaviour
 
     private float maxHealth;
 
-    
+    private Color baseColor = new Color(255, 255, 255, 1);
     
     //[SerializeField] private GameObject weaponDrop;
 
@@ -60,6 +60,7 @@ abstract public class EnemyController : MonoBehaviour
     protected IEnemyCommand movement;
     protected IEnemyCommand attack;
     protected IEnemyCommand chase;
+    
 
     // Start and Update calls virtual method init, that can be extended in inherited classes. Inherited classes will inherit Start/Update methods from this class.
     void Start()
@@ -222,8 +223,23 @@ abstract public class EnemyController : MonoBehaviour
         var temp = FindObjectOfType<PlayerController>();
         this.target = temp.GetComponent<Rigidbody2D>();
         this.targetRage = temp.GetComponent<PlayerController>();
+        //int eliteChance = FindObjectOfType<PlayerController>().GetStats().GetEliteChance();
+        int randomInt = Random.Range(0, 100);
+
+        if (randomInt <= 5)
+        {
+            IsElite();
+        }
     }
 
+    private void IsElite()
+    {
+        this.health *= 2;
+        this.attackDamage *= 2;
+        this.baseColor = new Color(255, 165, 0);
+        this.gameObject.GetComponent<SpriteRenderer>().color = this.baseColor;
+
+    }
     public float GetSpeed()
     {
         return this.movementSpeed;
@@ -327,7 +343,7 @@ abstract public class EnemyController : MonoBehaviour
             yield return new WaitForSeconds(stunTime/numCalls);
         }
         this.canAct = true;
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255);
+        this.gameObject.GetComponent<SpriteRenderer>().color = this.baseColor;
     }
 
     private void CheckForPoison(PlayerAttack attack)
@@ -354,7 +370,7 @@ abstract public class EnemyController : MonoBehaviour
         }
         // Wait 0.5 seconds, since TakeDamage will revert color after 0.15 seconds. This will ensure the color below is last to run
         yield return new WaitForSeconds(0.2f);
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        this.gameObject.GetComponent<SpriteRenderer>().color = this.baseColor;
     }
 
     private void CheckForLifeDrain(PlayerAttack attack)
@@ -383,7 +399,7 @@ abstract public class EnemyController : MonoBehaviour
 
         yield return new WaitForSeconds(0.15f);
 
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        this.gameObject.GetComponent<SpriteRenderer>().color = this.baseColor;
     }
 
     public void TakeDamage(float damage)
@@ -405,7 +421,7 @@ abstract public class EnemyController : MonoBehaviour
         var animator = this.gameObject.GetComponent<Animator>();
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         animator.SetBool("Dying", true);
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        this.gameObject.GetComponent<SpriteRenderer>().color = this.baseColor;
 
         FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
 

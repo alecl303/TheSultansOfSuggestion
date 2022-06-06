@@ -37,7 +37,8 @@ public class DebuffManager : MonoBehaviour
             ScriptableObject.CreateInstance<ManaDown>(),
             ScriptableObject.CreateInstance<MaxHealthDown>(),
             ScriptableObject.CreateInstance<MovementSpeedDown>(),
-            ScriptableObject.CreateInstance<RangeDown>()
+            ScriptableObject.CreateInstance<RangeDown>(),
+            ScriptableObject.CreateInstance<IncreaseEliteChance>()
         };
         this.debuffLength = this.debuffs.Count;
     }

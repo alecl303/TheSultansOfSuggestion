@@ -8,6 +8,7 @@ public class DeathScreen : MonoBehaviour
     public void ContinueGame()
     {
         // Load Atlantis Scene
+        DontDestroyOnLoad(FindObjectOfType<SoundManager>());
         SceneManager.LoadScene(1);
     }
 

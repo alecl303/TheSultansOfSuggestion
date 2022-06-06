@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private PlayerStats stats;
 
     [SerializeField] private bool canShoot = true;
+    [SerializeField] private bool canDodge = true;
     [SerializeField] private float iFrameTime = 5f;
     [SerializeField] private bool isInIFrame = false;
     [SerializeField] private float hitStunTime = 0.3f;
@@ -20,7 +21,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isAttacking = false;
     [SerializeField] private bool isDead = false;
     [SerializeField] private bool isEnabled = true;
-    [SerializeField] private bool canDodge = true;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject hitboxPrefab;
     [SerializeField] private Sprite empty;
@@ -309,7 +309,7 @@ public class PlayerController : MonoBehaviour
     {
         var animator = this.gameObject.GetComponent<Animator>();
         animator.SetBool("Attacking", true);
-        yield return new WaitForSeconds(this.attackTime);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         animator.SetBool("Attacking", false);
         this.isAttacking = false;
     }

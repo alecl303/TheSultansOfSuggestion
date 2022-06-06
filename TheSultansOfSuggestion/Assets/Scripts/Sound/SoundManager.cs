@@ -92,7 +92,10 @@ public class SoundManager : MonoBehaviour
         {
             track.audioSource.volume = volume;
         }
+    }
 
+    public void ChangeSFXVolume(float volume)
+    {
         foreach (var clip in this.sfxClips)
         {
             clip.audioSource.volume = volume;
@@ -102,5 +105,10 @@ public class SoundManager : MonoBehaviour
     public float GetVolume()
     {
         return this.musicTracks[0].audioSource.volume;
+    }
+
+    public float GetSFXVolume()
+    {
+        return this.sfxClips[0].audioSource.volume;
     }
 }
