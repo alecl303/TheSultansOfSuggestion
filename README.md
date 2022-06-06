@@ -1,14 +1,14 @@
-# 189-Final-Project
+# The Sultans of Suggestion
 
+## Project Description
+View the project description and get insight into all facets of the game [here](https://github.com/alecl303/TheSultansOfSuggestion/blob/380f1e5857f93dde6629df11f5cf88f70d4b5805/project-description.md)!  
+View the press kit [here](https://github.com/alecl303/TheSultansOfSuggestion/blob/380f1e5857f93dde6629df11f5cf88f70d4b5805/Presskit.md)!  
+View the trailer [here](https://www.youtube.com/watch?v=vQLqbzaNdg0)!  
 
-## Team Development Standard:
-Workflow: Team members will use the following process to develop a feature or bug fix.
-
-1. Create a branch using the following naming convention: ‐<name‐of‐feature> e.g. nd‐dev‐standards
-2. When you are ready for feedback on your changes, even if they are not ready to be fully reviewed, open a pull request.
-3. When your changes are ready for review, strive to resolve merge conflicts with the master branch before asking for review.
-4. Pull requests require at least TWO other teammates to review and sign off via GitHub pull request approval. Code review responsibilities should be divided among all teammates.
-5. The pull request creator will make any reasonable changes requested by reviewers until the pull request is approved.
-6. The pull request creator will ship the feature into master with a squash commit via GitHub. Commit messages should, at a minimum, contain a concise but descriptive explanation of the changes.
-
-Style: We will be sticking to the clean code conventions given for the class
+## Credits
+* Producer/Gameplay Tester - Cameron Daggs
+* Game Logic/Audio - Austin Kosnikowski
+* Animations and Visuals/Narrative Design - Harry Yong
+* Movement and Physics/Press Kit and Trailer - Alec Liang
+* Input/Cross-Platform - Christopher Pires
+* User Interface/Game Feel - Patrick Chan
