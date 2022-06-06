@@ -61,8 +61,8 @@ If the player's health depletes to 0, then a death scene loads which informs the
 ## Movement/Physics
 
 ### Attacking
-* Melee attacks spawn an invisible hitbox called a PlayerMeleePrefab, which has a RigidBody2D component, melee hit box controller component, and a Box Collider 2D component. This allows the player melee attacks to have pushback as they follow Unity’s built in physics system. 
-* Ranged attacks spawn bullets which also have a RigidBody2D component, bullet controller component, and a Box Collider 2D component. Each bullet will push back the enemy. 
+* [Melee attacks](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Player/Commands/Attacks/MeleeAttack.cs) spawn an invisible hitbox called a PlayerMeleePrefab, which has a RigidBody2D component, melee hit box controller component, and a Box Collider 2D component. This allows the player melee attacks to have pushback as they follow Unity’s built in physics system. 
+* [Ranged attacks](https://github.com/alecl303/TheSultansOfSuggestion/blob/main/TheSultansOfSuggestion/Assets/Scripts/Player/Commands/Attacks/RangedAttack.cs) spawn bullets which also have a RigidBody2D component, bullet controller component, and a Box Collider 2D component. Each bullet will push back the enemy. 
 * The player’s attacks are angled based on where the mouse pointer is. The attacks are pointing towards the mouse’s direction.
 
 ### General Movement
@@ -71,25 +71,29 @@ If the player's health depletes to 0, then a death scene loads which informs the
 
 ### Determination of Player Movement
 * The player's movement is determined using the command pattern and input detection.
-* The player's roll direction is a normalized unit vector created using the value of the input axes.
+* The [player's roll](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Player/Commands/Movement/Roll.cs) direction is a normalized unit vector created using the value of the input axes.
 * All directional movement followed exercise 1 from Professor Joshua McCoy.
 
 ### Determination of Enemy Movement
 * Enemy movement also uses the command pattern (see Game Logic) and the enemy either wanders or chases based on distance from the player.
 * To track the player, the enemy simply creates a target vector by subtracting its position from the player’s position, then normalizing that as a unit vector.
-* As for the enemy dashing, we utilized Unity’s lerping to make a smooth dash. The dash will activate once the enemy is close enough.
+* As for the [enemy dashing](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Enemies/Commands/Movement/MeleeEnemyDash.cs), we utilized Unity’s lerping to make a smooth dash. The dash will activate once the enemy is close enough.
 
 ### Collisions
 * Between Enemies and the Environment
   * Each environment game object that is collidable on the map has the "Environment" tag. For example, the walls are tagged "Environment".
-  * For the Caves map, the empty area and the spikes are labeled "Hole" for the tag. This will allow flying enemies to ignore the collision and go through these parts of the map.  This is done through the EnemyController where, if the enemy is a flying unit and a collision is triggered, the collision is then ignored.
+  * For the Caves map, the empty area and the spikes are labeled "Hole" for the tag. This will allow flying enemies to ignore the collision and go through these parts of the map.  This is [done through the EnemyController](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Enemies/Controllers/EnemyController.cs#L177) where if the enemy is a flying unit and a collision is triggered, the collision is then ignored.
 * Between Enemies, Projectiles, and the Player
   * In order to use Unity’s built in physics, we utilized Unity’s RigidBody2D component and Unity’s box/circle collider components. To identify if we want an object to follow Unity’s physics system, the object will have to add those two components. This will allow each object to have some mass and force applied whenever they collide. Once the two box/circle colliders touch, this will inform the attached scripts whether there was a collision. To represent accurate hitboxes, the shape best representing the object is used (except for the player which uses a circle collider to prevent them from dashing through the walls).
 *  Projectile Interactions
   * Projectiles are tagged as "PlayerAttack" or "EnemyAttack", and will either collide and destroy themselves or ignore a collision based on the tag. Additional functionality afflicts the projectile's damage on collisions. 
   * Each projectile also has their own defined damage inside a script that is then attached to bullet/projectile prefab. This defines the behavior of the bullet and allows management of stats. 
+* Player I-Frames
+  * Whenever the player takes damage from a collision (bullet/enemy), the [player will enter a short period of i-frames](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Player/PlayerController.cs#L329). The player controller will keep track if the player is in i-frames and will use a coroutine to then turn them off after a short period of time. Although the player can still collide with projectiles and enemies, they will not deal damage.
+  * The [invincibility spell](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Player/PlayerController.cs#L373) also utilizes the player i-frames but with a longer duration. Dodging/rolling will be disabled during invincibility. 
+  * Dodging/rolling also provides a short period of i-frames.
 * Floor Spell Interactions
-  * Floor spells are tagged either “PlayerBuffSpell” or “PlayerTrapSpell,” and spawned on the floor. The floor spells will activate their effect in OnTriggerEnter in the EnemyController or PlayerController. PlayerBuffSpell is used for the healing spell, and will activate once the player stands on it. The PlayerTrapSpell is used in IcicleTrap and triggers a barrage of bullets when an enemy steps on the circle. 
+  * Floor spells are tagged either "PlayerBuffSpell" or "PlayerTrapSpell" and spawned on the floor. The floor spells will activate their effect in OnTriggerEnter in the EnemyController or PlayerController. PlayerBuffSpell is used for the healing spell, and will activate once the player stands on it. The PlayerTrapSpell is used in IcicleTrap and triggers a barrage of bullets when an enemy steps on the circle. 
   * Each of these has a RigidBody2D and a circle collider component since the spells are both circular. 
 
 
@@ -147,24 +151,24 @@ The player can also play the game with the use of a controller. The player can a
 ## Game Logic
 Everything mentioned below was either made up or learned from a project done in class.
 * Enemy Controller(s)
-  * Enemies inherit most functionality from the abstract class ‘EnemyController.cs’, in which they are executing their declared movement and attacks given certain conditions. 
+  * Enemies inherit most functionality from the abstract class [EnemyController](https://github.com/alecl303/TheSultansOfSuggestion/blob/main/TheSultansOfSuggestion/Assets/Scripts/Enemies/Controllers/EnemyController.cs) in which they are executing their declared movement and attacks given certain conditions. 
   * This keeps track of stats, handles the coroutines used to buffer states and animations, and handles all functionality related to collisions and status effects.
   * Enemies then extend that class to more specific controllers that declare different IEnemyCommands as their unique attack or movement by overriding the virtual init method, and making a super call on the parent class. Enemy controllers are also used to change their inherent stats.
 * Enemy Attack Types
-  * IEnemy Command is the interface that determines the way an enemy will behave aside from collisions and stats. These commands will determine what the enemy does in the ‘attack’ state, or the ‘chase’ state.
+  * [IEnemyCommand](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Enemies/Commands/IEnemyCommand.cs) is the interface that determines the way an enemy will behave aside from collisions and stats. These commands will determine what the enemy does in the attack state or the chase state.
 * Effects
-  * Effects are also a unique interface that interact with the player stats. 
-  * They are divided amongst stat effects (an abstract class implementing IPlayerEffect) and random effects that also implement the interface. 
+  * [Effects](https://github.com/alecl303/TheSultansOfSuggestion/blob/main/TheSultansOfSuggestion/Assets/Scripts/Card%20Selection/Effects/IPlayerEffect.cs) are also a unique interface that interact with the player stats. 
+  * They are divided amongst [stat effects](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Card%20Selection/Effects/StatEffects/StatEffect.cs)(an abstract class implementing IPlayerEffect) and random effects that also implement the interface. 
   * Each effect contains an execute function that is called when a card is selected along with a name and description that are used to populate cards with text.
-  * There are two EffectManager classes used to generate a random buff or debuff. Their sole purpose is to hold instances of each effect and produce a random one when called.
+  * There are two EffectManager classes used to generate a random [buff](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Card%20Selection/BuffsDebuffs/BuffManager.cs) or [debuff](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Card%20Selection/BuffsDebuffs/DebuffManager.cs). Their sole purpose is to hold instances of each effect and produce a random one when called.
 * Spells
   * Spells are another interface much like the IPlayerCommand, but they have a few extra member functions used to provide the player with information such as what the spell does, and how much mana it will cost. They also have cooldown values. 
 * Weapons
-  * Weapons are a single class that simply generate a random sprite, and a random amount of damage that is determined by rarity.
+  * [Weapons](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Card%20Selection/Weapon/Weapon.cs) are a single class that simply generate a random sprite, and a random amount of damage that is determined by rarity.
   * Rarity is determined by a random integer generated between 0-100 and checks for certain thresholds incrementally to determine rarity. The rarity then sets the bounds for the randomized damage.
 * Player
-  * The PlayerController is a command pattern that executes IPlayerCommands, determines physics collisions, and deals with state transitions and logic.
-  * A PlayerAttack is another virtual class that determines basic functionality for any ‘hit box’ that is generated by the player. It has very basic functionality for determining damage and speed.
+  * The [PlayerController](https://github.com/alecl303/TheSultansOfSuggestion/blob/defc898c2cfec67458b021807553900ba1fea9ff/TheSultansOfSuggestion/Assets/Scripts/Player/PlayerController.cs) is a command pattern that executes IPlayerCommands, determines physics collisions, and deals with state transitions and logic.
+  * A [PlayerAttack](https://github.com/alecl303/TheSultansOfSuggestion/blob/main/TheSultansOfSuggestion/Assets/Scripts/Player/PlayerAttack/PlayerAttack.cs) is another virtual class that determines basic functionality for any ‘hit box’ that is generated by the player. It has very basic functionality for determining damage and speed.
   * Melee attack is a sprite-less hitbox that simply follows the player after being produced.
   * Ranged attacks (for enemies and player) are bullets that each have a specialized bullet controller to determine flight behavior.
   * The player has a separate call attached to it that is a functionally encapsulated set of stats and stat affecting methods that the PlayerController interacts with.
@@ -173,9 +177,9 @@ Everything mentioned below was either made up or learned from a project done in 
   * Bullet controllers are each attached to a special bullet prefab that is later referenced for instantiation by an attack.
 * Scene Transition / DontDestroyOnLoad
   * Manages scene index by iterating through a set of dialogue canvas objects and then incrementing the scene value.
-  * This also sends specific game objects into the DontDestroyOnLoad hierarchy in order to preserve changes from different scenes. 
+  * This also sends specific game objects into the [DontDestroyOnLoad](https://github.com/alecl303/TheSultansOfSuggestion/blob/main/TheSultansOfSuggestion/Assets/Scripts/DontDestroyOnLoad.cs) hierarchy in order to preserve changes from different scenes. 
 * Buff/Debuff Cards
-  * After all enemies are defeated, the EnemySpawner object which contains the script of the same name, will call EnableStory from DontDestroyOnLoad, enabling the first story box. Once the continue button is clicked, the card selection screen will be enabled from DontDestroyOnLoad. The card selection will randomly generate 3 cards, each one with a different positive aspect (either a passive, weapon, or spell) and debuff displayed in a separate text box. Each card is a button that, when clicked, will apply its card's buff and debuff and any corresponding HUD changes. Inside of each card selection function, a function is called to disable the CardSelection to reset the cycle for the EnemySpawner and enable the next story box. This story box’s continue button will increment to the next scene via the DontDestroyOnLoad.
+  * After all enemies are defeated, the EnemySpawner object which contains the script of the same name, will call EnableStory from DontDestroyOnLoad, enabling the first story box. Once the continue button is clicked, the card selection screen will be enabled from DontDestroyOnLoad. The [CardSelectionController](https://github.com/alecl303/TheSultansOfSuggestion/blob/main/TheSultansOfSuggestion/Assets/Scripts/Card%20Selection/CardSelectionController.cs) will randomly generate 3 cards, each one with a different positive aspect (either a passive, weapon, or spell) and debuff displayed in a separate text box. Each card is a button that, when clicked, will apply its card's buff and debuff and any corresponding HUD changes. Inside of each card selection function, a function is called to disable the CardSelection to reset the cycle for the EnemySpawner and enable the next story box. This story box’s continue button will increment to the next scene via the DontDestroyOnLoad.
 
 # Sub-Roles
 
