@@ -139,6 +139,7 @@ public class CardSelectionController : MonoBehaviour
         FindObjectOfType<DontDestroyOnLoad>().EnablePostChoiceText(response);
         Time.timeScale = 1;
         playerTarget.GetComponent<PlayerController>().enabled = true;
+        // TODO: Reenable for different scenes
     }
 
     void UpdateBans(bool buffTaken, int debuffIndex)
