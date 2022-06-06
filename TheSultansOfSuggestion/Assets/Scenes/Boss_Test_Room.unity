@@ -430,7 +430,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6488341689251900861, guid: 1f9b51ef3e4f6be4f9dc1d1cd41f9694, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6488341689251900861, guid: 1f9b51ef3e4f6be4f9dc1d1cd41f9694, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9944,7 +9944,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1300710167
 PrefabInstance:
@@ -10072,10 +10072,6 @@ PrefabInstance:
     - target: {fileID: 5374691942973915439, guid: 15ee93c546f154e4ca741caa8094e8c5, type: 3}
       propertyPath: m_Name
       value: HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 5374691943358124364, guid: 15ee93c546f154e4ca741caa8094e8c5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 57.94995
       objectReference: {fileID: 0}
     - target: {fileID: 5880699452031360552, guid: 15ee93c546f154e4ca741caa8094e8c5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13774,10 +13770,6 @@ PrefabInstance:
       propertyPath: healthBarUI
       value: 
       objectReference: {fileID: 430697653838541967}
-    - target: {fileID: 1603879038776507215, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
-      propertyPath: razerBulletPrefab
-      value: 
-      objectReference: {fileID: 3314741014788306328, guid: 922745a5b3114ec4aadb0951711fe9a1, type: 3}
     - target: {fileID: 3026326317570799640, guid: 4393764d10f2ebd4ab0194bfbdd1b101, type: 3}
       propertyPath: m_RootOrder
       value: 2

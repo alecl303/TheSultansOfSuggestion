@@ -27,11 +27,11 @@ namespace Player.Command
             // Spawn the icicle trap spell and drain player mana.
             if (rigidBody != null && playerStats.GetMana() >= this.requiredMana)
             {
-                playerStats.DrainMana(this.requiredMana);
                 var spellObject = Instantiate(spellPrefab, new Vector3(rigidBody.transform.position.x, rigidBody.transform.position.y, rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, 0.0f));
                 spellObject.GetComponent<IcicleEffect>().SetBulletDamage(playerStats.GetRangeDamage());            
                 // Destroy in duration seconds, plus a slight delay.
                 Destroy(spellObject, duration + 0.05f);
+                playerStats.DrainMana(this.requiredMana);
             }
         }
         public string GetDescription()

@@ -53,12 +53,5 @@ public class HealEffect : MonoBehaviour, IPlayerFloorSpellEffect
             playerStats.Heal(flatHeal);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
+    
 }

@@ -29,7 +29,6 @@ public class BossController : MonoBehaviour
     [SerializeField] private bool isFlying = true;
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public GameObject targetBulletPrefab;
-    [SerializeField] public GameObject razerBulletPrefab;
 
     [SerializeField] private Texture2D crosshair;
     private CursorMode cursorMode = CursorMode.Auto;
@@ -59,8 +58,6 @@ public class BossController : MonoBehaviour
 
     [SerializeField] private int currentAttackIndex = 0;
 
-    private bool canRazor = true;
-
     // Start and Update calls virtual method init, that can be extended in inherited classes. Inherited classes will inherit Start/Update methods from this class.
     void Start()
     {
@@ -78,14 +75,14 @@ public class BossController : MonoBehaviour
     {
         this.movement = ScriptableObject.CreateInstance<DoNothingBoss>();
         this.attacks = new List<IBossCommand>{
-             ScriptableObject.CreateInstance<BulletSpawn4>(),
-             ScriptableObject.CreateInstance<BulletSpawn3>(),
-             ScriptableObject.CreateInstance<BulletSpawn2>(),
-             ScriptableObject.CreateInstance<BulletSpawn1>(),
-        }; 
+            ScriptableObject.CreateInstance<BulletSpawn4>(),
+            ScriptableObject.CreateInstance<BulletSpawn3>(),
+            ScriptableObject.CreateInstance<BulletSpawn2>(),
+            ScriptableObject.CreateInstance<BulletSpawn1>(),
+        };
         this.rangedAttack1 = ScriptableObject.CreateInstance<BulletSpawn2>();
         this.stompAttack = ScriptableObject.CreateInstance<DoNothingBoss>();
-        this.rangedAttack2 = ScriptableObject.CreateInstance<RazerSpawn1>();
+        this.rangedAttack2 = ScriptableObject.CreateInstance<BulletSpawn1>();
         AttachPlayer();
         //FindObjectOfType<EnemySpawner>().liveEnemies += 1;
     }
@@ -111,13 +108,9 @@ public class BossController : MonoBehaviour
             {
                 StartCoroutine(InitiateAttack(this.attacks[this.currentAttackIndex].GetDuration()));
             }
-            if (this.canRazor)
-            {
-                StartCoroutine(ThrowRazor());
-            }
         }
-        //SetState();
 
+        //SetState();
     }
 
     // Misc helper functions that all enemies will be able to use
@@ -157,6 +150,40 @@ public class BossController : MonoBehaviour
         }
     }
 
+    private void SetState()
+    {
+
+        if (this.health == this.maxHealth)
+        {
+            this.attacks = new List<IBossCommand>{
+                this.rangedAttack1,
+                this.rangedAttack2
+            };
+        }
+        else if(this.health < 75)
+        {
+            this.attacks = new List<IBossCommand>{
+                this.rangedAttack1,
+                this.rangedAttack2
+            };
+            this.movement = ScriptableObject.CreateInstance<DoNothingBoss>();
+        }
+        else if(this.health < 50)
+        {
+            this.attacks = new List<IBossCommand>{
+                this.rangedAttack1,
+                this.rangedAttack2
+            };
+        }
+        else
+        {
+            this.attacks = new List<IBossCommand>{
+                this.rangedAttack1,
+                this.rangedAttack2
+            };
+        }
+    }
+
     private void AttachPlayer()
     {
         var temp = FindObjectOfType<PlayerController>();
@@ -187,14 +214,6 @@ public class BossController : MonoBehaviour
 
         this.currentAttackIndex = (this.currentAttackIndex + 1) % this.attacks.Count;
         this.attacking = false;
-    }
-
-    private IEnumerator ThrowRazor()
-    {
-        this.canRazor = false;
-        yield return new WaitForSeconds(20);
-        this.rangedAttack2.Execute(this.gameObject);
-        this.canRazor = true;
     }
 
     public float GetAttackDamage()

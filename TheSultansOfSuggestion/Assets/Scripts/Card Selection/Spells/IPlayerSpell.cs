@@ -6,7 +6,7 @@ namespace Player.Command
     {
         void Execute(GameObject gameObject);
         
-        //public float GetCooldown();
+        public float GetCooldown();
         public string GetDescription();
 
         public string GetName();
