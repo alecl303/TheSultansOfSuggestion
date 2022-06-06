@@ -3,6 +3,7 @@
 **Release Date:** 6/6/22 <br>
 **Supported Platforms:** Desktop/Laptop <br>
 **Price:** Free <br>
+**Availability:** https://cmpires.itch.io/the-sultans-of-suggestion <br> 
 **Languages:** English <br>
 **ESRB:** T for teens <br>
 **Genre:** 2D, roguelike, bullet hell, single-player, action-adventure <br> <br>
