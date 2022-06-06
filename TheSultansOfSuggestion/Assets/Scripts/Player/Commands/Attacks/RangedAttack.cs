@@ -14,18 +14,12 @@ namespace Player.Command
             var target = new Vector2(0, 0);
             var positionDifference = new Vector2(0, 0);
 
-            if(Input.GetJoystickNames().Length == 0)
+            if(Input.GetJoystickNames().Length > 0)
             {
-                var worldTransform = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-                positionDifference = Input.mousePosition - worldTransform;
-                target = positionDifference.normalized;
-                
-            }
-            else
-            {
+
                 target = new Vector2(-Input.GetAxis("4"), -Input.GetAxis("5")).normalized;
 
-                if(target.magnitude == 0)
+                if (target.magnitude == 0)
                 {
                     var xValue = 1;
                     if (gameObject.GetComponent<SpriteRenderer>().flipX)
@@ -36,6 +30,12 @@ namespace Player.Command
                 }
 
                 positionDifference = rigidBody.position + target;
+            }
+            else
+            {
+                var worldTransform = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+                positionDifference = Input.mousePosition - worldTransform;
+                target = positionDifference.normalized;
             }
 
             var theta = Mathf.Atan((positionDifference.y - rigidBody.transform.position.y) / (positionDifference.x - rigidBody.transform.position.x)) * (180 / Mathf.PI);
