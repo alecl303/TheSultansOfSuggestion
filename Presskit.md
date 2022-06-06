@@ -27,10 +27,10 @@ difficulty as they approach the boss.
 
 ## Features <br>
 * Adventure through new maps and battle various enemies! At the end of each map will be a card selection that will help and weaken the player! 
-* Play each run with different buffs and debuffs, including different spells. 
-* Play with a keyboard and mouse.
+* Every run is different with a large amount of buffs and debuffs, including different spells! 
+* Play with a keyboard and mouse or a controller!
 * Battle the boss as the final enemy to win!
-* Explore new scenery with custom-made music tracks.
+* Explore new scenery with custom-made music tracks!
 
 <br> 
 
