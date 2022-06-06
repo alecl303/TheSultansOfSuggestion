@@ -135,12 +135,13 @@ public class PlayerController : MonoBehaviour
                         // Active Spell Attack
                         if (Input.GetButtonDown("Fire3"))
                         {
-                            if (!onCooldown) {
-                                this.onCooldown = true;
-                                this.activeSpell1.Execute(this.gameObject);
-                                var cooldownTime = this.activeSpell1.GetCooldown();
-                                StartCoroutine(WaitCoolDown(cooldownTime));
-                            }
+                            this.activeSpell1.Execute(this.gameObject);
+                            //if (!onCooldown) {
+                            //    this.onCooldown = true;
+                                
+                            //    var cooldownTime = this.activeSpell1.GetCooldown();
+                            //    StartCoroutine(WaitCoolDown(cooldownTime));
+                            //}
                         }
                         // Dodge roll
                         if (Input.GetButtonDown("Jump") && this.canDodge)
@@ -154,8 +155,6 @@ public class PlayerController : MonoBehaviour
                     animator.SetFloat("Velocity", Mathf.Max(Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.x), Mathf.Abs(this.gameObject.GetComponent<Rigidbody2D>().velocity.y)));
                 }
             }
-            //this.RegenMana();
-            //this.CheckRage();
         }
     }
 
@@ -258,43 +257,14 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
                 var enemy = collision.gameObject.GetComponent<EnemyController>();
 
-                //playerRigidBody.velocity = (enemy.GetKnockback() * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
-
                 TakeDamage(enemy.GetAttackDamage());
-
                 FindObjectOfType<SoundManager>().PlaySoundEffect("Melee");
-
-                //StartCoroutine(HitStun());
                 StartCoroutine(IFrame());
             }
-
-            //if (collision.gameObject.CompareTag("EnemyAttack"))
-            //{
-            //    var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
-            //    var bulletKnockBack = 10; // temporary
-
-            //    //playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
-
-            //    TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
-
-            //    FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
-
-            //    //StartCoroutine(HitStun());
-            //    StartCoroutine(IFrame());
-
-            //    Destroy(collision.gameObject);
-            //}
         }
-        //else
-        //{
-        //    if (collision.gameObject.CompareTag("EnemyAttack"))
-        //    {
-        //        Destroy(collision.gameObject);
-        //    }
-        //}
+
     }
 
     public IEnumerator WaitCoolDown(float duration) {
