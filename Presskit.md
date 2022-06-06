@@ -12,8 +12,8 @@
 ## Description 
 Welcome to The Sultans of Suggestion! World peace has been achieved, but humanity’s desire for violence rages on. In this game show of the future, our lucky contestants battle out of the Neo ColosseumTM, as wave after wave of mobs are torn apart to satisfy the bloodlust of contestants and audience alike. If an unlucky participant happens to fall in battle, no matter- there are always more entrants for the most popular program on air. There’s no greater calling- all are welcome to fight and die for the sake of entertainment!
 
-## Gameplay explanation 
-The game genre will be a roguelike 2D bullet hell game, where the player starts in a dungeon room and
+## Gameplay Explanation 
+The game genre is a roguelike 2D bullet hell game, where the player starts in a dungeon room and
 needs to beat the boss. The player will progress through rooms and gain upgrades until they 
 reach the final boss. These upgrades will be represented in card format and there will both be generally
 positive options as well as other options that are more chaotic and have some extra kind of negative effect.
