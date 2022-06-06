@@ -198,7 +198,7 @@ MonoBehaviour:
   maxHealth: 50
   mana: 100
   maxMana: 100
-  manaRechargeRate: 0.02
+  manaRechargeRate: 0.002
   rage: 0
   maxRage: 10
   bulletSpeed: 9
