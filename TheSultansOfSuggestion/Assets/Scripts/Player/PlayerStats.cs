@@ -96,6 +96,11 @@ namespace Player.Stats
             return this.bulletLifeSpan;
         }
 
+        public int GetEliteChance()
+        {
+            return this.eliteChance;
+        }
+
         public float GetRangeDamage()
         {
             return this.rangeDamage;
