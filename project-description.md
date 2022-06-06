@@ -7,6 +7,15 @@
 # Main Roles
 
 ## Producer
+Coming into this role with little experience as a project lead, I wanted to try my best to ensure the project's quality by helping the team with aspects they needed assistance with as well as performing the typical managerial duties. In the beginning stages of the project, I scheduled meetings that best fit everybody's time restrictions so that we could discuss the game's design and what our end goals for the game were. After the first few weeks, I gave a heads-up on our Discord server if anyone wanted to get on voice chat and discuss game structure/design/bug fixes. I tried my best to set deadlines, specifically for the alpha that we wanted to present to our playtesters. I also helped to manage our version control and ensure that pull requests were being created and approved appropriately.
+
+Other tasks performed:
+* Designed and crafted all the levels, including breaking up the sprite sheets into tiles and determining the game logic needed for the tile grid layers
+* In the final days of production, helped to create and manage a sheet full of bugs to fix and quality of life features to implement to improve the game after getting feedback
+* General debugging
+* Helping in aspects of game feel, what needed to be buffed and nerfed
+* Compiled the project description Markdown file from a rough draft Google Doc
+* Aided in finding backgrounds for the appropriate scenes along with the main font used
 
 ## User Interface
 
@@ -36,6 +45,29 @@ If the player's health depletes to 0, then a death scene loads which informs the
 ## Movement/Physics
 
 ## Animation and Visuals
+Assets Used:
+* Environments
+  * [Atlantis Sprite Sheets](https://finalbossblues.itch.io/atlantis-tileset)
+  * [Caves Sprite Sheets](https://szadiart.itch.io/rpg-worlds-ca)
+  * [Dungeon Sprite Sheets](https://szadiart.itch.io/rogue-fantasy-catacombs)
+* Character/Enemies
+  * [Main Character, Wolf, Bat, Witch, Golem](https://oco.itch.io/medieval-fantasy-character-pack)
+  * [Goblin, Mushroom Man, Flying Eye Guy](https://luizmelo.itch.io/monsters-creatures-fantasy)
+  * [Hellhound, Demon Boss](https://ansimuz.itch.io/gothicvania-patreon-collection)
+  * [Samurai](https://luizmelo.itch.io/martial-hero)
+* Wallpapers/Backgrounds
+  * [Mark Ferrari- Sunrise](https://wall.alphacoders.com/big.php?i=705837) - Used in the winning/credits scene
+  * [Bytecodeminer - Dark Sun](https://wall.alphacoders.com/big.php?i=911969) - Used in the death scene
+  * [Inkpendude- Sword Trials](https://wall.alphacoders.com/big.php?i=1132300) - Used in the main menu
+* Other Elements
+  * [Various Spell Effects](https://codemanu.itch.io/pixelart-effect-pack)
+  * [Sword Sprites](https://thewisehedgehog.itch.io/hs2020)
+  * [Spell Sprites](https://assetstore.unity.com/packages/2d/gui/icons/basic-rpg-icons-181301)
+  * [Blades for Boss Fight](https://blackdragon1727.itch.io/free-trap-platformer)
+  * [Background for Text Boxes and Item Slots](https://assetstore.unity.com/packages/2d/gui/icons/gui-parts-159068)
+  * [Health/Mana Bars](https://opengameart.org/content/golden-ui-bigger-than-ever-edition)
+
+Due to a lack of time and artistic expertise, free art assets were used for all the environments, weapons, characters, HUD, and transition screens. Since the narrative follows being on some dark, futuristic game show, there are a variety of environments and enemies to make the player feel as if they are being transported between different biomes. 
 
 ## Input
 When we were originally designing our game, we wanted to create something simple enough that anyone could play. Due to this, we decided on having four main actions. This works well for our input methods as most controllers have four face buttons or shoulder buttons if the user prefers. Additionally, if the user prefers mouse and keyboard, the mouse has both attacks while the keyboard has the hotkeys for spells and the dodge roll.
