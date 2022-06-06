@@ -11,11 +11,12 @@ Coming into this role with little experience as a project lead, I wanted to try 
 
 Other tasks performed:
 * Designed and crafted all the levels, including breaking up the sprite sheets into tiles and determining the game logic needed for the tile grid layers
-* In the final days of production, helped to create and manage a sheet full of bugs to fix and quality of life features to implement to improve the game after getting feedback
+* In the final days of production, helped to create and manage a [sheet](https://github.com/alecl303/TheSultansOfSuggestion-/blob/b7e197f1e5340d1dfd5356cc596fdb6c6b1a2684/Bugs%20to%20Fix.pdf) full of bugs to fix and quality of life features to implement to improve the game after getting feedback
 * General debugging
 * Helping in aspects of game feel, what needed to be buffed and nerfed
 * Compiled the project description Markdown file from a rough draft Google Doc
 * Aided in finding backgrounds for the appropriate scenes along with the main font used
+* Created a list of possible buffs/debuffs to use in our card system
 
 ## User Interface
 
@@ -43,6 +44,39 @@ If the player is participating in normal gameplay and has not reached during the
 If the player's health depletes to 0, then a death scene loads which informs the player they died and allows for a direct continuation which resets the player back to the first level or a main menu option that returns them to the main menu. The credits scene is very similar to death but it portrays a more cheery connotation then its counterpart.
 
 ## Movement/Physics
+
+### Attacking
+* Melee attacks spawn an invisible hitbox called a PlayerMeleePrefab, which has a RigidBody2D component, melee hit box controller component, and a Box Collider 2D component. This allows the player melee attacks to have pushback as they follow Unity’s built in physics system. 
+* Ranged attacks spawn bullets which also have a RigidBody2D component, bullet controller component, and a Box Collider 2D component. Each bullet will push back the enemy. 
+* The player’s attacks are angled based on where the mouse pointer is. The attacks are pointing towards the mouse’s direction.
+
+### General Movement
+* The RigidBody2D component’s velocity is used to define the direction and speed the object should be moving toward.
+* We avoided using RigidBody2D’s transform.position for movement as it will ignore Unity’s physics system since this is setting the position.
+
+### Determination of Player Movement
+* The player's movement is determined using the command pattern and input detection.
+* The player's roll direction is a normalized unit vector created using the value of the input axes.
+* All directional movement followed exercise 1 from Professor Joshua McCoy.
+
+### Determination of Enemy Movement
+* Enemy movement also uses the command pattern (see Game Logic) and the enemy either wanders or chases based on distance from the player.
+* To track the player, the enemy simply creates a target vector by subtracting its position from the player’s position, then normalizing that as a unit vector.
+* As for the enemy dashing, we utilized Unity’s lerping to make a smooth dash. The dash will activate once the enemy is close enough.
+
+### Collisions
+* Between Enemies and the Environment
+  * Each environment game object that is collidable on the map has the "Environment" tag. For example, the walls are tagged "Environment".
+  * For the Caves map, the empty area and the spikes are labeled "Hole" for the tag. This will allow flying enemies to ignore the collision and go through these parts of the map.  This is done through the EnemyController where, if the enemy is a flying unit and a collision is triggered, the collision is then ignored.
+* Between Enemies, Projectiles, and the Player
+  * In order to use Unity’s built in physics, we utilized Unity’s RigidBody2D component and Unity’s box/circle collider components. To identify if we want an object to follow Unity’s physics system, the object will have to add those two components. This will allow each object to have some mass and force applied whenever they collide. Once the two box/circle colliders touch, this will inform the attached scripts whether there was a collision. To represent accurate hitboxes, the shape best representing the object is used (except for the player which uses a circle collider to prevent them from dashing through the walls).
+*  Projectile Interactions
+  * Projectiles are tagged as "PlayerAttack" or "EnemyAttack", and will either collide and destroy themselves or ignore a collision based on the tag. Additional functionality afflicts the projectile's damage on collisions. 
+  * Each projectile also has their own defined damage inside a script that is then attached to bullet/projectile prefab. This defines the behavior of the bullet and allows management of stats. 
+* Floor Spell Interactions
+  * Floor spells are tagged either “PlayerBuffSpell” or “PlayerTrapSpell,” and spawned on the floor. The floor spells will activate their effect in OnTriggerEnter in the EnemyController or PlayerController. PlayerBuffSpell is used for the healing spell, and will activate once the player stands on it. The PlayerTrapSpell is used in IcicleTrap and triggers a barrage of bullets when an enemy steps on the circle. 
+  * Each of these has a RigidBody2D and a circle collider component since the spells are both circular. 
+
 
 ## Animation and Visuals
 Assets Used:
