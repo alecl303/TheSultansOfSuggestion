@@ -12,7 +12,7 @@ namespace Player.Command
             var target = new Vector2(0, 0);
             var positionDifference = new Vector2(0, 0);
 
-            if (Input.GetJoystickNames().Length == 0)
+            if (Input.GetJoystickNames()[0].Equals(""))
             {
                 var worldTransform = Camera.main.WorldToScreenPoint(gameObject.transform.position);
                 positionDifference = Input.mousePosition - worldTransform;
