@@ -34,7 +34,7 @@ namespace Player.Stats
         public bool manaIsHp = false;
         //public List<GameObject> weapons;
         //public GameObject activeWeapon;
-
+        public int eliteChance = 5;
 
 
         public List<Weapon> weapons;
@@ -94,6 +94,11 @@ namespace Player.Stats
         public float GetBulletRange()
         {
             return this.bulletLifeSpan;
+        }
+
+        public int GetEliteChance()
+        {
+            return this.eliteChance;
         }
 
         public float GetRangeDamage()

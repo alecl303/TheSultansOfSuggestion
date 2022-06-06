@@ -17,12 +17,14 @@ public class HealEffect : MonoBehaviour, IPlayerFloorSpellEffect
     public void SetOverlap(bool overlap)
     {
         this.overlap = overlap;
-        if (activated != null) 
+        if (activated != null && overlap == false) 
         {
             StopCoroutine(activated);
+            activated = null;
         }
     }
-    public void SetTimeBeforeHeal(float timeBeforeHeal){
+    public void SetTimeBeforeHeal(float timeBeforeHeal)
+    {
         this.timeBeforeHeal = timeBeforeHeal;
     }
 
@@ -42,10 +44,12 @@ public class HealEffect : MonoBehaviour, IPlayerFloorSpellEffect
 
     public IEnumerator Effect(PlayerController target)
     {
+        Debug.Log("Start!");
         var playerStats = target.GetStats();
         while(overlap) 
         {
             yield return new WaitForSeconds(timeBeforeHeal);
+            Debug.Log("Heal!"); 
             playerStats.Heal(flatHeal);
         }
     }
