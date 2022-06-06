@@ -4,7 +4,7 @@
 View the project description and get insight into all facets of the game [here](https://github.com/alecl303/TheSultansOfSuggestion/blob/380f1e5857f93dde6629df11f5cf88f70d4b5805/project-description.md)!  
 View the press kit [here](https://github.com/alecl303/TheSultansOfSuggestion/blob/380f1e5857f93dde6629df11f5cf88f70d4b5805/Presskit.md)!  
 View the trailer [here](https://www.youtube.com/watch?v=vQLqbzaNdg0)!  
-Play the game [here](https://cmpires.itch.io/the-sultans-of-suggestion)! (Or open TheSultansOfSuggestion.exe in the repo)
+Play the game [here](https://cmpires.itch.io/the-sultans-of-suggestion)!
 
 ## Credits
 * Producer/Gameplay Tester - Cameron Daggs
