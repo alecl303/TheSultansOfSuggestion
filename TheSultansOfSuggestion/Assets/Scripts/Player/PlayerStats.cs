@@ -34,7 +34,7 @@ namespace Player.Stats
         public bool manaIsHp = false;
         //public List<GameObject> weapons;
         //public GameObject activeWeapon;
-
+        public int eliteChance = 5;
 
 
         public List<Weapon> weapons;
