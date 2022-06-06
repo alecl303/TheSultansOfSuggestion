@@ -1,5 +1,5 @@
 
-![alt text](./PresskitImages/title.png?raw=true)
+# The Sultans of Suggestion
 
 **Developer:** Frogger 2 <br>
 **Release Date:** 6/6/22 <br>
