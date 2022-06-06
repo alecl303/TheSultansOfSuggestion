@@ -8,7 +8,7 @@ namespace Player.Command
 {
     public class Whirlwind : ScriptableObject, IPlayerSpell
     {
-
+       
         private int requiredMana = 50;
         private float cooldown = 0.0f;
 
