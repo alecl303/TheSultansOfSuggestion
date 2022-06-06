@@ -60,6 +60,7 @@ abstract public class EnemyController : MonoBehaviour
     protected IEnemyCommand movement;
     protected IEnemyCommand attack;
     protected IEnemyCommand chase;
+    
 
     // Start and Update calls virtual method init, that can be extended in inherited classes. Inherited classes will inherit Start/Update methods from this class.
     void Start()
@@ -67,13 +68,6 @@ abstract public class EnemyController : MonoBehaviour
         Init();
         this.maxHealth = this.health;
         this.healthBar.value = this.GetHealthRatio();
-
-        var randomInt = Random.Range(0, 100);
-        var eliteChance = FindObjectOfType<PlayerController>().GetStats().GetEliteChance();
-        if(randomInt <= eliteChance)
-        {
-            IsElite();
-        }
     }
 
     void Update()
@@ -229,6 +223,13 @@ abstract public class EnemyController : MonoBehaviour
         var temp = FindObjectOfType<PlayerController>();
         this.target = temp.GetComponent<Rigidbody2D>();
         this.targetRage = temp.GetComponent<PlayerController>();
+        //int eliteChance = FindObjectOfType<PlayerController>().GetStats().GetEliteChance();
+        int randomInt = Random.Range(0, 100);
+
+        if (randomInt <= 5)
+        {
+            IsElite();
+        }
     }
 
     private void IsElite()
