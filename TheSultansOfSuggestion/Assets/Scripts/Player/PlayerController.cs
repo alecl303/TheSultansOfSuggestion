@@ -225,6 +225,22 @@ public class PlayerController : MonoBehaviour
                 Destroy(collision.gameObject);
             }
 
+            if (collision.gameObject.CompareTag("PersistentEnemyAttack"))
+            {
+                var playerRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+                var bulletKnockBack = 10; // temporary
+
+                //playerRigidBody.velocity = (bulletKnockBack * (playerRigidBody.position - collision.gameObject.GetComponent<Rigidbody2D>().position).normalized);
+
+                stats.TakeDamage(collision.gameObject.GetComponent<EnemyAttack>().GetDamage());
+
+                FindObjectOfType<SoundManager>().PlaySoundEffect("EnemyFire");
+
+                //StartCoroutine(HitStun());
+                this.iframeRoutine = StartCoroutine(IFrame());
+
+            }
+
             // if (collision.gameOBject.CompareTag(""))
         }
         else

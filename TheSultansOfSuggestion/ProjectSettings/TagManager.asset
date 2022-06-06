@@ -14,6 +14,7 @@ TagManager:
   - PlayerBuffSpell
   - PlayerTrapSpell
   - Boss
+  - PersistentEnemyAttack
   layers:
   - Default
   - TransparentFX

@@ -6,19 +6,20 @@ public class RazerBulletController : EnemyAttack
 {
 
     private Vector2 direction;
-    protected float bulletSpeed = 9;
+    protected float bulletSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.damage = 2;
+        this.damage = 5;
         //this.target = (FindObjectOfType<PlayerController>().gameObject.GetComponent<Rigidbody2D>().position - this.gameObject.GetComponent<Rigidbody2D>().position).normalized;
+        BounceDirection();
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<Rigidbody2D>().velocity = this.bulletSpeed * this.direction;
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = this.bulletSpeed * this.direction;
     }
 
     public void SetBulletSpeed(float speed)
@@ -34,24 +35,32 @@ public class RazerBulletController : EnemyAttack
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Environment"))
+        if (collision.gameObject.CompareTag("Environment") || collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("PersistentEnemyAttack") || collision.gameObject.CompareTag("PlayerMeleeAttack"))
         {
             // Destroy(this.gameObject);
-            bounceDirection();
-            Debug.Log("bounce");
-
+            BounceDirection();
         }
 
         if (collision.gameObject.CompareTag("Boss") || collision.gameObject.CompareTag("EnemyAttack") || collision.gameObject.CompareTag("Hole") || collision.gameObject.CompareTag("PlayerAttack"))
         {
-            Debug.Log("ignore");
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
         }
     }
-    
-    private void bounceDirection() 
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        var newDirection = -direction;
+        if (collision.gameObject.CompareTag("Environment"))
+        {
+            // Destroy(this.gameObject);
+            BounceDirection();
+        }
+    }
+
+    private void BounceDirection() 
+    {
+        var theta = (Random.Range(0, 360) * Mathf.PI) / 180;
+        var radius = 10;
+        var newDirection = new Vector2(radius * Mathf.Cos(theta), radius * Mathf.Sin(theta));
         this.direction = newDirection;
     }
 }

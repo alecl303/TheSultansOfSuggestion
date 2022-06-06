@@ -23,54 +23,20 @@ namespace Boss.Command
 
             if (rigidBody != null && this.ready)
             {
-                for (int i = 0; i < 360; i += 25)
-                {
-                    float theta = i * (Mathf.PI / 180);
-
-                    var r = new Vector2(Mathf.Cos(theta), Mathf.Sin(theta)).normalized;
-
-                    var target = r;
-
-                    var x = rigidBody.transform.position.x;
-                    var y = rigidBody.transform.position.y;
-                    var bulletObj = Instantiate(bullet, new Vector3(x + r.x, y + r.y, rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, i));
-                    Destroy(bulletObj, 10.0f);
-                    var bulletController = bulletObj.gameObject.GetComponent<RazerBulletController>();
-                    bulletController.SetBulletDamage(this.bulletDamage);
-                    bulletController.SetBulletSpeed(this.speed + r.magnitude);
-
-                    // if((i % 32) == 0)
-                    // {
-                    //     var enemyObject = gameObject.GetComponent<BossController>();
-                    //     var player = enemyObject.GetTarget();
-
-                    //     Vector2 positionDifference = player.position - rigidBody.position;
-                    //     var angle = Mathf.Atan((positionDifference.y) / (positionDifference.x)) * (180 / Mathf.PI);
-
-
-                    //     GameObject bullet2 = (GameObject)Instantiate(targetBullet, new Vector3(rigidBody.transform.position.x, rigidBody.transform.position.y, rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, angle));
-
-
-                    //     if (positionDifference.x < 0)
-                    //     {
-                    //         bullet2.GetComponent<SpriteRenderer>().flipX = true;
-                    //     }
-
-                    //     bullet2.GetComponent<BulletController>().SetBulletDamage(enemyObject.GetAttackDamage());
-                    //     bullet2.GetComponent<BulletController>().SetBulletSpeed(8);
-                    // }
-
-                    boss.StartCoroutine(bufferAttacks(this.attackBuffer));
-                }
+                var x = rigidBody.transform.position.x;
+                var y = rigidBody.transform.position.y;
+                var bulletObj = Instantiate(bullet, new Vector3(x, y, rigidBody.transform.position.z), new Quaternion());
+                var bulletController = bulletObj.gameObject.GetComponent<RazerBulletController>();
+                bulletController.SetBulletDamage(this.bulletDamage);
+                bulletController.SetBulletSpeed(this.speed);
             }
         }
-
-        public IEnumerator bufferAttacks(float attackBuffer)
-        {
-            this.ready = false;
-            yield return new WaitForSeconds(attackBuffer);
-            this.ready = true;
-        }
+        //public IEnumerator bufferAttacks(float attackBuffer)
+        //{
+        //    this.ready = false;
+        //    yield return new WaitForSeconds(attackBuffer);
+        //    this.ready = true;
+        //}
 
         public float GetDuration()
         {
@@ -78,3 +44,4 @@ namespace Boss.Command
         }
     }
 }
+
