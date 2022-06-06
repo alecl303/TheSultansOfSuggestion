@@ -199,7 +199,7 @@ Since we were working on creating a roguelike, we wanted our story to be mainly 
 ### Press Kit
 [Press Kit](https://github.com/alecl303/TheSultansOfSuggestion-/blob/0d9b0e6d5da76aebd19769a5b863e955ef6e585f/Presskit.md) - The press kit is available to see here. The press kit contains a list of information including release date, supported platforms, price, languages, ESRB, and genre. There is also a short description and gameplay explanation, coupled with a few images to show the game. I chose to include these to give a brief overview of what the game is, while also demoing a part of the game using a trailer and images. The goal is to give the player a taste of what the game is about and to attract them without giving all the mystery away. 
   
-[Trailer](google.com) - The trailer is made with the same intentions as the press kit by giving the player a snapshot of the game. This will be in the form of actual gameplay, in the form of enemies, spells, cards, and the boss. EDIT THIS
+[Trailer](https://youtu.be/vQLqbzaNdg0) - The trailer is made with the same intentions as the press kit by giving the player a snapshot of the game. This will be in the form of actual gameplay, in the form of enemies, spells, cards, and the boss. EDIT THIS
 
 ## Game Feel
 After receiving feedback from gameplay testing and just playing around with the game, I met with the team to discuss what changes we wanted to make to the game to improve the feel.
