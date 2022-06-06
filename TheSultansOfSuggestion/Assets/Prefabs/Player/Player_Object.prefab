@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canShoot: 1
+  canDodge: 1
   iFrameTime: 1
   isInIFrame: 0
   hitStunTime: 0.3
@@ -177,7 +178,6 @@ MonoBehaviour:
   isAttacking: 0
   isDead: 0
   isEnabled: 1
-  canDodge: 1
   bulletPrefab: {fileID: 298595146526088288, guid: 64ad63427e01f6142b4a24ad046e6af8, type: 3}
   hitboxPrefab: {fileID: 3291160839767343730, guid: c92c182abec5c2640ac85e81c5e15743, type: 3}
   empty: {fileID: 0}
@@ -193,12 +193,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5a75ac1cefc9e45b1b9f8f543f0604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 6
+  movementSpeed: 8
   health: 50
   maxHealth: 50
   mana: 100
   maxMana: 100
-  manaRechargeRate: 0.02
+  manaRechargeRate: 0.002
   rage: 0
   maxRage: 10
   bulletSpeed: 9
@@ -215,6 +215,7 @@ MonoBehaviour:
   critChance: 1
   critMultiplier: 1.5
   manaIsHp: 0
+  eliteChance: 5
   weapons:
   - {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}
   activeWeapon: {fileID: 4997666621483830525, guid: d36f772ed60f8174aad3262184972179, type: 3}

@@ -174,6 +174,9 @@ MonoBehaviour:
   isFlying: 1
   bulletPrefab: {fileID: 8297301490254468834, guid: da9e3e1e25e60da49b4974f9d64b12c6, type: 3}
   targetBulletPrefab: {fileID: 6087790376291015841, guid: efec521f6c503f642b9b30ea4e2930f5, type: 3}
+  razerBulletPrefab: {fileID: 3314741014788306328, guid: 922745a5b3114ec4aadb0951711fe9a1, type: 3}
   crosshair: {fileID: 2800000, guid: 45c50ecdf18da44459070bc07a652305, type: 3}
+  healthBarUI: {fileID: 0}
+  healthBar: {fileID: 0}
   isDead: 0
   currentAttackIndex: 0

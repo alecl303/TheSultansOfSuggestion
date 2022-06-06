@@ -12,21 +12,17 @@ namespace Player.Command
             var worldTransform = Camera.main.WorldToScreenPoint(gameObject.transform.position);
             var positionDifference = Input.mousePosition - worldTransform;
             var target = positionDifference.normalized;
-
-            GameObject hitBox = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().hitboxPrefab, new Vector3(rigidBody.transform.position.x + (target.x), rigidBody.transform.position.y + (target.y), rigidBody.transform.position.z), new Quaternion());
+            var theta = Mathf.Atan((positionDifference.y - rigidBody.transform.position.y) / (positionDifference.x - rigidBody.transform.position.x)) * (180 / Mathf.PI);
+            GameObject hitBox = (GameObject)Instantiate(gameObject.GetComponent<PlayerController>().hitboxPrefab, new Vector3(rigidBody.transform.position.x + (target.x), rigidBody.transform.position.y + (target.y), rigidBody.transform.position.z), Quaternion.Euler(0.0f, 0.0f, theta));
             var hitboxController = hitBox.gameObject.GetComponent<PlayerAttack>();
-
+            //hitBox.GetComponentInChildren<Transform>().Rotate(new Vector3(0.0f, 0.0f, theta/ ((180 / Mathf.PI))));
+            if (positionDifference.x - rigidBody.transform.position.x < 0)
+            {
+                hitBox.GetComponentInChildren<SpriteRenderer>().flipX = true;
+                hitBox.GetComponentInChildren<SpriteRenderer>().flipY = true;
+            }
             var playerObject = gameObject.GetComponent<PlayerController>();
-            /* Buggy -?
-            if(target.x < rigidBody.position.x)
-            {
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else
-            {
-                gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            }
-            */
+            
 
             hitboxController.SetStunTime(playerObject.GetStats().GetStunTime());
             hitboxController.SetStunChance(playerObject.GetStats().GetStunChance());
