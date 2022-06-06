@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2246675353442255959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2246675353442255977}
+  - component: {fileID: 2246675353442255976}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2246675353442255977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246675353442255959}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2246675353442255976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246675353442255959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52ffb90c611e4554f8c79cbfd5de3f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicMixerGroup: {fileID: -7802871821760928576, guid: 639743660d0e54c49b4bb53bbff2e11a, type: 2}
+  sfxMixerGroup: {fileID: -5514887378846270790, guid: 639743660d0e54c49b4bb53bbff2e11a, type: 2}
+  musicTracks:
+  - clip: {fileID: 8300000, guid: 62c602a8854d91e44950dd09171af333, type: 3}
+    audioSource: {fileID: 0}
+    title: Drum and Bass
+    volume: 0.495
+    pitch: 1
+    loop: 1
+  - clip: {fileID: 8300000, guid: 773ea0c8d53e81e439ccdbd8f871cce7, type: 3}
+    audioSource: {fileID: 0}
+    title: Ominous
+    volume: 0.495
+    pitch: 1
+    loop: 1
+  - clip: {fileID: 8300000, guid: 2c63113a3f5473d4ebc2c72e0a9e019b, type: 3}
+    audioSource: {fileID: 0}
+    title: Game Over
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 4e7cae18ea8667f45b0a4023f66c7821, type: 3}
+    audioSource: {fileID: 0}
+    title: Game Over Long
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 3a603f0072057664ca8365770bfd994c, type: 3}
+    audioSource: {fileID: 0}
+    title: Menu
+    volume: 0.495
+    pitch: 1
+    loop: 1
+  - clip: {fileID: 8300000, guid: 350b8f30eae95ef4cb5150adfbca7dcc, type: 3}
+    audioSource: {fileID: 0}
+    title: Water
+    volume: 0.495
+    pitch: 1
+    loop: 1
+  - clip: {fileID: 8300000, guid: c1ea9a13ee75d764893f707ca8070c20, type: 3}
+    audioSource: {fileID: 0}
+    title: Boss
+    volume: 0.495
+    pitch: 1
+    loop: 1
+  - clip: {fileID: 8300000, guid: 2177c41b1532e5c4f9cb1b99572c17c8, type: 3}
+    audioSource: {fileID: 0}
+    title: Funk
+    volume: 0.495
+    pitch: 1
+    loop: 1
+  sfxClips:
+  - clip: {fileID: 8300000, guid: 10c1b0fb429340741b77bd1e9d950edb, type: 3}
+    audioSource: {fileID: 0}
+    title: Death
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 747674642abf83a4cab7112e502b1d4e, type: 3}
+    audioSource: {fileID: 0}
+    title: Death2
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: c83b13e4890d6c640beff17c033c0d6e, type: 3}
+    audioSource: {fileID: 0}
+    title: EnemyFire
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 036641dd2701ef64ca0a80baa9160b54, type: 3}
+    audioSource: {fileID: 0}
+    title: Hit
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: ec09fd9cccbc41548ac9443d4a9ae65b, type: 3}
+    audioSource: {fileID: 0}
+    title: Item
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 397f050d0d84fb94b866227700a1f980, type: 3}
+    audioSource: {fileID: 0}
+    title: Melee
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: c7c1b35785f50464f8c9ba7f87ec9bb5, type: 3}
+    audioSource: {fileID: 0}
+    title: Melee2
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: ddbd1b00b3b3a3e4590f7f9817c74195, type: 3}
+    audioSource: {fileID: 0}
+    title: MenuEditor
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 04dce1a23a4b6be42941c9f4b8e58037, type: 3}
+    audioSource: {fileID: 0}
+    title: MenuSelection
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: ddbd1b00b3b3a3e4590f7f9817c74195, type: 3}
+    audioSource: {fileID: 0}
+    title: MenuEnter
+    volume: 0.495
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: b9916e00b4f42d243acaa458dad473a7, type: 3}
+    audioSource: {fileID: 0}
+    title: MenuEnter2
+    volume: 0.495
+    pitch: 1
+    loop: 0
