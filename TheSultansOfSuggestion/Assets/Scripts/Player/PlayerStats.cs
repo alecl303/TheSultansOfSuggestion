@@ -63,7 +63,7 @@ namespace Player.Stats
             this.activeWeapon.SetSprite(this.gameObject.GetComponent<WeaponSprites>().sprites[this.activeWeapon.spriteIndex]);
             this.weapons.Add(this.activeWeapon);
 
-            this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
+            this.weaponDamage = 3;
 
             this.bulletMovement = ScriptableObject.CreateInstance<StandardBullet>();
 
@@ -120,8 +120,6 @@ namespace Player.Stats
 
         public float GetMeleeDamage()
         {
-            this.weaponDamage = this.activeWeapon.GetComponent<Weapon>().GetDamage();
-
             var damage = this.meleeDamage + this.weaponDamage;
 
             return damage;  // Will have to figure out active weapon in inventory

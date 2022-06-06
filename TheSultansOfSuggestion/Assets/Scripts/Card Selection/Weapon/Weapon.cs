@@ -5,17 +5,12 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public Sprite[] sprites;
-    private int damage;
+    public int damage;
     public Sprite sprite;
     public int spriteIndex;
     private string rarity;
     private int lowerBound;
     private int upperBound;
-    void Awake()
-    {
-        this.damage = 3;
-        this.spriteIndex = Random.Range(0, 30);
-    }
 
     public void Randomize()
     {
