@@ -144,9 +144,6 @@ When we were originally designing our game, we wanted to create something simple
 ### Keyboard and Mouse
 The player can move their character by using the ‘WASD’ (or arrow) keys. Pressing Shift will let the character perform a dodge roll to evade enemy attacks. By pressing the spacebar, the character will perform its active spell. By aiming the mouse, players can specifically target and aim at specific high-priority targets.
 
-### Controller 
-The player can also play the game with the use of a controller. The player can aim their attacks with the right joystick and move with the left one. Additionally, the spells and dodge roll are bound to their specific face buttons on the controller used.
-
 ## Game Logic
 Everything mentioned below was either made up or learned from a project done in class.
 * Enemy Controller(s)
