@@ -180,6 +180,7 @@ MonoBehaviour:
   canDodge: 1
   bulletPrefab: {fileID: 298595146526088288, guid: 64ad63427e01f6142b4a24ad046e6af8, type: 3}
   hitboxPrefab: {fileID: 3291160839767343730, guid: c92c182abec5c2640ac85e81c5e15743, type: 3}
+  empty: {fileID: 0}
 --- !u!114 &8517511081533375575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,8 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 6
-  health: 100
-  maxHealth: 100
+  health: 50
+  maxHealth: 50
   mana: 100
   maxMana: 100
   manaRechargeRate: 0.02
