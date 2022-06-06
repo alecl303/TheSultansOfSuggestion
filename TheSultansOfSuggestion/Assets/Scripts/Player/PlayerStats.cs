@@ -26,8 +26,8 @@ namespace Player.Stats
         public float poisonTime = 3;
         public float poisonTickDamage = 1;
         //public float bulletSize = 1; If we use bulletSize+ effect (YAGNI?)
-        public float rangeDamage = 2;
-        public float meleeDamage = 5;
+        public float rangeDamage = 3;
+        public float meleeDamage = 1;
         public float fireRate = 0.4f;
         public int critChance = 2;
         public float critMultiplier = 1.5f;

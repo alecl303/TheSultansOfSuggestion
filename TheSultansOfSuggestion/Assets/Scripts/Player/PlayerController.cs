@@ -362,8 +362,9 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Dead", true);
             FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + 1);
-
-            SceneManager.LoadScene(8);
+            
+            FindObjectOfType<DontDestroyOnLoad>().DestroyAll();
+            SceneManager.LoadScene(7);
             FindObjectOfType<SoundManager>().PlayMusicTrack("Game Over");
             
         }
@@ -410,7 +411,7 @@ public class PlayerController : MonoBehaviour
         this.activeSpell1 = spell;
         if(sprite == null)
         {
-            this.playersCurrentItemBar.Updateslots(2,sprite);
+            this.playersCurrentItemBar.Updateslots(2, empty);
         }else
         {
             this.playersCurrentItemBar.Updateslots(2,sprite);
