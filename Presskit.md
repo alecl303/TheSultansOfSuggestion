@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ![alt text](./PresskitImages/title.png?raw=true)
 
 **Developer:** Frogger 2 <br>
@@ -10,21 +10,9 @@
 **ESRB:** T for teens <br>
 **Genre:** 2D, roguelike, bullet hell, single-player, action-adventure <br> <br>
 
------
-
-=======
-# The Sultans of Suggestion
-**Developer:** Frogger 2 <br>
-**Release Date:** 6/6/22 <br>
-**Supported Platforms:** Desktop/Laptop <br>
-**Price:** Free <br>
-**Languages:** English <br>
-**ESRB:** T for teens <br>
-**Genre:** 2D, roguelike, bullet hell, single-player, action-adventure <br> <br>
 
 -----
 
->>>>>>> main
 ## Description 
 Welcome to The Sultans of Suggestion! World peace has been achieved, but humanity’s desire for violence rages on. In this game show of the future, our lucky contestants battle out of the Neo ColosseumTM, as wave after wave of mobs are torn apart to satisfy the bloodlust of contestants and audience alike. If an unlucky participant happens to fall in battle, no matter- there are always more entrants for the most popular program on air. There’s no greater calling- all are welcome to fight and die for the sake of entertainment!
 
@@ -52,7 +40,7 @@ difficulty as they approach the boss.
 
 -----
 
-[Insert trailer link here when done]
+[Trailer](https://youtu.be/vQLqbzaNdg0)
 
 
 ### Fight enemies! <br>
@@ -73,8 +61,5 @@ difficulty as they approach the boss.
 
 ### Die! And then start over... <br>
 
-<<<<<<< HEAD
 ![alt text](./PresskitImages/image5.png?raw=true)
-=======
-![alt text](./PresskitImages/image5.png?raw=true)
->>>>>>> main
+
