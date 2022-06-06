@@ -14,7 +14,7 @@ namespace Player.Stats
         public float maxHealth = 100;
         public float mana = 100;
         public float maxMana = 100;
-        public float manaRechargeRate = .02f;
+        public float manaRechargeRate = .002f;
         public float rage = 0;
         public float maxRage = 10;
         public float bulletSpeed = 9;
